@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codeq Care — Zespół Wzrostu E-commerce w Abonamencie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ========================
+       DESIGN TOKENS
+    ======================== */
+    :root {
+      --blue-900: #07139a;
+      --blue-800: #0f1fcb;
+      --blue-700: #132ef8;
+      --blue-600: #1f3ff9;
+      --blue-500: #2c52fa;
+      --blue-400: #5073fc;
+      --blue-200: #c1cefe;
+      --blue-100: #e8edff;
+      --blue-50:  #f4f6ff;
+      --white:    #ffffff;
+      --gray-900: #0d1117;
+      --gray-700: #374151;
+      --gray-500: #6b7280;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+      --green:    #22c55e;
+      --red:      #ef4444;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+
+      --shadow-sm: 0 2px 8px rgba(19,46,248,.08);
+      --shadow-md: 0 8px 32px rgba(19,46,248,.12);
+      --shadow-lg: 0 20px 60px rgba(19,46,248,.18);
+
+      --font: 'Inter', system-ui, sans-serif;
+    }
+
+    /* ========================
+       RESET & BASE
+    ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--gray-900);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ========================
+       TYPOGRAPHY HELPERS
+    ======================== */
+    .label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue-400);
+    }
+    .label--white { color: var(--blue-200); }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.2; }
+    h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+
+    .text-center { text-align: center; }
+
+    /* ========================
+       LAYOUT
+    ======================== */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: 96px 0; }
+
+    /* ========================
+       BUTTONS
+    ======================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all .2s ease;
+      white-space: nowrap;
+    }
+    .btn--primary {
+      background: var(--blue-700);
+      color: var(--white);
+      border-color: var(--blue-700);
+    }
+    .btn--primary:hover {
+      background: var(--blue-800);
+      border-color: var(--blue-800);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn--outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.5);
+    }
+    .btn--outline-white:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--white);
+    }
+    .btn--outline-blue {
+      background: transparent;
+      color: var(--blue-700);
+      border-color: var(--blue-700);
+    }
+    .btn--outline-blue:hover {
+      background: var(--blue-50);
+    }
+    .btn--white {
+      background: var(--white);
+      color: var(--blue-700);
+      border-color: var(--white);
+    }
+    .btn--white:hover {
+      background: var(--blue-50);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn--lg {
+      padding: 18px 36px;
+      font-size: 1.1rem;
+      border-radius: var(--radius-md);
+    }
+
+    /* ========================
+       STICKY NAV
+    ======================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: var(--shadow-sm); }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav__logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--blue-700);
+      letter-spacing: -.02em;
+    }
+    .nav__logo span { color: var(--gray-900); }
+    .nav__links {
+      display: flex;
+      gap: 32px;
+    }
+    .nav__links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      transition: color .2s;
+    }
+    .nav__links a:hover { color: var(--blue-700); }
+    .nav__cta { display: flex; gap: 12px; align-items: center; }
+
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+    }
+
+    /* ========================
+       1. HERO
+    ======================== */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 96px;
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 60%, var(--blue-500) 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%; right: -20%;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; left: -10%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero__label { margin-bottom: 20px; }
+    .hero h1 { margin-bottom: 24px; }
+    .hero__sub {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,.85);
+      margin-bottom: 40px;
+    }
+    .hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero__trust { }
+    .hero__trust-label {
+      font-size: .8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 16px;
+    }
+    .hero__logos {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero__logo-pill {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-sm);
+      padding: 8px 16px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      color: rgba(255,255,255,.7);
+    }
+    /* Team graphic */
+    .hero__visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .team-diagram {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-xl);
+      padding: 40px 32px;
+      backdrop-filter: blur(8px);
+    }
+    .team-diagram__title {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--blue-200);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .team-diagram__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .role-card {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      transition: background .2s;
+    }
+    .role-card:hover { background: rgba(255,255,255,.15); }
+    .role-card__icon { font-size: 1.75rem; margin-bottom: 8px; }
+    .role-card__name {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+    .role-card__sub {
+      font-size: .7rem;
+      color: var(--blue-200);
+    }
+    .team-diagram__connector {
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .connector-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: rgba(255,255,255,.4);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .connector-line::before,
+    .connector-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,.2);
+    }
+    .team-diagram__result {
+      background: linear-gradient(135deg, rgba(255,255,255,.15), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .result-icon { font-size: 1.5rem; }
+    .result-text { font-size: .85rem; color: rgba(255,255,255,.9); }
+    .result-text strong { display: block; color: var(--white); font-size: .95rem; margin-bottom: 2px; }
+
+    @media (max-width: 900px) {
+      .hero__inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero { padding-top: 120px; }
+    }
+
+    /* ========================
+       2. PROBLEM
+    ======================== */
+    .problem { background: var(--blue-50); }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header .label { margin-bottom: 12px; }
+    .section-header h2 { margin-bottom: 16px; }
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--gray-500);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    .model-card {
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      border: 2px solid transparent;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .model-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .model-card--bad {
+      background: var(--white);
+      border-color: var(--gray-200);
+    }
+    .model-card--good {
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      color: var(--white);
+      border-color: var(--blue-700);
+      box-shadow: var(--shadow-lg);
+    }
+    .model-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .model-card--bad .model-card__badge {
+      background: #fee2e2;
+      color: var(--red);
+    }
+    .model-card--good .model-card__badge {
+      background: rgba(255,255,255,.2);
+      color: var(--white);
+    }
+    .model-card__icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .model-card h3 { margin-bottom: 16px; }
+    .model-card--bad h3 { color: var(--gray-900); }
+    .model-card--good h3 { color: var(--white); }
+    .model-card p { font-size: .9rem; line-height: 1.7; }
+    .model-card--bad p { color: var(--gray-500); }
+    .model-card--good p { color: rgba(255,255,255,.85); }
+    .model-card__features {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .model-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .875rem;
+      font-weight: 500;
+    }
+    .model-feature .dot {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem;
+      flex-shrink: 0;
+    }
+    .model-card--bad .dot { background: #fee2e2; color: var(--red); }
+    .model-card--good .dot { background: rgba(255,255,255,.2); color: var(--white); }
+    .model-card--bad .model-feature { color: var(--gray-700); }
+    .model-card--good .model-feature { color: rgba(255,255,255,.9); }
+
+    @media (max-width: 768px) {
+      .models-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================
+       3. THE SQUAD
+    ======================== */
+    .squad { background: var(--white); }
+    .squad__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .squad-card {
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      cursor: default;
+    }
+    .squad-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-200);
+    }
+    .squad-card__header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .squad-card__emoji {
+      font-size: 2.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .squad-card__meta {}
+    .squad-card__role {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--blue-400);
+      margin-bottom: 4px;
+    }
+    .squad-card h3 { color: var(--gray-900); margin-bottom: 4px; }
+    .squad-card__who {
+      font-size: .8rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+    .squad-card__task {
+      font-size: .875rem;
+      color: var(--gray-700);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .squad-card__value {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      font-size: .875rem;
+      color: var(--gray-700);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--blue-700);
+    }
+    .squad-card__pov {
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      font-size: .8rem;
+      color: rgba(255,255,255,.9);
+      line-height: 1.65;
+      font-style: italic;
+      position: relative;
+    }
+    .squad-card__pov::before {
+      content: '"';
+      font-size: 3rem;
+      line-height: 1;
+      color: rgba(255,255,255,.2);
+      position: absolute;
+      top: 8px; left: 16px;
+      font-family: Georgia, serif;
+    }
+    .squad-card__pov p { padding-left: 20px; }
+
+    @media (max-width: 768px) {
+      .squad__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================
+       4. PODEJŚCIE
+    ======================== */
+    .approach {
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 100%);
+      color: var(--white);
+    }
+    .approach .section-header h2 { color: var(--white); }
+    .approach .section-header p { color: var(--blue-200); }
+    .approach .label { color: var(--blue-200); }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pillar-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: background .2s, transform .2s;
+    }
+    .pillar-card:hover {
+      background: rgba(255,255,255,.12);
+      transform: translateY(-4px);
+    }
+    .pillar-card__icon { font-size: 2.5rem; margin-bottom: 20px; }
+    .pillar-card h3 { color: var(--white); margin-bottom: 12px; }
+    .pillar-card p { font-size: .9rem; color: var(--blue-200); line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================
+       5. VICTORY PATHS
+    ======================== */
+    .victory { background: var(--white); }
+    .scenarios {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .scenario-card {
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+    .scenario-card:hover,
+    .scenario-card.active {
+      border-color: var(--blue-700);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .scenario-card__header {
+      background: var(--blue-50);
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .scenario-card.active .scenario-card__header {
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      border-bottom-color: transparent;
+    }
+    .scenario-card__icon { font-size: 2rem; margin-bottom: 12px; }
+    .scenario-card__tag {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--blue-400);
+      margin-bottom: 8px;
+    }
+    .scenario-card.active .scenario-card__tag { color: var(--blue-200); }
+    .scenario-card h3 { font-size: 1.1rem; color: var(--gray-900); }
+    .scenario-card.active h3 { color: var(--white); }
+    .scenario-card__target {
+      font-size: .8rem;
+      color: var(--gray-500);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    .scenario-card.active .scenario-card__target { color: rgba(255,255,255,.75); }
+    .scenario-card__body { padding: 24px 28px; }
+    .scenario-card__plan { margin-bottom: 24px; }
+    .scenario-card__plan-title {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gray-500);
+      margin-bottom: 12px;
+    }
+    .plan-steps { display: flex; flex-direction: column; gap: 8px; }
+    .plan-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: .875rem;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+    .plan-step__num {
+      background: var(--blue-100);
+      color: var(--blue-700);
+      font-weight: 700;
+      font-size: .7rem;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .kpi-list { display: flex; flex-direction: column; gap: 8px; }
+    .kpi-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .875rem;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+    .kpi-icon { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+    .scenario-card__pkg {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pkg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: var(--blue-100);
+      color: var(--blue-700);
+    }
+
+    .lead-magnet {
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .lead-magnet__text h3 { margin-bottom: 8px; }
+    .lead-magnet__text p { font-size: .95rem; color: var(--gray-500); }
+    .lead-magnet__cta { flex-shrink: 0; }
+
+    @media (max-width: 900px) {
+      .scenarios { grid-template-columns: 1fr; }
+      .lead-magnet { flex-direction: column; text-align: center; }
+    }
+
+    /* ========================
+       6. PROCES
+    ======================== */
+    .process { background: var(--blue-50); }
+    .process-visual {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 64px;
+      position: relative;
+    }
+    .process-visual::before {
+      content: '';
+      position: absolute;
+      top: 48px; left: calc(16.66% + 16px); right: calc(16.66% + 16px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue-200), var(--blue-700), var(--blue-200));
+      z-index: 0;
+    }
+    .sprint-box {
+      background: var(--white);
+      border: 2px solid var(--blue-200);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      margin: 0 12px;
+      position: relative;
+      z-index: 1;
+      transition: border-color .2s, transform .2s;
+    }
+    .sprint-box:hover { border-color: var(--blue-700); transform: translateY(-4px); }
+    .sprint-box__num {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin: 0 auto 20px;
+    }
+    .sprint-box__tag {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--blue-400);
+      margin-bottom: 8px;
+    }
+    .sprint-box h3 { font-size: 1rem; margin-bottom: 12px; color: var(--gray-900); }
+    .sprint-box p { font-size: .85rem; color: var(--gray-500); line-height: 1.6; }
+    .sprint-box__size {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 4px 16px;
+      background: var(--blue-50);
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--blue-700);
+    }
+
+    .process-note {
+      margin-top: 48px;
+      text-align: center;
+      padding: 32px 40px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+      border-radius: var(--radius-lg);
+      color: var(--white);
+    }
+    .process-note p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+      color: rgba(255,255,255,.9);
+    }
+    .process-note strong { color: var(--white); }
+
+    @media (max-width: 768px) {
+      .process-visual { grid-template-columns: 1fr; gap: 16px; }
+      .process-visual::before { display: none; }
+      .sprint-box { margin: 0; }
+    }
+
+    /* ========================
+       7. PILOT
+    ======================== */
+    .pilot {
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 100%);
+      color: var(--white);
+    }
+    .pilot__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .pilot .section-header { text-align: left; margin-bottom: 0; }
+    .pilot .section-header h2 { color: var(--white); }
+    .pilot .section-header p { color: var(--blue-200); text-align: left; }
+    .pilot .label { color: var(--blue-200); }
+    .pilot__desc { font-size: 1.05rem; color: rgba(255,255,255,.85); line-height: 1.7; margin: 24px 0; }
+    .pilot__values {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .pilot__value {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: .95rem;
+      color: rgba(255,255,255,.9);
+    }
+    .pilot__value-icon {
+      width: 24px; height: 24px;
+      background: rgba(255,255,255,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      flex-shrink: 0;
+      color: var(--green);
+    }
+    .pilot__guarantee {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      font-size: .875rem;
+      color: rgba(255,255,255,.8);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .pilot__guarantee strong { color: var(--white); display: block; margin-bottom: 8px; }
+    /* Right card */
+    .pilot-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      backdrop-filter: blur(8px);
+    }
+    .pilot-card__title {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--blue-200);
+      margin-bottom: 8px;
+    }
+    .pilot-card h3 {
+      font-size: 1.75rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .pilot-card__sub {
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 32px;
+    }
+    .pilot-card__items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .pilot-card__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .pilot-card__item-icon {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,.1);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .pilot-card__item-text strong {
+      display: block;
+      color: var(--white);
+      font-size: .9rem;
+      margin-bottom: 2px;
+    }
+    .pilot-card__item-text span {
+      font-size: .8rem;
+      color: rgba(255,255,255,.6);
+    }
+    .pilot-card__cta { width: 100%; justify-content: center; }
+
+    @media (max-width: 900px) {
+      .pilot__inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ========================
+       8. PRICING
+    ======================== */
+    .pricing { background: var(--white); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .price-card {
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      transition: all .25s ease;
+      position: relative;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .price-card--featured {
+      border-color: var(--blue-700);
+      box-shadow: var(--shadow-lg);
+    }
+    .price-card__badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue-700);
+      color: var(--white);
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 4px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .price-card__name {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--blue-400);
+      margin-bottom: 8px;
+    }
+    .price-card h3 { font-size: 1.5rem; color: var(--gray-900); margin-bottom: 16px; }
+    .price-card__price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .price-card__amount {
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: var(--gray-900);
+      letter-spacing: -.03em;
+    }
+    .price-card__currency { font-size: 1.1rem; font-weight: 700; color: var(--gray-500); }
+    .price-card__period { font-size: .85rem; color: var(--gray-500); margin-bottom: 32px; }
+    .price-card__divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin-bottom: 28px;
+    }
+    .price-card__features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .price-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .9rem;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+    .price-feature__check { color: var(--green); flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .price-card__cta { width: 100%; justify-content: center; }
+
+    @media (max-width: 640px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========================
+       9. FAQ
+    ======================== */
+    .faq { background: var(--blue-50); }
+    .faq__grid {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .faq-item.open { border-color: var(--blue-200); }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--gray-900);
+      gap: 16px;
+      user-select: none;
+    }
+    .faq-question:hover { color: var(--blue-700); }
+    .faq-chevron {
+      width: 28px; height: 28px;
+      background: var(--blue-50);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .3s, background .2s;
+      flex-shrink: 0;
+      color: var(--blue-700);
+      font-size: .8rem;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--blue-700); color: var(--white); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+    .faq-answer__inner {
+      padding: 0 28px 24px;
+      font-size: .9rem;
+      color: var(--gray-600, var(--gray-500));
+      line-height: 1.75;
+    }
+
+    /* ========================
+       FINAL CTA
+    ======================== */
+    .final-cta {
+      background: linear-gradient(135deg, var(--blue-900), var(--blue-700) 60%, var(--blue-500));
+      padding: 96px 0;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,255,255,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .final-cta__inner { position: relative; z-index: 1; }
+    .final-cta h2 { color: var(--white); margin-bottom: 16px; }
+    .final-cta p { font-size: 1.1rem; color: rgba(255,255,255,.8); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .final-cta__btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========================
+       STICKY CTA BAR
+    ======================== */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(10,15,80,.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transform: translateY(100%);
+      transition: transform .4s ease;
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar__text {
+      font-size: .9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.85);
+    }
+    .sticky-bar__text strong { color: var(--white); }
+    @media (max-width: 640px) {
+      .sticky-bar { flex-direction: column; text-align: center; }
+    }
+
+    /* ========================
+       FOOTER
+    ======================== */
+    footer {
+      background: var(--gray-900);
+      color: var(--gray-500);
+      padding: 40px 0;
+      text-align: center;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--white); }
+
+    /* ========================
+       UTILS
+    ======================== */
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-32 { margin-top: 32px; }
+    .mt-48 { margin-top: 48px; }
+    .gap-12 { gap: 12px; }
+  </style>
+</head>
+<body>
+
+  <!-- ================================
+       NAVIGATION
+  ================================ -->
+  <nav class="nav" id="mainNav">
+    <div class="container">
+      <div class="nav__inner">
+        <div class="nav__logo">Codeq <span>Care</span></div>
+        <div class="nav__links">
+          <a href="#problem">Problem</a>
+          <a href="#squad">Zespół</a>
+          <a href="#paths">Ścieżki</a>
+          <a href="#pricing">Cennik</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav__cta">
+          <a href="#pilot" class="btn btn--primary">Zacznij Pilotaż</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================
+       1. HERO
+  ================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="label label--white hero__label">🚀 Fractional Team dla E-commerce</p>
+          <h1>Przestań zatrudniać pojedynczych&nbsp;programistów.<br/>Zatrudnij Zespół Wzrostu&nbsp;E&#8209;commerce.</h1>
+          <p class="hero__sub">Strateg, Project Manager, UX Designer i Senior Developer w jednym stałym abonamencie. Zyskaj mapę drogową i realizację celów biznesowych bez kosztów rekrutacji.</p>
+          <div class="hero__ctas">
+            <a href="#pilot" class="btn btn--white btn--lg">Sprawdź nas w Pilotażu&nbsp;→</a>
+            <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety od 3&nbsp;200&nbsp;zł</a>
+          </div>
+          <div class="hero__trust">
+            <p class="hero__trust-label">Wspieramy wzrost:</p>
+            <div class="hero__logos">
+              <span class="hero__logo-pill">WooCommerce</span>
+              <span class="hero__logo-pill">PrestaShop</span>
+              <span class="hero__logo-pill">Shopify</span>
+              <span class="hero__logo-pill">Magento</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="team-diagram">
+            <p class="team-diagram__title">Twój Zespół w Abonamencie</p>
+            <div class="team-diagram__grid">
+              <div class="role-card">
+                <div class="role-card__icon">🧠</div>
+                <div class="role-card__name">Strateg</div>
+                <div class="role-card__sub">Product Manager</div>
+              </div>
+              <div class="role-card">
+                <div class="role-card__icon">🗂️</div>
+                <div class="role-card__name">PM</div>
+                <div class="role-card__sub">The Guardian</div>
+              </div>
+              <div class="role-card">
+                <div class="role-card__icon">🎨</div>
+                <div class="role-card__name">UX Designer</div>
+                <div class="role-card__sub">The Optimizer</div>
+              </div>
+              <div class="role-card">
+                <div class="role-card__icon">💻</div>
+                <div class="role-card__name">Senior Dev</div>
+                <div class="role-card__sub">The Builder</div>
+              </div>
+            </div>
+            <div class="connector-line" style="margin-bottom:16px;">
+              <span style="flex:1;height:1px;background:rgba(255,255,255,.2);display:block"></span>
+              <span style="font-size:.65rem;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;">Flat Fee · Bez kosztów rekrutacji</span>
+              <span style="flex:1;height:1px;background:rgba(255,255,255,.2);display:block"></span>
+            </div>
+            <div class="team-diagram__result">
+              <div class="result-icon">📈</div>
+              <div class="result-text">
+                <strong>Wzrost Twojego sklepu</strong>
+                Mapa celów · Wdrożenia · ROI
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       2. PROBLEM
+  ================================ -->
+  <section class="problem" id="problem">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Problem</p>
+        <h2>Dlaczego Twój sklep stoi w miejscu,<br/>mimo że płacisz za poprawki?</h2>
+        <p>Większość modeli współpracy IT skupia się na godzinach — nie na wynikach. Zobacz różnicę.</p>
+      </div>
+      <div class="models-grid">
+        <!-- Bad 1 -->
+        <div class="model-card model-card--bad">
+          <span class="model-card__badge">❌ Model "Dorywczy"</span>
+          <div class="model-card__icon">⏳</div>
+          <h3>Freelancer</h3>
+          <p>Brak czasu, brak strategii, gaszenie pożarów. Sklep działa, ale nie sprzedaje lepiej.</p>
+          <div class="model-card__features">
+            <div class="model-feature"><span class="dot">✕</span>Brak długofalowej strategii</div>
+            <div class="model-feature"><span class="dot">✕</span>Niedostępność w kryzysie</div>
+            <div class="model-feature"><span class="dot">✕</span>Płacisz za godziny, nie wyniki</div>
+            <div class="model-feature"><span class="dot">✕</span>Wiedza o sklepie ginie wraz z nim</div>
+          </div>
+        </div>
+        <!-- Bad 2 -->
+        <div class="model-card model-card--bad">
+          <span class="model-card__badge">❌ Model "Agencja 360"</span>
+          <div class="model-card__icon">🧾</div>
+          <h3>Agencja</h3>
+          <p>Wysokie koszty, juniorzy na projekcie, długie terminy, faktury za "zarządzanie".</p>
+          <div class="model-card__features">
+            <div class="model-feature"><span class="dot">✕</span>Senior na sprzedaży, junior na projekcie</div>
+            <div class="model-feature"><span class="dot">✕</span>Drogie i nieprzejrzyste faktury</div>
+            <div class="model-feature"><span class="dot">✕</span>Rotacja zespołu, brak ciągłości</div>
+            <div class="model-feature"><span class="dot">✕</span>Rozliczenie za czas, nie efekt</div>
+          </div>
+        </div>
+        <!-- Good -->
+        <div class="model-card model-card--good">
+          <span class="model-card__badge">✅ Codeq Care</span>
+          <div class="model-card__icon">🛡️</div>
+          <h3>Twój Wybór</h3>
+          <p>Stały zespół, Mapa Celów na 6 miesięcy, Flat Fee, Strategiczny Nadzór nad każdym wdrożeniem.</p>
+          <div class="model-card__features">
+            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>4 seniorskie role w cenie 1 juniora</div>
+            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>Mapa Celów i Sprinty (OKR)</div>
+            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>Stała cena – zero niespodzianek</div>
+            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>Mierzymy wyniki, nie godziny</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       3. THE SQUAD
+  ================================ -->
+  <section class="squad" id="squad">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">The Squad</p>
+        <h2>Czwórka do zadań specjalnych.<br/>Twój Zespół w pakiecie.</h2>
+        <p>Dostęp do kompetencji wartych ponad 40 000 zł/mc za ułamek tej ceny.</p>
+      </div>
+      <div class="squad__grid">
+
+        <!-- Strateg -->
+        <div class="squad-card">
+          <div class="squad-card__header">
+            <div class="squad-card__emoji">🧠</div>
+            <div class="squad-card__meta">
+              <p class="squad-card__role">Rola #1</p>
+              <h3>Strateg (Product Manager)</h3>
+              <p class="squad-card__who">Senior Partner — wytycza kierunek rozwoju</p>
+            </div>
+          </div>
+          <p class="squad-card__task">Podczas Kwartalnych Przeglądów (QBR) ustala cele biznesowe, by technologia wspierała marżę — nie odwrotnie.</p>
+          <div class="squad-card__value">Twój filtr chroniący budżet przed inwestycjami bez sensu. Zanim cokolwiek powstanie — najpierw pytamy "po co?"</div>
+          <div class="squad-card__pov">
+            <p>Większość software house'ów tylko 'koduje tickety'. My najpierw sprawdzamy, czy ten pomysł w ogóle ma sens biznesowy. Ja jestem Twoim filtrem, który chroni budżet przed nietrafionymi inwestycjami.</p>
+          </div>
+        </div>
+
+        <!-- PM -->
+        <div class="squad-card">
+          <div class="squad-card__header">
+            <div class="squad-card__emoji">🗂️</div>
+            <div class="squad-card__meta">
+              <p class="squad-card__role">Rola #2</p>
+              <h3>Project Manager (The Guardian)</h3>
+              <p class="squad-card__who">Twój dedykowany opiekun — tłumaczy biznes na kod</p>
+            </div>
+          </div>
+          <p class="squad-card__task">Pilnuje terminów i "Pudełka" (sprintu). Masz porządek w projektach bez mikrozarządzania z Twojej strony.</p>
+          <div class="squad-card__value">Jedno okienko kontaktowe. Żadnego tłumaczenia deweloperom co chcesz — PM robi to za Ciebie.</div>
+          <div class="squad-card__pov">
+            <p>Programiści mówią o 'refactoringu', Ty mówisz o 'sprzedaży'. Moją rolą jest tłumaczenie tych dwóch światów. Pilnuję, żebyśmy w 'Pudełku' zmieścili zadania, które dowieziesz na czas.</p>
+          </div>
+        </div>
+
+        <!-- UX -->
+        <div class="squad-card">
+          <div class="squad-card__header">
+            <div class="squad-card__emoji">🎨</div>
+            <div class="squad-card__meta">
+              <p class="squad-card__role">Rola #3</p>
+              <h3>UX Designer (The Optimizer)</h3>
+              <p class="squad-card__who">Specjalista od konwersji — projektuje przed wdrożeniem</p>
+            </div>
+          </div>
+          <p class="squad-card__task">Zanim wydamy złotówkę na kod, upewniamy się, że klienci będą umieli tego używać i będą kupować.</p>
+          <div class="squad-card__value">Usuwa bariery zakupowe. Projektuje ścieżki tak, by klient nie porzucał koszyka. Oszczędza Ci pieniędzy na nietrafionych zmianach.</div>
+          <div class="squad-card__pov">
+            <p>Najdroższy kod to ten, którego nikt nie używa. Zanim programiści zaczną pracę, ja sprawdzam użyteczność. Usuwam bariery zakupowe i projektuję ścieżki tak, by klient nie porzucał koszyka.</p>
+          </div>
+        </div>
+
+        <!-- Dev -->
+        <div class="squad-card">
+          <div class="squad-card__header">
+            <div class="squad-card__emoji">💻</div>
+            <div class="squad-card__meta">
+              <p class="squad-card__role">Rola #4</p>
+              <h3>Senior Dev (The Builder)</h3>
+              <p class="squad-card__who">Tech Lead — egzekucja i bezpieczeństwo systemu</p>
+            </div>
+          </div>
+          <p class="squad-card__task">Czysty kod, szybkość, zero błędów. Zna Twój system na wylot — nie zaczyna za każdym razem od zera.</p>
+          <div class="squad-card__value">Szybki sklep = wyższa pozycja w Google i lepsza sprzedaż. Buduje stabilny fundament pod Twój wzrost ruchu.</div>
+          <div class="squad-card__pov">
+            <p>Nie piszę kodu 'byle działał'. Buduję stabilny fundament, który wytrzyma Twój wzrost ruchu i nie rozsypie się przy pierwszej aktualizacji wtyczki.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       4. PODEJŚCIE
+  ================================ -->
+  <section class="approach" id="approach">
+    <div class="container">
+      <div class="section-header">
+        <p class="label label--white">Nasze DNA</p>
+        <h2 style="color:var(--white)">Dlaczego nie jesteśmy zwykłą agencją?</h2>
+        <p style="color:var(--blue-200)">Trzy filary, które odróżniają nas od każdego software house'u na rynku.</p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-card__icon">🎯</div>
+          <h3>Mierzymy Wynik (Outcome), nie Czas (Output)</h3>
+          <p>Inni cieszą się, że "zadanie zamknięte". My cieszymy się dopiero, gdy widzimy wzrost na Twoim koncie. Każdy sprint kończy się raportem z KPI.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-card__icon">🔍</div>
+          <h3>Dual Track — Plan i Wdrożenie równolegle</h3>
+          <p>Nigdy nie zatrzymujemy prac, żeby "pomyśleć". Strategia i Wdrożenie dzieją się równocześnie. Twój sklep rośnie w trybie ciągłym, bez przerw.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-card__icon">🛡️</div>
+          <h3>Partnerstwo, nie Zlecenie</h3>
+          <p>Nasz model abonamentowy sprawia, że jesteśmy po tej samej stronie stołu. Jeśli marnujemy czas na zbędne funkcje — to my tracimy, nie Ty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       5. VICTORY PATHS
+  ================================ -->
+  <section class="victory" id="paths">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Victory Paths</p>
+        <h2>Nie wiesz od czego zacząć?<br/>Wybierz cel swojego sklepu.</h2>
+        <p>Przygotowaliśmy 3 gotowe ścieżki rozwoju. Zobacz, jak w 3–6 miesięcy poukładać technologię pod wzrost.</p>
+      </div>
+
+      <div class="scenarios">
+
+        <!-- Scenariusz 1 -->
+        <div class="scenario-card active" onclick="activateScenario(this)">
+          <div class="scenario-card__header">
+            <div class="scenario-card__icon">🛠️</div>
+            <p class="scenario-card__tag">Scenariusz 1 · Pakiet Stability</p>
+            <h3>Optymalizacja Techniczna</h3>
+            <p class="scenario-card__target">Dla sklepów, które "mulą", sypią błędami i boją się aktualizacji.</p>
+          </div>
+          <div class="scenario-card__body">
+            <div class="scenario-card__plan">
+              <p class="scenario-card__plan-title">Plan działania (Sprinty):</p>
+              <div class="plan-steps">
+                <div class="plan-step"><span class="plan-step__num">1</span><span>Pełny update silnika i wtyczek (Test &amp; Deploy)</span></div>
+                <div class="plan-step"><span class="plan-step__num">2</span><span>Optymalizacja bazy danych i kompresja grafik</span></div>
+                <div class="plan-step"><span class="plan-step__num">3</span><span>Konfiguracja cache i zabezpieczeń (Security Score)</span></div>
+              </div>
+            </div>
+            <p class="scenario-card__plan-title" style="margin-bottom:10px">Twarde Wyniki (KPI):</p>
+            <div class="kpi-list">
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>PageSpeed Mobile wzrost do strefy "Green" (&gt;90)</span></div>
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Uptime 99.9% dostępności sklepu</span></div>
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Zero krytycznych podatności wtyczek</span></div>
+            </div>
+            <div class="scenario-card__pkg">
+              <span class="pkg-badge">🛡️ Pakiet STABILITY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenariusz 2 -->
+        <div class="scenario-card" onclick="activateScenario(this)">
+          <div class="scenario-card__header">
+            <div class="scenario-card__icon">🚀</div>
+            <p class="scenario-card__tag">Scenariusz 2 · Pakiet Growth</p>
+            <h3>Revenue Booster</h3>
+            <p class="scenario-card__target">Dla sklepów B2C z dużym ruchem, ale niską konwersją i porzuconymi koszykami.</p>
+          </div>
+          <div class="scenario-card__body">
+            <div class="scenario-card__plan">
+              <p class="scenario-card__plan-title">Plan działania (Sprinty):</p>
+              <div class="plan-steps">
+                <div class="plan-step"><span class="plan-step__num">1</span><span>Redesign Karty Produktu (Mobile First UX)</span></div>
+                <div class="plan-step"><span class="plan-step__num">2</span><span>Uproszczenie Checkoutu (One-Step / Express)</span></div>
+                <div class="plan-step"><span class="plan-step__num">3</span><span>Wdrożenie silnika Cross-selling ("Kup razem")</span></div>
+              </div>
+            </div>
+            <p class="scenario-card__plan-title" style="margin-bottom:10px">Twarde Wyniki (KPI):</p>
+            <div class="kpi-list">
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Conversion Rate: wzrost o min. 0,2–0,5 pp.</span></div>
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>AOV (Średni Koszyk): wzrost o 10–15%</span></div>
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Wyraźny spadek porzuconych koszyków</span></div>
+            </div>
+            <div class="scenario-card__pkg">
+              <span class="pkg-badge">🚀 Pakiet GROWTH</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenariusz 3 -->
+        <div class="scenario-card" onclick="activateScenario(this)">
+          <div class="scenario-card__header">
+            <div class="scenario-card__icon">🤝</div>
+            <p class="scenario-card__tag">Scenariusz 3 · Pakiet Growth</p>
+            <h3>B2B Ecosystem Builder</h3>
+            <p class="scenario-card__target">Dla hurtowni i producentów tracących czas na ręczną obsługę zapytań i zamówień z maila.</p>
+          </div>
+          <div class="scenario-card__body">
+            <div class="scenario-card__plan">
+              <p class="scenario-card__plan-title">Plan działania (Sprinty):</p>
+              <div class="plan-steps">
+                <div class="plan-step"><span class="plan-step__num">1</span><span>Tiered Pricing (ceny hurtowe po zalogowaniu)</span></div>
+                <div class="plan-step"><span class="plan-step__num">2</span><span>Generator Ofert PDF dla klienta końcowego</span></div>
+                <div class="plan-step"><span class="plan-step__num">3</span><span>Panel Klienta: faktury, Quick Order, powtarzanie zamówień</span></div>
+              </div>
+            </div>
+            <p class="scenario-card__plan-title" style="margin-bottom:10px">Twarde Wyniki (KPI):</p>
+            <div class="kpi-list">
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>−40% zapytań do handlowców (oszczędność czasu)</span></div>
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Self-service: klienci zamawiają sami 24/7</span></div>
+              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Wzrost powracalności partnerów B2B</span></div>
+            </div>
+            <div class="scenario-card__pkg">
+              <span class="pkg-badge">🚀 Pakiet GROWTH</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Lead Magnet -->
+      <div class="lead-magnet">
+        <div class="lead-magnet__text">
+          <h3>📄 Pobierz pełną Mapę Drogową (PDF)</h3>
+          <p>Szczegółowe zadania dla każdej ścieżki, przykładowe KPI i harmonogram sprintów na 6 miesięcy.</p>
+        </div>
+        <div class="lead-magnet__cta">
+          <a href="#pilot" class="btn btn--primary btn--lg">Pobierz PDF →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       6. PROCES
+  ================================ -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Mechanika</p>
+        <h2>Realizacja w Pudełkach (Sprintach)</h2>
+        <p>Każdy miesiąc to zamknięte Pudełko prac. Wiemy co jest w środku — Ty też.</p>
+      </div>
+
+      <div class="process-visual">
+        <div class="sprint-box">
+          <div class="sprint-box__num">1</div>
+          <p class="sprint-box__tag">Msc 1 — Diagnoza</p>
+          <h3>Audyt & Strategia</h3>
+          <p>Pełna analiza techniczna i UX, sesja strategiczna, Mapa Celów na 6 miesięcy i pierwsza lista Quick Wins.</p>
+          <span class="sprint-box__size">🔍 Discovery Sprint</span>
+        </div>
+        <div class="sprint-box">
+          <div class="sprint-box__num">2</div>
+          <p class="sprint-box__tag">Msc 2–5 — Wdrożenia</p>
+          <h3>Egzekucja Celów</h3>
+          <p>Co miesiąc nowe Pudełko z zadaniami opartymi na ROI. PM pilnuje terminów, Dev koduje, UX projektuje.</p>
+          <span class="sprint-box__size">🚀 Delivery Sprint</span>
+        </div>
+        <div class="sprint-box">
+          <div class="sprint-box__num">3</div>
+          <p class="sprint-box__tag">Msc 6 — Przegląd</p>
+          <h3>QBR & Nowe Cele</h3>
+          <p>Kwartalny Przegląd Biznesowy (QBR): podsumowanie wyników, korekta kursu i planowanie kolejnego horyzontu.</p>
+          <span class="sprint-box__size">📊 Review Sprint</span>
+        </div>
+      </div>
+
+      <div class="process-note">
+        <p>Nie sprzedajemy godzin — <strong>realizujemy cele</strong>. Dbamy, by w każdym Pudełku znalazło się to, co w danym momencie da Ci największe ROI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       7. PILOT
+  ================================ -->
+  <section class="pilot" id="pilot">
+    <div class="container">
+      <div class="pilot__inner">
+        <div>
+          <div class="section-header" style="text-align:left;margin-bottom:0">
+            <p class="label" style="color:var(--blue-200)">Bez cyrografu</p>
+            <h2 style="color:var(--white);margin-bottom:20px">Zacznij od Strategicznego Pilotażu</h2>
+          </div>
+          <p class="pilot__desc">Pierwsze 30 dni to test bojowy. Audytujesz nas, a my Twój sklep. Na koniec dostajesz raport i mapę — niezależnie od tego, co zdecydujesz dalej.</p>
+          <div class="pilot__values">
+            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Audyt Techniczny i UX Twojego sklepu</span></div>
+            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Sesja Strategiczna (cele OKR)</span></div>
+            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Mapa Rozwoju na 6 miesięcy</span></div>
+            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Pierwsze "Quick Wins" (naprawy od ręki)</span></div>
+          </div>
+          <div class="pilot__guarantee">
+            <strong>🛡️ Nasza gwarancja:</strong>
+            Po 30 dniach otrzymujesz pełny Raport i Mapę. Decydujesz: wdrażamy razem w ramach Codeq Care — lub działasz sam z gotowym planem w ręku. Zero zobowiązań.
+          </div>
+          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg">Umów rozmowę o Pilotażu →</a>
+        </div>
+
+        <div class="pilot-card">
+          <p class="pilot-card__title">Co otrzymujesz w Pilotażu</p>
+          <h3>30-dniowy Test Bojowy</h3>
+          <p class="pilot-card__sub">Kompletna diagnoza i plan działania dla Twojego sklepu</p>
+          <div class="pilot-card__items">
+            <div class="pilot-card__item">
+              <div class="pilot-card__item-icon">🔍</div>
+              <div class="pilot-card__item-text">
+                <strong>Audyt Techniczny</strong>
+                <span>Performance, bezpieczeństwo, dług techniczny</span>
+              </div>
+            </div>
+            <div class="pilot-card__item">
+              <div class="pilot-card__item-icon">🎨</div>
+              <div class="pilot-card__item-text">
+                <strong>Audyt UX & Konwersji</strong>
+                <span>Ścieżki zakupowe, bariery, porzucone koszyki</span>
+              </div>
+            </div>
+            <div class="pilot-card__item">
+              <div class="pilot-card__item-icon">🧠</div>
+              <div class="pilot-card__item-text">
+                <strong>Sesja Strategiczna</strong>
+                <span>Cele OKR, priorytety, mapa na 6 miesięcy</span>
+              </div>
+            </div>
+            <div class="pilot-card__item">
+              <div class="pilot-card__item-icon">⚡</div>
+              <div class="pilot-card__item-text">
+                <strong>Quick Wins</strong>
+                <span>Pierwsze naprawy o wysokim ROI — już w trakcie Pilotażu</span>
+              </div>
+            </div>
+          </div>
+          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg pilot-card__cta">Konsultuj Pilotaż →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       8. PRICING
+  ================================ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Cennik</p>
+        <h2>Transparentny abonament.<br/>Żadnych ukrytych kosztów.</h2>
+        <p>Flat Fee — jedna faktura, pełny zespół, jasne zasady.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Stability -->
+        <div class="price-card">
+          <p class="price-card__name">🛡️ Pakiet Stability</p>
+          <h3>Stabilność & Bezpieczeństwo</h3>
+          <div class="price-card__price">
+            <span class="price-card__amount">3 200</span>
+            <span class="price-card__currency">PLN</span>
+          </div>
+          <p class="price-card__period">/ miesiąc · netto · Flat Fee</p>
+          <div class="price-card__divider"></div>
+          <div class="price-card__features">
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Dedykowany Project Manager (opiekun)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Senior Developer (maintenance + bezpieczeństwo)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Miesięczne Pudełko prac (update, monitoring, fixes)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Raport wyników co miesiąc (KPI)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>SLA – priorytetowa reakcja na awarie</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Dla: sklepów potrzebujących stabilnego zaplecza tech</span></div>
+          </div>
+          <a href="mailto:hello@codeq.pl" class="btn btn--outline-blue btn--lg price-card__cta">Wybierz Stability →</a>
+        </div>
+
+        <!-- Growth -->
+        <div class="price-card price-card--featured">
+          <span class="price-card__badge">⭐ Rekomendowany dla Skalowania</span>
+          <p class="price-card__name">🚀 Pakiet Growth</p>
+          <h3>Wzrost & Konwersja</h3>
+          <div class="price-card__price">
+            <span class="price-card__amount">6 400</span>
+            <span class="price-card__currency">PLN</span>
+          </div>
+          <p class="price-card__period">/ miesiąc · netto · Flat Fee</p>
+          <div class="price-card__divider"></div>
+          <div class="price-card__features">
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Wszystko z pakietu Stability</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Strateg (Senior Partner) — QBR i planowanie OKR</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>UX Designer — projekty i optymalizacja konwersji</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Większe Pudełko prac (nowe funkcje, Revenue Booster)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Kwartalny Przegląd Biznesowy (QBR)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Dla: e-commerce skalujący sprzedaż i automatyzację B2B</span></div>
+          </div>
+          <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg price-card__cta">Wybierz Growth →</a>
+        </div>
+
+      </div>
+
+      <p style="text-align:center;margin-top:32px;font-size:.875rem;color:var(--gray-500)">
+        Masz duży projekt lub niestandardowe wymagania?
+        <a href="mailto:hello@codeq.pl" style="color:var(--blue-700);font-weight:600"> Napisz do nas — wycenimy oddzielnie.</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ================================
+       9. FAQ
+  ================================ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">FAQ</p>
+        <h2>Masz pytania? Mamy odpowiedzi.</h2>
+        <p>Najczęstsze wątpliwości przed startem współpracy.</p>
+      </div>
+
+      <div class="faq__grid">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy mogę zmienić pakiet po starcie?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Tak. Pakiety można zmieniać z początkiem każdego miesiąca rozliczeniowego. Jeśli Twoje potrzeby rosną — przenosisz się na Growth. Jeśli chcesz na chwilę zwolnić — możesz wrócić do Stability. Rozmawiamy o tym na każdym miesięcznym check-inie.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy niewykorzystane godziny przechodzą na kolejny miesiąc?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Nie — i to celowe. Nie sprzedajemy godzin. Rezerwujemy czas całego zespołu specjalnie dla Ciebie na każdy miesiąc. "Pudełko" prac jest ustalane z góry i skupia się na tym, co da największy ROI w danym momencie, a nie na tym, żeby "wyrobić godziny".
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy mogę zmienić zadania w trakcie sprintu?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Tak, ale z pewnym zastrzeżeniem. Zmiany w trakcie sprintu są możliwe, jeśli nowe zadanie jest podobnej wielkości do usuwanego. Duże zmiany zakresu w połowie sprintu generują koszty (przerwany kontekst, zmarnowana praca) — dlatego planujemy je na start kolejnego Pudełka. Twój PM zawsze Ci to wytłumaczy.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Co jeśli mam duży projekt do wdrożenia?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Duże projekty (migracje platformy, budowa sklepu od zera, integracje ERP) są wyceniane osobno jako jednorazowy projekt. Codeq Care to model stałej opieki i ciągłego rozwoju — nie projektowy software house. Oczywiście oba modele mogą działać razem: projekt + abonament opieki.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Jak wygląda start współpracy?
+            <span class="faq-chevron">▼</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Zaczynamy od Strategicznego Pilotażu (30 dni). W tym czasie audytujemy Twój sklep (tech + UX), przeprowadzamy sesję strategiczną i budujemy Mapę Celów. Na koniec Pilotażu masz pełen obraz sytuacji i plan na 6 miesięcy — niezależnie od tego, czy zdecydujesz się na stałą współpracę.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FINAL CTA
+  ================================ -->
+  <section class="final-cta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <p class="label label--white" style="margin-bottom:16px">Gotowy na zmianę?</p>
+        <h2>Twój sklep zasługuje<br/>na profesjonalny plan.</h2>
+        <p>Dołącz do grona e-commerce'ów, które rosną w trybie ciągłym — z pełnym zespołem ekspertów w abonamencie.</p>
+        <div class="final-cta__btns">
+          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg">Zacznij Pilotaż →</a>
+          <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       FOOTER
+  ================================ -->
+  <footer>
+    <div class="container">
+      <p><strong>Codeq Care</strong> — Zespół Wzrostu E-commerce w Abonamencie<br/>
+      <a href="mailto:hello@codeq.pl" style="color:var(--blue-400)">hello@codeq.pl</a> · codeq.pl<br/>
+      <span style="margin-top:8px;display:block;font-size:.75rem">© 2025 Codeq. Wszystkie prawa zastrzeżone.</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ================================
+       STICKY BAR
+  ================================ -->
+  <div class="sticky-bar" id="stickyBar">
+    <p class="sticky-bar__text"><strong>Twój sklep zasługuje na profesjonalny plan.</strong> Zacznij od bezpłatnej konsultacji.</p>
+    <a href="mailto:hello@codeq.pl" class="btn btn--primary">Zacznij Pilotaż →</a>
+  </div>
+
+  <!-- ================================
+       JAVASCRIPT
+  ================================ -->
+  <script>
+    // Sticky nav shadow
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Sticky bar visibility
+    const stickyBar = document.getElementById('stickyBar');
+    const hero = document.getElementById('hero');
+    const observer = new IntersectionObserver(([entry]) => {
+      stickyBar.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0.1 });
+    observer.observe(hero);
+
+    // Victory Paths — active card
+    function activateScenario(card) {
+      document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    }
+
+    // FAQ accordion
+    function toggleFaq(questionEl) {
+      const item = questionEl.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      // Open clicked (if was closed)
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    // Smooth scroll offset for sticky nav
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
