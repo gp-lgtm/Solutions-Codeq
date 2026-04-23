@@ -1,0 +1,123 @@
+/* Codeq marketing UI kit — CSS */
+@import url('../../colors_and_type.css');
+
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--fg-1); font-family: var(--font-body); }
+
+/* Layout */
+.cq-page { max-width: 1440px; margin: 0 auto; }
+.cq-section__head { padding: 0 80px; max-width: 900px; margin: 0 auto 48px; text-align: left; }
+.cq-section__head h2 { font-size: clamp(36px, 4vw, 56px); margin: 10px 0 0; letter-spacing: 0.02em; line-height: 1.15; }
+.cq-eyebrow { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--codeq-blue); }
+.cq-eyebrow--inv { color: rgba(255,255,255,0.8); }
+
+/* Buttons */
+.cq-btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 15px; letter-spacing: 0.02em; cursor: pointer; border: 1.5px solid transparent; transition: all 220ms var(--ease-out); text-decoration: none; font-family: inherit; }
+.cq-btn--primary { background: var(--codeq-blue); color: #fff; }
+.cq-btn--primary:hover { background: var(--codeq-blue-deep); box-shadow: var(--shadow-glow-blue); transform: translateY(-1px); }
+.cq-btn--ghost { background: transparent; color: #000; border-color: #E0E3E6; }
+.cq-btn--ghost:hover { border-color: #000; }
+.cq-btn--white { background: #fff; color: var(--codeq-blue); }
+.cq-btn--white:hover { background: var(--blue-150); }
+
+/* Nav */
+.cq-nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 80px; position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(14px); z-index: 40; border-bottom: 1px solid transparent; }
+.cq-nav--dark { background: var(--codeq-blue); backdrop-filter: none; }
+.cq-nav--dark a, .cq-nav--dark .cq-nav__menu a { color: #fff; }
+.cq-nav__logo img { height: 28px; display: block; }
+.cq-logo-light { display: block; }
+.cq-logo-dark { display: none; }
+.cq-nav--dark .cq-logo-light { display: none; }
+.cq-nav--dark .cq-logo-dark { display: block; }
+.cq-nav__menu { display: flex; gap: 32px; font-size: 15px; font-weight: 500; }
+.cq-nav__menu a { color: #000; transition: opacity 180ms; }
+.cq-nav__menu a:hover { opacity: 0.6; }
+.cq-nav--dark .cq-btn--primary { background: #fff; color: var(--codeq-blue); }
+.cq-nav--dark .cq-btn--primary:hover { background: var(--blue-150); }
+
+/* Hero */
+.cq-hero { position: relative; padding: 120px 80px 140px; overflow: hidden; }
+.cq-hero__inner { position: relative; z-index: 2; max-width: 960px; }
+.cq-hero__title { font-size: clamp(56px, 8vw, 112px); font-weight: 700; letter-spacing: 0.02em; line-height: 1.05; margin: 14px 0 28px; color: #000; text-wrap: balance; }
+.cq-hero__lead { font-size: clamp(18px, 1.6vw, 24px); line-height: 1.45; color: var(--fg-3); max-width: 680px; margin: 0 0 40px; }
+.cq-hero__cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.cq-hero__grad { position: absolute; pointer-events: none; z-index: 1; }
+.cq-hero__grad--a { right: -8%; top: -30%; width: 70%; height: 160%; transform: rotate(22deg); background: linear-gradient(180deg, rgba(49,90,251,0.27) 4%, rgba(193,206,254,0) 99%); border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%; }
+.cq-hero__grad--b { right: 10%; top: -10%; width: 50%; height: 120%; transform: rotate(-12deg); background: linear-gradient(180deg, rgba(49,90,251,0.22) 4%, rgba(193,206,254,0) 99%); border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%; }
+
+/* Services */
+.cq-services { padding: 100px 0; background: var(--surface-alt); }
+.cq-services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 80px; }
+.cq-service { background: #fff; border: 1px solid var(--border-1); border-radius: 16px; padding: 28px; position: relative; transition: all 220ms var(--ease-out); cursor: pointer; }
+.cq-service:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); border-color: transparent; }
+.cq-service__tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+.cq-service h3 { font-size: 22px; margin: 12px 0 10px; letter-spacing: 0.02em; }
+.cq-service p { font-size: 14px; line-height: 1.55; color: var(--fg-3); margin: 0 0 28px; }
+.cq-service__arrow { position: absolute; right: 24px; bottom: 22px; font-size: 22px; color: var(--codeq-blue); transition: transform 220ms var(--ease-out); }
+.cq-service:hover .cq-service__arrow { transform: translateX(6px); }
+
+/* Work */
+.cq-work { padding: 100px 0 120px; }
+.cq-work__stage { position: relative; margin: 0 80px; border-radius: 24px; padding: 80px 64px; min-height: 420px; overflow: hidden; color: #fff; display: flex; align-items: center; transition: background 420ms var(--ease-out); }
+.cq-work__grad { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% -20%, rgba(255,255,255,0.18), transparent 60%); pointer-events: none; }
+.cq-work__copy { position: relative; z-index: 2; max-width: 620px; }
+.cq-work__copy h3 { font-size: clamp(40px, 4.5vw, 64px); font-weight: 700; letter-spacing: 0.02em; margin: 12px 0 18px; line-height: 1.05; }
+.cq-work__result { font-size: 22px; font-weight: 500; margin-bottom: 32px; opacity: 0.9; }
+.cq-work__tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 32px 80px 0; border-top: 1px solid var(--border-1); }
+.cq-work__tab { background: transparent; border: none; border-top: 2px solid transparent; margin-top: -1px; padding: 24px 0; text-align: left; cursor: pointer; font-family: inherit; transition: all 220ms var(--ease-out); display: flex; flex-direction: column; gap: 6px; }
+.cq-work__tab span { font-size: 11px; color: var(--fg-4); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+.cq-work__tab strong { font-size: 18px; color: #000; letter-spacing: 0.02em; font-weight: 600; }
+.cq-work__tab:hover strong { color: var(--codeq-blue); }
+.cq-work__tab.is-active { border-top-color: var(--codeq-blue); }
+.cq-work__tab.is-active strong { color: var(--codeq-blue); }
+
+/* Social proof */
+.cq-proof { padding: 60px 80px; border-top: 1px solid var(--border-1); border-bottom: 1px solid var(--border-1); text-align: center; }
+.cq-proof__row { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 24px; flex-wrap: wrap; }
+.cq-proof__logo { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--fg-4); letter-spacing: 0.02em; opacity: 0.8; }
+
+/* Quote */
+.cq-quote { position: relative; padding: 100px 80px; background: var(--codeq-blue); color: #fff; overflow: hidden; }
+.cq-quote__grad { position: absolute; right: -10%; top: -40%; width: 60%; height: 180%; background: linear-gradient(180deg, rgba(255,255,255,0.15) 4%, rgba(255,255,255,0) 99%); transform: rotate(22deg); border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%; pointer-events: none; }
+.cq-quote blockquote { position: relative; z-index: 2; font-family: var(--font-display); font-size: clamp(28px, 3vw, 44px); line-height: 1.25; letter-spacing: 0.02em; font-weight: 500; max-width: 1000px; margin: 0 0 40px; text-wrap: balance; }
+.cq-quote__attr { display: flex; align-items: center; gap: 16px; position: relative; z-index: 2; }
+.cq-quote__avatar { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px; }
+.cq-quote__attr strong { display: block; font-size: 16px; }
+.cq-quote__attr span { font-size: 14px; opacity: 0.75; }
+
+/* Contact */
+.cq-contact { display: grid; grid-template-columns: 1fr 1fr; padding: 100px 80px; gap: 80px; background: #000; color: #fff; }
+.cq-contact h2 { font-size: clamp(40px, 4.5vw, 64px); margin: 14px 0 20px; letter-spacing: 0.02em; line-height: 1.1; }
+.cq-contact p { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.5; max-width: 440px; }
+.cq-contact__meta { margin-top: 48px; display: grid; gap: 20px; }
+.cq-contact__meta span { display: block; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+.cq-contact__meta a { color: #fff; font-size: 18px; }
+.cq-contact__form { display: flex; flex-direction: column; gap: 18px; }
+.cq-contact__form label { display: flex; flex-direction: column; gap: 8px; font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+.cq-contact__form input, .cq-contact__form textarea { font-family: inherit; font-size: 16px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: #fff; border-radius: 8px; transition: all 180ms; }
+.cq-contact__form input:focus, .cq-contact__form textarea:focus { outline: none; border-color: var(--codeq-blue); background: rgba(255,255,255,0.1); }
+.cq-contact__form .cq-btn { margin-top: 12px; align-self: flex-start; }
+.cq-contact__sent { padding: 32px; border: 1px dashed rgba(255,255,255,0.3); border-radius: 12px; }
+.cq-contact__sent h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: 0.02em; }
+.cq-contact__sent p { color: rgba(255,255,255,0.65); font-size: 15px; }
+
+/* Footer */
+.cq-footer { padding: 60px 80px 32px; background: var(--surface-alt); }
+.cq-footer__top { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; padding-bottom: 48px; border-bottom: 1px solid var(--border-1); }
+.cq-footer__logo { height: 32px; }
+.cq-footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.cq-footer__cols h5 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--fg-4); margin: 0 0 16px; }
+.cq-footer__cols a { display: block; color: #000; font-size: 15px; padding: 4px 0; }
+.cq-footer__cols a:hover { color: var(--codeq-blue); }
+.cq-footer__bottom { display: flex; justify-content: space-between; padding-top: 28px; font-size: 13px; color: var(--fg-4); }
+
+@media (max-width: 960px) {
+  .cq-nav__menu { display: none; }
+  .cq-hero { padding: 80px 32px; }
+  .cq-services__grid { grid-template-columns: 1fr; padding: 0 32px; }
+  .cq-work__stage { margin: 0 32px; padding: 48px 32px; }
+  .cq-work__tabs { grid-template-columns: 1fr; margin: 32px 32px 0; }
+  .cq-contact { grid-template-columns: 1fr; padding: 60px 32px; gap: 48px; }
+  .cq-footer { padding: 48px 32px 24px; }
+  .cq-footer__top { grid-template-columns: 1fr; gap: 32px; }
+}
