@@ -132,7 +132,7 @@
 
     /* === 1. HERO === */
     .hero {
-      padding-top: 148px;
+      padding-top: 116px;
       padding-bottom: var(--space-10);
       background: #1F3FF9;
       color: #fff;
@@ -192,6 +192,7 @@
       line-height: 1.08;
       letter-spacing: -0.03em;
       margin-bottom: var(--space-4);
+      max-width: 500px;
       color: #fff;
       word-break: break-word;
       hyphens: auto;
@@ -206,7 +207,7 @@
       line-height: 1.6;
       letter-spacing: -0.005em;
       color: #fff;
-      margin-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
       max-width: 500px;
     }
 
@@ -570,11 +571,19 @@
     }
 
     /* === TEAM STACK === */
+    .team-stack__eyebrow {
+      font-size: 10px;
+      font-weight: var(--fw-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 10px;
+    }
     .team-stack {
       display: inline-flex;
-      align-items: flex-start;
+      align-items: center;
       padding: 4px 0;
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-5);
       gap: 0;
     }
     .team-stack__member {
@@ -625,7 +634,6 @@
       width: 14px;
       height: 1px;
       background: rgba(255,255,255,.08);
-      margin-top: 17px;
       position: relative;
       overflow: hidden;
     }
@@ -1174,6 +1182,7 @@
 
           <p class="hero__lead">Zapomnij o rekrutacji. Zyskaj dedykowany zespół — Strateg, PM, UX i Dev — który kompleksowo rozwija Twój sklep WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
 
+          <p class="team-stack__eyebrow">Dedykowany zespół ecommerce</p>
           <div class="team-stack">
             <div class="team-stack__member" data-role="strateg" tabindex="0" style="--i:0">
               <div class="team-stack__bubble">
