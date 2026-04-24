@@ -567,7 +567,7 @@
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid rgba(255,255,255,.2);
       border-radius: 14px;
-      padding: 17px 20px 0;
+      padding: 17px 24px 0;
       pointer-events: none;
       opacity: 0;
       transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
@@ -582,14 +582,15 @@
       transform: translateY(0);
     }
     .tip-header {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
     }
     .role-chip__tooltip { display: block; }
-    .role-chip__tip-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .role-chip__tip-icon { flex-shrink: 0; display: flex; align-items: center; }
     .role-chip__tip-name {
-      font-size: 13.5px; font-weight: var(--fw-semibold); color: #fff; white-space: nowrap;
+      font-size: 13px; font-weight: var(--fw-semibold); color: #fff; white-space: nowrap; flex: 1;
     }
-    .tip-avatars { display: flex; margin-bottom: 10px; }
+    .tip-avatars { display: flex; margin-bottom: 0; }
+    .tip-header .tip-avatars { margin-left: 0; }
     .tip-avatar {
       width: 22px; height: 22px; border-radius: 50%;
       background: rgba(255,255,255,.12);
@@ -609,8 +610,8 @@
       font-size: 12px; color: rgba(255,255,255,.92); font-weight: var(--fw-medium); line-height: 1.5;
       letter-spacing: -0.01em;
       border-top: 1px solid rgba(255,255,255,.1);
-      margin: 12px -20px 0;
-      padding: 10px 20px 14px;
+      margin: 12px -24px 0;
+      padding: 10px 24px 14px;
       background: rgba(255,255,255,.06);
     }
     .role-chip__tip-kpi::before {
@@ -1268,7 +1269,7 @@
 
           <h1><span class="h1-regular">Twój zewnętrzny dział e&#8209;commerce</span><br><span class="h1-bold">bez rekrutacji i&nbsp;etatów.</span></h1>
 
-          <p class="hero__lead">Zyskaj dedykowany zespół złożony ze <span class="lead-role" data-role="strateg" tabindex="0">Stratega<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon">🧠</span><span class="role-chip__tip-name">Strateg</span></span><span class="tip-avatars"><span class="tip-avatar" style="--a:#4f46e5">G</span><span class="tip-avatar" style="--a:#0891b2">M</span><span class="tip-avatar" style="--a:#7c3aed">A</span></span><span class="role-chip__tip-desc">Filtruje Twoje pomysły przez ROI. Chroni budżet przed nietrafionymi inwestycjami i wyznacza kierunek rozwoju sklepu.</span><span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety na kwartał.</span></span></span>, <span class="lead-role" data-role="pm" tabindex="0">Project Managera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon">🗂️</span><span class="role-chip__tip-name">Project Manager</span></span><span class="tip-avatars"><span class="tip-avatar" style="--a:#d97706">K</span><span class="tip-avatar" style="--a:#059669">P</span><span class="tip-avatar" style="--a:#dc2626">J</span></span><span class="role-chip__tip-desc">Tłumaczy biznes na kod i pilnuje terminów w Pudełkach. Masz porządek bez mikrozarządzania.</span><span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu, brak chaosu.</span></span></span>, <span class="lead-role" data-role="ux" tabindex="0">UX Designera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon">🎨</span><span class="role-chip__tip-name">UX Designer</span></span><span class="tip-avatars"><span class="tip-avatar" style="--a:#be185d">B</span><span class="tip-avatar" style="--a:#0891b2">R</span><span class="tip-avatar" style="--a:#4f46e5">W</span></span><span class="role-chip__tip-desc">Sprawdza użyteczność przed wdrożeniem. Zmniejsza porzucenia koszyka i zwiększa konwersję.</span><span class="role-chip__tip-kpi">Mniej porzuceń koszyka, więcej konwersji.</span></span></span> i <span class="lead-role" data-role="dev" tabindex="0">Developera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon">💻</span><span class="role-chip__tip-name">Senior Developer</span></span><span class="tip-avatars"><span class="tip-avatar" style="--a:#059669">T</span><span class="tip-avatar" style="--a:#d97706">D</span><span class="tip-avatar" style="--a:#dc2626">K</span></span><span class="role-chip__tip-desc">Buduje szybki, stabilny sklep, który nie rozsypuje się przy aktualizacji wtyczki.</span><span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu.</span></span></span>, który rozwija Twój sklep na WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
+          <p class="hero__lead">Zyskaj dedykowany zespół złożony ze <span class="lead-role" data-role="strateg" tabindex="0">Stratega<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="role-chip__tip-name">Strateg</span><span class="tip-avatars"><span class="tip-avatar">G</span><span class="tip-avatar">M</span><span class="tip-avatar">A</span></span></span><span class="role-chip__tip-desc">Analizuje ROI Twoich pomysłów i chroni budżet. Wyznacza jasny kierunek wzrostu.</span><span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety.</span></span></span>, <span class="lead-role" data-role="pm" tabindex="0">Project Managera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg></span><span class="role-chip__tip-name">Project Manager</span><span class="tip-avatars"><span class="tip-avatar">K</span><span class="tip-avatar">P</span><span class="tip-avatar">J</span></span></span><span class="role-chip__tip-desc">Tłumaczy wymagania biznesowe na konkretne zadania. Dba o terminy i priorytety.</span><span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu.</span></span></span>, <span class="lead-role" data-role="ux" tabindex="0">UX Designera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="role-chip__tip-name">UX Designer</span><span class="tip-avatars"><span class="tip-avatar">B</span><span class="tip-avatar">R</span><span class="tip-avatar">W</span></span></span><span class="role-chip__tip-desc">Projektuje ścieżki zakupowe, które sprzedają. Identyfikuje bariery przed wdrożeniem.</span><span class="role-chip__tip-kpi">Mniej porzuceń koszyka, więcej konwersji.</span></span></span> i <span class="lead-role" data-role="dev" tabindex="0">Developera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="role-chip__tip-name">Senior Developer</span><span class="tip-avatars"><span class="tip-avatar">T</span><span class="tip-avatar">D</span><span class="tip-avatar">K</span></span></span><span class="role-chip__tip-desc">Buduje szybki i stabilny sklep. Zero awarii przy aktualizacjach i skalowaniu.</span><span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii.</span></span></span>, który rozwija Twój sklep na WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
 
           <div class="hero__ctas">
             <div class="cta-wrap">
