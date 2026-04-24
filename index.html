@@ -216,6 +216,27 @@
     .hero h1 .h1-regular { font-weight: 300; }
     .hero h1 .h1-bold    { font-weight: 800; }
 
+    /* Inline role tooltips in lead */
+    .lead-role {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      border-bottom: 1.5px solid rgba(255,255,255,.4);
+      padding-bottom: 1px;
+      transition: border-color var(--dur-fast);
+    }
+    .lead-role:hover { border-bottom-color: #fff; }
+    .lead-role:focus-visible { outline: none; border-bottom-color: #fff; }
+    .lead-role .role-chip__tooltip {
+      left: 0;
+      transform: translateY(8px);
+    }
+    .lead-role:hover .role-chip__tooltip,
+    .lead-role:focus-visible .role-chip__tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Lead paragraph */
     .hero__lead {
       font-size: 18px;
@@ -1195,113 +1216,7 @@
 
           <h1><span class="h1-regular">Twój zewnętrzny dział e&#8209;commerce</span><br><span class="h1-bold">bez rekrutacji i&nbsp;etatów.</span></h1>
 
-          <p class="hero__lead">Zapomnij o rekrutacji. Zyskaj dedykowany zespół — Strateg, PM, UX i Dev — który kompleksowo rozwija Twój sklep WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
-
-          <p class="team-stack__eyebrow">Dedykowany zespół ecommerce</p>
-          <div class="team-stack">
-            <div class="team-stack__member" data-role="strateg" tabindex="0" style="--i:0">
-              <div class="team-stack__bubble">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-              </div>
-              <span class="team-stack__label">Strateg</span>
-              <div class="role-chip__tooltip">
-                <div class="tip-header">
-                  <span class="role-chip__tip-icon">🧠</span>
-                  <span class="role-chip__tip-role">Rola #1 · Strateg</span>
-                </div>
-                <div class="tip-avatars">
-                  <div class="tip-avatar" style="--a:#4f46e5">G</div>
-                  <div class="tip-avatar" style="--a:#0891b2">M</div>
-                  <div class="tip-avatar" style="--a:#7c3aed">A</div>
-                </div>
-                <span class="role-chip__tip-desc">Filtruje Twoje pomysły przez ROI. Chroni budżet przed nietrafionymi inwestycjami i wyznacza kierunek rozwoju sklepu.</span>
-                <span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety na kwartał.</span>
-              </div>
-            </div>
-            <div class="team-stack__connector" style="--ci:0;--c-from:rgba(255,255,255,.6);--c-to:rgba(160,210,255,.5)"></div>
-            <div class="team-stack__member" data-role="pm" tabindex="0" style="--i:1">
-              <div class="team-stack__bubble">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg>
-              </div>
-              <span class="team-stack__label">PM</span>
-              <div class="role-chip__tooltip">
-                <div class="tip-header">
-                  <span class="role-chip__tip-icon">🗂️</span>
-                  <span class="role-chip__tip-role">Rola #2 · PM</span>
-                </div>
-                <div class="tip-avatars">
-                  <div class="tip-avatar" style="--a:#d97706">K</div>
-                  <div class="tip-avatar" style="--a:#059669">P</div>
-                  <div class="tip-avatar" style="--a:#dc2626">J</div>
-                </div>
-                <span class="role-chip__tip-desc">Tłumaczy biznes na kod i pilnuje terminów w Pudełkach. Masz porządek bez mikrozarządzania z Twojej strony.</span>
-                <span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu, brak chaosu.</span>
-              </div>
-            </div>
-            <div class="team-stack__connector" style="--ci:1;--c-from:rgba(160,210,255,.5);--c-to:rgba(100,225,185,.5)"></div>
-            <div class="team-stack__member" data-role="ux" tabindex="0" style="--i:2">
-              <div class="team-stack__bubble">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-              </div>
-              <span class="team-stack__label">UX</span>
-              <div class="role-chip__tooltip">
-                <div class="tip-header">
-                  <span class="role-chip__tip-icon">🎨</span>
-                  <span class="role-chip__tip-role">Rola #3 · UX Designer</span>
-                </div>
-                <div class="tip-avatars">
-                  <div class="tip-avatar" style="--a:#be185d">B</div>
-                  <div class="tip-avatar" style="--a:#0891b2">R</div>
-                  <div class="tip-avatar" style="--a:#4f46e5">W</div>
-                </div>
-                <span class="role-chip__tip-desc">Sprawdza użyteczność przed wdrożeniem. Zmniejsza porzucenia koszyka i zwiększa konwersję.</span>
-                <span class="role-chip__tip-kpi">Kod, który realnie sprzedaje.</span>
-              </div>
-            </div>
-            <div class="team-stack__connector" style="--ci:2;--c-from:rgba(100,225,185,.5);--c-to:rgba(74,222,128,.65)"></div>
-            <div class="team-stack__member" data-role="dev" tabindex="0" style="--i:3">
-              <div class="team-stack__bubble">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <span class="team-stack__label">Dev</span>
-              <div class="role-chip__tooltip">
-                <div class="tip-header">
-                  <span class="role-chip__tip-icon">💻</span>
-                  <span class="role-chip__tip-role">Rola #4 · Senior Dev</span>
-                </div>
-                <div class="tip-avatars">
-                  <div class="tip-avatar" style="--a:#059669">T</div>
-                  <div class="tip-avatar" style="--a:#d97706">D</div>
-                  <div class="tip-avatar" style="--a:#dc2626">K</div>
-                </div>
-                <span class="role-chip__tip-desc">Buduje szybki, stabilny sklep, który nie rozsypuje się przy aktualizacji wtyczki.</span>
-                <span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu.</span>
-              </div>
-            </div>
-            <div class="team-stack__connector" style="--ci:3;--c-from:rgba(74,222,128,.65);--c-to:rgba(74,222,128,.9)"></div>
-            <div class="team-stack__chart" style="--i:4">
-              <span class="team-stack__chart-label">Efekt</span>
-              <svg class="team-stack__sparkline" viewBox="0 0 72 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="sparkGrad" x1="0" y1="0" x2="72" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="rgba(255,255,255,.15)"/>
-                    <stop offset="100%" stop-color="#4ade80"/>
-                  </linearGradient>
-                  <linearGradient id="sparkArea" x1="0" y1="0" x2="0" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#4ade80" stop-opacity=".22"/>
-                    <stop offset="100%" stop-color="#4ade80" stop-opacity="0"/>
-                  </linearGradient>
-                  <filter id="sparkGlow" x="-20%" y="-60%" width="140%" height="220%">
-                    <feGaussianBlur stdDeviation="2" result="blur"/>
-                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                  </filter>
-                </defs>
-                <polygon points="2,33 16,26 30,18 44,11 58,6 70,2 70,36 2,36" fill="url(#sparkArea)" opacity=".8"/>
-                <polyline class="team-stack__spark-line" points="2,33 16,26 30,18 44,11 58,6 70,2" stroke="url(#sparkGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#sparkGlow)"/>
-              </svg>
-              <span class="team-stack__chart-kpi">↑ Wzrost CR</span>
-            </div>
-          </div>
+          <p class="hero__lead">Zapomnij o rekrutacji. Zyskaj dedykowany zespół — <span class="lead-role" data-role="strateg" tabindex="0">Strateg<div class="role-chip__tooltip"><div class="tip-header"><span class="role-chip__tip-icon">🧠</span><span class="role-chip__tip-role">Rola #1 · Strateg</span></div><div class="tip-avatars"><div class="tip-avatar" style="--a:#4f46e5">G</div><div class="tip-avatar" style="--a:#0891b2">M</div><div class="tip-avatar" style="--a:#7c3aed">A</div></div><span class="role-chip__tip-desc">Filtruje Twoje pomysły przez ROI. Chroni budżet przed nietrafionymi inwestycjami i wyznacza kierunek rozwoju sklepu.</span><span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety na kwartał.</span></div></span>, <span class="lead-role" data-role="pm" tabindex="0">PM<div class="role-chip__tooltip"><div class="tip-header"><span class="role-chip__tip-icon">🗂️</span><span class="role-chip__tip-role">Rola #2 · PM</span></div><div class="tip-avatars"><div class="tip-avatar" style="--a:#d97706">K</div><div class="tip-avatar" style="--a:#059669">P</div><div class="tip-avatar" style="--a:#dc2626">J</div></div><span class="role-chip__tip-desc">Tłumaczy biznes na kod i pilnuje terminów w Pudełkach. Masz porządek bez mikrozarządzania.</span><span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu, brak chaosu.</span></div></span>, <span class="lead-role" data-role="ux" tabindex="0">UX<div class="role-chip__tooltip"><div class="tip-header"><span class="role-chip__tip-icon">🎨</span><span class="role-chip__tip-role">Rola #3 · UX Designer</span></div><div class="tip-avatars"><div class="tip-avatar" style="--a:#be185d">B</div><div class="tip-avatar" style="--a:#0891b2">R</div><div class="tip-avatar" style="--a:#4f46e5">W</div></div><span class="role-chip__tip-desc">Sprawdza użyteczność przed wdrożeniem. Zmniejsza porzucenia koszyka i zwiększa konwersję.</span><span class="role-chip__tip-kpi">Kod, który realnie sprzedaje.</span></div></span> i <span class="lead-role" data-role="dev" tabindex="0">Dev<div class="role-chip__tooltip"><div class="tip-header"><span class="role-chip__tip-icon">💻</span><span class="role-chip__tip-role">Rola #4 · Senior Dev</span></div><div class="tip-avatars"><div class="tip-avatar" style="--a:#059669">T</div><div class="tip-avatar" style="--a:#d97706">D</div><div class="tip-avatar" style="--a:#dc2626">K</div></div><span class="role-chip__tip-desc">Buduje szybki, stabilny sklep, który nie rozsypuje się przy aktualizacji wtyczki.</span><span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu.</span></div></span> — który kompleksowo rozwija Twój sklep WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
 
           <div class="hero__ctas">
             <div class="cta-wrap">
@@ -2017,7 +1932,7 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.team-stack__member[data-role]').forEach(chip => {
+    document.querySelectorAll('.lead-role[data-role]').forEach(chip => {
       chip.addEventListener('click', () => {
         if (window.matchMedia('(hover: none)').matches) {
           openRoleSheet(chip.dataset.role);
