@@ -185,25 +185,27 @@
       color: #fff;
     }
 
-    /* H1 — ograniczone do lewej kolumny */
+    /* H1 */
     .hero h1 {
-      font-size: clamp(28px, 3vw, 44px);
-      line-height: 1.08;
-      margin-bottom: var(--space-5);
+      font-size: clamp(26px, 2.8vw, 40px);
+      line-height: 1.1;
+      margin-bottom: var(--space-4);
       color: #fff;
       word-break: break-word;
       hyphens: auto;
     }
+    .hero h1 .h1-regular { font-weight: 400; }
+    .hero h1 .h1-bold    { font-weight: 800; }
 
     /* Lead paragraph */
     .hero__lead {
-      font-size: 15px;
+      font-size: 19px;
       font-weight: 400;
-      line-height: 1.65;
+      line-height: 1.6;
       letter-spacing: 0;
-      color: rgba(255,255,255,.78);
-      margin-bottom: var(--space-6);
-      max-width: 520px;
+      color: rgba(255,255,255,.8);
+      margin-bottom: var(--space-5);
+      max-width: 500px;
     }
 
     /* Price badge inside CTA button */
@@ -1165,9 +1167,9 @@
             </svg>
           </div>
 
-          <h1>Rozwijaj sklep jak z własnym zespołem e-commerce&nbsp;— bez zatrudniania kolejnych specjalistów.</h1>
+          <h1><span class="h1-regular">Skaluj swój sklep<br>z </span><span class="h1-bold">gotowym zespołem<br>e-commerce.</span></h1>
 
-          <p class="hero__lead">Codeq Care to stały zespół ecommerce — dla sklepów WooCommerce i Shopify.</p>
+          <p class="hero__lead">Zapomnij o rekrutacji. Zyskaj dedykowany zespół — Strateg, PM, UX i Dev — który kompleksowo rozwija Twój sklep WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
 
           <div class="team-stack">
             <div class="team-stack__member" data-role="strateg" tabindex="0" style="--i:0">
