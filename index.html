@@ -343,8 +343,8 @@
     }
     .cta-guide svg { display: block; }
     @keyframes guideBounce {
-      0%, 100% { transform: translateY(0); opacity: .4; }
-      50% { transform: translateY(5px); opacity: .75; }
+      0%, 100% { transform: translateY(0); opacity: .55; }
+      50% { transform: translateY(6px); opacity: 1; }
     }
 
     .videoask-label {
@@ -551,7 +551,7 @@
       border: 1px solid rgba(255,255,255,.12);
       border-radius: 16px;
       padding: 16px 20px;
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-3);
       gap: 0;
     }
     .team-stack__member {
@@ -1217,7 +1217,7 @@
 
           <div class="cta-guide" aria-hidden="true">
             <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 1v16M2 11l7 8 7-8" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 1v16M2 11l7 8 7-8" stroke="rgba(255,255,255,.8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
 
@@ -1876,24 +1876,35 @@
     }
 
     // Typing effect in H1
+    // ci starts at full length + deleting:true → immediately begins erasing "własnym"
     (function () {
       const words = ['własnym', 'dedykowanym', 'elastycznym'];
       const el = document.getElementById('typingWord');
       if (!el) return;
-      let wi = 0, ci = words[0].length, deleting = false;
+      let wi = 0, ci = words[0].length, deleting = true;
       function tick() {
-        const word = words[wi];
         if (deleting) {
-          el.textContent = word.slice(0, --ci);
-          if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(tick, 260); }
-          else setTimeout(tick, 52);
+          ci--;
+          el.textContent = words[wi].slice(0, ci);
+          if (ci === 0) {
+            deleting = false;
+            wi = (wi + 1) % words.length;
+            setTimeout(tick, 280);
+          } else {
+            setTimeout(tick, 52);
+          }
         } else {
-          el.textContent = word.slice(0, ++ci);
-          if (ci === word.length) { deleting = true; setTimeout(tick, 2400); }
-          else setTimeout(tick, 78);
+          ci++;
+          el.textContent = words[wi].slice(0, ci);
+          if (ci === words[wi].length) {
+            deleting = true;
+            setTimeout(tick, 2600);
+          } else {
+            setTimeout(tick, 80);
+          }
         }
       }
-      setTimeout(tick, 3200);
+      setTimeout(tick, 2800);
     })();
 
     // Parallax on team stack (rAF-throttled)
@@ -1904,7 +1915,7 @@
       window.addEventListener('scroll', () => {
         if (!ticking) {
           requestAnimationFrame(() => {
-            ts.style.transform = `translateY(${window.scrollY * 0.045}px)`;
+            ts.style.transform = `translateY(${window.scrollY * 0.08}px)`;
             ticking = false;
           });
           ticking = true;
