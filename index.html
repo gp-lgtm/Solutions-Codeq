@@ -132,9 +132,9 @@
 
     /* === 1. HERO === */
     .hero {
-      padding-top: 160px;
-      padding-bottom: var(--space-9);
-      background: linear-gradient(135deg, var(--ink-900) 0%, var(--codeq-blue) 60%, var(--blue-500) 100%);
+      padding-top: 148px;
+      padding-bottom: var(--space-10);
+      background: var(--codeq-blue);
       color: #fff;
       position: relative;
       overflow: hidden;
@@ -142,137 +142,141 @@
     .hero::before {
       content: '';
       position: absolute;
-      right: -8%; top: -30%;
-      width: 70%; height: 160%;
-      transform: rotate(22deg);
-      background: linear-gradient(180deg, rgba(255,255,255,.12) 4%, rgba(255,255,255,0) 99%);
-      border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      right: 10%; top: -10%;
-      width: 50%; height: 120%;
-      transform: rotate(-12deg);
-      background: linear-gradient(180deg, rgba(255,255,255,.07) 4%, rgba(255,255,255,0) 99%);
-      border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(255,255,255,.07) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero__inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-8);
+      gap: var(--space-10);
       align-items: center;
       position: relative;
       z-index: 1;
     }
-    .hero__label { margin-bottom: var(--space-4); }
-    .hero h1 { margin-bottom: var(--space-5); color: #fff; }
-    .hero__sub {
-      font-size: var(--fs-lead);
-      line-height: var(--lh-body);
-      color: rgba(255,255,255,.85);
-      margin-bottom: var(--space-6);
-    }
-    .hero__ctas { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-7); }
-    .hero__trust-label {
-      font-size: 11px;
-      font-weight: var(--fw-semibold);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-wide);
-      color: rgba(255,255,255,.5);
-      margin-bottom: var(--space-4);
-    }
-    .hero__logos { display: flex; gap: var(--space-5); align-items: center; flex-wrap: wrap; }
-    .hero__logo-pill {
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius-pill);
-      padding: 6px 16px;
-      font-size: 12px;
-      font-weight: var(--fw-semibold);
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,.75);
-    }
-    .hero__visual { display: flex; justify-content: center; align-items: center; }
-    .team-diagram {
-      width: 100%;
-      max-width: 420px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius-xl);
-      padding: var(--space-7) var(--space-6);
-      backdrop-filter: blur(8px);
-    }
-    .team-diagram__title {
-      font-size: 11px;
-      font-weight: var(--fw-semibold);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-wide);
-      color: var(--blue-300);
-      margin-bottom: var(--space-6);
-      text-align: center;
-    }
-    .team-diagram__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-4);
-      margin-bottom: var(--space-5);
-    }
-    .role-card {
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius-md);
-      padding: 20px 16px;
-      text-align: center;
-      transition: background var(--dur-base);
-    }
-    .role-card:hover { background: rgba(255,255,255,.16); }
-    .role-card__icon { font-size: 1.75rem; margin-bottom: var(--space-2); }
-    .role-card__name {
-      font-size: 11px;
-      font-weight: var(--fw-bold);
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: var(--space-1);
-    }
-    .role-card__sub { font-size: 11px; color: var(--blue-300); }
-    .connector-line {
-      display: flex;
+
+    /* Social proof */
+    .hero__proof {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: var(--space-2);
-      color: rgba(255,255,255,.4);
-      font-size: 10px;
+      margin-bottom: var(--space-5);
+      font-size: 14px;
       font-weight: var(--fw-semibold);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: var(--space-4);
+      color: rgba(255,255,255,.9);
     }
-    .connector-line::before, .connector-line::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(255,255,255,.2);
-    }
-    .team-diagram__result {
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: var(--radius-md);
-      padding: 16px 20px;
+    .hero__proof-stars { color: #facc15; letter-spacing: -1px; font-size: 13px; }
+    .hero__proof-sep { color: rgba(255,255,255,.3); }
+
+    /* Heading */
+    .hero h1 { margin-bottom: var(--space-6); color: #fff; }
+
+    /* Bullet points */
+    .hero__bullets {
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: var(--space-4);
+      margin-bottom: var(--space-7);
     }
-    .result-icon { font-size: 1.5rem; }
-    .result-text { font-size: 14px; color: rgba(255,255,255,.9); }
-    .result-text strong { display: block; color: #fff; font-size: 15px; margin-bottom: 2px; }
+    .hero__bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: 16px;
+      line-height: 1.55;
+      color: rgba(255,255,255,.88);
+    }
+    .hero__bullet-icon {
+      width: 22px; height: 22px;
+      background: rgba(255,255,255,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 11px;
+    }
+
+    /* CTAs */
+    .hero__ctas { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+    /* Video Ask placeholder */
+    .hero__visual { display: flex; justify-content: center; align-items: center; }
+    .video-ask {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      backdrop-filter: blur(12px);
+      aspect-ratio: 16/10;
+      cursor: pointer;
+      transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+    }
+    .video-ask:hover { transform: translateY(-4px); box-shadow: 0 32px 80px rgba(0,0,0,.35); }
+    .video-ask__bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(6,13,61,.85) 0%, rgba(49,90,251,.4) 100%);
+    }
+    .video-ask__grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .video-ask__body {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      height: 100%; padding: var(--space-6);
+      text-align: center;
+    }
+    .video-ask__play {
+      width: 72px; height: 72px;
+      background: #fff;
+      border-radius: 50%;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      margin-bottom: var(--space-4);
+      transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    }
+    .video-ask:hover .video-ask__play { transform: scale(1.08); box-shadow: 0 16px 48px rgba(0,0,0,.4); }
+    .video-ask__play svg { fill: var(--codeq-blue); margin-left: 4px; }
+    .video-ask__title {
+      font-size: 16px; font-weight: var(--fw-semibold);
+      color: #fff; margin-bottom: var(--space-2);
+    }
+    .video-ask__sub { font-size: 13px; color: rgba(255,255,255,.6); }
+    .video-ask__author {
+      position: absolute; bottom: 20px; left: 20px;
+      display: flex; align-items: center; gap: var(--space-3);
+      z-index: 1;
+    }
+    .video-ask__avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--codeq-blue);
+      border: 2px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: var(--fw-bold); color: #fff;
+    }
+    .video-ask__author-info { text-align: left; }
+    .video-ask__author-name { font-size: 13px; font-weight: var(--fw-semibold); color: #fff; }
+    .video-ask__author-role { font-size: 11px; color: rgba(255,255,255,.55); }
+    .video-ask__duration {
+      position: absolute; top: 16px; right: 16px; z-index: 1;
+      background: rgba(0,0,0,.45); backdrop-filter: blur(6px);
+      border-radius: var(--radius-pill);
+      padding: 4px 10px; font-size: 12px; font-weight: var(--fw-semibold); color: #fff;
+    }
 
     @media (max-width: 900px) {
       .hero__inner { grid-template-columns: 1fr; gap: var(--space-7); }
-      .hero { padding-top: 120px; }
+      .hero { padding-top: 112px; }
+      .video-ask { max-width: 100%; }
     }
 
     /* === DARK PAGE BASE === */
@@ -734,63 +738,60 @@
     <div class="container">
       <div class="hero__inner">
         <div class="hero__content">
-          <p class="label label--white hero__label">Fractional Team dla E-commerce</p>
-          <h1>Przestań zatrudniać pojedynczych&nbsp;programistów.<br/>Zatrudnij Zespół Wzrostu&nbsp;E&#8209;commerce.</h1>
-          <p class="hero__sub">Strateg, Project Manager, UX Designer i Senior Developer w jednym stałym abonamencie. Zyskaj mapę drogową i realizację celów biznesowych bez kosztów rekrutacji.</p>
-          <div class="hero__ctas">
-            <a href="#pilot" class="btn btn--white btn--lg">Sprawdź nas w Pilotażu&nbsp;→</a>
-            <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety od 3&nbsp;200&nbsp;zł</a>
+
+          <div class="hero__proof">
+            <span class="hero__proof-stars">★★★★★</span>
+            <span>5.0 Clutch</span>
+            <span class="hero__proof-sep">·</span>
+            <span>Fractional Team dla E-commerce</span>
           </div>
-          <div class="hero__trust">
-            <p class="hero__trust-label">Wspieramy wzrost:</p>
-            <div class="hero__logos">
-              <span class="hero__logo-pill">WooCommerce</span>
-              <span class="hero__logo-pill">PrestaShop</span>
-              <span class="hero__logo-pill">Shopify</span>
-              <span class="hero__logo-pill">Magento</span>
+
+          <h1>Przestań zatrudniać pojedynczych&nbsp;programistów.<br/>Zatrudnij Zespół Wzrostu&nbsp;E&#8209;commerce.</h1>
+
+          <div class="hero__bullets">
+            <div class="hero__bullet">
+              <span class="hero__bullet-icon">✓</span>
+              <span>Twój sklep wymaga ciągłego rozwoju, ale nie chcesz zarządzać zespołem i ponosić kosztów rekrutacji?</span>
+            </div>
+            <div class="hero__bullet">
+              <span class="hero__bullet-icon">✓</span>
+              <span>Potrzebujesz Seniora, Designera i PM-a naraz, ale osobny etat każdego to zbyt duże ryzyko?</span>
+            </div>
+            <div class="hero__bullet">
+              <span class="hero__bullet-icon">✓</span>
+              <span>Płacisz za godziny i "zarządzanie", a nie za realne wyniki i wzrost sprzedaży?</span>
             </div>
           </div>
+
+          <div class="hero__ctas">
+            <a href="#pilot" class="btn btn--white btn--lg">Zacznij Pilotaż — bez umowy na 6 m-cy&nbsp;→</a>
+            <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety od 3&nbsp;200&nbsp;zł</a>
+          </div>
+
         </div>
 
         <div class="hero__visual">
-          <div class="team-diagram">
-            <p class="team-diagram__title">Twój Zespół w Abonamencie</p>
-            <div class="team-diagram__grid">
-              <div class="role-card">
-                <div class="role-card__icon">🧠</div>
-                <div class="role-card__name">Strateg</div>
-                <div class="role-card__sub">Product Manager</div>
-              </div>
-              <div class="role-card">
-                <div class="role-card__icon">🗂️</div>
-                <div class="role-card__name">PM</div>
-                <div class="role-card__sub">The Guardian</div>
-              </div>
-              <div class="role-card">
-                <div class="role-card__icon">🎨</div>
-                <div class="role-card__name">UX Designer</div>
-                <div class="role-card__sub">The Optimizer</div>
-              </div>
-              <div class="role-card">
-                <div class="role-card__icon">💻</div>
-                <div class="role-card__name">Senior Dev</div>
-                <div class="role-card__sub">The Builder</div>
+          <div class="video-ask">
+            <div class="video-ask__bg"></div>
+            <div class="video-ask__grid"></div>
+            <div class="video-ask__body">
+              <button class="video-ask__play" aria-label="Odtwórz wideo">
+                <svg width="24" height="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+              <p class="video-ask__title">Jak działa Codeq Care?</p>
+              <p class="video-ask__sub">Obejrzyj zanim zdecydujesz — 2 min</p>
+            </div>
+            <div class="video-ask__author">
+              <div class="video-ask__avatar">GP</div>
+              <div class="video-ask__author-info">
+                <p class="video-ask__author-name">Grzegorz Pławnecki</p>
+                <p class="video-ask__author-role">CEO · Codeq</p>
               </div>
             </div>
-            <div class="connector-line" style="margin-bottom:16px;">
-              <span style="flex:1;height:1px;background:rgba(255,255,255,.2);display:block"></span>
-              <span style="font-size:.65rem;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.4);text-transform:uppercase;">Flat Fee · Bez kosztów rekrutacji</span>
-              <span style="flex:1;height:1px;background:rgba(255,255,255,.2);display:block"></span>
-            </div>
-            <div class="team-diagram__result">
-              <div class="result-icon">📈</div>
-              <div class="result-text">
-                <strong>Wzrost Twojego sklepu</strong>
-                Mapa celów · Wdrożenia · ROI
-              </div>
-            </div>
+            <span class="video-ask__duration">2:04</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1128,10 +1129,10 @@
       <div class="pilot__inner">
         <div>
           <div class="section-header" style="text-align:left;margin-bottom:0">
-            <p class="label" style="color:rgba(255,255,255,.75)">Bez cyrografu</p>
-            <h2 style="color:#fff;margin-bottom:20px">Zacznij od Strategicznego Pilotażu</h2>
+            <p class="label" style="color:rgba(255,255,255,.75)">Bez umowy na 6 miesięcy</p>
+            <h2 style="color:#fff;margin-bottom:20px">Zacznij od Pilotażu — 2 miesiące bez zobowiązania</h2>
           </div>
-          <p class="pilot__desc">Pierwsze 30 dni to test bojowy. Audytujesz nas, a my Twój sklep. Na koniec dostajesz raport i mapę — niezależnie od tego, co zdecydujesz dalej.</p>
+          <p class="pilot__desc">Normalny abonament, zero deklaracji długoterminowej. Przez pierwsze 2 miesiące pracujemy razem bez podpisywania umowy na 6 miesięcy. Audytujemy sklep, budujemy Mapę Celów i wdrażamy Quick Wins. Po 2 miesiącach — Ty decydujesz.</p>
           <div class="pilot__values">
             <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Audyt Techniczny i UX Twojego sklepu</span></div>
             <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Sesja Strategiczna (cele OKR)</span></div>
@@ -1139,16 +1140,16 @@
             <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Pierwsze "Quick Wins" (naprawy od ręki)</span></div>
           </div>
           <div class="pilot__guarantee">
-            <strong>Nasza gwarancja:</strong>
-            Po 30 dniach otrzymujesz pełny Raport i Mapę. Decydujesz: wdrażamy razem w ramach Codeq Care — lub działasz sam z gotowym planem w ręku. Zero zobowiązań.
+            <strong>Co się dzieje po 2 miesiącach?</strong>
+            Masz pełen audyt, Mapę Celów i pierwsze wdrożenia. Podpisujesz umowę na 6 miesięcy i skalujemy razem — albo rozstajesz się z gotowym planem w ręku. Żadnych ukrytych klauzul.
           </div>
           <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg">Umów rozmowę o Pilotażu →</a>
         </div>
 
         <div class="pilot-card">
           <p class="pilot-card__title">Co otrzymujesz w Pilotażu</p>
-          <h3>30-dniowy Test Bojowy</h3>
-          <p class="pilot-card__sub">Kompletna diagnoza i plan działania dla Twojego sklepu</p>
+          <h3>2 miesiące bez kontraktu</h3>
+          <p class="pilot-card__sub">Pełna praca zespołu. Zero zobowiązania na 6 miesięcy.</p>
           <div class="pilot-card__items">
             <div class="pilot-card__item">
               <div class="pilot-card__item-icon">🔍</div>
@@ -1317,7 +1318,7 @@
           </div>
           <div class="faq-answer">
             <div class="faq-answer__inner">
-              Zaczynamy od Strategicznego Pilotażu (30 dni). W tym czasie audytujemy Twój sklep (tech + UX), przeprowadzamy sesję strategiczną i budujemy Mapę Celów. Na koniec Pilotażu masz pełen obraz sytuacji i plan na 6 miesięcy — niezależnie od tego, czy zdecydujesz się na stałą współpracę.
+              Zaczynamy od 2-miesięcznego Pilotażu — normalny abonament, ale bez zobowiązania do podpisania umowy na 6 miesięcy. W tym czasie audytujemy Twój sklep (tech + UX), przeprowadzamy sesję strategiczną i budujemy Mapę Celów. Po 2 miesiącach decydujesz: kontynuujesz w ramach stałej współpracy (umowa 6-miesięczna) lub rozstajesz się z kompletnym planem w ręku.
             </div>
           </div>
         </div>
@@ -1358,7 +1359,7 @@
        STICKY BAR
   ================================ -->
   <div class="sticky-bar" id="stickyBar">
-    <p class="sticky-bar__text"><strong>Twój sklep zasługuje na profesjonalny plan.</strong> Zacznij od bezpłatnej konsultacji.</p>
+    <p class="sticky-bar__text"><strong>Twój sklep zasługuje na profesjonalny plan.</strong> Pierwsze 2 miesiące bez umowy na 6 miesięcy.</p>
     <a href="mailto:hello@codeq.pl" class="btn btn--primary">Zacznij Pilotaż →</a>
   </div>
 
