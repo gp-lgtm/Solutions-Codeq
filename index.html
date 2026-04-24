@@ -155,29 +155,20 @@
       z-index: 1;
     }
 
-    /* Social proof — rotating bar */
+    /* Social proof — static */
     .hero__proof {
-      position: relative;
-      height: 24px;
-      margin-bottom: var(--space-4);
-    }
-    .hero__proof-item {
-      position: absolute;
-      top: 0; left: 0;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: 6px;
+      margin-bottom: var(--space-4);
       font-size: 14px;
-      font-weight: var(--fw-semibold);
+      font-weight: var(--fw-medium);
       color: rgba(255,255,255,.9);
-      opacity: 0;
-      transition: opacity .45s ease;
-      white-space: nowrap;
-      pointer-events: none;
     }
-    .hero__proof-item.active { opacity: 1; pointer-events: auto; }
-    .hero__proof-stars { color: #facc15; letter-spacing: -1px; font-size: 13px; }
-    .hero__proof-icon { font-size: 13px; }
+    .hero__proof strong {
+      font-weight: var(--fw-bold);
+      color: #fff;
+    }
 
     /* H1 — ograniczone do lewej kolumny */
     .hero h1 {
@@ -342,32 +333,6 @@
     @keyframes cursorBlink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
-    }
-
-    /* Urgency badge */
-    .urgency-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(239,68,68,.1);
-      border: 1px solid rgba(239,68,68,.28);
-      border-radius: var(--radius-pill);
-      padding: 5px 14px;
-      font-size: 12px;
-      font-weight: var(--fw-semibold);
-      color: rgba(255,255,255,.88);
-      margin-bottom: var(--space-4);
-    }
-    .urgency-badge__dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: #ef4444;
-      flex-shrink: 0;
-      animation: urgencyPulse 1.5s ease-in-out infinite;
-    }
-    @keyframes urgencyPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .35; transform: scale(.75); }
     }
 
     /* CTA guide arrow */
@@ -1155,27 +1120,9 @@
       <div class="hero__inner">
         <div class="hero__content">
 
-          <div class="hero__proof" id="heroProof">
-            <div class="hero__proof-item active">
-              <span class="hero__proof-stars">★★★★★</span>
-              <span>5.0 Clutch — zweryfikowane</span>
-            </div>
-            <div class="hero__proof-item">
-              <span class="hero__proof-icon">🛒</span>
-              <span>Obsługujemy sklepy WooCommerce i Shopify</span>
-            </div>
-            <div class="hero__proof-item">
-              <span class="hero__proof-icon">📈</span>
-              <span>+23% konwersji w 6 miesięcy u klienta</span>
-            </div>
-            <div class="hero__proof-item">
-              <span class="hero__proof-icon">⚡</span>
-              <span>PageSpeed Mobile 94/100 po optymalizacji</span>
-            </div>
-            <div class="hero__proof-item">
-              <span class="hero__proof-icon">🛡️</span>
-              <span>99.9% uptime obsługiwanych sklepów</span>
-            </div>
+          <div class="hero__proof">
+            <span>5.0 rating</span>
+            <strong>Clutch</strong>
           </div>
 
           <h1>Rozwijaj sklep jak z <span id="typingWord" class="h1-typing">własnym</span> zespołem e-commerce&nbsp;— bez zatrudniania kolejnych specjalistów.</h1>
@@ -1266,11 +1213,6 @@
               </svg>
               <span class="team-stack__chart-kpi">↑ CR</span>
             </div>
-          </div>
-
-          <div class="urgency-badge">
-            <span class="urgency-badge__dot"></span>
-            <span>2 miejsca dostępne w tym miesiącu</span>
           </div>
 
           <div class="cta-guide" aria-hidden="true">
@@ -1970,14 +1912,6 @@
       }, { passive: true });
     })();
 
-    // Live proof bar rotation
-    const proofItems = document.querySelectorAll('.hero__proof-item');
-    let proofIdx = 0;
-    setInterval(() => {
-      proofItems[proofIdx].classList.remove('active');
-      proofIdx = (proofIdx + 1) % proofItems.length;
-      proofItems[proofIdx].classList.add('active');
-    }, 3500);
 
     // Role chips — bottom sheet on touch devices
     const roleChipData = {
