@@ -450,6 +450,121 @@
       font-size: 14px; color: #4ade80; font-weight: var(--fw-semibold); line-height: 1.5; display: block;
     }
 
+    /* === TEAM STACK === */
+    .team-stack {
+      display: flex;
+      align-items: flex-start;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: var(--space-6);
+      gap: 0;
+    }
+    .team-stack__member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      animation: memberRise .45s var(--ease-out) both;
+      animation-delay: calc(var(--i) * 0.22s);
+    }
+    @keyframes memberRise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .team-stack__bubble {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      transition: background var(--dur-fast), border-color var(--dur-fast), box-shadow var(--dur-fast);
+      animation: bubbleFloat 3.2s ease-in-out infinite both;
+      animation-delay: calc(1.3s + var(--i, 0) * 0.7s);
+    }
+    @keyframes bubbleFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-4px); }
+    }
+    .team-stack__member:hover .team-stack__bubble {
+      background: rgba(255,255,255,.22);
+      border-color: rgba(255,255,255,.4);
+      box-shadow: 0 0 20px rgba(255,255,255,.12);
+    }
+    .team-stack__label {
+      font-size: 10px;
+      font-weight: var(--fw-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,.5);
+      white-space: nowrap;
+    }
+    .team-stack__connector {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,.1);
+      margin-top: 22px;
+      position: relative;
+      overflow: hidden;
+      min-width: 12px;
+    }
+    .team-stack__connector::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,.5), rgba(255,255,255,.2));
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: connectorGrow .3s ease both;
+      animation-delay: calc((var(--ci) * 0.22s) + 0.3s);
+    }
+    @keyframes connectorGrow {
+      to { transform: scaleX(1); }
+    }
+    .team-stack__chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-left: 12px;
+      padding-left: 12px;
+      border-left: 1px solid rgba(255,255,255,.1);
+      animation: memberRise .45s var(--ease-out) both;
+      animation-delay: calc(var(--i) * 0.22s);
+    }
+    .team-stack__sparkline {
+      width: 72px; height: 36px;
+      display: block;
+      overflow: visible;
+    }
+    .team-stack__spark-line {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 120;
+      animation: sparkDraw .6s ease both;
+      animation-delay: 1.05s;
+    }
+    @keyframes sparkDraw {
+      to { stroke-dashoffset: 0; }
+    }
+    .team-stack__chart-kpi {
+      font-size: 10px;
+      font-weight: var(--fw-bold);
+      color: #4ade80;
+      letter-spacing: 0.06em;
+    }
+    @media (max-width: 480px) {
+      .team-stack { padding: 12px 14px; }
+      .team-stack__bubble { width: 36px; height: 36px; font-size: 1rem; }
+      .team-stack__label { display: none; }
+      .team-stack__connector { margin-top: 18px; min-width: 6px; }
+      .team-stack__chart { margin-left: 8px; padding-left: 8px; }
+      .team-stack__sparkline { width: 52px; height: 26px; }
+    }
+
     /* === DARK PAGE BASE === */
     body { background: var(--ink-900); }
 
@@ -960,6 +1075,40 @@
               </span>
             </span>
             — dla sklepów WooCommerce i Shopify.</p>
+
+          <div class="team-stack" aria-hidden="true">
+            <div class="team-stack__member" style="--i:0">
+              <div class="team-stack__bubble">🧠</div>
+              <span class="team-stack__label">Strateg</span>
+            </div>
+            <div class="team-stack__connector" style="--ci:0"></div>
+            <div class="team-stack__member" style="--i:1">
+              <div class="team-stack__bubble">🗂️</div>
+              <span class="team-stack__label">PM</span>
+            </div>
+            <div class="team-stack__connector" style="--ci:1"></div>
+            <div class="team-stack__member" style="--i:2">
+              <div class="team-stack__bubble">🎨</div>
+              <span class="team-stack__label">UX</span>
+            </div>
+            <div class="team-stack__connector" style="--ci:2"></div>
+            <div class="team-stack__member" style="--i:3">
+              <div class="team-stack__bubble">💻</div>
+              <span class="team-stack__label">Dev</span>
+            </div>
+            <div class="team-stack__chart" style="--i:4">
+              <svg class="team-stack__sparkline" viewBox="0 0 72 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sparkGrad" x1="0" y1="0" x2="72" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="rgba(255,255,255,.2)"/>
+                    <stop offset="100%" stop-color="#4ade80"/>
+                  </linearGradient>
+                </defs>
+                <polyline class="team-stack__spark-line" points="2,33 16,26 30,18 44,11 58,6 70,2" stroke="url(#sparkGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              <span class="team-stack__chart-kpi">↑ CR</span>
+            </div>
+          </div>
 
           <div class="hero__ctas">
             <a href="#pilot" class="btn btn--white btn--lg">Zacznij 30-dniowy pilotaż <span class="btn__price">od 3&nbsp;200&nbsp;PLN</span></a>
