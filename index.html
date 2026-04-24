@@ -87,12 +87,14 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(31,63,249,.88);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,.1);
-      transition: background var(--dur-base), box-shadow var(--dur-base);
+      background: transparent;
+      transition: background var(--dur-base), backdrop-filter var(--dur-base), box-shadow var(--dur-base);
     }
-    .nav.scrolled { background: rgba(20,48,220,.97); box-shadow: 0 1px 0 rgba(255,255,255,.1); }
+    .nav.scrolled {
+      background: rgba(20,48,220,.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(255,255,255,.1);
+    }
     .nav__inner {
       display: flex;
       align-items: center;
@@ -1151,7 +1153,7 @@
     <div class="container">
       <div class="nav__inner">
         <a class="nav__logo" href="#">
-          <img src="Codeq Design System/assets/Codeq_care_logo.svg" alt="Codeq Care" height="30" />
+          <img src="Codeq%20Design%20System/assets/Codeq_care_logo.svg" alt="Codeq Care" height="30" />
         </a>
         <div class="nav__links">
           <a href="#">Home</a>
