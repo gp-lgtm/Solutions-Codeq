@@ -57,26 +57,19 @@
       transform: translateY(-1px);
     }
     .btn--outline-white {
-      background: rgba(255,255,255,.08);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: transparent;
       color: #fff;
-      border-color: rgba(255,255,255,.28);
-      transition: transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(255,255,255,.06);
+      border: 2px solid rgba(255,255,255,.7);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     }
     .btn--outline-white:hover {
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.1);
+      border-color: #fff;
       color: #fff;
       transform: translateY(-4px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.55),
-        0 0 0 1px rgba(255,255,255,.2),
-        0 12px 32px rgba(255,255,255,.12),
-        0 4px 12px rgba(0,0,0,.15);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18), 0 4px 8px rgba(0,0,0,.10);
     }
-    .btn--outline-white:hover .btn-arrow { transform: translateX(4px); }
+    .btn--outline-white:hover .btn-arrow { transform: translateX(5px); }
     .btn--outline-blue {
       background: transparent;
       color: #fff;
@@ -84,35 +77,17 @@
     }
     .btn--outline-blue:hover { background: rgba(255,255,255,.08); border-color: #fff; }
     .btn--white {
-      background: linear-gradient(180deg, #fff 0%, #f2f5ff 100%);
+      background: #fff;
       color: var(--codeq-blue);
-      border-color: transparent;
+      border: 1px solid rgba(180,200,255,.55);
       position: relative;
-      overflow: hidden;
-      transition: transform .22s ease, box-shadow .22s ease;
-      box-shadow:
-        0 1px 2px rgba(0,0,0,.10),
-        0 8px 20px rgba(41,68,242,.28),
-        inset 0 1px 0 #fff;
-    }
-    .btn--white::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      background-size: 160px;
-      pointer-events: none;
-      mix-blend-mode: overlay;
+      transition: transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08), 0 8px 20px rgba(41,68,242,.22);
     }
     .btn--white:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
       color: var(--codeq-blue);
-      border-color: transparent;
-      box-shadow:
-        0 2px 4px rgba(0,0,0,.08),
-        0 20px 44px rgba(41,68,242,.46),
-        0 8px 16px rgba(41,68,242,.22),
-        inset 0 1px 0 #fff;
+      box-shadow: 0 15px 30px rgba(0,0,0,.18), 0 0 20px rgba(41,68,242,.40);
     }
     .btn-arrow { display: inline-block; transition: transform .2s ease; }
     .btn--lg { padding: 14px 28px; font-size: 14px; font-weight: var(--fw-semibold); letter-spacing: -0.01em; }
@@ -276,11 +251,6 @@
       left: 0;
       transform: translateY(8px);
     }
-    .lead-role:hover .role-chip__tooltip,
-    .lead-role:focus-visible .role-chip__tooltip {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     /* Lead paragraph */
     .hero__lead {
@@ -328,7 +298,7 @@
 
     /* CTAs */
     .hero__ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: flex-start; margin-top: 13px; }
-    .hero__ctas .btn { border-radius: 8px; }
+    .hero__ctas .btn { border-radius: 12px; }
 
     /* Social proof bar under CTAs */
     .hero__social-proof {
@@ -558,9 +528,9 @@
 
     .role-chip__tooltip {
       position: absolute;
-      bottom: calc(100% + 10px);
+      top: calc(100% + 8px);
       left: 0;
-      transform: translateY(6px);
+      transform: translateY(-6px);
       width: 248px;
       background: rgba(255,255,255,.14);
       backdrop-filter: blur(20px) saturate(180%);
