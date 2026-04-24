@@ -239,6 +239,35 @@
     /* CTAs */
     .hero__ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: flex-start; }
 
+    /* Social proof bar under CTAs */
+    .hero__social-proof {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: var(--space-5);
+    }
+    .social-avatars {
+      display: flex;
+      flex-shrink: 0;
+    }
+    .social-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--av-bg, var(--codeq-blue));
+      border: 2px solid #1F3FF9;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: #fff;
+      margin-left: -8px;
+      letter-spacing: 0;
+    }
+    .social-avatars .social-avatar:first-child { margin-left: 0; }
+    .hero__social-proof__text {
+      font-size: 13px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.45;
+    }
+    .hero__social-proof__text strong { color: #fff; font-weight: 600; }
+
     .cta-wrap {
       position: relative;
       display: flex;
@@ -1147,6 +1176,17 @@
               </div>
               <a href="#pricing" class="btn btn--outline-white btn--lg">Zaplanuj wzrost →</a>
             </div>
+          </div>
+
+          <div class="hero__social-proof">
+            <div class="social-avatars">
+              <div class="social-avatar" style="--av-bg:#4f46e5">M</div>
+              <div class="social-avatar" style="--av-bg:#0891b2">K</div>
+              <div class="social-avatar" style="--av-bg:#059669">A</div>
+              <div class="social-avatar" style="--av-bg:#d97706">P</div>
+              <div class="social-avatar" style="--av-bg:#be185d">T</div>
+            </div>
+            <span class="hero__social-proof__text">Zaufało nam <strong>30+ sklepów</strong> WooCommerce i Shopify</span>
           </div>
 
         </div>
