@@ -331,6 +331,19 @@
 
     .hero__visual { display: block; }
 
+    .videoask-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 0 4px;
+      font-size: 13px;
+      color: rgba(255,255,255,.62);
+      line-height: 1.55;
+    }
+    .videoask-label__icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+    .videoask-label strong { color: rgba(255,255,255,.88); font-weight: 600; }
+
     .video-ask {
       width: 100%;
       aspect-ratio: 9/16;
@@ -1193,6 +1206,10 @@
 
         <div class="hero__visual">
           <iframe src="https://www.videoask.com/fx7n0m06p" allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *;" width="100%" height="600px" style="border: none; border-radius: 24px; display: block;"></iframe>
+          <p class="videoask-label">
+            <span class="videoask-label__icon">👋</span>
+            <span>Porozmawiaj z <strong>Grzegorzem, CEO Codeq</strong> — odpowiedz wideo, audio lub tekstem. Odpowiadam w&nbsp;24h.</span>
+          </p>
         </div>
 
       </div>
