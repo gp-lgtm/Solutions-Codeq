@@ -165,7 +165,7 @@
       display: grid;
       grid-template-columns: 1fr 300px;
       gap: var(--space-8);
-      align-items: center;
+      align-items: flex-start;
       position: relative;
       z-index: 1;
     }
@@ -178,6 +178,7 @@
       margin-bottom: var(--space-4);
       font-size: 14px;
       font-weight: var(--fw-medium);
+      letter-spacing: -0.015em;
       color: rgba(255,255,255,.9);
     }
     .hero__proof strong {
@@ -187,7 +188,7 @@
 
     /* H1 */
     .hero h1 {
-      font-size: clamp(24px, 2.4vw, 36px);
+      font-size: clamp(28px, 2.8vw, 42px);
       line-height: 1.08;
       letter-spacing: -0.03em;
       margin-bottom: var(--space-4);
@@ -269,6 +270,7 @@
     .social-avatars .social-avatar:first-child { margin-left: 0; }
     .hero__social-proof__text {
       font-size: 13px;
+      letter-spacing: -0.012em;
       color: rgba(255,255,255,.72);
       line-height: 1.45;
     }
