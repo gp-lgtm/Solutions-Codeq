@@ -238,11 +238,37 @@
       font-weight: var(--fw-medium);
       letter-spacing: -0.015em;
       color: rgba(255,255,255,.9);
+      text-decoration: none;
+      position: relative;
+      cursor: pointer;
     }
-    .hero__proof strong {
-      font-weight: var(--fw-bold);
-      color: #fff;
+    .hero__proof strong { font-weight: var(--fw-bold); color: #fff; }
+    .hero__proof__tip {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 240px;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: rgba(255,255,255,.88);
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 50;
+      box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 16px 40px rgba(0,0,0,.35);
+      white-space: normal;
     }
+    .hero__proof:hover .hero__proof__tip { opacity: 1; transform: translateY(0); }
+    @media (hover: none) { .hero__proof__tip { display: none; } }
 
     /* H1 */
     .hero h1 {
@@ -1243,7 +1269,8 @@
       <div class="hero__inner">
         <div class="hero__content">
 
-          <div class="hero__proof">
+          <a class="hero__proof" href="https://clutch.co/profile/codeq" target="_blank" rel="noopener noreferrer">
+            <span class="hero__proof__tip">Tu znajdziesz autoryzowane i rzetelne opinie naszych klientów na temat współpracy z Codeq. Weryfikowane przez platformę Clutch.</span>
             <span>5.0 rating</span>
             <svg width="61" height="17" viewBox="0 0 61 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Clutch" role="img">
               <g clip-path="url(#clip0_clutch)">
@@ -1257,7 +1284,7 @@
                 </clipPath>
               </defs>
             </svg>
-          </div>
+          </a>
 
           <h1><span class="h1-regular">Twój zewnętrzny dział e&#8209;commerce</span><br><span class="h1-bold">bez rekrutacji i&nbsp;etatów.</span></h1>
 
