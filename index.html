@@ -227,11 +227,14 @@
       position: relative;
       display: inline-block;
       cursor: pointer;
-      color: rgba(255,255,255,.5);
-      transition: color var(--dur-fast);
+      color: #fff;
+      background: rgba(255,255,255,.15);
+      border-radius: 5px;
+      padding: 1px 6px;
+      transition: background var(--dur-fast);
     }
-    .lead-role:hover { color: rgba(255,255,255,.85); }
-    .lead-role:focus-visible { outline: none; color: rgba(255,255,255,.85); }
+    .lead-role:hover { background: rgba(255,255,255,.26); }
+    .lead-role:focus-visible { outline: none; background: rgba(255,255,255,.26); }
     .lead-role .role-chip__tooltip {
       left: 0;
       transform: translateY(8px);
