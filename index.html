@@ -227,12 +227,11 @@
       position: relative;
       display: inline-block;
       cursor: pointer;
-      border-bottom: 1.5px solid rgba(255,255,255,.4);
-      padding-bottom: 1px;
-      transition: border-color var(--dur-fast);
+      color: rgba(255,255,255,.5);
+      transition: color var(--dur-fast);
     }
-    .lead-role:hover { border-bottom-color: #fff; }
-    .lead-role:focus-visible { outline: none; border-bottom-color: #fff; }
+    .lead-role:hover { color: rgba(255,255,255,.85); }
+    .lead-role:focus-visible { outline: none; color: rgba(255,255,255,.85); }
     .lead-role .role-chip__tooltip {
       left: 0;
       transform: translateY(8px);
