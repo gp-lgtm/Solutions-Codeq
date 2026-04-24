@@ -243,6 +243,8 @@
       cursor: pointer;
     }
     .hero__proof strong { font-weight: var(--fw-bold); color: #fff; }
+    .hero__proof > span:not(.hero__proof__tip),
+    .hero__proof > svg { position: relative; z-index: 2; }
     .hero__proof__tip {
       position: absolute;
       top: calc(100% + 8px);
@@ -434,14 +436,13 @@
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid rgba(255,255,255,.2);
       border-radius: 14px;
-      padding: 17px 24px 0;
+      padding: 17px 24px 17px;
       pointer-events: none;
       opacity: 0;
       transition: opacity .2s ease, transform .2s ease;
       z-index: 50;
       box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 24px 48px rgba(0,0,0,.40);
       text-align: left;
-      overflow: hidden;
     }
     .cta-wrap--secondary:hover .cta-preview { opacity: 1; transform: translateX(-50%) translateY(0); }
     .cta-preview__header {
@@ -450,6 +451,7 @@
     .cta-preview__icon { font-size: 1.1rem; flex-shrink: 0; display: flex; align-items: center; }
     .cta-preview__title {
       font-size: 13px; font-weight: var(--fw-semibold); color: #fff;
+      white-space: nowrap; letter-spacing: -0.025em;
     }
     .cta-preview__text {
       font-size: 12.5px; color: rgba(255,255,255,.88); line-height: 1.5;
@@ -1302,8 +1304,7 @@
                   <span class="cta-preview__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
                   <span class="cta-preview__title">Bezpłatny konfigurator</span>
                 </div>
-                <span class="cta-preview__text">Odpowiedz na 5 pytań i dostaniesz Mapę Wzrostu 6M dopasowaną do Twojego sklepu.</span>
-                <div class="cta-preview__footer">Wkrótce dostępne</div>
+                <span class="cta-preview__text">Odpowiedz na 5 pytań, a otrzymasz symulację Roadmapy wzrostu dopasowaną do Twojego sklepu.</span>
               </div>
               <a href="#pricing" class="btn btn--outline-white btn--lg">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
             </div>
