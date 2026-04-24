@@ -237,7 +237,68 @@
     }
 
     /* CTAs */
-    .hero__ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+    .hero__ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: flex-start; }
+
+    .cta-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+    }
+    .cta-micro {
+      font-size: 12px;
+      color: rgba(255,255,255,.6);
+      font-weight: var(--fw-medium);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    /* Secondary CTA hover preview */
+    .cta-preview {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: 248px;
+      background: rgba(6,13,61,.97);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 14px;
+      padding: 14px 16px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 50;
+      box-shadow: 0 20px 50px rgba(0,0,0,.45);
+      text-align: left;
+    }
+    .cta-preview::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 7px solid transparent;
+      border-top-color: rgba(6,13,61,.97);
+    }
+    .cta-wrap--secondary:hover .cta-preview { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .cta-preview__label {
+      font-size: 10px; font-weight: var(--fw-bold); text-transform: uppercase;
+      letter-spacing: 0.08em; color: rgba(255,255,255,.38); margin-bottom: 6px;
+    }
+    .cta-preview__text {
+      font-size: 13.5px; color: rgba(255,255,255,.85); line-height: 1.55; margin-bottom: 10px;
+    }
+    .cta-preview__badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: var(--fw-semibold);
+      color: rgba(255,255,255,.45);
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+    }
+    @media (hover: none) { .cta-preview { display: none; } }
 
     .hero__visual { display: block; }
 
@@ -1141,8 +1202,18 @@
           </div>
 
           <div class="hero__ctas">
-            <a href="#pilot" class="btn btn--white btn--lg">Zacznij 30-dniowy pilotaż <span class="btn__price">od 3&nbsp;200&nbsp;PLN</span></a>
-            <a href="#pricing" class="btn btn--outline-white btn--lg">Zaplanuj wzrost</a>
+            <div class="cta-wrap">
+              <a href="#pilot" class="btn btn--white btn--lg">Zacznij 30-dniowy pilotaż <span class="btn__price">od 3&nbsp;200&nbsp;PLN</span></a>
+              <span class="cta-micro">🛡️ Bez umowy na 6 m-cy · 1 decyzja po audycie</span>
+            </div>
+            <div class="cta-wrap cta-wrap--secondary">
+              <div class="cta-preview">
+                <p class="cta-preview__label">Bezpłatny konfigurator</p>
+                <p class="cta-preview__text">Odpowiesz na 5 pytań i dostaniesz Mapę Wzrostu 6M dopasowaną do Twojego sklepu.</p>
+                <span class="cta-preview__badge">⚙️ Wkrótce dostępne</span>
+              </div>
+              <a href="#pricing" class="btn btn--outline-white btn--lg">Zaplanuj wzrost →</a>
+            </div>
           </div>
 
         </div>
