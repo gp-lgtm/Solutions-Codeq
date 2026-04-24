@@ -155,18 +155,29 @@
       z-index: 1;
     }
 
-    /* Social proof */
+    /* Social proof — rotating bar */
     .hero__proof {
-      display: inline-flex;
+      position: relative;
+      height: 24px;
+      margin-bottom: var(--space-4);
+    }
+    .hero__proof-item {
+      position: absolute;
+      top: 0; left: 0;
+      display: flex;
       align-items: center;
       gap: var(--space-2);
-      margin-bottom: var(--space-4);
       font-size: 14px;
       font-weight: var(--fw-semibold);
       color: rgba(255,255,255,.9);
+      opacity: 0;
+      transition: opacity .45s ease;
+      white-space: nowrap;
+      pointer-events: none;
     }
+    .hero__proof-item.active { opacity: 1; pointer-events: auto; }
     .hero__proof-stars { color: #facc15; letter-spacing: -1px; font-size: 13px; }
-    .hero__proof-sep { color: rgba(255,255,255,.3); }
+    .hero__proof-icon { font-size: 13px; }
 
     /* H1 — ograniczone do lewej kolumny */
     .hero h1 {
@@ -314,24 +325,28 @@
     }
 
     /* === ROLE CHIPS === */
+    .hero__roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: var(--space-5);
+    }
     .role-chip {
       display: inline-flex;
       align-items: center;
       gap: 5px;
       position: relative;
       border-radius: var(--radius-pill);
-      padding: 2px 10px 3px;
+      padding: 3px 12px 4px;
       background: rgba(255,255,255,.14);
       border: 1px solid rgba(255,255,255,.28);
       font-size: 14px;
       font-weight: var(--fw-semibold);
       color: #fff;
       transition: background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
-      vertical-align: middle;
       white-space: nowrap;
       line-height: 1.5;
       cursor: default;
-      margin: 2px 0;
     }
     .role-chip:hover,
     .role-chip:focus-visible {
@@ -1025,16 +1040,34 @@
       <div class="hero__inner">
         <div class="hero__content">
 
-          <div class="hero__proof">
-            <span class="hero__proof-stars">★★★★★</span>
-            <span>5.0 Clutch</span>
-            <span class="hero__proof-sep">·</span>
-            <span>WooCommerce &amp; Shopify Growth Team</span>
+          <div class="hero__proof" id="heroProof">
+            <div class="hero__proof-item active">
+              <span class="hero__proof-stars">★★★★★</span>
+              <span>5.0 Clutch — zweryfikowane</span>
+            </div>
+            <div class="hero__proof-item">
+              <span class="hero__proof-icon">🛒</span>
+              <span>Obsługujemy sklepy WooCommerce i Shopify</span>
+            </div>
+            <div class="hero__proof-item">
+              <span class="hero__proof-icon">📈</span>
+              <span>+23% konwersji w 6 miesięcy u klienta</span>
+            </div>
+            <div class="hero__proof-item">
+              <span class="hero__proof-icon">⚡</span>
+              <span>PageSpeed Mobile 94/100 po optymalizacji</span>
+            </div>
+            <div class="hero__proof-item">
+              <span class="hero__proof-icon">🛡️</span>
+              <span>99.9% uptime obsługiwanych sklepów</span>
+            </div>
           </div>
 
           <h1>Rozwijaj sklep jak z własnym zespołem e-commerce&nbsp;— bez zatrudniania kolejnych specjalistów.</h1>
 
-          <p class="hero__lead">Codeq Care to stały zespół:
+          <p class="hero__lead">Codeq Care to stały zespół ecommerce — dla sklepów WooCommerce i Shopify.</p>
+
+          <div class="hero__roles">
             <span class="role-chip" data-role="strateg" tabindex="0">
               <span class="role-chip__dot"></span>Strateg
               <span class="role-chip__tooltip">
@@ -1044,7 +1077,6 @@
                 <span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety na kwartał.</span>
               </span>
             </span>
-            ·
             <span class="role-chip" data-role="pm" tabindex="0">
               <span class="role-chip__dot"></span>PM
               <span class="role-chip__tooltip">
@@ -1054,7 +1086,6 @@
                 <span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu, brak chaosu.</span>
               </span>
             </span>
-            ·
             <span class="role-chip" data-role="ux" tabindex="0">
               <span class="role-chip__dot"></span>UX Designer
               <span class="role-chip__tooltip">
@@ -1064,17 +1095,16 @@
                 <span class="role-chip__tip-kpi">Kod, który realnie sprzedaje.</span>
               </span>
             </span>
-            ·
             <span class="role-chip" data-role="dev" tabindex="0">
               <span class="role-chip__dot"></span>Senior Developer
-              <span class="role-chip__tooltip role-chip__tooltip--right">
+              <span class="role-chip__tooltip">
                 <span class="role-chip__tip-icon">💻</span>
                 <span class="role-chip__tip-role">Rola #4</span>
                 <span class="role-chip__tip-desc">Buduje szybki, stabilny sklep, który nie rozsypuje się przy aktualizacji wtyczki.</span>
                 <span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu.</span>
               </span>
             </span>
-            — dla sklepów WooCommerce i Shopify.</p>
+          </div>
 
           <div class="team-stack" aria-hidden="true">
             <div class="team-stack__member" style="--i:0">
@@ -1742,6 +1772,15 @@
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     }
+
+    // Live proof bar rotation
+    const proofItems = document.querySelectorAll('.hero__proof-item');
+    let proofIdx = 0;
+    setInterval(() => {
+      proofItems[proofIdx].classList.remove('active');
+      proofIdx = (proofIdx + 1) % proofItems.length;
+      proofItems[proofIdx].classList.add('active');
+    }, 3500);
 
     // Role chips — bottom sheet on touch devices
     const roleChipData = {
