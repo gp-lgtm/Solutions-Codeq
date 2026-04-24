@@ -57,15 +57,20 @@
       transform: translateY(-1px);
     }
     .btn--outline-white {
-      background: transparent;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #fff;
-      border-color: rgba(255,255,255,.5);
+      border-color: rgba(255,255,255,.32);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
     }
     .btn--outline-white:hover {
-      background: rgba(255,255,255,.1);
-      border-color: #fff;
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.55);
       color: #fff;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
     }
+    .btn--outline-white:hover .btn-arrow { transform: translateX(4px); }
     .btn--outline-blue {
       background: transparent;
       color: #fff;
@@ -73,14 +78,37 @@
     }
     .btn--outline-blue:hover { background: rgba(255,255,255,.08); border-color: #fff; }
     .btn--white {
-      background: #fff;
+      background: linear-gradient(180deg, #fff 0%, #f0f4ff 100%);
       color: var(--codeq-blue);
-      border-color: #fff;
+      border-color: transparent;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 10px 24px rgba(0,40,200,.18),
+        0 2px 6px rgba(0,0,0,.08),
+        inset 0 1px 0 rgba(255,255,255,.95);
+    }
+    .btn--white::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+      transition: left .55s ease;
+      pointer-events: none;
     }
     .btn--white:hover {
-      background: var(--blue-150);
-      transform: translateY(-1px);
+      background: linear-gradient(180deg, #fff 0%, #e8eeff 100%);
+      transform: scale(1.025) translateY(-1px);
+      color: var(--codeq-blue);
+      border-color: transparent;
+      box-shadow:
+        0 18px 40px rgba(0,40,200,.22),
+        0 4px 12px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.95);
     }
+    .btn--white:hover::before { left: 160%; }
+    .btn-arrow { display: inline-block; transition: transform .2s ease; }
     .btn--lg { padding: 14px 26px; font-size: 15px; }
 
     /* === STICKY NAV === */
@@ -1246,7 +1274,7 @@
               <span class="cta-price-note">od 3&nbsp;200&nbsp;PLN / mies.</span>
             </div>
             <div class="cta-wrap">
-              <a href="#pricing" class="btn btn--outline-white btn--lg">Zaplanuj wzrost →</a>
+              <a href="#pricing" class="btn btn--outline-white btn--lg">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
             </div>
           </div>
 
