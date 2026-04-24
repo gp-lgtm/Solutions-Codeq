@@ -148,7 +148,7 @@
     }
     .hero__inner {
       display: grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns: 1fr 300px;
       gap: var(--space-8);
       align-items: center;
       position: relative;
@@ -210,8 +210,8 @@
     .hero__visual { display: flex; justify-content: flex-end; align-items: center; }
 
     .video-ask {
-      width: 420px;
-      height: 480px;
+      width: 100%;
+      aspect-ratio: 9/16;
       border-radius: 20px;
       overflow: hidden;
       position: relative;
@@ -289,7 +289,7 @@
       .hero__inner { grid-template-columns: 1fr; gap: var(--space-7); }
       .hero { padding-top: 112px; }
       .hero__visual { justify-content: center; }
-      .video-ask { width: 100%; max-width: 480px; height: 380px; }
+      .video-ask { width: 100%; max-width: 300px; aspect-ratio: 9/16; }
     }
 
     /* === DARK PAGE BASE === */
