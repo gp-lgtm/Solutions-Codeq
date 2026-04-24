@@ -160,10 +160,21 @@
       letter-spacing: -0.01em;
       cursor: pointer;
       text-decoration: none;
-      transition: background var(--dur-fast), border-color var(--dur-fast);
+      transition: border-color var(--dur-fast), color var(--dur-fast);
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
     }
-    .btn--nav:hover { background: rgba(255,255,255,.12); border-color: #fff; color: #fff; }
+    .btn--nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.12);
+      transform: translateX(-100%);
+      transition: transform .3s ease;
+    }
+    .btn--nav:hover::before { transform: translateX(0); }
+    .btn--nav:hover { border-color: #fff; color: #fff; }
 
     @media (max-width: 768px) { .nav__links { display: none; } }
 
