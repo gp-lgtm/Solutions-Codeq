@@ -362,7 +362,13 @@
     }
     @media (hover: none) { .cta-preview { display: none; } }
 
-    .hero__visual { display: block; }
+    .hero__visual {
+      display: block;
+      filter:
+        drop-shadow(0 48px 96px rgba(0, 0, 30, .65))
+        drop-shadow(0 16px 40px rgba(0, 0, 30, .40))
+        drop-shadow(0  4px 12px rgba(0, 0, 30, .25));
+    }
 
 
     .videoask-label {
