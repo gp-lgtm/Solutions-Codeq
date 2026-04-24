@@ -385,47 +385,7 @@
       .video-ask { width: 100%; max-width: 300px; aspect-ratio: 9/16; }
     }
 
-    /* === ROLE CHIPS === */
-    .hero__roles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: var(--space-5);
-    }
-    .role-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      position: relative;
-      border-radius: var(--radius-pill);
-      padding: 3px 12px 4px;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.28);
-      font-size: 14px;
-      font-weight: var(--fw-semibold);
-      color: #fff;
-      transition: background var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
-      white-space: nowrap;
-      line-height: 1.5;
-      cursor: default;
-    }
-    .role-chip:hover,
-    .role-chip:focus-visible {
-      background: rgba(255,255,255,.26);
-      border-color: rgba(255,255,255,.55);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(0,0,0,.25);
-      outline: none;
-    }
-    .role-chip__dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.4);
-      flex-shrink: 0;
-      transition: background var(--dur-fast);
-    }
-    .role-chip:hover .role-chip__dot,
-    .role-chip:focus-visible .role-chip__dot { background: #4ade80; }
+    /* === TEAM STACK TOOLTIPS === */
 
     .role-chip__tooltip {
       position: absolute;
@@ -444,19 +404,10 @@
       box-shadow: 0 24px 64px rgba(0,0,0,.55);
       text-align: left;
     }
-    .role-chip:hover .role-chip__tooltip,
-    .role-chip:focus-visible .role-chip__tooltip {
+    .team-stack__member:hover .role-chip__tooltip,
+    .team-stack__member:focus-visible .role-chip__tooltip {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
-    }
-    .role-chip__tooltip--right {
-      left: auto;
-      right: -8px;
-      transform: translateY(8px);
-    }
-    .role-chip:hover .role-chip__tooltip--right,
-    .role-chip:focus-visible .role-chip__tooltip--right {
-      transform: translateY(0);
     }
     .role-chip__tooltip::after {
       content: '';
@@ -466,11 +417,6 @@
       transform: translateX(-50%);
       border: 7px solid transparent;
       border-top-color: rgba(6,13,61,.98);
-    }
-    .role-chip__tooltip--right::after {
-      left: auto;
-      right: 18px;
-      transform: none;
     }
     .role-chip__tip-icon { font-size: 1.2rem; margin-bottom: 6px; display: block; }
     .role-chip__tip-role {
@@ -489,7 +435,7 @@
 
     @media (hover: none) {
       .role-chip__tooltip { display: none; }
-      .role-chip { cursor: pointer; }
+      .team-stack__member[data-role] { cursor: pointer; }
     }
 
     /* === ROLE BOTTOM SHEET (mobile) === */
@@ -543,6 +489,8 @@
       align-items: center;
       gap: 6px;
       flex-shrink: 0;
+      position: relative;
+      cursor: pointer;
       animation: memberRise .45s var(--ease-out) both;
       animation-delay: calc(var(--i) * 0.22s);
     }
@@ -1128,64 +1076,49 @@
 
           <p class="hero__lead">Codeq Care to stały zespół ecommerce — dla sklepów WooCommerce i Shopify.</p>
 
-          <div class="hero__roles">
-            <span class="role-chip" data-role="strateg" tabindex="0">
-              <span class="role-chip__dot"></span>Strateg
-              <span class="role-chip__tooltip">
+          <div class="team-stack">
+            <div class="team-stack__member" data-role="strateg" tabindex="0" style="--i:0">
+              <div class="team-stack__bubble">🧠</div>
+              <span class="team-stack__label">Strateg</span>
+              <div class="role-chip__tooltip">
                 <span class="role-chip__tip-icon">🧠</span>
                 <span class="role-chip__tip-role">Rola #1</span>
                 <span class="role-chip__tip-desc">Filtruje Twoje pomysły przez ROI. Chroni budżet przed nietrafionymi inwestycjami i wyznacza kierunek rozwoju sklepu.</span>
                 <span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety na kwartał.</span>
-              </span>
-            </span>
-            <span class="role-chip" data-role="pm" tabindex="0">
-              <span class="role-chip__dot"></span>PM
-              <span class="role-chip__tooltip">
+              </div>
+            </div>
+            <div class="team-stack__connector" style="--ci:0"></div>
+            <div class="team-stack__member" data-role="pm" tabindex="0" style="--i:1">
+              <div class="team-stack__bubble">🗂️</div>
+              <span class="team-stack__label">PM</span>
+              <div class="role-chip__tooltip">
                 <span class="role-chip__tip-icon">🗂️</span>
                 <span class="role-chip__tip-role">Rola #2</span>
                 <span class="role-chip__tip-desc">Tłumaczy biznes na kod i pilnuje terminów w Pudełkach. Masz porządek bez mikrozarządzania z Twojej strony.</span>
                 <span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu, brak chaosu.</span>
-              </span>
-            </span>
-            <span class="role-chip" data-role="ux" tabindex="0">
-              <span class="role-chip__dot"></span>UX Designer
-              <span class="role-chip__tooltip">
+              </div>
+            </div>
+            <div class="team-stack__connector" style="--ci:1"></div>
+            <div class="team-stack__member" data-role="ux" tabindex="0" style="--i:2">
+              <div class="team-stack__bubble">🎨</div>
+              <span class="team-stack__label">UX</span>
+              <div class="role-chip__tooltip">
                 <span class="role-chip__tip-icon">🎨</span>
                 <span class="role-chip__tip-role">Rola #3</span>
                 <span class="role-chip__tip-desc">Sprawdza użyteczność przed wdrożeniem. Zmniejsza porzucenia koszyka i zwiększa konwersję.</span>
                 <span class="role-chip__tip-kpi">Kod, który realnie sprzedaje.</span>
-              </span>
-            </span>
-            <span class="role-chip" data-role="dev" tabindex="0">
-              <span class="role-chip__dot"></span>Senior Developer
-              <span class="role-chip__tooltip">
+              </div>
+            </div>
+            <div class="team-stack__connector" style="--ci:2"></div>
+            <div class="team-stack__member" data-role="dev" tabindex="0" style="--i:3">
+              <div class="team-stack__bubble">💻</div>
+              <span class="team-stack__label">Dev</span>
+              <div class="role-chip__tooltip">
                 <span class="role-chip__tip-icon">💻</span>
                 <span class="role-chip__tip-role">Rola #4</span>
                 <span class="role-chip__tip-desc">Buduje szybki, stabilny sklep, który nie rozsypuje się przy aktualizacji wtyczki.</span>
                 <span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu.</span>
-              </span>
-            </span>
-          </div>
-
-          <div class="team-stack" aria-hidden="true">
-            <div class="team-stack__member" style="--i:0">
-              <div class="team-stack__bubble">🧠</div>
-              <span class="team-stack__label">Strateg</span>
-            </div>
-            <div class="team-stack__connector" style="--ci:0"></div>
-            <div class="team-stack__member" style="--i:1">
-              <div class="team-stack__bubble">🗂️</div>
-              <span class="team-stack__label">PM</span>
-            </div>
-            <div class="team-stack__connector" style="--ci:1"></div>
-            <div class="team-stack__member" style="--i:2">
-              <div class="team-stack__bubble">🎨</div>
-              <span class="team-stack__label">UX</span>
-            </div>
-            <div class="team-stack__connector" style="--ci:2"></div>
-            <div class="team-stack__member" style="--i:3">
-              <div class="team-stack__bubble">💻</div>
-              <span class="team-stack__label">Dev</span>
+              </div>
             </div>
             <div class="team-stack__chart" style="--i:4">
               <svg class="team-stack__sparkline" viewBox="0 0 72 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1895,7 +1828,7 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.role-chip').forEach(chip => {
+    document.querySelectorAll('.team-stack__member[data-role]').forEach(chip => {
       chip.addEventListener('click', () => {
         if (window.matchMedia('(hover: none)').matches) {
           openRoleSheet(chip.dataset.role);
