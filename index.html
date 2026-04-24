@@ -148,8 +148,8 @@
     }
     .hero__inner {
       display: grid;
-      grid-template-columns: 52% 1fr;
-      gap: var(--space-7);
+      grid-template-columns: 1fr 420px;
+      gap: var(--space-8);
       align-items: center;
       position: relative;
       z-index: 1;
@@ -168,12 +168,14 @@
     .hero__proof-stars { color: #facc15; letter-spacing: -1px; font-size: 13px; }
     .hero__proof-sep { color: rgba(255,255,255,.3); }
 
-    /* Heading — mniejsze niż globalne H1 żeby dać przestrzeń prawej kolumnie */
+    /* H1 — ograniczone do lewej kolumny */
     .hero h1 {
-      font-size: clamp(32px, 3.6vw, 52px);
-      line-height: 1.1;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1.08;
       margin-bottom: var(--space-5);
       color: #fff;
+      word-break: break-word;
+      hyphens: auto;
     }
 
     /* Bullet points */
@@ -204,48 +206,45 @@
     /* CTAs */
     .hero__ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 
-    /* Video Ask placeholder */
-    .hero__visual {
-      display: flex;
-      align-items: stretch;
-      align-self: stretch;
-    }
+    /* Video Ask */
+    .hero__visual { display: flex; justify-content: flex-end; align-items: center; }
+
     .video-ask {
-      width: 100%;
+      width: 420px;
+      height: 480px;
       border-radius: 20px;
       overflow: hidden;
       position: relative;
-      background: rgba(6,13,61,.7);
+      background: rgba(6,13,61,.75);
       border: 1px solid rgba(255,255,255,.18);
-      backdrop-filter: blur(12px);
-      min-height: 340px;
+      backdrop-filter: blur(16px);
       cursor: pointer;
       transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
       display: flex;
       flex-direction: column;
     }
-    .video-ask:hover { transform: translateY(-4px); box-shadow: 0 32px 80px rgba(0,0,0,.4); }
+    .video-ask:hover { transform: translateY(-6px); box-shadow: 0 40px 80px rgba(0,0,0,.45); }
     .video-ask__bg {
       position: absolute; inset: 0;
-      background: linear-gradient(145deg, rgba(6,13,61,.9) 0%, rgba(49,90,251,.35) 100%);
+      background: linear-gradient(160deg, rgba(6,13,61,.95) 0%, rgba(49,90,251,.3) 100%);
     }
     .video-ask__grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 36px 36px;
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
     .video-ask__body {
       position: relative; z-index: 1;
       flex: 1;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: var(--space-7) var(--space-6) var(--space-6);
+      padding: var(--space-6);
       text-align: center;
     }
     .video-ask__play {
-      width: 80px; height: 80px;
+      width: 76px; height: 76px;
       background: #fff;
       border-radius: 50%;
       border: none;
@@ -253,31 +252,29 @@
       cursor: pointer;
       margin-bottom: var(--space-5);
       transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
-      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+      box-shadow: 0 8px 40px rgba(0,0,0,.45);
     }
-    .video-ask:hover .video-ask__play { transform: scale(1.1); box-shadow: 0 16px 56px rgba(0,0,0,.5); }
+    .video-ask:hover .video-ask__play { transform: scale(1.1); }
     .video-ask__play svg { fill: var(--codeq-blue); margin-left: 5px; width: 28px; height: 28px; }
-    .video-ask__title {
-      font-size: 18px; font-weight: var(--fw-semibold);
-      color: #fff; margin-bottom: var(--space-2);
-    }
-    .video-ask__sub { font-size: 13px; color: rgba(255,255,255,.55); }
+    .video-ask__title { font-size: 18px; font-weight: var(--fw-semibold); color: #fff; margin-bottom: var(--space-2); }
+    .video-ask__sub { font-size: 13px; color: rgba(255,255,255,.5); }
+
     .video-ask__footer {
       position: relative; z-index: 1;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 24px;
+      padding: 16px 20px;
       border-top: 1px solid rgba(255,255,255,.1);
-      background: rgba(0,0,0,.2);
+      background: rgba(0,0,0,.25);
+      flex-shrink: 0;
     }
-    .video-ask__author {
-      display: flex; align-items: center; gap: var(--space-3);
-    }
+    .video-ask__author { display: flex; align-items: center; gap: var(--space-3); }
     .video-ask__avatar {
-      width: 38px; height: 38px; border-radius: 50%;
+      width: 36px; height: 36px; border-radius: 50%;
       background: var(--codeq-blue);
       border: 2px solid rgba(255,255,255,.25);
       display: flex; align-items: center; justify-content: center;
       font-size: 12px; font-weight: var(--fw-bold); color: #fff;
+      flex-shrink: 0;
     }
     .video-ask__author-name { font-size: 13px; font-weight: var(--fw-semibold); color: #fff; }
     .video-ask__author-role { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 1px; }
@@ -288,11 +285,11 @@
       padding: 4px 12px; font-size: 12px; font-weight: var(--fw-semibold); color: rgba(255,255,255,.8);
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 1000px) {
       .hero__inner { grid-template-columns: 1fr; gap: var(--space-7); }
       .hero { padding-top: 112px; }
-      .hero__visual { align-self: auto; }
-      .video-ask { min-height: 280px; }
+      .hero__visual { justify-content: center; }
+      .video-ask { width: 100%; max-width: 480px; height: 380px; }
     }
 
     /* === DARK PAGE BASE === */
@@ -780,8 +777,8 @@
           </div>
 
           <div class="hero__ctas">
-            <a href="#pilot" class="btn btn--white btn--lg">Zacznij Pilotaż — bez umowy na 6 m-cy&nbsp;→</a>
-            <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety od 3&nbsp;200&nbsp;zł</a>
+            <a href="#pilot" class="btn btn--white btn--lg">Zacznij Pilotaż&nbsp;→</a>
+            <a href="#pricing" class="btn btn--outline-white btn--lg">Pakiety od 3&nbsp;200&nbsp;zł</a>
           </div>
 
         </div>
