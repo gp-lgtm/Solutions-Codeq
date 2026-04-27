@@ -1105,6 +1105,59 @@
       .qbr-layout, .deliverables-grid { grid-template-columns: 1fr; }
     }
 
+    /* === APPROACH VARIANT B — Scroll Storytelling === */
+    .approach-b { background: var(--brand-dark); color: #fff; }
+    .approach-b .section-header h2 { color: #fff; letter-spacing: -0.025em; line-height: 1.1; font-weight: 800; }
+    .approach-b .section-header p { color: rgba(255,255,255,.65); font-size: 16px; }
+    .approach-b .label { font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,.45); font-weight: var(--fw-semibold); }
+    .story-layout { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: start; }
+    .story-nav { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 6px; }
+    .story-nav__item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 16px; border-radius: 10px; cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all .25s ease; opacity: .38;
+    }
+    .story-nav__item:hover { opacity: .7; background: rgba(255,255,255,.05); }
+    .story-nav__item.sn-active {
+      opacity: 1; border-left-color: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.08);
+    }
+    .story-nav__num {
+      font-size: 12px; font-weight: 800; color: rgba(255,255,255,.35);
+      line-height: 1; padding-top: 2px; flex-shrink: 0;
+    }
+    .story-nav__item.sn-active .story-nav__num { color: rgba(255,255,255,.6); }
+    .story-nav__month { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,.4); display: block; margin-bottom: 3px; }
+    .story-nav__item h4 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .story-progress {
+      height: 2px; background: rgba(255,255,255,.1); border-radius: 2px;
+      margin: 16px 16px 10px; overflow: hidden;
+    }
+    .story-progress__bar { height: 100%; background: rgba(255,255,255,.5); width: 0; transition: width .4s ease; }
+    .story-content { display: flex; flex-direction: column; }
+    .story-section {
+      padding: 48px 0; border-top: 1px solid rgba(255,255,255,.08);
+      opacity: .25; transition: opacity .5s ease;
+    }
+    .story-section:first-child { border-top: none; padding-top: 0; }
+    .story-section.ss-active { opacity: 1; }
+    .story-section__tag {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.14em; color: rgba(255,255,255,.38); margin-bottom: 12px; display: block;
+    }
+    .story-section h3 {
+      font-size: 26px; font-weight: 800; color: #fff;
+      letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 24px;
+    }
+    .story-section .deliverables-grid { grid-template-columns: repeat(2,1fr); }
+    .story-section .sprint-loop { grid-template-columns: repeat(4,1fr); }
+    @media (max-width: 900px) {
+      .story-layout { grid-template-columns: 1fr; }
+      .story-nav { position: static; flex-direction: row; overflow-x: auto; }
+      .story-nav__item { flex-direction: column; gap: 4px; }
+    }
+
     /* === BEFORE / AFTER === */
     .before-after { background: #fff; }
     .before-after .section-header h2 { letter-spacing: -0.025em; line-height: 1.1; font-weight: 800; color: #0a0f2e; }
@@ -1720,6 +1773,77 @@
   </section>
 
   <!-- ================================
+       WARIANT B — SCROLL STORYTELLING
+  ================================ -->
+  <section class="approach-b">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Wariant B · Scroll Storytelling</p>
+        <h2>Twój sklep rośnie w stałym rytmie.</h2>
+        <p>Przewijaj, by zobaczyć jak przebiega każda faza współpracy.</p>
+      </div>
+      <div class="story-layout">
+        <div class="story-nav">
+          <div class="story-nav__item sn-active" data-story="ss-1">
+            <span class="story-nav__num">01</span>
+            <div><span class="story-nav__month">Miesiąc 1</span><h4>Diagnoza</h4></div>
+          </div>
+          <div class="story-progress"><div class="story-progress__bar" id="storyBar"></div></div>
+          <div class="story-nav__item" data-story="ss-2">
+            <span class="story-nav__num">02</span>
+            <div><span class="story-nav__month">Miesiące 2–5</span><h4>Egzekucja</h4></div>
+          </div>
+          <div class="story-nav__item" data-story="ss-3">
+            <span class="story-nav__num">03</span>
+            <div><span class="story-nav__month">Miesiąc 6</span><h4>QBR</h4></div>
+          </div>
+        </div>
+
+        <div class="story-content">
+          <div class="story-section ss-active" id="ss-1">
+            <span class="story-section__tag">Miesiąc 1 · Diagnoza</span>
+            <h3>Odkrywamy możliwości Twojego sklepu.</h3>
+            <div class="deliverables-grid">
+              <div class="deliverable"><span class="deliverable__icon">🔍</span><div><h4>Audyt techniczny i UX</h4><p>PageSpeed, bezpieczeństwo, dług techniczny i ścieżki zakupowe.</p></div></div>
+              <div class="deliverable"><span class="deliverable__icon">🎯</span><div><h4>Sesja strategiczna i OKR</h4><p>Priorytety na 6 miesięcy. Każde zadanie ma sens biznesowy.</p></div></div>
+              <div class="deliverable"><span class="deliverable__icon">🗺️</span><div><h4>Mapa wzrostu</h4><p>Roadmapa wdrożeń — wiesz co, kiedy i dlaczego trafia do realizacji.</p></div></div>
+              <div class="deliverable"><span class="deliverable__icon">⚡</span><div><h4>Quick Wins od ręki</h4><p>Pierwsze efekty już w pierwszym miesiącu współpracy.</p></div></div>
+            </div>
+          </div>
+
+          <div class="story-section" id="ss-2">
+            <span class="story-section__tag">Miesiące 2–5 · Egzekucja</span>
+            <h3>Sprint po Sprincie — priorytety i wyniki.</h3>
+            <div class="sprint-loop" id="sprintLoopB">
+              <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🎯</span><span class="sprint-step__role">Strateg + PM</span><h4>Planowanie</h4><p>Zadania o najwyższym ROI. Zero improwizacji.</p></div>
+              <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🛠️</span><span class="sprint-step__role">Dev + UX</span><h4>Realizacja</h4><p>Wdrożenia bez mikrozarządzania z Twojej strony.</p></div>
+              <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">📊</span><span class="sprint-step__role">Strateg</span><h4>Raport KPI</h4><p>CR, AOV, PageSpeed — efekty, nie godziny.</p></div>
+              <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🔄</span><span class="sprint-step__role">Cały zespół</span><h4>Nowy Sprint</h4><p>Cykl powtarza się co miesiąc, bez przerw.</p></div>
+            </div>
+          </div>
+
+          <div class="story-section" id="ss-3">
+            <span class="story-section__tag">Miesiąc 6 · QBR</span>
+            <h3>Przegląd wyników i decyzja o kolejnym cyklu.</h3>
+            <div class="qbr-layout">
+              <div class="qbr-list">
+                <div class="qbr-item">Kwartalny Przegląd Biznesowy z całym zespołem</div>
+                <div class="qbr-item">Podsumowanie wzrostów CR, AOV, PageSpeed</div>
+                <div class="qbr-item">Analiza i korekta kursu na kolejne miesiące</div>
+                <div class="qbr-item">Nowe priorytety dostosowane do wyników</div>
+              </div>
+              <div class="qbr-card">
+                <h4>Decydujesz co dalej.</h4>
+                <p>Kontynuujesz lub kończysz — bez żadnych długoterminowych zobowiązań.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
        4. THE SQUAD
   ================================ -->
   <section class="squad" id="squad">
@@ -2252,6 +2376,50 @@
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     }
+
+    // Variant B — Scroll Storytelling
+    let sprintTimerB = null;
+    function startSprintLoopB() {
+      const steps = document.querySelectorAll('#sprintLoopB .sprint-step');
+      if (!steps.length) return;
+      let cur = 0;
+      clearInterval(sprintTimerB);
+      steps.forEach(s => { s.classList.remove('s-active'); const b = s.querySelector('.sprint-step__bar'); b.style.animation='none'; b.offsetHeight; });
+      function activateB(i) {
+        steps.forEach(s => { s.classList.remove('s-active'); const b=s.querySelector('.sprint-step__bar'); b.style.animation='none'; b.offsetHeight; });
+        steps[i].classList.add('s-active');
+        const bar = steps[i].querySelector('.sprint-step__bar');
+        bar.style.animation = 'sprintBar 2.5s linear forwards';
+      }
+      activateB(0);
+      sprintTimerB = setInterval(() => { cur=(cur+1)%steps.length; activateB(cur); }, 2600);
+    }
+    const storyItems = document.querySelectorAll('.story-section');
+    const storyNavItems = document.querySelectorAll('.story-nav__item[data-story]');
+    const storyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.id;
+        if (entry.isIntersecting) {
+          storyItems.forEach(s => s.classList.remove('ss-active'));
+          storyNavItems.forEach(n => n.classList.remove('sn-active'));
+          entry.target.classList.add('ss-active');
+          const nav = document.querySelector(`.story-nav__item[data-story="${id}"]`);
+          if (nav) nav.classList.add('sn-active');
+          const idx = Array.from(storyItems).indexOf(entry.target);
+          const bar = document.getElementById('storyBar');
+          if (bar) bar.style.width = `${Math.round((idx+1)/storyItems.length*100)}%`;
+          if (id === 'ss-2') startSprintLoopB();
+          else clearInterval(sprintTimerB);
+        }
+      });
+    }, { threshold: 0.35 });
+    storyItems.forEach(s => storyObserver.observe(s));
+    storyNavItems.forEach(nav => {
+      nav.addEventListener('click', () => {
+        const target = document.getElementById(nav.dataset.story);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
 
     // Phase tabs
     let sprintTimer = null;
