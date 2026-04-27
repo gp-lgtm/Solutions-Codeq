@@ -2377,67 +2377,34 @@
       }
     }
 
-    // Variant B — Scroll Storytelling
-    let sprintTimerB = null;
-    function startSprintLoopB() {
-      const steps = document.querySelectorAll('#sprintLoopB .sprint-step');
-      if (!steps.length) return;
-      let cur = 0;
-      clearInterval(sprintTimerB);
-      steps.forEach(s => { s.classList.remove('s-active'); const b = s.querySelector('.sprint-step__bar'); b.style.animation='none'; b.offsetHeight; });
-      function activateB(i) {
-        steps.forEach(s => { s.classList.remove('s-active'); const b=s.querySelector('.sprint-step__bar'); b.style.animation='none'; b.offsetHeight; });
-        steps[i].classList.add('s-active');
-        const bar = steps[i].querySelector('.sprint-step__bar');
-        bar.style.animation = 'sprintBar 2.5s linear forwards';
-      }
-      activateB(0);
-      sprintTimerB = setInterval(() => { cur=(cur+1)%steps.length; activateB(cur); }, 2600);
-    }
-    const storyItems = document.querySelectorAll('.story-section');
-    const storyNavItems = document.querySelectorAll('.story-nav__item[data-story]');
-    const storyObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const id = entry.target.id;
-        if (entry.isIntersecting) {
-          storyItems.forEach(s => s.classList.remove('ss-active'));
-          storyNavItems.forEach(n => n.classList.remove('sn-active'));
-          entry.target.classList.add('ss-active');
-          const nav = document.querySelector(`.story-nav__item[data-story="${id}"]`);
-          if (nav) nav.classList.add('sn-active');
-          const idx = Array.from(storyItems).indexOf(entry.target);
-          const bar = document.getElementById('storyBar');
-          if (bar) bar.style.width = `${Math.round((idx+1)/storyItems.length*100)}%`;
-          if (id === 'ss-2') startSprintLoopB();
-          else clearInterval(sprintTimerB);
+    // Shared sprint loop factory
+    function makeSprintLoop(containerId) {
+      let timer = null;
+      function reset() { clearInterval(timer); timer = null; }
+      function start() {
+        const steps = document.querySelectorAll(`#${containerId} .sprint-step`);
+        if (!steps.length) return;
+        let cur = 0;
+        clearInterval(timer);
+        function activate(i) {
+          steps.forEach(s => {
+            s.classList.remove('s-active');
+            const b = s.querySelector('.sprint-step__bar');
+            b.style.animation = 'none';
+            void b.offsetWidth; // force reflow
+          });
+          steps[i].classList.add('s-active');
+          steps[i].querySelector('.sprint-step__bar').style.animation = 'sprintBar 2.5s linear forwards';
         }
-      });
-    }, { threshold: 0.35 });
-    storyItems.forEach(s => storyObserver.observe(s));
-    storyNavItems.forEach(nav => {
-      nav.addEventListener('click', () => {
-        const target = document.getElementById(nav.dataset.story);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    });
-
-    // Phase tabs
-    let sprintTimer = null;
-    function startSprintLoop() {
-      const steps = document.querySelectorAll('.sprint-step');
-      if (!steps.length) return;
-      let cur = 0;
-      clearInterval(sprintTimer);
-      steps.forEach(s => { s.classList.remove('s-active'); s.querySelector('.sprint-step__bar').style.animation = 'none'; });
-      function activate(i) {
-        steps.forEach(s => { s.classList.remove('s-active'); const b = s.querySelector('.sprint-step__bar'); b.style.animation = 'none'; b.offsetHeight; });
-        steps[i].classList.add('s-active');
-        const bar = steps[i].querySelector('.sprint-step__bar');
-        bar.style.animation = 'sprintBar 2.5s linear forwards';
+        activate(0);
+        timer = setInterval(() => { cur = (cur + 1) % steps.length; activate(cur); }, 2600);
       }
-      activate(0);
-      sprintTimer = setInterval(() => { cur = (cur + 1) % steps.length; activate(cur); }, 2600);
+      return { start, reset };
     }
+    const loopA = makeSprintLoop('sprintLoop');
+    const loopB = makeSprintLoop('sprintLoopB');
+
+    // Variant A — Phase tabs
     document.querySelectorAll('.phase-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
@@ -2445,8 +2412,38 @@
         tab.classList.add('active');
         const panel = document.getElementById(tab.dataset.target);
         if (panel) panel.classList.add('active');
-        if (tab.dataset.target === 'phase-egzekucja') startSprintLoop();
-        else clearInterval(sprintTimer);
+        loopA.reset();
+        if (tab.dataset.target === 'phase-egzekucja') requestAnimationFrame(() => loopA.start());
+      });
+    });
+
+    // Variant B — Scroll Storytelling
+    const storyItems = document.querySelectorAll('.story-section');
+    const storyNavItems = document.querySelectorAll('.story-nav__item[data-story]');
+    let lastActiveStory = null;
+    const storyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('ss-active', entry.isIntersecting);
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          if (id === lastActiveStory) return;
+          lastActiveStory = id;
+          storyNavItems.forEach(n => n.classList.remove('sn-active'));
+          const nav = document.querySelector(`.story-nav__item[data-story="${id}"]`);
+          if (nav) nav.classList.add('sn-active');
+          const idx = Array.from(storyItems).indexOf(entry.target);
+          const bar = document.getElementById('storyBar');
+          if (bar) bar.style.width = `${Math.round((idx + 1) / storyItems.length * 100)}%`;
+          loopB.reset();
+          if (id === 'ss-2') requestAnimationFrame(() => loopB.start());
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-10% 0px -10% 0px' });
+    storyItems.forEach(s => storyObserver.observe(s));
+    storyNavItems.forEach(nav => {
+      nav.addEventListener('click', () => {
+        const target = document.getElementById(nav.dataset.story);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     });
 
