@@ -6,6 +6,21 @@
   <title>Codeq Care — Zespół Wzrostu E-commerce w Abonamencie</title>
   <link rel="stylesheet" href="Codeq Design System/colors_and_type.css" />
   <style>
+    /* === BLUE SCALE === */
+    :root {
+      --b50:  #f4f6ff;
+      --b100: #e6ebff;
+      --b200: #cdd6fd;
+      --b300: #a9bafc;
+      --b400: #7e96f9;
+      --b500: #5570f6;
+      --b600: #3350f6;
+      --b700: #1F3FF9;
+      --b800: #1935e0;
+      --b900: #1528b8;
+      --b950: #132EF8;
+    }
+
     /* === RESET === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -686,9 +701,9 @@
     .role-sheet__title { font-size: 22px; color: #fff; margin-bottom: 14px; font-weight: var(--fw-bold); display: block; }
     .role-sheet__desc { font-size: 15px; color: rgba(255,255,255,.8); line-height: 1.7; margin-bottom: 16px; display: block; }
     .role-sheet__kpi {
-      background: rgba(74,222,128,.1); border: 1px solid rgba(74,222,128,.25);
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
       border-radius: 10px; padding: 12px 16px;
-      font-size: 14px; color: #4ade80; font-weight: var(--fw-semibold); line-height: 1.5; display: block;
+      font-size: 14px; color: rgba(255,255,255,.9); font-weight: var(--fw-semibold); line-height: 1.5; display: block;
     }
 
     /* === TEAM STACK === */
@@ -811,7 +826,7 @@
     .team-stack__chart-kpi {
       font-size: 11px;
       font-weight: var(--fw-bold);
-      color: #4ade80;
+      color: rgba(255,255,255,.9);
       letter-spacing: 0.03em;
       white-space: nowrap;
     }
@@ -1052,7 +1067,7 @@
     }
     .kpi-list { display: flex; flex-direction: column; gap: var(--space-2); }
     .kpi-item { display: flex; align-items: flex-start; gap: var(--space-2); font-size: 14px; color: var(--blue-300); line-height: 1.5; }
-    .kpi-icon { color: #22c55e; flex-shrink: 0; margin-top: 1px; }
+    .kpi-icon { color: rgba(255,255,255,.75); flex-shrink: 0; margin-top: 1px; }
     .scenario-card__pkg { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; gap: var(--space-2); }
     .pkg-badge {
       display: inline-flex; align-items: center; gap: var(--space-1);
@@ -1159,7 +1174,7 @@
     .pilot__value { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 15px; color: rgba(255,255,255,.9); }
     .pilot__value-icon {
       width: 24px; height: 24px; background: rgba(255,255,255,.15); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; color: #22c55e;
+      display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; color: rgba(255,255,255,.75);
     }
     .pilot__guarantee {
       background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
@@ -1220,7 +1235,7 @@
     .price-card__divider { height: 1px; background: rgba(255,255,255,.1); margin-bottom: var(--space-5); }
     .price-card__features { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-7); }
     .price-feature { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 14px; color: var(--blue-300); line-height: 1.5; }
-    .price-feature__check { color: #22c55e; flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .price-feature__check { color: rgba(255,255,255,.75); flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
     .price-card__cta { width: 100%; justify-content: center; }
 
     @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
@@ -1376,11 +1391,11 @@
 
           <div class="hero__social-proof">
             <div class="social-avatars">
-              <div class="social-avatar" style="--av-bg:#4f46e5">M</div>
-              <div class="social-avatar" style="--av-bg:#0891b2">K</div>
-              <div class="social-avatar" style="--av-bg:#059669">A</div>
-              <div class="social-avatar" style="--av-bg:#d97706">P</div>
-              <div class="social-avatar" style="--av-bg:#be185d">T</div>
+              <div class="social-avatar" style="--av-bg:var(--b600)">M</div>
+              <div class="social-avatar" style="--av-bg:var(--b500)">K</div>
+              <div class="social-avatar" style="--av-bg:var(--b800)">A</div>
+              <div class="social-avatar" style="--av-bg:var(--b400)">P</div>
+              <div class="social-avatar" style="--av-bg:var(--b900)">T</div>
             </div>
             <span class="hero__social-proof__text">Zaufało nam <strong>30+ sklepów</strong> WooCommerce i Shopify</span>
           </div>
