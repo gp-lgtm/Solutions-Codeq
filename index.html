@@ -885,6 +885,52 @@
 
     @media (max-width: 768px) { .models-grid { grid-template-columns: 1fr; } }
 
+    /* === PROBLEM SECTION — hero visual language === */
+    .problem .section-header .label {
+      font-size: 11px; letter-spacing: 0.14em;
+      color: rgba(255,255,255,.45); font-weight: var(--fw-semibold); text-transform: uppercase;
+    }
+    .problem .section-header h2 {
+      letter-spacing: -0.025em; line-height: 1.1; color: #fff; font-weight: 800;
+    }
+    .problem .section-header p {
+      color: rgba(255,255,255,.65); font-size: 16px; letter-spacing: -0.01em;
+    }
+    .problem .model-card--bad {
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+    }
+    .problem .model-card--bad:hover {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 16px 48px rgba(0,0,0,.3);
+    }
+    .problem .model-card--bad h3 { color: #fff; letter-spacing: -0.02em; }
+    .problem .model-card--bad p { color: rgba(255,255,255,.65); }
+    .problem .model-card--bad .model-card__badge {
+      background: rgba(220,38,38,.18);
+      color: #fca5a5;
+      border: 1px solid rgba(220,38,38,.3);
+    }
+    .problem .model-card--bad .model-feature { color: rgba(255,255,255,.78); }
+    .problem .model-card--bad .dot {
+      background: rgba(220,38,38,.2);
+      color: #fca5a5;
+    }
+    .problem .model-card--good {
+      background: #1F3FF9;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 24px 64px rgba(0,0,0,.35), 0 0 40px rgba(41,68,242,.35);
+    }
+    .problem .model-card--good h3 { letter-spacing: -0.025em; }
+    .problem .model-card--good .model-card__badge {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.9);
+    }
+    .problem .model-card__icon { font-size: 2rem; }
+
     /* === 3. THE SQUAD === */
     .squad { background: var(--ink-900); }
     .squad__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
