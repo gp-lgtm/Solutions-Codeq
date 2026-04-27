@@ -2417,29 +2417,37 @@
       });
     });
 
-    // Variant B — Scroll Storytelling
+    // Variant B — Scroll Storytelling (scroll-based, no IntersectionObserver)
     const storyItems = document.querySelectorAll('.story-section');
     const storyNavItems = document.querySelectorAll('.story-nav__item[data-story]');
     let lastActiveStory = null;
-    const storyObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle('ss-active', entry.isIntersecting);
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          if (id === lastActiveStory) return;
-          lastActiveStory = id;
-          storyNavItems.forEach(n => n.classList.remove('sn-active'));
-          const nav = document.querySelector(`.story-nav__item[data-story="${id}"]`);
-          if (nav) nav.classList.add('sn-active');
-          const idx = Array.from(storyItems).indexOf(entry.target);
-          const bar = document.getElementById('storyBar');
-          if (bar) bar.style.width = `${Math.round((idx + 1) / storyItems.length * 100)}%`;
-          loopB.reset();
-          if (id === 'ss-2') requestAnimationFrame(() => loopB.start());
-        }
+
+    function updateActiveStory() {
+      if (!storyItems.length) return;
+      const midY = window.scrollY + window.innerHeight * 0.5;
+      let closest = null, closestDist = Infinity;
+      storyItems.forEach(s => {
+        const top = s.getBoundingClientRect().top + window.scrollY;
+        const dist = Math.abs(midY - (top + s.offsetHeight * 0.5));
+        if (dist < closestDist) { closestDist = dist; closest = s; }
       });
-    }, { threshold: 0.2, rootMargin: '-10% 0px -10% 0px' });
-    storyItems.forEach(s => storyObserver.observe(s));
+      if (!closest || closest.id === lastActiveStory) return;
+      lastActiveStory = closest.id;
+      storyItems.forEach(s => s.classList.remove('ss-active'));
+      storyNavItems.forEach(n => n.classList.remove('sn-active'));
+      closest.classList.add('ss-active');
+      const nav = document.querySelector(`.story-nav__item[data-story="${closest.id}"]`);
+      if (nav) nav.classList.add('sn-active');
+      const idx = Array.from(storyItems).indexOf(closest);
+      const bar = document.getElementById('storyBar');
+      if (bar) bar.style.width = `${Math.round((idx + 1) / storyItems.length * 100)}%`;
+      loopB.reset();
+      if (closest.id === 'ss-2') requestAnimationFrame(() => loopB.start());
+    }
+
+    window.addEventListener('scroll', updateActiveStory, { passive: true });
+    updateActiveStory();
+
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => {
         const target = document.getElementById(nav.dataset.story);
