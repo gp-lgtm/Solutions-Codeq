@@ -1008,6 +1008,54 @@
     .approach .section-header p { color: rgba(255,255,255,.65); font-size: 16px; }
     .approach .label { font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,.45); font-weight: var(--fw-semibold); }
 
+    /* Phase timeline (6-month macro rhythm) */
+    .phase-timeline {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0;
+      margin-bottom: var(--space-9);
+    }
+    .phase-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 28px 24px;
+    }
+    .phase-card--active {
+      background: rgba(255,255,255,.13);
+      border-color: rgba(255,255,255,.24);
+    }
+    .phase-arrow-lg {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 14px; color: rgba(255,255,255,.25); font-size: 22px;
+    }
+    .phase-tag {
+      font-size: 10px; font-weight: var(--fw-bold); text-transform: uppercase;
+      letter-spacing: 0.14em; color: rgba(255,255,255,.38); margin-bottom: 12px; display: block;
+    }
+    .phase-card h3 {
+      font-size: 15px; font-weight: var(--fw-bold); color: #fff;
+      letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 16px;
+    }
+    .phase-bullets { display: flex; flex-direction: column; gap: 9px; }
+    .phase-bullet {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5;
+    }
+    .phase-bullet::before { content: '–'; flex-shrink: 0; color: rgba(255,255,255,.3); }
+    .approach-micro-label {
+      font-size: 11px; font-weight: var(--fw-bold); text-transform: uppercase;
+      letter-spacing: 0.14em; color: rgba(255,255,255,.35); text-align: center;
+      margin-bottom: 24px; display: flex; align-items: center; gap: 16px;
+    }
+    .approach-micro-label::before, .approach-micro-label::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.1);
+    }
+    @media (max-width: 900px) {
+      .phase-timeline { grid-template-columns: 1fr; }
+      .phase-arrow-lg { height: 32px; transform: rotate(90deg); }
+    }
+
     /* Process cycle */
     .process-cycle {
       display: flex;
@@ -1537,14 +1585,51 @@
       <div class="section-header">
         <p class="label">Jak to działa</p>
         <h2>Twój sklep rośnie w stałym rytmie — bez przerw, bez chaosu.</h2>
-        <p>Każdy miesiąc to stały miesięczny rytm sprintów. Wiemy co jest zaplanowane — Ty też.</p>
+        <p>Współpraca ma jasną strukturę: miesiąc odkrycia, faza egzekucji, przegląd wyników. Wiesz czego się spodziewać na każdym etapie.</p>
       </div>
+
+      <div class="phase-timeline">
+        <div class="phase-card">
+          <span class="phase-tag">Miesiąc 1 · Diagnoza</span>
+          <h3>Odkrywamy możliwości Twojego sklepu</h3>
+          <div class="phase-bullets">
+            <div class="phase-bullet">Audyt techniczny i UX</div>
+            <div class="phase-bullet">Sesja strategiczna i cele OKR</div>
+            <div class="phase-bullet">Mapa wzrostu na 6 miesięcy</div>
+            <div class="phase-bullet">Pierwsze Quick Wins od ręki</div>
+          </div>
+        </div>
+        <div class="phase-arrow-lg">→</div>
+        <div class="phase-card phase-card--active">
+          <span class="phase-tag">Miesiące 2–5 · Egzekucja</span>
+          <h3>Sprint po Sprincie — priorytety i wyniki</h3>
+          <div class="phase-bullets">
+            <div class="phase-bullet">Co miesiąc nowy Sprint z zadaniami ROI</div>
+            <div class="phase-bullet">PM priorytetyzuje i dowozi terminy</div>
+            <div class="phase-bullet">Dev + UX wdrażają, Ty nie mikrozarządzasz</div>
+            <div class="phase-bullet">Raport KPI na koniec każdego Sprintu</div>
+          </div>
+        </div>
+        <div class="phase-arrow-lg">→</div>
+        <div class="phase-card">
+          <span class="phase-tag">Miesiąc 6 · QBR</span>
+          <h3>Przegląd wyników i ustalenie nowych celów</h3>
+          <div class="phase-bullets">
+            <div class="phase-bullet">Kwartalny Przegląd Biznesowy (QBR)</div>
+            <div class="phase-bullet">Podsumowanie wzrostów CR, AOV, PageSpeed</div>
+            <div class="phase-bullet">Korekta kursu i nowe priorytety</div>
+            <div class="phase-bullet">Decydujesz: kontynuujesz lub kończysz</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="approach-micro-label">Jak wygląda jeden Sprint?</div>
 
       <div class="process-cycle">
         <div class="process-step">
           <span class="process-step__icon">🎯</span>
           <span class="process-step__role">Strateg + PM</span>
-          <h3>Planowanie Pudełka</h3>
+          <h3>Planowanie Sprintu</h3>
           <p>Wybieramy zadania o najwyższym ROI na ten miesiąc. Każde wdrożenie ma uzasadnienie biznesowe — zero improwizacji.</p>
         </div>
         <div class="process-connector">→</div>
