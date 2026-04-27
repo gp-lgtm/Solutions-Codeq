@@ -1009,101 +1009,100 @@
     .approach .label { font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,.45); font-weight: var(--fw-semibold); }
 
     /* Phase timeline (6-month macro rhythm) */
-    .phase-timeline {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr auto 1fr;
-      gap: 0;
-      margin-bottom: var(--space-9);
+    /* Phase tabs */
+    .phase-tabs { display: flex; align-items: stretch; margin-bottom: 0; }
+    .phase-tab {
+      flex: 1; background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14); border-bottom: none;
+      border-radius: 14px 14px 0 0;
+      padding: 22px 24px; text-align: left; cursor: pointer;
+      transition: background .2s; position: relative;
     }
-    .phase-card {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 14px;
-      padding: 28px 24px;
+    .phase-tab + .phase-tab { border-left: none; }
+    .phase-tab:hover { background: rgba(255,255,255,.11); }
+    .phase-tab.active { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.24); }
+    .phase-tab.active::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 2px; background: rgba(255,255,255,.24);
     }
-    .phase-card--active {
-      background: rgba(255,255,255,.13);
-      border-color: rgba(255,255,255,.24);
+    .phase-tab__num {
+      font-size: 11px; font-weight: 800; color: rgba(255,255,255,.28);
+      letter-spacing: 0.06em; display: block; margin-bottom: 6px;
     }
-    .phase-arrow-lg {
-      display: flex; align-items: center; justify-content: center;
-      padding: 0 14px; color: rgba(255,255,255,.25); font-size: 22px;
+    .phase-tab.active .phase-tab__num { color: rgba(255,255,255,.55); }
+    .phase-tab__month {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(255,255,255,.35); display: block; margin-bottom: 5px;
     }
-    .phase-tag {
-      font-size: 10px; font-weight: var(--fw-bold); text-transform: uppercase;
-      letter-spacing: 0.14em; color: rgba(255,255,255,.38); margin-bottom: 12px; display: block;
-    }
-    .phase-card h3 {
-      font-size: 15px; font-weight: var(--fw-bold); color: #fff;
-      letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 16px;
-    }
-    .phase-bullets { display: flex; flex-direction: column; gap: 9px; }
-    .phase-bullet {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5;
-    }
-    .phase-bullet::before { content: '–'; flex-shrink: 0; color: rgba(255,255,255,.3); }
-    .approach-micro-label {
-      font-size: 11px; font-weight: var(--fw-bold); text-transform: uppercase;
-      letter-spacing: 0.14em; color: rgba(255,255,255,.35); text-align: center;
-      margin-bottom: 24px; display: flex; align-items: center; gap: 16px;
-    }
-    .approach-micro-label::before, .approach-micro-label::after {
-      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.1);
-    }
-    @media (max-width: 900px) {
-      .phase-timeline { grid-template-columns: 1fr; }
-      .phase-arrow-lg { height: 32px; transform: rotate(90deg); }
+    .phase-tab h3 { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 3px; }
+    .phase-tab__sub { font-size: 12px; color: rgba(255,255,255,.42); }
+    .phase-tab-sep {
+      flex-shrink: 0; width: 14px; display: flex; align-items: center;
+      justify-content: center; color: rgba(255,255,255,.18); font-size: 14px;
+      background: rgba(255,255,255,.04); border-top: 1px solid rgba(255,255,255,.14);
     }
 
-    /* Process cycle */
-    .process-cycle {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      margin-bottom: var(--space-9);
+    /* Phase panels */
+    .phase-panels {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 0 0 16px 16px; overflow: hidden;
     }
-    .process-step {
-      flex: 1;
-      padding: 28px 24px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 14px;
-      transition: background .2s ease, transform .2s ease;
-    }
-    .process-step:hover { background: rgba(255,255,255,.11); transform: translateY(-3px); }
-    .process-step__icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
-    .process-step__role {
-      font-size: 10px; font-weight: var(--fw-bold); text-transform: uppercase;
-      letter-spacing: 0.12em; color: rgba(255,255,255,.38); margin-bottom: 8px; display: block;
-    }
-    .process-step h3 {
-      font-size: 15px; font-weight: var(--fw-bold); color: #fff;
-      letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 10px;
-    }
-    .process-step p { font-size: 13px; color: rgba(255,255,255,.68); line-height: 1.6; }
-    .process-connector {
-      flex-shrink: 0; width: 36px; display: flex; align-items: center;
-      justify-content: center; color: rgba(255,255,255,.25); font-size: 18px;
+    .phase-panel { display: none; padding: 36px 40px; animation: panelIn .3s ease; }
+    .phase-panel.active { display: block; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Stats bar */
-    .process-stats {
-      display: flex;
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding-top: 40px;
+    /* Diagnoza deliverables */
+    .deliverables-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .deliverable {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: rgba(255,255,255,.07); border-radius: 12px; padding: 18px;
     }
-    .process-stat { flex: 1; text-align: center; padding: 0 24px; }
-    .process-stat + .process-stat { border-left: 1px solid rgba(255,255,255,.1); }
-    .process-stat__value {
-      font-size: 40px; font-weight: 800; color: #fff;
-      letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; display: block;
+    .deliverable__icon { font-size: 1.4rem; flex-shrink: 0; }
+    .deliverable h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .deliverable p { font-size: 12.5px; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+    /* Sprint loop */
+    .sprint-loop { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .sprint-step {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 20px 18px;
+      position: relative; overflow: hidden;
+      transition: background .4s, border-color .4s;
     }
-    .process-stat__label { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.45; }
+    .sprint-step.s-active { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28); }
+    .sprint-step__bar {
+      position: absolute; bottom: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, rgba(255,255,255,.5), #fff);
+      width: 0;
+    }
+    .sprint-step.s-active .sprint-step__bar { animation: sprintBar 2.5s linear forwards; }
+    @keyframes sprintBar { to { width: 100%; } }
+    .sprint-step__icon { font-size: 1.3rem; margin-bottom: 10px; display: block; }
+    .sprint-step__role {
+      font-size: 9px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,.35); margin-bottom: 6px; display: block;
+    }
+    .sprint-step h4 { font-size: 13.5px; font-weight: 700; color: #fff; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .sprint-step p { font-size: 12px; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+    /* QBR */
+    .qbr-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .qbr-list { display: flex; flex-direction: column; gap: 14px; }
+    .qbr-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14.5px; color: rgba(255,255,255,.82); line-height: 1.5; font-weight: 500; }
+    .qbr-item::before { content: '✓'; color: rgba(255,255,255,.45); flex-shrink: 0; font-weight: 800; }
+    .qbr-card { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 14px; padding: 28px; text-align: center; }
+    .qbr-card h4 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: -0.025em; }
+    .qbr-card p { font-size: 13.5px; color: rgba(255,255,255,.65); line-height: 1.6; }
 
     @media (max-width: 900px) {
-      .process-cycle { flex-direction: column; }
-      .process-connector { width: auto; height: 24px; transform: rotate(90deg); }
+      .phase-tabs { flex-direction: column; }
+      .phase-tab { border-radius: 10px; border-bottom: 1px solid rgba(255,255,255,.14); }
+      .phase-tab-sep { display: none; }
+      .sprint-loop { grid-template-columns: 1fr 1fr; }
+      .qbr-layout, .deliverables-grid { grid-template-columns: 1fr; }
     }
 
     /* === BEFORE / AFTER === */
@@ -1588,70 +1587,97 @@
         <p>Współpraca ma jasną strukturę: miesiąc odkrycia, faza egzekucji, przegląd wyników. Wiesz czego się spodziewać na każdym etapie.</p>
       </div>
 
-      <div class="phase-timeline">
-        <div class="phase-card">
-          <span class="phase-tag">Miesiąc 1 · Diagnoza</span>
-          <h3>Odkrywamy możliwości Twojego sklepu</h3>
-          <div class="phase-bullets">
-            <div class="phase-bullet">Audyt techniczny i UX</div>
-            <div class="phase-bullet">Sesja strategiczna i cele OKR</div>
-            <div class="phase-bullet">Mapa wzrostu na 6 miesięcy</div>
-            <div class="phase-bullet">Pierwsze Quick Wins od ręki</div>
-          </div>
-        </div>
-        <div class="phase-arrow-lg">→</div>
-        <div class="phase-card phase-card--active">
-          <span class="phase-tag">Miesiące 2–5 · Egzekucja</span>
-          <h3>Sprint po Sprincie — priorytety i wyniki</h3>
-          <div class="phase-bullets">
-            <div class="phase-bullet">Co miesiąc nowy Sprint z zadaniami ROI</div>
-            <div class="phase-bullet">PM priorytetyzuje i dowozi terminy</div>
-            <div class="phase-bullet">Dev + UX wdrażają, Ty nie mikrozarządzasz</div>
-            <div class="phase-bullet">Raport KPI na koniec każdego Sprintu</div>
-          </div>
-        </div>
-        <div class="phase-arrow-lg">→</div>
-        <div class="phase-card">
-          <span class="phase-tag">Miesiąc 6 · QBR</span>
-          <h3>Przegląd wyników i ustalenie nowych celów</h3>
-          <div class="phase-bullets">
-            <div class="phase-bullet">Kwartalny Przegląd Biznesowy (QBR)</div>
-            <div class="phase-bullet">Podsumowanie wzrostów CR, AOV, PageSpeed</div>
-            <div class="phase-bullet">Korekta kursu i nowe priorytety</div>
-            <div class="phase-bullet">Decydujesz: kontynuujesz lub kończysz</div>
-          </div>
-        </div>
+      <div class="phase-tabs">
+        <button class="phase-tab active" data-target="phase-diagnoza">
+          <span class="phase-tab__num">01</span>
+          <span class="phase-tab__month">Miesiąc 1</span>
+          <h3>Diagnoza</h3>
+          <span class="phase-tab__sub">Odkrywamy punkt startowy</span>
+        </button>
+        <div class="phase-tab-sep">›</div>
+        <button class="phase-tab" data-target="phase-egzekucja">
+          <span class="phase-tab__num">02</span>
+          <span class="phase-tab__month">Miesiące 2–5</span>
+          <h3>Egzekucja</h3>
+          <span class="phase-tab__sub">Sprint po Sprincie</span>
+        </button>
+        <div class="phase-tab-sep">›</div>
+        <button class="phase-tab" data-target="phase-qbr">
+          <span class="phase-tab__num">03</span>
+          <span class="phase-tab__month">Miesiąc 6</span>
+          <h3>QBR</h3>
+          <span class="phase-tab__sub">Przegląd i nowe cele</span>
+        </button>
       </div>
 
-      <div class="approach-micro-label">Jak wygląda jeden Sprint?</div>
+      <div class="phase-panels">
+        <div class="phase-panel active" id="phase-diagnoza">
+          <div class="deliverables-grid">
+            <div class="deliverable">
+              <span class="deliverable__icon">🔍</span>
+              <div><h4>Audyt techniczny i UX</h4><p>PageSpeed, bezpieczeństwo, dług techniczny i ścieżki zakupowe klientów.</p></div>
+            </div>
+            <div class="deliverable">
+              <span class="deliverable__icon">🎯</span>
+              <div><h4>Sesja strategiczna i cele OKR</h4><p>Ustalamy priorytety na 6 miesięcy. Każde zadanie ma uzasadnienie biznesowe.</p></div>
+            </div>
+            <div class="deliverable">
+              <span class="deliverable__icon">🗺️</span>
+              <div><h4>Mapa wzrostu na 6 miesięcy</h4><p>Roadmapa wdrożeń — wiesz co i kiedy trafi do realizacji, i dlaczego.</p></div>
+            </div>
+            <div class="deliverable">
+              <span class="deliverable__icon">⚡</span>
+              <div><h4>Pierwsze Quick Wins od ręki</h4><p>Szybkie wdrożenia wysokiego ROI — efekty już w pierwszym miesiącu.</p></div>
+            </div>
+          </div>
+        </div>
 
-      <div class="process-cycle">
-        <div class="process-step">
-          <span class="process-step__icon">🎯</span>
-          <span class="process-step__role">Strateg + PM</span>
-          <h3>Planowanie Sprintu</h3>
-          <p>Wybieramy zadania o najwyższym ROI na ten miesiąc. Każde wdrożenie ma uzasadnienie biznesowe — zero improwizacji.</p>
+        <div class="phase-panel" id="phase-egzekucja">
+          <div class="sprint-loop" id="sprintLoop">
+            <div class="sprint-step s-active">
+              <div class="sprint-step__bar"></div>
+              <span class="sprint-step__icon">🎯</span>
+              <span class="sprint-step__role">Strateg + PM</span>
+              <h4>Planowanie Sprintu</h4>
+              <p>Wybieramy zadania o najwyższym ROI. Zero improwizacji — każde wdrożenie ma sens.</p>
+            </div>
+            <div class="sprint-step">
+              <div class="sprint-step__bar"></div>
+              <span class="sprint-step__icon">🛠️</span>
+              <span class="sprint-step__role">Dev + UX</span>
+              <h4>Realizacja</h4>
+              <p>Wdrażamy zaplanowane zmiany. PM pilnuje terminów — Ty nie mikrozarządzasz.</p>
+            </div>
+            <div class="sprint-step">
+              <div class="sprint-step__bar"></div>
+              <span class="sprint-step__icon">📊</span>
+              <span class="sprint-step__role">Strateg</span>
+              <h4>Raport KPI</h4>
+              <p>Raport z wynikami: PageSpeed, CR, AOV. Mierzymy efekty, nie godziny.</p>
+            </div>
+            <div class="sprint-step">
+              <div class="sprint-step__bar"></div>
+              <span class="sprint-step__icon">🔄</span>
+              <span class="sprint-step__role">Cały zespół</span>
+              <h4>Nowy Sprint</h4>
+              <p>Cykl się powtarza z nowymi priorytetami. Co miesiąc — bez przerw.</p>
+            </div>
+          </div>
         </div>
-        <div class="process-connector">→</div>
-        <div class="process-step">
-          <span class="process-step__icon">🛠️</span>
-          <span class="process-step__role">Dev + UX</span>
-          <h3>Realizacja bez Twojego mikrozarządzania</h3>
-          <p>Wdrażamy zaplanowane zmiany. PM pilnuje terminów i tłumaczy Twoje potrzeby na język techniczny.</p>
-        </div>
-        <div class="process-connector">→</div>
-        <div class="process-step">
-          <span class="process-step__icon">📊</span>
-          <span class="process-step__role">Strateg</span>
-          <h3>Raport KPI — twarde liczby</h3>
-          <p>Koniec miesiąca to raport z wynikami: PageSpeed, CR, AOV. Mierzymy efekty, nie godziny.</p>
-        </div>
-        <div class="process-connector">→</div>
-        <div class="process-step">
-          <span class="process-step__icon">🔄</span>
-          <span class="process-step__role">Cały zespół</span>
-          <h3>Nowy Sprint, nowe cele</h3>
-          <p>Cykl się powtarza. Co 6 miesięcy QBR — przegląd wyników i korekta kursu. Bez umowy długoterminowej.</p>
+
+        <div class="phase-panel" id="phase-qbr">
+          <div class="qbr-layout">
+            <div class="qbr-list">
+              <div class="qbr-item">Kwartalny Przegląd Biznesowy z całym zespołem</div>
+              <div class="qbr-item">Podsumowanie wzrostów CR, AOV, PageSpeed</div>
+              <div class="qbr-item">Analiza co działało, co zmieniamy na kolejny cykl</div>
+              <div class="qbr-item">Nowe priorytety i korekta kursu na następne miesiące</div>
+            </div>
+            <div class="qbr-card">
+              <h4>Decydujesz co dalej.</h4>
+              <p>Po 6 miesiącach masz pełen raport wyników i plan na przyszłość. Kontynuujesz lub kończysz — bez żadnych długoterminowych zobowiązań.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -2226,6 +2252,35 @@
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     }
+
+    // Phase tabs
+    let sprintTimer = null;
+    function startSprintLoop() {
+      const steps = document.querySelectorAll('.sprint-step');
+      if (!steps.length) return;
+      let cur = 0;
+      clearInterval(sprintTimer);
+      steps.forEach(s => { s.classList.remove('s-active'); s.querySelector('.sprint-step__bar').style.animation = 'none'; });
+      function activate(i) {
+        steps.forEach(s => { s.classList.remove('s-active'); const b = s.querySelector('.sprint-step__bar'); b.style.animation = 'none'; b.offsetHeight; });
+        steps[i].classList.add('s-active');
+        const bar = steps[i].querySelector('.sprint-step__bar');
+        bar.style.animation = 'sprintBar 2.5s linear forwards';
+      }
+      activate(0);
+      sprintTimer = setInterval(() => { cur = (cur + 1) % steps.length; activate(cur); }, 2600);
+    }
+    document.querySelectorAll('.phase-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = document.getElementById(tab.dataset.target);
+        if (panel) panel.classList.add('active');
+        if (tab.dataset.target === 'phase-egzekucja') startSprintLoop();
+        else clearInterval(sprintTimer);
+      });
+    });
 
     // Parallax on team stack (rAF-throttled)
     (function () {
