@@ -1004,23 +1004,90 @@
 
     /* === 4. APPROACH === */
     .approach { background: var(--brand-dark); color: #fff; }
-    .approach .section-header h2 { color: #fff; }
-    .approach .section-header p { color: var(--blue-300); }
-    .approach .label { color: rgba(255,255,255,.75); }
-    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-    .pillar-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius-md);
-      padding: var(--space-7) var(--space-5);
-      transition: background var(--dur-base), transform var(--dur-base) var(--ease-out);
-    }
-    .pillar-card:hover { background: rgba(255,255,255,.1); transform: translateY(-4px); }
-    .pillar-card__icon { font-size: 2.5rem; margin-bottom: var(--space-4); }
-    .pillar-card h3 { color: #fff; margin-bottom: var(--space-3); }
-    .pillar-card p { font-size: 14px; color: var(--blue-300); line-height: var(--lh-body); }
+    .approach .section-header h2 { color: #fff; letter-spacing: -0.025em; line-height: 1.1; font-weight: 800; }
+    .approach .section-header p { color: rgba(255,255,255,.65); font-size: 16px; }
+    .approach .label { font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,.45); font-weight: var(--fw-semibold); }
 
-    @media (max-width: 768px) { .pillars-grid { grid-template-columns: 1fr; } }
+    /* Process cycle */
+    .process-cycle {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-bottom: var(--space-9);
+    }
+    .process-step {
+      flex: 1;
+      padding: 28px 24px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .process-step:hover { background: rgba(255,255,255,.11); transform: translateY(-3px); }
+    .process-step__icon { font-size: 1.6rem; margin-bottom: 14px; display: block; }
+    .process-step__role {
+      font-size: 10px; font-weight: var(--fw-bold); text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,.38); margin-bottom: 8px; display: block;
+    }
+    .process-step h3 {
+      font-size: 15px; font-weight: var(--fw-bold); color: #fff;
+      letter-spacing: -0.02em; line-height: 1.35; margin-bottom: 10px;
+    }
+    .process-step p { font-size: 13px; color: rgba(255,255,255,.68); line-height: 1.6; }
+    .process-connector {
+      flex-shrink: 0; width: 36px; display: flex; align-items: center;
+      justify-content: center; color: rgba(255,255,255,.25); font-size: 18px;
+    }
+
+    /* Stats bar */
+    .process-stats {
+      display: flex;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 40px;
+    }
+    .process-stat { flex: 1; text-align: center; padding: 0 24px; }
+    .process-stat + .process-stat { border-left: 1px solid rgba(255,255,255,.1); }
+    .process-stat__value {
+      font-size: 40px; font-weight: 800; color: #fff;
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; display: block;
+    }
+    .process-stat__label { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.45; }
+
+    @media (max-width: 900px) {
+      .process-cycle { flex-direction: column; }
+      .process-connector { width: auto; height: 24px; transform: rotate(90deg); }
+    }
+
+    /* === BEFORE / AFTER === */
+    .before-after { background: #fff; }
+    .before-after .section-header h2 { letter-spacing: -0.025em; line-height: 1.1; font-weight: 800; color: #0a0f2e; }
+    .before-after .section-header p { color: #4a5568; font-size: 16px; }
+    .before-after .section-header .label { font-size: 11px; letter-spacing: 0.14em; color: var(--b600); font-weight: var(--fw-semibold); }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .ba-card {
+      border-radius: 16px; padding: 32px 36px;
+      border: 1px solid;
+    }
+    .ba-card--before { background: #f8f9ff; border-color: #e4e8ff; }
+    .ba-card--after  { background: var(--b700); border-color: rgba(255,255,255,.15); box-shadow: 0 24px 64px rgba(31,63,249,.25); }
+    .ba-card__label {
+      font-size: 11px; font-weight: var(--fw-bold); text-transform: uppercase;
+      letter-spacing: 0.12em; margin-bottom: 24px; display: block;
+    }
+    .ba-card--before .ba-card__label { color: #94a3b8; }
+    .ba-card--after  .ba-card__label { color: rgba(255,255,255,.45); }
+    .ba-list { display: flex; flex-direction: column; gap: 14px; }
+    .ba-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14.5px; line-height: 1.5; font-weight: 500; }
+    .ba-card--before .ba-item { color: #334155; }
+    .ba-card--after  .ba-item { color: rgba(255,255,255,.9); }
+    .ba-item__dot {
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; margin-top: 1px;
+    }
+    .ba-card--before .ba-item__dot { background: #fee2e2; color: #dc2626; }
+    .ba-card--after  .ba-item__dot { background: rgba(255,255,255,.18); color: #fff; }
+    @media (max-width: 768px) { .ba-grid { grid-template-columns: 1fr; } }
 
     /* === 5. VICTORY PATHS === */
     .victory { background: var(--brand-dark); }
@@ -1468,25 +1535,88 @@
   <section class="approach" id="approach">
     <div class="container">
       <div class="section-header">
-        <p class="label label--white">Nasze DNA</p>
-        <h2 style="color:#fff">Dlaczego nie jesteśmy zwykłą agencją?</h2>
-        <p style="color:var(--blue-300)">Trzy filary, które odróżniają nas od każdego software house'u na rynku.</p>
+        <p class="label">Jak to działa</p>
+        <h2>Twój sklep rośnie w stałym rytmie — bez przerw, bez chaosu.</h2>
+        <p>Każdy miesiąc to zamknięte Pudełko prac. Wiemy co jest w środku&nbsp;— Ty też.</p>
       </div>
-      <div class="pillars-grid">
-        <div class="pillar-card">
-          <div class="pillar-card__icon">🎯</div>
-          <h3>Mierzymy Wynik (Outcome), nie Czas (Output)</h3>
-          <p>Inni cieszą się, że "zadanie zamknięte". My cieszymy się dopiero, gdy widzimy wzrost na Twoim koncie. Każdy sprint kończy się raportem z KPI.</p>
+
+      <div class="process-cycle">
+        <div class="process-step">
+          <span class="process-step__icon">🎯</span>
+          <span class="process-step__role">Strateg + PM</span>
+          <h3>Planowanie Pudełka</h3>
+          <p>Wybieramy zadania o najwyższym ROI na ten miesiąc. Każde wdrożenie ma uzasadnienie biznesowe — zero improwizacji.</p>
         </div>
-        <div class="pillar-card">
-          <div class="pillar-card__icon">🔍</div>
-          <h3>Dual Track — Plan i Wdrożenie równolegle</h3>
-          <p>Nigdy nie zatrzymujemy prac, żeby "pomyśleć". Strategia i Wdrożenie dzieją się równocześnie. Twój sklep rośnie w trybie ciągłym, bez przerw.</p>
+        <div class="process-connector">→</div>
+        <div class="process-step">
+          <span class="process-step__icon">🛠️</span>
+          <span class="process-step__role">Dev + UX</span>
+          <h3>Realizacja bez Twojego mikrozarządzania</h3>
+          <p>Wdrażamy zaplanowane zmiany. PM pilnuje terminów i tłumaczy Twoje potrzeby na język techniczny.</p>
         </div>
-        <div class="pillar-card">
-          <div class="pillar-card__icon">🛡️</div>
-          <h3>Partnerstwo, nie Zlecenie</h3>
-          <p>Nasz model abonamentowy sprawia, że jesteśmy po tej samej stronie stołu. Jeśli marnujemy czas na zbędne funkcje — to my tracimy, nie Ty.</p>
+        <div class="process-connector">→</div>
+        <div class="process-step">
+          <span class="process-step__icon">📊</span>
+          <span class="process-step__role">Strateg</span>
+          <h3>Raport KPI — twarde liczby</h3>
+          <p>Koniec miesiąca to raport z wynikami: PageSpeed, CR, AOV. Mierzymy efekty, nie godziny.</p>
+        </div>
+        <div class="process-connector">→</div>
+        <div class="process-step">
+          <span class="process-step__icon">🔄</span>
+          <span class="process-step__role">Cały zespół</span>
+          <h3>Nowe Pudełko, nowe cele</h3>
+          <p>Cykl się powtarza. Co 6 miesięcy QBR — przegląd wyników i korekta kursu. Bez umowy długoterminowej.</p>
+        </div>
+      </div>
+
+      <div class="process-stats">
+        <div class="process-stat">
+          <span class="process-stat__value">+23%</span>
+          <span class="process-stat__label">konwersji po 6 miesiącach u klienta</span>
+        </div>
+        <div class="process-stat">
+          <span class="process-stat__value">94/100</span>
+          <span class="process-stat__label">PageSpeed Mobile po optymalizacji</span>
+        </div>
+        <div class="process-stat">
+          <span class="process-stat__value">99.9%</span>
+          <span class="process-stat__label">uptime obsługiwanych sklepów</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       PRZED / PO CODEQ CARE
+  ================================ -->
+  <section class="before-after">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Zmiana, którą czujesz</p>
+        <h2>Jak wygląda to w praktyce?</h2>
+        <p>Przed Codeq Care i po — konkretna różnica w codziennym funkcjonowaniu sklepu.</p>
+      </div>
+      <div class="ba-grid">
+        <div class="ba-card ba-card--before">
+          <span class="ba-card__label">❌ Bez Codeq Care</span>
+          <div class="ba-list">
+            <div class="ba-item"><span class="ba-item__dot">✕</span><span>Brak strategii — reagujesz na problemy zamiast budować wzrost</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✕</span><span>Nie wiesz kto i kiedy dorobi poprawkę — każdy kontakt to stres</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✕</span><span>Płacisz za godziny pracy, nie za wyniki sprzedażowe</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✕</span><span>Sklep działa, ale konwersja nie rośnie — nie wiesz dlaczego</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✕</span><span>Awaria w piątek wieczór — szukasz dewelopera od nowa</span></div>
+          </div>
+        </div>
+        <div class="ba-card ba-card--after">
+          <span class="ba-card__label">✓ Z Codeq Care</span>
+          <div class="ba-list">
+            <div class="ba-item"><span class="ba-item__dot">✓</span><span>Mapa Celów na 6 miesięcy — wiesz dokąd zmierzasz i dlaczego</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✓</span><span>Dedykowany PM — jeden punkt kontaktu, zawsze dostępny</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✓</span><span>Flat Fee — jedna faktura miesięcznie, zero niespodzianek</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✓</span><span>Każdy sprint mierzy CR, PageSpeed, AOV — raport co miesiąc</span></div>
+            <div class="ba-item"><span class="ba-item__dot">✓</span><span>SLA i priorytetowa reakcja — spokój głowy przez cały rok</span></div>
+          </div>
         </div>
       </div>
     </div>
