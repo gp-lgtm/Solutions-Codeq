@@ -849,98 +849,95 @@
     .section-header h2 { margin-bottom: var(--space-4); color: #fff; }
     .section-header p { font-size: var(--fs-body); color: var(--blue-300); max-width: 600px; margin: 0 auto; }
 
-    .models-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-5); }
-    .model-card {
-      border-radius: var(--radius-md);
-      padding: var(--space-7) var(--space-6);
-      border: 1px solid transparent;
-      transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+    .problem .section-header .label { font-size: 11px; letter-spacing: 0.14em; color: var(--b600); font-weight: var(--fw-semibold); text-transform: uppercase; }
+    .problem .section-header h2 { letter-spacing: -0.025em; line-height: 1.1; color: #0a0f2e; font-weight: 800; }
+    .problem .section-header p { color: #4a5568; font-size: 16px; letter-spacing: -0.01em; }
+
+    /* === DRAG COMPARE === */
+    .compare-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 520px;
+      cursor: col-resize;
+      user-select: none;
+      box-shadow: 0 24px 80px rgba(31,63,249,.18), 0 4px 20px rgba(0,0,20,.12);
     }
-    .model-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
-    .model-card--bad { background: #fff; border-color: var(--border-1); }
-    .model-card--good {
+    /* After panel (Codeq — right, rendered behind) */
+    .compare-after {
+      position: absolute; inset: 0;
       background: var(--codeq-blue);
-      color: #fff;
-      border-color: var(--codeq-blue);
-      box-shadow: var(--shadow-3);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 56px 60px 56px calc(50% + 32px);
     }
-    .model-card__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-size: 11px;
-      font-weight: var(--fw-semibold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      margin-bottom: var(--space-5);
+    /* Before panel (stary świat — left, clips over after) */
+    .compare-before {
+      position: absolute; inset: 0;
+      background: #f4f6ff;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 56px calc(50% - 48px + 32px) 56px 60px;
+      clip-path: polygon(0 0, var(--split, 50%) 0, var(--split, 50%) 100%, 0 100%);
+      transition: clip-path 0s;
     }
-    .model-card--bad .model-card__badge { background: #fee2e2; color: #dc2626; }
-    .model-card--good .model-card__badge { background: rgba(255,255,255,.2); color: #fff; }
-    .model-card__icon { font-size: 2.5rem; margin-bottom: var(--space-4); }
-    .model-card h3 { margin-bottom: var(--space-4); }
-    .model-card--bad h3 { color: var(--fg-1); }
-    .model-card--good h3 { color: #fff; }
-    .model-card p { font-size: 14px; line-height: var(--lh-body); }
-    .model-card--bad p { color: var(--fg-4); }
-    .model-card--good p { color: rgba(255,255,255,.85); }
-    .model-card__features { margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
-    .model-feature { display: flex; align-items: center; gap: var(--space-3); font-size: 14px; font-weight: var(--fw-medium); }
-    .model-feature .dot {
-      width: 20px; height: 20px;
-      border-radius: 50%;
+    /* Side labels */
+    .compare-label {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; padding: 5px 12px; border-radius: 99px;
+      margin-bottom: 20px; width: fit-content;
+    }
+    .compare-before .compare-label { background: #fee2e2; color: #dc2626; }
+    .compare-after .compare-label { background: rgba(255,255,255,.18); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+    .compare-before h3 { font-size: 28px; font-weight: 800; color: #0a0f2e; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+    .compare-after  h3 { font-size: 28px; font-weight: 800; color: #fff;    letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+    .compare-before > p { font-size: 14px; color: #64748b; line-height: 1.55; margin-bottom: 24px; }
+    .compare-after  > p { font-size: 14px; color: rgba(255,255,255,.72); line-height: 1.55; margin-bottom: 24px; }
+    .compare-list { display: flex; flex-direction: column; gap: 13px; }
+    .compare-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; font-weight: 500; line-height: 1.45; }
+    .compare-before .compare-item { color: #334155; }
+    .compare-after  .compare-item { color: rgba(255,255,255,.9); }
+    .compare-dot {
+      width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px;
-      flex-shrink: 0;
+      font-size: 11px; font-weight: 700; margin-top: 1px;
     }
-    .model-card--bad .dot { background: #fee2e2; color: #dc2626; }
-    .model-card--good .dot { background: rgba(255,255,255,.2); color: #fff; }
-    .model-card--bad .model-feature { color: var(--fg-3); }
-    .model-card--good .model-feature { color: rgba(255,255,255,.9); }
-
-    @media (max-width: 768px) { .models-grid { grid-template-columns: 1fr; } }
-
-    /* === PROBLEM SECTION — light version === */
-    .problem .section-header .label {
-      font-size: 11px; letter-spacing: 0.14em;
-      color: var(--b600); font-weight: var(--fw-semibold); text-transform: uppercase;
+    .compare-before .compare-dot { background: #fee2e2; color: #dc2626; }
+    .compare-after  .compare-dot { background: rgba(255,255,255,.2); color: #fff; }
+    /* Drag handle */
+    .compare-handle {
+      position: absolute; top: 0; bottom: 0;
+      left: var(--split, 50%); transform: translateX(-50%);
+      width: 44px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; z-index: 10;
+      pointer-events: none;
     }
-    .problem .section-header h2 {
-      letter-spacing: -0.025em; line-height: 1.1; color: #0a0f2e; font-weight: 800;
+    .compare-handle__line {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 2px; background: #fff; transform: translateX(-50%);
+      opacity: .75;
     }
-    .problem .section-header p {
-      color: #4a5568; font-size: 16px; letter-spacing: -0.01em;
+    .compare-handle__knob {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #fff; box-shadow: 0 4px 16px rgba(0,0,20,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: var(--codeq-blue); font-weight: 700;
+      position: relative; z-index: 1; letter-spacing: -1px;
+      pointer-events: all; cursor: col-resize;
     }
-    /* Bad cards — light gray on white */
-    .problem .model-card--bad {
-      background: #f8f9ff;
-      border: 1px solid #e4e8ff;
-      backdrop-filter: none;
+    /* Hint animation on load */
+    @keyframes hintDrag {
+      0%   { transform: translateX(-50%) translateX(0); }
+      20%  { transform: translateX(-50%) translateX(-18px); }
+      50%  { transform: translateX(-50%) translateX(18px); }
+      80%  { transform: translateX(-50%) translateX(-8px); }
+      100% { transform: translateX(-50%) translateX(0); }
     }
-    .problem .model-card--bad:hover {
-      background: #f1f4ff;
-      border-color: #c7d2fe;
-      box-shadow: 0 12px 36px rgba(31,63,249,.1);
-    }
-    .problem .model-card--bad h3 { color: #0a0f2e; letter-spacing: -0.02em; }
-    .problem .model-card--bad p { color: #64748b; }
-    .problem .model-card--bad .model-card__badge {
-      background: #fee2e2; color: #dc2626; border: none;
-    }
-    .problem .model-card--bad .model-feature { color: #334155; }
-    .problem .model-card--bad .dot { background: #fee2e2; color: #dc2626; }
-    /* Good card — brand blue, pops on white */
-    .problem .model-card--good {
-      background: var(--b700);
-      border: 1px solid rgba(255,255,255,.15);
-      box-shadow: 0 24px 64px rgba(31,63,249,.3), 0 8px 24px rgba(31,63,249,.2);
-    }
-    .problem .model-card--good h3 { letter-spacing: -0.025em; }
-    .problem .model-card--good .model-card__badge {
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.9);
+    .compare-handle--hint .compare-handle__knob { animation: hintDrag 1.1s ease 0.6s both; }
+    @media (max-width: 768px) {
+      .compare-wrap { height: auto; cursor: default; overflow: visible; box-shadow: none; border-radius: 0; }
+      .compare-before, .compare-after { position: static; clip-path: none; padding: 40px 28px; border-radius: 16px; margin-bottom: 12px; }
+      .compare-handle { display: none; }
+      .compare-before h3, .compare-after h3 { font-size: 22px; }
     }
     .problem .model-card__icon { font-size: 2rem; }
 
@@ -1685,46 +1682,42 @@
         <h2>Dlaczego Twój sklep stoi w miejscu,<br/>mimo że płacisz za poprawki?</h2>
         <p>Większość modeli współpracy IT skupia się na godzinach — nie na wynikach. Zobacz różnicę.</p>
       </div>
-      <div class="models-grid">
-        <!-- Bad 1 -->
-        <div class="model-card model-card--bad">
-          <span class="model-card__badge">❌ Model "Dorywczy"</span>
-          <div class="model-card__icon">⏳</div>
-          <h3>Freelancer</h3>
-          <p>Brak czasu, brak strategii, gaszenie pożarów. Sklep działa, ale nie sprzedaje lepiej.</p>
-          <div class="model-card__features">
-            <div class="model-feature"><span class="dot">✕</span>Brak długofalowej strategii</div>
-            <div class="model-feature"><span class="dot">✕</span>Niedostępność w kryzysie</div>
-            <div class="model-feature"><span class="dot">✕</span>Płacisz za godziny, nie wyniki</div>
-            <div class="model-feature"><span class="dot">✕</span>Wiedza o sklepie ginie wraz z nim</div>
+      <div class="compare-wrap compare-handle--hint" id="compareWrap">
+
+        <!-- After: Codeq Care (right, behind) -->
+        <div class="compare-after">
+          <span class="compare-label">✓ Codeq Care</span>
+          <h3>Każdy sprint.<br/>Mierzalny wynik.</h3>
+          <p>Stały zespół, który zna Twój sklep. Sprint po Sprincie — priorytety oparte na ROI, raport co miesiąc.</p>
+          <div class="compare-list">
+            <div class="compare-item"><span class="compare-dot">✓</span>Flat Fee — płacisz za wyniki, nie godziny</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>4 seniorskie role zawsze dostępne</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Stały zespół — zero rotacji, zero straty wiedzy</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>KPI co miesiąc: CR, AOV, PageSpeed</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Jeden punkt kontaktu — PM pilnuje wszystkiego</div>
           </div>
         </div>
-        <!-- Bad 2 -->
-        <div class="model-card model-card--bad">
-          <span class="model-card__badge">❌ Model "Agencja 360"</span>
-          <div class="model-card__icon">🧾</div>
-          <h3>Agencja</h3>
-          <p>Wysokie koszty, juniorzy na projekcie, długie terminy, faktury za "zarządzanie".</p>
-          <div class="model-card__features">
-            <div class="model-feature"><span class="dot">✕</span>Senior na sprzedaży, junior na projekcie</div>
-            <div class="model-feature"><span class="dot">✕</span>Drogie i nieprzejrzyste faktury</div>
-            <div class="model-feature"><span class="dot">✕</span>Rotacja zespołu, brak ciągłości</div>
-            <div class="model-feature"><span class="dot">✕</span>Rozliczenie za czas, nie efekt</div>
+
+        <!-- Before: Stary świat (left, clips over) -->
+        <div class="compare-before" id="compareBefore">
+          <span class="compare-label">✕ Freelancer / Agencja</span>
+          <h3>Płacisz. Czekasz.<br/>Sklep stoi.</h3>
+          <p>Brak strategii, rotacja zespołu, faktury za godziny. Gasisz pożary zamiast budować wzrost.</p>
+          <div class="compare-list">
+            <div class="compare-item"><span class="compare-dot">✕</span>Rozliczenie za czas, nie za efekt</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Senior na sprzedaży, junior na projekcie</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Wiedza o sklepie ginie przy zmianie wykonawcy</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Brak strategii — każdy projekt od nowa</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Niedostępność w kryzysie, chaos komunikacji</div>
           </div>
         </div>
-        <!-- Good -->
-        <div class="model-card model-card--good">
-          <span class="model-card__badge">✅ Codeq Care</span>
-          <div class="model-card__icon">🛡️</div>
-          <h3>Twój Wybór</h3>
-          <p>Stały zespół, Mapa Celów na 6 miesięcy, Flat Fee, Strategiczny Nadzór nad każdym wdrożeniem.</p>
-          <div class="model-card__features">
-            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>4 seniorskie role w cenie 1 juniora</div>
-            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>Mapa Celów i Sprinty (OKR)</div>
-            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>Stała cena – zero niespodzianek</div>
-            <div class="model-feature"><span class="dot" style="background:rgba(255,255,255,.2);color:#fff">✓</span>Mierzymy wyniki, nie godziny</div>
-          </div>
+
+        <!-- Drag handle -->
+        <div class="compare-handle" id="compareHandle">
+          <div class="compare-handle__line"></div>
+          <div class="compare-handle__knob">⟺</div>
         </div>
+
       </div>
     </div>
   </section>
@@ -2392,6 +2385,26 @@
       document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active'));
       card.classList.add('active');
     }
+
+    // Drag-to-reveal compare
+    (function () {
+      const wrap = document.getElementById('compareWrap');
+      if (!wrap) return;
+      let dragging = false;
+
+      function setPos(clientX) {
+        const r = wrap.getBoundingClientRect();
+        const pct = Math.max(8, Math.min(92, (clientX - r.left) / r.width * 100));
+        wrap.style.setProperty('--split', pct + '%');
+      }
+
+      wrap.addEventListener('mousedown',  e => { dragging = true; setPos(e.clientX); });
+      document.addEventListener('mouseup',   () => dragging = false);
+      document.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+      wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+      document.addEventListener('touchend',  () => dragging = false);
+      wrap.addEventListener('touchmove',  e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    })();
 
     function toggleFaq(questionEl) {
       const item = questionEl.closest('.faq-item');
