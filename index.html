@@ -946,61 +946,96 @@
 
     /* === 3. THE SQUAD === */
     .squad { background: var(--brand-dark); }
-    .squad__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
-    .squad-card {
-      background: #fff;
-      border: 1px solid var(--border-1);
-      border-radius: var(--radius-md);
-      padding: var(--space-7) var(--space-6);
-      transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base);
-      cursor: default;
-    }
-    .squad-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); border-color: var(--blue-400); }
-    .squad-card__header { display: flex; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-4); }
-    .squad-card__emoji { font-size: 2.5rem; line-height: 1; flex-shrink: 0; }
-    .squad-card__role {
-      font-size: 11px;
-      font-weight: var(--fw-semibold);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-wide);
-      color: var(--codeq-blue);
-      margin-bottom: var(--space-1);
-    }
-    .squad-card h3 { color: var(--fg-1); margin-bottom: var(--space-1); }
-    .squad-card__who { font-size: 13px; color: var(--fg-4); font-weight: var(--fw-medium); }
-    .squad-card__task { font-size: 14px; color: var(--fg-3); margin-bottom: var(--space-4); line-height: var(--lh-body); }
-    .squad-card__value {
-      background: var(--surface-alt);
-      border-radius: var(--radius-sm);
-      padding: var(--space-4);
-      font-size: 14px;
-      color: var(--fg-3);
-      line-height: var(--lh-body);
-      margin-bottom: var(--space-4);
-      border-left: 3px solid var(--codeq-blue);
-    }
-    .squad-card__pov {
-      background: var(--codeq-blue);
-      border-radius: var(--radius-sm);
-      padding: var(--space-4);
-      font-size: 13px;
-      color: rgba(255,255,255,.9);
-      line-height: 1.65;
-      font-style: italic;
-      position: relative;
-    }
-    .squad-card__pov::before {
-      content: '"';
-      font-size: 3rem;
-      line-height: 1;
-      color: rgba(255,255,255,.2);
-      position: absolute;
-      top: 8px; left: 16px;
-      font-family: Georgia, serif;
-    }
-    .squad-card__pov p { padding-left: 20px; }
+    .squad .section-header h2 { color: #fff; }
+    .squad .section-header p { color: rgba(255,255,255,.6); }
+    .squad .label { color: rgba(255,255,255,.45); }
 
-    @media (max-width: 768px) { .squad__grid { grid-template-columns: 1fr; } }
+    .squad-selector {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    /* Left nav */
+    .squad-nav { display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,.1); }
+    .squad-nav__item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 22px 20px; cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: all .22s ease; opacity: .4;
+    }
+    .squad-nav__item + .squad-nav__item { border-top: 1px solid rgba(255,255,255,.07); }
+    .squad-nav__item:hover { opacity: .7; background: rgba(255,255,255,.04); }
+    .squad-nav__item.sq-active { opacity: 1; border-left-color: #fff; background: rgba(255,255,255,.07); }
+    .squad-nav__icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; }
+    .squad-nav__meta { flex: 1; min-width: 0; }
+    .squad-nav__num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,.38); display: block; margin-bottom: 2px; }
+    .squad-nav__item.sq-active .squad-nav__num { color: rgba(255,255,255,.6); }
+    .squad-nav__name { font-size: 13.5px; font-weight: 700; color: #fff; display: block; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .squad-nav__avs { display: flex; }
+    .squad-nav__av {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7.5px; font-weight: 700; color: #fff;
+      margin-left: -5px; flex-shrink: 0;
+    }
+    .squad-nav__avs .squad-nav__av:first-child { margin-left: 0; }
+
+    /* Right panel */
+    .squad-panels { position: relative; }
+    .squad-panel { display: none; padding: 44px 48px; animation: panelIn .3s ease; }
+    .squad-panel.sq-active { display: flex; flex-direction: column; gap: 0; }
+
+    .squad-panel__top { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 24px; }
+    .squad-panel__icon { font-size: 3rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+    .squad-panel__head { flex: 1; }
+    .squad-panel__role-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,.4); display: block; margin-bottom: 4px; }
+    .squad-panel__title { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 5px; }
+    .squad-panel__who { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; }
+
+    .squad-panel__desc { font-size: 15.5px; color: rgba(255,255,255,.82); line-height: 1.6; margin-bottom: 20px; }
+
+    .squad-panel__value {
+      padding: 16px 20px; border-radius: 12px;
+      background: rgba(255,255,255,.07); border-left: 3px solid rgba(255,255,255,.35);
+      font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.55;
+      margin-bottom: 20px;
+    }
+
+    .squad-panel__quote {
+      padding: 16px 20px 16px 36px; border-radius: 12px;
+      background: rgba(255,255,255,.05);
+      font-size: 13.5px; color: rgba(255,255,255,.65); line-height: 1.65; font-style: italic;
+      position: relative; margin-bottom: 28px;
+    }
+    .squad-panel__quote::before {
+      content: '"'; font-size: 2.8rem; line-height: 1;
+      color: rgba(255,255,255,.18); position: absolute;
+      top: 10px; left: 14px; font-family: Georgia, serif;
+    }
+
+    .squad-panel__people { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.08); }
+    .squad-person { display: flex; align-items: center; gap: 10px; }
+    .squad-person__av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,.14); border: 2px solid rgba(255,255,255,.22);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .squad-person__info { display: flex; flex-direction: column; }
+    .squad-person__name { font-size: 13px; font-weight: 600; color: #fff; }
+    .squad-person__sub { font-size: 11px; color: rgba(255,255,255,.42); }
+
+    @media (max-width: 768px) {
+      .squad-selector { grid-template-columns: 1fr; }
+      .squad-nav { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+      .squad-nav__item { flex-direction: column; align-items: flex-start; gap: 6px; min-width: 140px; border-left: none; border-bottom: 3px solid transparent; }
+      .squad-nav__item.sq-active { border-left-color: transparent; border-bottom-color: #fff; }
+      .squad-panel { padding: 28px 24px; }
+    }
 
     /* === 4. APPROACH === */
     .approach { background: var(--brand-dark); color: #fff; }
@@ -1764,76 +1799,137 @@
         <h2>Czwórka do zadań specjalnych.<br/>Twój Zespół w pakiecie.</h2>
         <p>Dostęp do kompetencji wartych ponad 40 000 zł/mc za ułamek tej ceny.</p>
       </div>
-      <div class="squad__grid">
 
-        <!-- Strateg -->
-        <div class="squad-card">
-          <div class="squad-card__header">
-            <div class="squad-card__emoji">🧠</div>
-            <div class="squad-card__meta">
-              <p class="squad-card__role">Rola #1</p>
-              <h3>Strateg (Product Manager)</h3>
-              <p class="squad-card__who">Senior Partner — wytycza kierunek rozwoju</p>
+      <div class="squad-selector">
+
+        <!-- Left nav -->
+        <nav class="squad-nav">
+          <div class="squad-nav__item sq-active" data-squad="sq-1">
+            <span class="squad-nav__icon">🧠</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 01</span>
+              <span class="squad-nav__name">Strateg</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av">G</div>
+                <div class="squad-nav__av">M</div>
+                <div class="squad-nav__av">A</div>
+              </div>
             </div>
           </div>
-          <p class="squad-card__task">Podczas Kwartalnych Przeglądów (QBR) ustala cele biznesowe, by technologia wspierała marżę — nie odwrotnie.</p>
-          <div class="squad-card__value">Twój filtr chroniący budżet przed inwestycjami bez sensu. Zanim cokolwiek powstanie — najpierw pytamy "po co?"</div>
-          <div class="squad-card__pov">
-            <p>Większość software house'ów tylko 'koduje tickety'. My najpierw sprawdzamy, czy ten pomysł w ogóle ma sens biznesowy. Ja jestem Twoim filtrem, który chroni budżet przed nietrafionymi inwestycjami.</p>
-          </div>
-        </div>
-
-        <!-- PM -->
-        <div class="squad-card">
-          <div class="squad-card__header">
-            <div class="squad-card__emoji">🗂️</div>
-            <div class="squad-card__meta">
-              <p class="squad-card__role">Rola #2</p>
-              <h3>Project Manager (The Guardian)</h3>
-              <p class="squad-card__who">Twój dedykowany opiekun — tłumaczy biznes na kod</p>
+          <div class="squad-nav__item" data-squad="sq-2">
+            <span class="squad-nav__icon">🗂️</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 02</span>
+              <span class="squad-nav__name">Project Manager</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av">K</div>
+                <div class="squad-nav__av">P</div>
+              </div>
             </div>
           </div>
-          <p class="squad-card__task">Pilnuje terminów i "Pudełka" (sprintu). Masz porządek w projektach bez mikrozarządzania z Twojej strony.</p>
-          <div class="squad-card__value">Jedno okienko kontaktowe. Żadnego tłumaczenia deweloperom co chcesz — PM robi to za Ciebie.</div>
-          <div class="squad-card__pov">
-            <p>Programiści mówią o 'refactoringu', Ty mówisz o 'sprzedaży'. Moją rolą jest tłumaczenie tych dwóch światów. Pilnuję, żebyśmy w 'Pudełku' zmieścili zadania, które dowieziesz na czas.</p>
-          </div>
-        </div>
-
-        <!-- UX -->
-        <div class="squad-card">
-          <div class="squad-card__header">
-            <div class="squad-card__emoji">🎨</div>
-            <div class="squad-card__meta">
-              <p class="squad-card__role">Rola #3</p>
-              <h3>UX Designer (The Optimizer)</h3>
-              <p class="squad-card__who">Specjalista od konwersji — projektuje przed wdrożeniem</p>
+          <div class="squad-nav__item" data-squad="sq-3">
+            <span class="squad-nav__icon">🎨</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 03</span>
+              <span class="squad-nav__name">UX Designer</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av">M</div>
+                <div class="squad-nav__av">J</div>
+              </div>
             </div>
           </div>
-          <p class="squad-card__task">Zanim wydamy złotówkę na kod, upewniamy się, że klienci będą umieli tego używać i będą kupować.</p>
-          <div class="squad-card__value">Usuwa bariery zakupowe. Projektuje ścieżki tak, by klient nie porzucał koszyka. Oszczędza Ci pieniędzy na nietrafionych zmianach.</div>
-          <div class="squad-card__pov">
-            <p>Najdroższy kod to ten, którego nikt nie używa. Zanim programiści zaczną pracę, ja sprawdzam użyteczność. Usuwam bariery zakupowe i projektuję ścieżki tak, by klient nie porzucał koszyka.</p>
-          </div>
-        </div>
-
-        <!-- Dev -->
-        <div class="squad-card">
-          <div class="squad-card__header">
-            <div class="squad-card__emoji">💻</div>
-            <div class="squad-card__meta">
-              <p class="squad-card__role">Rola #4</p>
-              <h3>Senior Dev (The Builder)</h3>
-              <p class="squad-card__who">Tech Lead — egzekucja i bezpieczeństwo systemu</p>
+          <div class="squad-nav__item" data-squad="sq-4">
+            <span class="squad-nav__icon">💻</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 04</span>
+              <span class="squad-nav__name">Senior Dev</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av">T</div>
+                <div class="squad-nav__av">R</div>
+                <div class="squad-nav__av">B</div>
+              </div>
             </div>
           </div>
-          <p class="squad-card__task">Czysty kod, szybkość, zero błędów. Zna Twój system na wylot — nie zaczyna za każdym razem od zera.</p>
-          <div class="squad-card__value">Szybki sklep = wyższa pozycja w Google i lepsza sprzedaż. Buduje stabilny fundament pod Twój wzrost ruchu.</div>
-          <div class="squad-card__pov">
-            <p>Nie piszę kodu 'byle działał'. Buduję stabilny fundament, który wytrzyma Twój wzrost ruchu i nie rozsypie się przy pierwszej aktualizacji wtyczki.</p>
-          </div>
-        </div>
+        </nav>
 
+        <!-- Right panels -->
+        <div class="squad-panels">
+
+          <div class="squad-panel sq-active" id="sq-1">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">🧠</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 01 · Strategia</span>
+                <p class="squad-panel__title">Strateg (Product Manager)</p>
+                <p class="squad-panel__who">Senior Partner — wytycza kierunek wzrostu</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Podczas Kwartalnych Przeglądów (QBR) ustala cele biznesowe, by technologia wspierała marżę — nie odwrotnie. Każde wdrożenie ma uzasadnienie w liczbach, nie w intuicji.</p>
+            <div class="squad-panel__value">Twój filtr chroniący budżet przed inwestycjami bez sensu. Zanim cokolwiek powstanie — najpierw pytamy "po co?"</div>
+            <div class="squad-panel__quote">Większość software house'ów tylko koduje tickety. My najpierw sprawdzamy, czy ten pomysł w ogóle ma sens biznesowy. Ja jestem Twoim filtrem, który chroni budżet przed nietrafionymi inwestycjami.</div>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av">G</div><div class="squad-person__info"><span class="squad-person__name">Grzegorz</span><span class="squad-person__sub">Senior Partner</span></div></div>
+              <div class="squad-person"><div class="squad-person__av">M</div><div class="squad-person__info"><span class="squad-person__name">Marcin</span><span class="squad-person__sub">Strateg wzrostu</span></div></div>
+              <div class="squad-person"><div class="squad-person__av">A</div><div class="squad-person__info"><span class="squad-person__name">Anna</span><span class="squad-person__sub">Product Strategist</span></div></div>
+            </div>
+          </div>
+
+          <div class="squad-panel" id="sq-2">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">🗂️</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 02 · Koordynacja</span>
+                <p class="squad-panel__title">Project Manager (The Guardian)</p>
+                <p class="squad-panel__who">Twój dedykowany opiekun — tłumaczy biznes na kod</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Pilnuje terminów i "Pudełka" (sprintu). Masz porządek w projektach bez mikrozarządzania z Twojej strony. Jeden kontakt — zero chaosu.</p>
+            <div class="squad-panel__value">Jedno okienko kontaktowe. Żadnego tłumaczenia deweloperom co chcesz — PM robi to za Ciebie.</div>
+            <div class="squad-panel__quote">Programiści mówią o refactoringu, Ty mówisz o sprzedaży. Moją rolą jest tłumaczenie tych dwóch światów. Pilnuję, żebyśmy w Pudełku zmieścili zadania, które dowieziesz na czas.</div>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av">K</div><div class="squad-person__info"><span class="squad-person__name">Karolina</span><span class="squad-person__sub">Project Manager</span></div></div>
+              <div class="squad-person"><div class="squad-person__av">P</div><div class="squad-person__info"><span class="squad-person__name">Piotr</span><span class="squad-person__sub">PM / Scrum Master</span></div></div>
+            </div>
+          </div>
+
+          <div class="squad-panel" id="sq-3">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">🎨</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 03 · Konwersja</span>
+                <p class="squad-panel__title">UX Designer (The Optimizer)</p>
+                <p class="squad-panel__who">Specjalista od konwersji — projektuje przed wdrożeniem</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Zanim wydamy złotówkę na kod, upewniamy się, że klienci będą umieli tego używać i będą kupować. UX to nie estetyka — to pieniądze.</p>
+            <div class="squad-panel__value">Usuwa bariery zakupowe. Projektuje ścieżki tak, by klient nie porzucał koszyka. Oszczędza Ci pieniędzy na nietrafionych zmianach.</div>
+            <div class="squad-panel__quote">Najdroższy kod to ten, którego nikt nie używa. Zanim programiści zaczną pracę, ja sprawdzam użyteczność i projektuję ścieżki tak, by klient nie porzucał koszyka.</div>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av">M</div><div class="squad-person__info"><span class="squad-person__name">Monika</span><span class="squad-person__sub">UX / CRO Specialist</span></div></div>
+              <div class="squad-person"><div class="squad-person__av">J</div><div class="squad-person__info"><span class="squad-person__name">Jakub</span><span class="squad-person__sub">UI Designer</span></div></div>
+            </div>
+          </div>
+
+          <div class="squad-panel" id="sq-4">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">💻</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 04 · Egzekucja</span>
+                <p class="squad-panel__title">Senior Dev (The Builder)</p>
+                <p class="squad-panel__who">Tech Lead — egzekucja i bezpieczeństwo systemu</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Czysty kod, szybkość, zero błędów. Zna Twój system na wylot — nie zaczyna za każdym razem od zera. WooCommerce i Shopify bez ograniczeń.</p>
+            <div class="squad-panel__value">Szybki sklep = wyższa pozycja w Google i lepsza sprzedaż. Buduje stabilny fundament pod Twój wzrost ruchu.</div>
+            <div class="squad-panel__quote">Nie piszę kodu byle działał. Buduję stabilny fundament, który wytrzyma Twój wzrost ruchu i nie rozsypie się przy pierwszej aktualizacji wtyczki.</div>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av">T</div><div class="squad-person__info"><span class="squad-person__name">Tomasz</span><span class="squad-person__sub">Tech Lead</span></div></div>
+              <div class="squad-person"><div class="squad-person__av">R</div><div class="squad-person__info"><span class="squad-person__name">Rafał</span><span class="squad-person__sub">Senior Dev</span></div></div>
+              <div class="squad-person"><div class="squad-person__av">B</div><div class="squad-person__info"><span class="squad-person__name">Bartosz</span><span class="squad-person__sub">Backend Dev</span></div></div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -2345,6 +2441,19 @@
 
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => activateStory(nav.dataset.story));
+    });
+
+    // Squad role selector
+    const squadNavItems = document.querySelectorAll('.squad-nav__item[data-squad]');
+    const squadPanels = document.querySelectorAll('.squad-panel');
+    squadNavItems.forEach(item => {
+      item.addEventListener('click', () => {
+        squadNavItems.forEach(n => n.classList.remove('sq-active'));
+        squadPanels.forEach(p => p.classList.remove('sq-active'));
+        item.classList.add('sq-active');
+        const panel = document.getElementById(item.dataset.squad);
+        if (panel) panel.classList.add('sq-active');
+      });
     });
 
     // Parallax on team stack (rAF-throttled)
