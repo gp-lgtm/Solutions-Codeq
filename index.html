@@ -2913,34 +2913,28 @@
       if (!checks.length) return;
 
       const stages = [
-        null, // 0 — idle
-        { badge: '⚠️ Freelancer', cls: 'dr-badge--warn',
+        null,
+        { badge: '⚠️ Pierwsze sygnały', cls: 'dr-badge--warn',
+          title: 'Już jeden objaw to za dużo.',
+          desc: 'Nawet jeden z tych problemów kosztuje Cię czas i pieniądze. Codeq Care eliminuje je wszystkie — stały zespół, jeden kontakt, wyniki mierzone co miesiąc.' },
+        { badge: '⚠️ Model dorywczy', cls: 'dr-badge--warn',
           title: 'Prawdopodobnie pracujesz z Freelancerem.',
-          desc: 'Brak strategii i ciągłości to typowe objawy modelu dorywczego. Płacisz za czas, nie za wzrost. Gasisz pożary zamiast budować.',
-          showCta: false },
-        { badge: '⚠️ Freelancer', cls: 'dr-badge--warn',
-          title: 'Rozpoznajemy model dorywczy.',
-          desc: 'Każdy projekt od zera, brak jednego punktu kontaktu — to cena pracy z freelancerami. Twój sklep potrzebuje ciągłości, nie kolejnego "projektu".',
-          showCta: false },
-        { badge: '🔴 Agencja', cls: 'dr-badge--alert',
+          desc: 'Brak ciągłości i strategii to typowe objawy modelu dorywczego. Płacisz za czas, nie za wzrost.' },
+        { badge: '🔴 Model agencyjny', cls: 'dr-badge--alert',
           title: 'Brzmi jak typowy model agencyjny.',
-          desc: 'Wysokie koszty zarządzania, rotacja zespołu, rozliczenie za czas zamiast wyniki. Agencja realizuje projekty, nie buduje Twojego wzrostu.',
-          showCta: false },
-        { badge: '🔴 Agencja', cls: 'dr-badge--alert',
-          title: 'Klasyczny problem modelu agencyjnego.',
-          desc: 'Płacisz dużo, a konwersja stoi. Wiedza o Twoim sklepie ginie przy każdej rotacji. Brak strategii = brak wyników.',
-          showCta: true },
-        { badge: '✅ Czas na zmianę', cls: 'dr-badge--codeq',
-          title: 'Twój sklep potrzebuje Codeq Care.',
-          desc: 'To dokładnie te problemy, które rozwiązujemy: stały zespół, Flat Fee, Mapa Celów na 6 miesięcy i KPI zamiast godzin.',
-          showCta: true },
-        { badge: '✅ To o Tobie', cls: 'dr-badge--codeq',
-          title: 'Napisany dla Ciebie.',
-          desc: 'Wszystkie 6 objawów to nasz chleb powszedni. Codeq Care eliminuje każdy z nich: jeden kontakt, stały zespół, wyniki mierzone co miesiąc.',
-          showCta: true },
+          desc: 'Rotacja zespołu, rozliczenie za godziny, brak ciągłości. Agencja realizuje projekty — nie buduje Twojego wzrostu.' },
+        { badge: '🔴 Poważny problem', cls: 'dr-badge--alert',
+          title: 'Tracisz pieniądze i czas każdego miesiąca.',
+          desc: 'Cztery objawy naraz to sygnał, że obecny model współpracy aktywnie szkodzi Twojemu sklepowi. Czas na zmianę.' },
+        { badge: '🔴 Pilna zmiana', cls: 'dr-badge--alert',
+          title: 'Twój sklep utknął w miejscu.',
+          desc: 'Pięć objawów oznacza, że brak strategii i złe modele rozliczenia blokują wzrost. Codeq Care to odpowiedź na każdy z nich.' },
+        { badge: '✅ To dokładnie o Tobie', cls: 'dr-badge--codeq',
+          title: 'Codeq Care powstał właśnie dla Ciebie.',
+          desc: 'Wszystkie 6 objawów to problemy, które rozwiązujemy każdego dnia: stały zespół, Flat Fee, Mapa Celów i KPI zamiast faktur za godziny.' },
       ];
 
-      const meterColors = ['','#f59e0b','#f59e0b','#ef4444','#ef4444','#1F3FF9','#1F3FF9'];
+      const meterColors = ['','#f59e0b','#f59e0b','#ef4444','#ef4444','#ef4444','#1F3FF9'];
 
       function update() {
         const n = [...checks].filter(c => c.classList.contains('is-checked')).length;
@@ -2961,7 +2955,7 @@
         badge.className   = 'dr-badge ' + s.cls;
         title.textContent = s.title;
         desc.textContent  = s.desc;
-        cta.classList.toggle('visible', s.showCta);
+        cta.classList.add('visible');
       }
 
       checks.forEach(label => {
