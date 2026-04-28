@@ -2965,8 +2965,9 @@
       }
 
       checks.forEach(label => {
-        label.addEventListener('click', () => {
-          label.classList.toggle('is-checked');
+        const input = label.querySelector('.dcheck__input');
+        input.addEventListener('change', () => {
+          label.classList.toggle('is-checked', input.checked);
           update();
         });
       });
