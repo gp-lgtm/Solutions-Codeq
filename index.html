@@ -1164,81 +1164,29 @@
       .qbr-layout, .deliverables-grid { grid-template-columns: 1fr; }
     }
 
-    /* === TIMELINE COMPARE === */
-    .tl-section { background: #f0f4ff; }
-    .tl-section .section-header h2 { color: #0a0f2e; letter-spacing: -0.025em; font-weight: 800; }
-    .tl-section .section-header p { color: #4a5568; font-size: 16px; }
-    .tl-section .label { color: var(--b600); font-size: 11px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; }
-
-    .tl-months {
-      display: flex; align-items: center; justify-content: center;
-      gap: 6px; margin-bottom: 40px; flex-wrap: wrap;
+    /* === DIAGNOZA TRIGGER === */
+    .diagnoza-trigger-wrap {
+      text-align: center; padding: 40px 0 0;
     }
-    .tl-month {
-      padding: 9px 22px; border-radius: 99px; border: 1.5px solid #d1d9ff;
-      background: #fff; font-size: 13px; font-weight: 600; color: #4a5568;
-      cursor: pointer; transition: all .18s ease;
+    .diagnoza-trigger {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; border-radius: 99px; cursor: pointer;
+      border: 1.5px solid #d1d9ff; background: #f8f9ff;
+      font-size: 15px; font-weight: 600; color: var(--codeq-blue);
+      transition: all .2s ease;
     }
-    .tl-month:hover { border-color: var(--codeq-blue); color: var(--codeq-blue); }
-    .tl-month.active { background: var(--codeq-blue); border-color: var(--codeq-blue); color: #fff; }
-
-    .tl-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: stretch; }
-
-    .tl-col { border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
-    .tl-col--bad  { background: #fff; border: 1px solid #e4e8ff; }
-    .tl-col--mid  { background: #fff; border: 1px solid #e4e8ff; }
-    .tl-col--good { background: var(--codeq-blue); border: 1px solid var(--codeq-blue); box-shadow: 0 20px 60px rgba(31,63,249,.25); }
-
-    .tl-col__header {
-      display: flex; align-items: center; gap: 10px;
-      padding: 18px 24px 16px; border-bottom: 1px solid rgba(0,0,0,.07);
+    .diagnoza-trigger:hover { background: #eef1ff; border-color: var(--codeq-blue); }
+    .diagnoza-trigger__arrow {
+      font-size: 12px; transition: transform .3s ease; display: inline-block;
     }
-    .tl-col--good .tl-col__header { border-bottom-color: rgba(255,255,255,.15); }
-    .tl-col__icon { font-size: 1.3rem; }
-    .tl-col__name { font-size: 13px; font-weight: 700; color: #0a0f2e; letter-spacing: -0.01em; }
-    .tl-col--good .tl-col__name { color: #fff; }
-    .tl-col__tag {
-      margin-left: auto; font-size: 10px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; padding: 3px 9px; border-radius: 99px;
+    .diagnoza-trigger.open .diagnoza-trigger__arrow { transform: rotate(180deg); }
+
+    /* Collapsible diagnoza */
+    .diagnoza-collapse {
+      max-height: 0; overflow: hidden;
+      transition: max-height .5s cubic-bezier(.4,0,.2,1);
     }
-    .tl-col--bad  .tl-col__tag { background: #fee2e2; color: #dc2626; }
-    .tl-col--mid  .tl-col__tag { background: #fef3c7; color: #b45309; }
-    .tl-col--good .tl-col__tag { background: rgba(255,255,255,.2); color: #fff; }
-
-    .tl-content { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-    .tl-card { display: none; flex-direction: column; gap: 12px; animation: panelIn .25s ease; }
-    .tl-card.tl-visible { display: flex; }
-
-    .tl-card__status {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-      padding: 4px 10px; border-radius: 99px; width: fit-content;
-    }
-    .tl-col--bad  .tl-card__status { background: #fee2e2; color: #dc2626; }
-    .tl-col--mid  .tl-card__status { background: #fef3c7; color: #b45309; }
-    .tl-col--good .tl-card__status { background: rgba(255,255,255,.18); color: #fff; }
-
-    .tl-card__title { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
-    .tl-col--bad  .tl-card__title, .tl-col--mid .tl-card__title { color: #0a0f2e; }
-    .tl-col--good .tl-card__title { color: #fff; }
-
-    .tl-card__desc { font-size: 14px; line-height: 1.6; }
-    .tl-col--bad  .tl-card__desc, .tl-col--mid .tl-card__desc { color: #64748b; }
-    .tl-col--good .tl-card__desc { color: rgba(255,255,255,.8); }
-
-    .tl-card__kpi {
-      margin-top: auto; padding: 12px 16px; border-radius: 10px;
-      font-size: 13px; font-weight: 600; line-height: 1.5;
-      display: flex; align-items: flex-start; gap: 8px;
-    }
-    .tl-col--bad  .tl-card__kpi { background: #fff5f5; color: #dc2626; }
-    .tl-col--mid  .tl-card__kpi { background: #fffbeb; color: #b45309; }
-    .tl-col--good .tl-card__kpi { background: rgba(255,255,255,.12); color: rgba(255,255,255,.95); }
-
-    @media (max-width: 768px) {
-      .tl-grid { grid-template-columns: 1fr; }
-      .tl-col--bad, .tl-col--mid { display: none; }
-    }
+    .diagnoza-collapse.open { max-height: 900px; }
 
     /* === DIAGNOZA MODELU === */
     .diagnoza { background: #fff; }
@@ -1884,13 +1832,68 @@
         </div>
 
       </div>
+
+      <!-- Trigger do rozwinięcia diagnozy -->
+      <div class="diagnoza-trigger-wrap">
+        <button class="diagnoza-trigger" id="diagnozaTrigger">
+          <span>Zdiagnozuj swój obecny model współpracy</span>
+          <span class="diagnoza-trigger__arrow">▼</span>
+        </button>
+      </div>
+
+      <!-- Zwijana sekcja diagnozy -->
+      <div class="diagnoza-collapse" id="diagnozaCollapse">
+        <div style="padding-top: 56px;">
+          <div class="section-header">
+            <h2 style="color:#0a0f2e;letter-spacing:-0.025em;font-weight:800">Które z tych objawów rozpoznajesz<br/>u siebie?</h2>
+            <p style="color:#4a5568;font-size:16px">Zaznacz wszystko co pasuje — otrzymasz diagnozę swojego modelu współpracy.</p>
+          </div>
+          <div class="diagnoza-layout">
+            <div class="diagnoza-checks">
+              <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">💸</span><span class="dcheck__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span></label>
+              <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">📞</span><span class="dcheck__text">Nie mam jednego stałego punktu kontaktu do IT</span></label>
+              <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">🔁</span><span class="dcheck__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span></label>
+              <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">📉</span><span class="dcheck__text">Sklep działa, ale konwersja nie rośnie od miesięcy</span></label>
+              <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">🔥</span><span class="dcheck__text">Gaszę pożary zamiast realizować strategię wzrostu</span></label>
+              <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">❓</span><span class="dcheck__text">Nie wiem co przyniesie największy ROI dla mojego sklepu teraz</span></label>
+            </div>
+            <div class="diagnoza-result" id="diagnozaResult">
+              <div class="dr-idle" id="drIdle">
+                <span class="dr-idle-arrow">☝️</span>
+                Zaznacz objawy, które rozpoznajesz u siebie — otrzymasz diagnozę swojego modelu współpracy.
+              </div>
+              <div class="dr-active" id="drActive">
+                <div class="dr-header">
+                  <div class="dr-count-row">
+                    <span class="dr-count">Rozpoznanych objawów</span>
+                    <span class="dr-num"><span id="drNum">0</span><span style="font-size:16px;color:#94a3b8">/6</span></span>
+                  </div>
+                  <div class="dr-meter"><div class="dr-meter__fill" id="drFill"></div></div>
+                </div>
+                <div class="dr-body">
+                  <span class="dr-badge" id="drBadge"></span>
+                  <p class="dr-title" id="drTitle"></p>
+                  <p class="dr-desc"  id="drDesc"></p>
+                </div>
+                <div class="dr-footer">
+                  <div class="dr-cta" id="drCta">
+                    <a href="#pilot" class="btn btn--primary btn--lg" style="display:block;text-align:center">Sprawdź jak Codeq Care to naprawia →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
+  <!-- TIMELINE removed -->
   <!-- ================================
-       TIMELINE COMPARE
+       placeholder to skip old timeline
   ================================ -->
-  <section class="tl-section" id="timeline">
+  <section class="tl-section" id="timeline" style="display:none">
     <div class="container">
       <div class="section-header">
         <p class="label">Wariant B · Porównanie w czasie</p>
@@ -2054,10 +2057,8 @@
     </div>
   </section>
 
-  <!-- ================================
-       WARIANT A — DIAGNOZA MODELU
-  ================================ -->
-  <section class="diagnoza" id="diagnoza">
+  <!-- DIAGNOZA moved into problem section above -->
+  <section class="diagnoza" id="diagnoza" style="display:none">
     <div class="container">
       <div class="section-header">
         <p class="label">Wariant A · Diagnoza modelu</p>
@@ -2898,6 +2899,20 @@
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => activateStory(nav.dataset.story));
     });
+
+    // Diagnoza trigger (expand/collapse)
+    (function () {
+      const trigger  = document.getElementById('diagnozaTrigger');
+      const collapse = document.getElementById('diagnozaCollapse');
+      if (!trigger) return;
+      trigger.addEventListener('click', () => {
+        const open = collapse.classList.toggle('open');
+        trigger.classList.toggle('open', open);
+        if (open) {
+          setTimeout(() => collapse.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+        }
+      });
+    })();
 
     // Diagnoza modelu
     (function () {
