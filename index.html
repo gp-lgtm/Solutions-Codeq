@@ -1240,6 +1240,95 @@
       .tl-col--bad, .tl-col--mid { display: none; }
     }
 
+    /* === DIAGNOZA MODELU === */
+    .diagnoza { background: #fff; }
+    .diagnoza .section-header h2 { color: #0a0f2e; letter-spacing: -0.025em; font-weight: 800; }
+    .diagnoza .section-header p { color: #4a5568; font-size: 16px; }
+    .diagnoza .label { color: var(--b600); font-size: 11px; letter-spacing: 0.14em; font-weight: 700; text-transform: uppercase; }
+
+    .diagnoza-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+
+    /* Checklist */
+    .diagnoza-checks { display: flex; flex-direction: column; gap: 12px; }
+    .dcheck {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px; border-radius: 14px; cursor: pointer;
+      border: 1.5px solid #e4e8ff; background: #f8f9ff;
+      transition: all .18s ease;
+    }
+    .dcheck:hover { border-color: var(--codeq-blue); background: #f0f4ff; }
+    .dcheck.is-checked { border-color: var(--codeq-blue); background: #eef1ff; }
+    .dcheck__input { position: absolute; opacity: 0; pointer-events: none; }
+    .dcheck__box {
+      width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+      border: 2px solid #c7d2fe; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 1px; transition: all .15s ease;
+    }
+    .dcheck.is-checked .dcheck__box {
+      background: var(--codeq-blue); border-color: var(--codeq-blue);
+    }
+    .dcheck.is-checked .dcheck__box::after {
+      content: '✓'; font-size: 12px; font-weight: 800; color: #fff;
+    }
+    .dcheck__icon { font-size: 1.2rem; flex-shrink: 0; line-height: 1.4; }
+    .dcheck__text { font-size: 14.5px; font-weight: 500; color: #334155; line-height: 1.5; }
+    .dcheck.is-checked .dcheck__text { color: #0a0f2e; font-weight: 600; }
+
+    /* Result panel */
+    .diagnoza-result {
+      position: sticky; top: 120px;
+      background: #f8f9ff; border: 1.5px solid #e4e8ff;
+      border-radius: 20px; overflow: hidden;
+    }
+    .dr-idle {
+      padding: 56px 36px; text-align: center;
+      font-size: 15px; color: #94a3b8; line-height: 1.6;
+    }
+    .dr-idle-arrow { font-size: 2rem; display: block; margin-bottom: 16px; opacity: .4; }
+    .dr-active { display: none; flex-direction: column; }
+    .dr-active.visible { display: flex; }
+
+    .dr-header { padding: 28px 32px 20px; border-bottom: 1px solid rgba(0,0,0,.07); }
+    .dr-count-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .dr-count { font-size: 13px; font-weight: 600; color: #64748b; }
+    .dr-num { font-size: 28px; font-weight: 800; color: var(--codeq-blue); line-height: 1; }
+    .dr-meter {
+      height: 6px; background: #e4e8ff; border-radius: 99px; overflow: hidden;
+    }
+    .dr-meter__fill {
+      height: 100%; border-radius: 99px; width: 0;
+      transition: width .4s var(--ease-out), background .4s ease;
+      background: var(--codeq-blue);
+    }
+
+    .dr-body { padding: 24px 32px 28px; flex: 1; }
+    .dr-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; padding: 5px 12px; border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .dr-badge--warn   { background: #fef3c7; color: #b45309; }
+    .dr-badge--alert  { background: #fee2e2; color: #dc2626; }
+    .dr-badge--codeq  { background: #eef1ff; color: var(--codeq-blue); }
+
+    .dr-title { font-size: 22px; font-weight: 800; color: #0a0f2e; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 12px; }
+    .dr-desc  { font-size: 14.5px; color: #4a5568; line-height: 1.65; margin-bottom: 24px; }
+
+    .dr-cta { display: none; }
+    .dr-cta.visible { display: block; }
+    .dr-cta .btn { width: 100%; text-align: center; }
+
+    .dr-footer { padding: 0 32px 28px; }
+
+    @media (max-width: 900px) {
+      .diagnoza-layout { grid-template-columns: 1fr; }
+      .diagnoza-result { position: static; }
+    }
+
     /* === APPROACH VARIANT B — Scroll Storytelling === */
     .approach-b {
       background: var(--brand-dark);
@@ -1961,6 +2050,92 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       WARIANT A — DIAGNOZA MODELU
+  ================================ -->
+  <section class="diagnoza" id="diagnoza">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Wariant A · Diagnoza modelu</p>
+        <h2>Które z tych objawów rozpoznajesz<br/>u siebie?</h2>
+        <p>Zaznacz wszystko co pasuje do Twojej obecnej sytuacji — otrzymasz diagnozę modelu współpracy.</p>
+      </div>
+
+      <div class="diagnoza-layout">
+
+        <!-- Left: symptom checklist -->
+        <div class="diagnoza-checks">
+          <label class="dcheck" data-w="1">
+            <input type="checkbox" class="dcheck__input">
+            <span class="dcheck__box"></span>
+            <span class="dcheck__icon">💸</span>
+            <span class="dcheck__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span>
+          </label>
+          <label class="dcheck" data-w="1">
+            <input type="checkbox" class="dcheck__input">
+            <span class="dcheck__box"></span>
+            <span class="dcheck__icon">📞</span>
+            <span class="dcheck__text">Nie mam jednego stałego punktu kontaktu do IT</span>
+          </label>
+          <label class="dcheck" data-w="1">
+            <input type="checkbox" class="dcheck__input">
+            <span class="dcheck__box"></span>
+            <span class="dcheck__icon">🔁</span>
+            <span class="dcheck__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span>
+          </label>
+          <label class="dcheck" data-w="2">
+            <input type="checkbox" class="dcheck__input">
+            <span class="dcheck__box"></span>
+            <span class="dcheck__icon">📉</span>
+            <span class="dcheck__text">Sklep działa, ale konwersja nie rośnie od miesięcy</span>
+          </label>
+          <label class="dcheck" data-w="2">
+            <input type="checkbox" class="dcheck__input">
+            <span class="dcheck__box"></span>
+            <span class="dcheck__icon">🔥</span>
+            <span class="dcheck__text">Gaszę pożary zamiast realizować strategię wzrostu</span>
+          </label>
+          <label class="dcheck" data-w="2">
+            <input type="checkbox" class="dcheck__input">
+            <span class="dcheck__box"></span>
+            <span class="dcheck__icon">❓</span>
+            <span class="dcheck__text">Nie wiem co przyniesie największy ROI dla mojego sklepu teraz</span>
+          </label>
+        </div>
+
+        <!-- Right: dynamic diagnosis -->
+        <div class="diagnoza-result" id="diagnozaResult">
+
+          <div class="dr-idle" id="drIdle">
+            <span class="dr-idle-arrow">☝️</span>
+            Zaznacz objawy, które rozpoznajesz u siebie — otrzymasz diagnozę swojego modelu współpracy.
+          </div>
+
+          <div class="dr-active" id="drActive">
+            <div class="dr-header">
+              <div class="dr-count-row">
+                <span class="dr-count">Rozpoznanych objawów</span>
+                <span class="dr-num"><span id="drNum">0</span><span style="font-size:16px;color:#94a3b8">/6</span></span>
+              </div>
+              <div class="dr-meter"><div class="dr-meter__fill" id="drFill"></div></div>
+            </div>
+            <div class="dr-body">
+              <span class="dr-badge" id="drBadge"></span>
+              <p class="dr-title" id="drTitle"></p>
+              <p class="dr-desc"  id="drDesc"></p>
+            </div>
+            <div class="dr-footer">
+              <div class="dr-cta" id="drCta">
+                <a href="#pilot" class="btn btn--primary btn--lg" style="display:block;text-align:center">Sprawdź jak Codeq Care to naprawia →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -2723,6 +2898,79 @@
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => activateStory(nav.dataset.story));
     });
+
+    // Diagnoza modelu
+    (function () {
+      const checks  = document.querySelectorAll('.dcheck');
+      const idle    = document.getElementById('drIdle');
+      const active  = document.getElementById('drActive');
+      const numEl   = document.getElementById('drNum');
+      const fill    = document.getElementById('drFill');
+      const badge   = document.getElementById('drBadge');
+      const title   = document.getElementById('drTitle');
+      const desc    = document.getElementById('drDesc');
+      const cta     = document.getElementById('drCta');
+      if (!checks.length) return;
+
+      const stages = [
+        null, // 0 — idle
+        { badge: '⚠️ Freelancer', cls: 'dr-badge--warn',
+          title: 'Prawdopodobnie pracujesz z Freelancerem.',
+          desc: 'Brak strategii i ciągłości to typowe objawy modelu dorywczego. Płacisz za czas, nie za wzrost. Gasisz pożary zamiast budować.',
+          showCta: false },
+        { badge: '⚠️ Freelancer', cls: 'dr-badge--warn',
+          title: 'Rozpoznajemy model dorywczy.',
+          desc: 'Każdy projekt od zera, brak jednego punktu kontaktu — to cena pracy z freelancerami. Twój sklep potrzebuje ciągłości, nie kolejnego "projektu".',
+          showCta: false },
+        { badge: '🔴 Agencja', cls: 'dr-badge--alert',
+          title: 'Brzmi jak typowy model agencyjny.',
+          desc: 'Wysokie koszty zarządzania, rotacja zespołu, rozliczenie za czas zamiast wyniki. Agencja realizuje projekty, nie buduje Twojego wzrostu.',
+          showCta: false },
+        { badge: '🔴 Agencja', cls: 'dr-badge--alert',
+          title: 'Klasyczny problem modelu agencyjnego.',
+          desc: 'Płacisz dużo, a konwersja stoi. Wiedza o Twoim sklepie ginie przy każdej rotacji. Brak strategii = brak wyników.',
+          showCta: true },
+        { badge: '✅ Czas na zmianę', cls: 'dr-badge--codeq',
+          title: 'Twój sklep potrzebuje Codeq Care.',
+          desc: 'To dokładnie te problemy, które rozwiązujemy: stały zespół, Flat Fee, Mapa Celów na 6 miesięcy i KPI zamiast godzin.',
+          showCta: true },
+        { badge: '✅ To o Tobie', cls: 'dr-badge--codeq',
+          title: 'Napisany dla Ciebie.',
+          desc: 'Wszystkie 6 objawów to nasz chleb powszedni. Codeq Care eliminuje każdy z nich: jeden kontakt, stały zespół, wyniki mierzone co miesiąc.',
+          showCta: true },
+      ];
+
+      const meterColors = ['','#f59e0b','#f59e0b','#ef4444','#ef4444','#1F3FF9','#1F3FF9'];
+
+      function update() {
+        const n = [...checks].filter(c => c.classList.contains('is-checked')).length;
+        numEl.textContent = n;
+        fill.style.width  = (n / 6 * 100) + '%';
+        fill.style.background = meterColors[n] || '#c7d2fe';
+
+        if (n === 0) {
+          idle.style.display  = '';
+          active.classList.remove('visible');
+          return;
+        }
+        idle.style.display = 'none';
+        active.classList.add('visible');
+
+        const s = stages[n];
+        badge.textContent = s.badge;
+        badge.className   = 'dr-badge ' + s.cls;
+        title.textContent = s.title;
+        desc.textContent  = s.desc;
+        cta.classList.toggle('visible', s.showCta);
+      }
+
+      checks.forEach(label => {
+        label.addEventListener('click', () => {
+          label.classList.toggle('is-checked');
+          update();
+        });
+      });
+    })();
 
     // Timeline compare
     (function () {
