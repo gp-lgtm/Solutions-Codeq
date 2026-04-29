@@ -376,6 +376,8 @@
     .social-avatars {
       display: flex;
       flex-shrink: 0;
+      -webkit-mask-image: linear-gradient(to right, black 30%, transparent 100%);
+      mask-image: linear-gradient(to right, black 30%, transparent 100%);
     }
     .social-avatar {
       width: 31px; height: 31px;
@@ -386,7 +388,9 @@
       font-size: 11px; font-weight: 700; color: #fff;
       margin-left: -8px;
       letter-spacing: 0;
+      overflow: hidden; flex-shrink: 0;
     }
+    .social-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
     .social-avatars .social-avatar:first-child { margin-left: 0; }
     .hero__social-proof__text {
       font-size: 14px;
@@ -645,7 +649,9 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 8px; font-weight: 700; color: rgba(255,255,255,.9);
       margin-left: -6px; letter-spacing: 0; flex-shrink: 0;
+      overflow: hidden;
     }
+    .tip-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .tip-avatars .tip-avatar:first-child { margin-left: 0; }
     .role-chip__tip-desc {
       font-size: 12.5px; color: rgba(255,255,255,.88); line-height: 1.5;
@@ -991,8 +997,9 @@
       background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.25);
       display: flex; align-items: center; justify-content: center;
       font-size: 7.5px; font-weight: 700; color: #fff;
-      margin-left: -5px; flex-shrink: 0;
+      margin-left: -5px; flex-shrink: 0; overflow: hidden;
     }
+    .squad-nav__av img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .squad-nav__avs .squad-nav__av:first-child { margin-left: 0; }
 
     /* Right panel */
@@ -1035,7 +1042,9 @@
       background: rgba(255,255,255,.14); border: 2px solid rgba(255,255,255,.22);
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+      overflow: hidden;
     }
+    .squad-person__av img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .squad-person__info { display: flex; flex-direction: column; }
     .squad-person__name { font-size: 13px; font-weight: 600; color: #fff; }
     .squad-person__sub { font-size: 11px; color: rgba(255,255,255,.42); }
@@ -1410,70 +1419,237 @@
     .ba-card--after  .ba-item__dot { background: rgba(255,255,255,.18); color: #fff; }
     @media (max-width: 768px) { .ba-grid { grid-template-columns: 1fr; } }
 
-    /* === 5. VICTORY PATHS === */
-    .victory { background: var(--brand-dark); }
-    .scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-bottom: var(--space-7); }
-    .scenario-card {
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius-md);
+    /* === 4b. VIDEO TESTIMONIALS === */
+    .video-testimonials { background: #fff; }
+
+    .vt-rows { display: flex; flex-direction: column; gap: var(--space-10); }
+
+    .vt-row {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-9);
+      align-items: center;
+    }
+    .vt-row--reverse { grid-template-columns: 0.85fr 1.15fr; }
+    .vt-row--reverse .vt-video { order: 2; }
+    .vt-row--reverse .vt-quote { order: 1; }
+
+    .vt-video {
+      position: relative;
+      border-radius: var(--radius-xl);
       overflow: hidden;
-      background: rgba(255,255,255,.04);
-      transition: all var(--dur-base) var(--ease-out);
-      cursor: pointer;
+      box-shadow: 0 24px 64px rgba(49,90,251,.12), 0 4px 16px rgba(0,0,0,.08);
+      background: var(--ink-900);
+      transition: box-shadow var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
     }
-    .scenario-card:hover, .scenario-card.active {
-      border-color: var(--codeq-blue);
-      box-shadow: 0 20px 60px rgba(49,90,251,.25);
-      transform: translateY(-4px);
+    .vt-video:hover {
+      box-shadow: var(--shadow-glow-blue), 0 4px 16px rgba(0,0,0,.1);
+      transform: translateY(-6px);
     }
-    .scenario-card__header { background: rgba(255,255,255,.04); padding: 28px 28px 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .scenario-card.active .scenario-card__header { background: var(--codeq-blue); border-bottom-color: transparent; }
-    .scenario-card__icon { font-size: 2rem; margin-bottom: var(--space-3); }
-    .scenario-card__tag {
-      font-size: 11px; font-weight: var(--fw-semibold); text-transform: uppercase;
-      letter-spacing: var(--tracking-wide); color: var(--blue-400); margin-bottom: var(--space-2);
+    .vt-video video {
+      width: 100%; display: block;
+      aspect-ratio: 16 / 9; object-fit: cover;
+      border-radius: var(--radius-xl);
     }
-    .scenario-card.active .scenario-card__tag { color: rgba(255,255,255,.75); }
-    .scenario-card h3 { font-size: 18px; color: rgba(255,255,255,.9); }
-    .scenario-card.active h3 { color: #fff; }
-    .scenario-card__target { font-size: 13px; color: var(--blue-300); margin-top: var(--space-1); line-height: 1.5; }
-    .scenario-card.active .scenario-card__target { color: rgba(255,255,255,.75); }
-    .scenario-card__body { padding: 24px 28px; }
-    .scenario-card__plan { margin-bottom: var(--space-5); }
-    .scenario-card__plan-title {
-      font-size: 11px; font-weight: var(--fw-semibold); text-transform: uppercase;
-      letter-spacing: var(--tracking-wide); color: var(--blue-400); margin-bottom: var(--space-3);
+    .vt-video__placeholder {
+      aspect-ratio: 16 / 9;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--ink-900) 0%, #1a2a6c 100%);
+      color: rgba(255,255,255,.25);
+      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: var(--fw-semibold);
+      gap: var(--space-3); flex-direction: column;
     }
-    .plan-steps { display: flex; flex-direction: column; gap: var(--space-2); }
-    .plan-step { display: flex; gap: var(--space-3); align-items: flex-start; font-size: 14px; color: var(--blue-300); line-height: 1.5; }
-    .plan-step__num {
-      background: rgba(49,90,251,.2); color: var(--blue-400); font-weight: var(--fw-bold);
-      font-size: 11px; width: 22px; height: 22px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    .vt-video__placeholder svg { opacity: 0.3; }
+    .vt-video__play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
     }
-    .kpi-list { display: flex; flex-direction: column; gap: var(--space-2); }
-    .kpi-item { display: flex; align-items: flex-start; gap: var(--space-2); font-size: 14px; color: var(--blue-300); line-height: 1.5; }
-    .kpi-icon { color: rgba(255,255,255,.75); flex-shrink: 0; margin-top: 1px; }
-    .scenario-card__pkg { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,.08); display: flex; align-items: center; gap: var(--space-2); }
-    .pkg-badge {
-      display: inline-flex; align-items: center; gap: var(--space-1);
-      font-size: 12px; font-weight: var(--fw-semibold); padding: 4px 12px;
-      border-radius: var(--radius-pill); background: rgba(49,90,251,.2); color: var(--blue-400);
+    .vt-video__play-btn {
+      width: 68px; height: 68px;
+      background: var(--codeq-blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(49,90,251,.5);
+      transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
     }
-    .lead-magnet {
+    .vt-video:hover .vt-video__play-btn {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(49,90,251,.65);
+    }
+
+    .vt-quote { padding: var(--space-4) 0; }
+    .vt-quote__mark {
+      font-size: 96px; line-height: 0.75;
+      color: var(--codeq-blue); opacity: 0.15;
+      font-family: var(--font-display); font-weight: var(--fw-bold);
+      display: block; margin-bottom: var(--space-2); user-select: none;
+    }
+    .vt-quote blockquote {
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.5; color: var(--ink-900);
+      font-weight: var(--fw-medium);
+      margin: 0 0 var(--space-6) 0;
+      font-style: normal;
+    }
+    .vt-client { display: flex; align-items: center; gap: var(--space-4); }
+    .vt-client__avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--blue-150);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: var(--fw-bold); color: var(--codeq-blue);
+      flex-shrink: 0;
+    }
+    .vt-client__info strong { display: block; font-size: 15px; color: var(--ink-900); font-weight: var(--fw-semibold); }
+    .vt-client__info span { font-size: 13px; color: var(--ink-500); }
+
+    .vt-divider {
+      border: none; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-200), transparent);
+      margin: 0;
+    }
+
+    @media (max-width: 960px) {
+      .vt-row, .vt-row--reverse {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+      }
+      .vt-row--reverse .vt-video { order: 0; }
+      .vt-row--reverse .vt-quote { order: 0; }
+    }
+
+    /* === 5. SPRINT SIMULATOR === */
+    .sprint-sim { background: var(--brand-dark); }
+
+    .ss-problems {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-7);
+    }
+    .ss-problem {
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.1);
       border-radius: var(--radius-md);
-      padding: var(--space-7) var(--space-8);
-      display: flex; align-items: center; justify-content: space-between; gap: var(--space-6);
+      padding: var(--space-5);
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--dur-base) var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
     }
-    .lead-magnet__text h3 { margin-bottom: var(--space-2); color: #fff; }
-    .lead-magnet__text p { font-size: 15px; color: var(--blue-300); }
-    .lead-magnet__cta { flex-shrink: 0; }
+    .ss-problem:hover {
+      border-color: rgba(49,90,251,.5);
+      background: rgba(49,90,251,.1);
+      transform: translateY(-2px);
+    }
+    .ss-problem.active {
+      border-color: var(--codeq-blue);
+      background: var(--codeq-blue);
+      box-shadow: var(--shadow-glow-blue);
+    }
+    .ss-problem__icon { font-size: 1.6rem; display: block; margin-bottom: var(--space-1); }
+    .ss-problem__label {
+      font-size: 15px; font-weight: var(--fw-semibold);
+      color: rgba(255,255,255,.9); line-height: 1.4; display: block;
+    }
+    .ss-problem.active .ss-problem__label { color: #fff; }
+    .ss-problem__pkg {
+      font-size: 11px; font-weight: var(--fw-semibold);
+      letter-spacing: var(--tracking-wide); text-transform: uppercase;
+      color: var(--blue-400); display: block;
+      margin-top: auto; padding-top: var(--space-3);
+    }
+    .ss-problem.active .ss-problem__pkg { color: rgba(255,255,255,.75); }
 
+    .ss-panel[hidden] { display: none; }
+    .ss-panel.entering {
+      display: block;
+      animation: ssEnter 0.45s var(--ease-out) forwards;
+    }
+    @keyframes ssEnter {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .ss-panel__head {
+      display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .ss-panel__name { font-size: var(--fs-h3); font-weight: var(--fw-bold); color: #fff; }
+    .ss-panel__pkg-badge {
+      padding: 6px 16px; border-radius: var(--radius-pill);
+      font-size: 11px; font-weight: var(--fw-semibold);
+      letter-spacing: var(--tracking-wide); text-transform: uppercase;
+    }
+    .ss-panel__pkg-badge.stability { background: rgba(49,90,251,.2); color: var(--blue-400); }
+    .ss-panel__pkg-badge.growth { background: rgba(62,190,179,.15); color: var(--accent-teal); }
+
+    .ss-timeline {
+      display: grid;
+      grid-template-columns: 1fr 28px 1fr 28px 1fr 28px 1fr;
+      align-items: start;
+      margin-bottom: var(--space-7);
+    }
+    .ss-arrow {
+      display: flex; align-items: flex-start; padding-top: 30px;
+      justify-content: center; color: rgba(255,255,255,.2);
+    }
+    .ss-week {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+    }
+    .ss-week.visible { opacity: 1; transform: translateY(0); }
+    .ss-week--result {
+      background: var(--codeq-blue);
+      border-color: transparent;
+      box-shadow: var(--shadow-glow-blue);
+    }
+    .ss-week__period {
+      font-size: 11px; font-weight: var(--fw-semibold);
+      letter-spacing: var(--tracking-wide); text-transform: uppercase;
+      color: var(--blue-400); margin-bottom: var(--space-2);
+    }
+    .ss-week--result .ss-week__period { color: rgba(255,255,255,.7); }
+    .ss-week__title {
+      font-size: 15px; font-weight: var(--fw-bold); color: #fff;
+      margin-bottom: var(--space-4); line-height: 1.3;
+    }
+    .ss-week__tasks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+    .ss-week__tasks li {
+      font-size: 13px; color: var(--blue-300); line-height: 1.5;
+      display: flex; gap: var(--space-2); align-items: flex-start;
+    }
+    .ss-week--result .ss-week__tasks li { color: rgba(255,255,255,.9); }
+    .ss-week__tasks li::before { content: '→'; flex-shrink: 0; color: var(--blue-500); font-size: 12px; margin-top: 2px; }
+    .ss-week--result .ss-week__tasks li::before { content: '✓'; color: rgba(255,255,255,.75); }
+
+    .ss-cta {
+      display: flex; gap: var(--space-4); align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+    }
+    .ss-cta.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1024px) {
+      .ss-problems { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 900px) {
-      .scenarios { grid-template-columns: 1fr; }
-      .lead-magnet { flex-direction: column; text-align: center; }
+      .ss-timeline { grid-template-columns: 1fr; gap: var(--space-3); }
+      .ss-arrow { display: none; }
+      .ss-week { opacity: 1 !important; transform: none !important; }
+      .ss-cta { flex-direction: column; align-items: stretch; }
+      .ss-cta .btn { text-align: center; }
+    }
+    @media (max-width: 640px) {
+      .ss-problems { grid-template-columns: 1fr; }
     }
 
     /* === 6. PROCESS === */
@@ -1534,63 +1710,6 @@
       .sprint-box { margin: 0; }
     }
 
-    /* === 7. PILOT === */
-    .pilot {
-      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--codeq-blue) 100%);
-      color: #fff;
-      position: relative; overflow: hidden;
-    }
-    .pilot::before {
-      content: '';
-      position: absolute;
-      right: -8%; top: -30%;
-      width: 60%; height: 160%;
-      transform: rotate(22deg);
-      background: linear-gradient(180deg, rgba(255,255,255,.1) 4%, rgba(255,255,255,0) 99%);
-      border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
-      pointer-events: none;
-    }
-    .pilot__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: center; position: relative; z-index: 1; }
-    .pilot .section-header { text-align: left; margin-bottom: 0; }
-    .pilot .section-header h2 { color: #fff; }
-    .pilot .section-header p { color: var(--blue-300); text-align: left; }
-    .pilot .label { color: rgba(255,255,255,.75); }
-    .pilot__desc { font-size: 17px; color: rgba(255,255,255,.85); line-height: var(--lh-body); margin: var(--space-5) 0; }
-    .pilot__values { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); }
-    .pilot__value { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 15px; color: rgba(255,255,255,.9); }
-    .pilot__value-icon {
-      width: 24px; height: 24px; background: rgba(255,255,255,.15); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; color: rgba(255,255,255,.75);
-    }
-    .pilot__guarantee {
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius-md); padding: var(--space-5);
-      font-size: 14px; color: rgba(255,255,255,.8); line-height: var(--lh-body); margin-bottom: var(--space-6);
-    }
-    .pilot__guarantee strong { color: #fff; display: block; margin-bottom: var(--space-2); }
-    .pilot-card {
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius-xl); padding: var(--space-7) var(--space-6); backdrop-filter: blur(8px);
-    }
-    .pilot-card__title {
-      font-size: 11px; font-weight: var(--fw-semibold); text-transform: uppercase;
-      letter-spacing: var(--tracking-wide); color: var(--blue-300); margin-bottom: var(--space-2);
-    }
-    .pilot-card h3 { font-size: 28px; color: #fff; margin-bottom: var(--space-2); }
-    .pilot-card__sub { font-size: 14px; color: rgba(255,255,255,.6); margin-bottom: var(--space-6); }
-    .pilot-card__items { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6); }
-    .pilot-card__item { display: flex; align-items: flex-start; gap: var(--space-4); }
-    .pilot-card__item-icon {
-      width: 40px; height: 40px; background: rgba(255,255,255,.1);
-      border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
-    }
-    .pilot-card__item-text strong { display: block; color: #fff; font-size: 14px; margin-bottom: 2px; }
-    .pilot-card__item-text span { font-size: 13px; color: rgba(255,255,255,.6); }
-    .pilot-card__cta { width: 100%; justify-content: center; }
-
-    @media (max-width: 900px) { .pilot__inner { grid-template-columns: 1fr; gap: var(--space-7); } }
-
     /* === 8. PRICING === */
     .pricing { background: var(--brand-dark); }
     .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 880px; margin: 0 auto; }
@@ -1627,29 +1746,35 @@
     @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
 
     /* === 9. FAQ === */
-    .faq { background: rgba(255,255,255,.04); border-top: 1px solid rgba(255,255,255,.07); }
+    .faq { background: #fff; }
+    .faq .section-header h2 { color: var(--ink-900); }
+    .faq .section-header p { color: var(--ink-700); }
+    .faq .label { color: var(--codeq-blue); }
     .faq__grid { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-3); }
     .faq-item {
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
-      border-radius: var(--radius-sm); overflow: hidden; transition: border-color var(--dur-base), background var(--dur-base);
+      background: #fff; border: 1px solid var(--border-1);
+      border-radius: var(--radius-md); overflow: hidden;
+      transition: border-color var(--dur-base), box-shadow var(--dur-base);
     }
-    .faq-item.open { border-color: var(--codeq-blue); background: rgba(49,90,251,.08); }
+    .faq-item:hover { border-color: var(--blue-300); }
+    .faq-item.open { border-color: var(--codeq-blue); box-shadow: 0 4px 24px rgba(49,90,251,.1); }
     .faq-question {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 28px; cursor: pointer;
-      font-weight: var(--fw-semibold); font-size: 15px; color: rgba(255,255,255,.9);
+      padding: 22px 28px; cursor: pointer;
+      font-weight: var(--fw-semibold); font-size: 15px; color: var(--ink-900);
       gap: var(--space-4); user-select: none;
     }
-    .faq-question:hover { color: #fff; }
+    .faq-question:hover { color: var(--codeq-blue); }
+    .faq-item.open .faq-question { color: var(--codeq-blue); }
     .faq-chevron {
-      width: 28px; height: 28px; background: rgba(255,255,255,.08); border-radius: 50%;
+      width: 28px; height: 28px; background: var(--blue-100); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       transition: transform var(--dur-base), background var(--dur-base);
-      flex-shrink: 0; color: rgba(255,255,255,.6); font-size: 13px;
+      flex-shrink: 0; color: var(--codeq-blue); font-size: 11px;
     }
     .faq-item.open .faq-chevron { transform: rotate(180deg); background: var(--codeq-blue); color: #fff; }
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-    .faq-answer__inner { padding: 0 28px 24px; font-size: 14px; color: var(--blue-300); line-height: var(--lh-body); }
+    .faq-answer__inner { padding: 0 28px 24px; font-size: 14px; color: var(--ink-700); line-height: var(--lh-body); border-top: 1px solid var(--border-1); padding-top: var(--space-4); }
 
     /* === FINAL CTA === */
     .final-cta {
@@ -1748,7 +1873,7 @@
 
           <h1><span class="h1-regular">Twój zewnętrzny dział e&#8209;commerce</span><br><span class="h1-bold">bez rekrutacji i&nbsp;etatów.</span></h1>
 
-          <p class="hero__lead">Zyskaj dedykowany zespół złożony ze <span class="lead-role" data-role="strateg" tabindex="0">Stratega<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="role-chip__tip-name">Strateg</span><span class="tip-avatars"><span class="tip-avatar">G</span><span class="tip-avatar">M</span><span class="tip-avatar">A</span></span></span><span class="role-chip__tip-desc">Analizuje ROI Twoich pomysłów i chroni budżet. Wyznacza jasny kierunek wzrostu.</span><span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety.</span></span></span>, <span class="lead-role" data-role="pm" tabindex="0">Project Managera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg></span><span class="role-chip__tip-name">Project Manager</span><span class="tip-avatars"><span class="tip-avatar">K</span><span class="tip-avatar">P</span><span class="tip-avatar">J</span></span></span><span class="role-chip__tip-desc">Tłumaczy wymagania biznesowe na konkretne zadania. Dba o terminy i priorytety.</span><span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu.</span></span></span>, <span class="lead-role" data-role="ux" tabindex="0">UX Designera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="role-chip__tip-name">UX Designer</span><span class="tip-avatars"><span class="tip-avatar">B</span><span class="tip-avatar">R</span><span class="tip-avatar">W</span></span></span><span class="role-chip__tip-desc">Projektuje ścieżki zakupowe, które sprzedają. Identyfikuje bariery przed wdrożeniem.</span><span class="role-chip__tip-kpi">Mniej porzuceń koszyka, więcej konwersji.</span></span></span> i <span class="lead-role" data-role="dev" tabindex="0">Developera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="role-chip__tip-name">Senior Developer</span><span class="tip-avatars"><span class="tip-avatar">T</span><span class="tip-avatar">D</span><span class="tip-avatar">K</span></span></span><span class="role-chip__tip-desc">Buduje szybki i stabilny sklep. Zero awarii przy aktualizacjach i skalowaniu.</span><span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii.</span></span></span>, który rozwija Twój sklep na WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
+          <p class="hero__lead">Zyskaj dedykowany zespół złożony ze <span class="lead-role" data-role="strateg" tabindex="0">Stratega<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="role-chip__tip-name">Strateg</span><span class="tip-avatars"><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Strateg_1.jpg" alt=""></span><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Strateg_2.jpg" alt=""></span><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Strateg_3.jpg" alt=""></span></span></span><span class="role-chip__tip-desc">Analizuje ROI Twoich pomysłów i chroni budżet. Wyznacza jasny kierunek wzrostu.</span><span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety.</span></span></span>, <span class="lead-role" data-role="pm" tabindex="0">Project Managera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg></span><span class="role-chip__tip-name">Project Manager</span><span class="tip-avatars"><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_PM_1.jpg" alt=""></span><span class="tip-avatar">P</span></span></span><span class="role-chip__tip-desc">Tłumaczy wymagania biznesowe na konkretne zadania. Dba o terminy i priorytety.</span><span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu.</span></span></span>, <span class="lead-role" data-role="ux" tabindex="0">UX Designera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="role-chip__tip-name">UX Designer</span><span class="tip-avatars"><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Design_1.jpg" alt=""></span><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Design_2.jpg" alt=""></span></span></span><span class="role-chip__tip-desc">Projektuje ścieżki zakupowe, które sprzedają. Identyfikuje bariery przed wdrożeniem.</span><span class="role-chip__tip-kpi">Mniej porzuceń koszyka, więcej konwersji.</span></span></span> i <span class="lead-role" data-role="dev" tabindex="0">Developera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="role-chip__tip-name">Senior Developer</span><span class="tip-avatars"><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Developer_1.jpg" alt=""></span><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Developer_2.jpg" alt=""></span><span class="tip-avatar"><img src="Codeq Design System/assets/Awatar_Developer_3.jpg" alt=""></span></span></span><span class="role-chip__tip-desc">Buduje szybki i stabilny sklep. Zero awarii przy aktualizacjach i skalowaniu.</span><span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii.</span></span></span>, który rozwija Twój sklep na WooCommerce lub Shopify. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
 
           <div class="hero__ctas">
             <div class="cta-wrap">
@@ -1777,11 +1902,12 @@
 
           <div class="hero__social-proof">
             <div class="social-avatars">
-              <div class="social-avatar" style="--av-bg:var(--b600)">M</div>
-              <div class="social-avatar" style="--av-bg:var(--b500)">K</div>
-              <div class="social-avatar" style="--av-bg:var(--b800)">A</div>
-              <div class="social-avatar" style="--av-bg:var(--b400)">P</div>
-              <div class="social-avatar" style="--av-bg:var(--b900)">T</div>
+              <div class="social-avatar"><img src="Codeq Design System/assets/Awatar_1.jpg" alt=""></div>
+              <div class="social-avatar"><img src="Codeq Design System/assets/Awatar_2.jpg" alt=""></div>
+              <div class="social-avatar"><img src="Codeq Design System/assets/Awatar_3.jpg" alt=""></div>
+              <div class="social-avatar"><img src="Codeq Design System/assets/Awatar_4.jpg" alt=""></div>
+              <div class="social-avatar"><img src="Codeq Design System/assets/Awatar_5.jpg" alt=""></div>
+              <div class="social-avatar"><img src="Codeq Design System/assets/Awatar_6.jpg" alt=""></div>
             </div>
             <span class="hero__social-proof__text">Zaufało nam <strong>30+ sklepów</strong> WooCommerce i Shopify</span>
           </div>
@@ -2259,9 +2385,9 @@
               <span class="squad-nav__num">Rola 01</span>
               <span class="squad-nav__name">Strateg</span>
               <div class="squad-nav__avs">
-                <div class="squad-nav__av">G</div>
-                <div class="squad-nav__av">M</div>
-                <div class="squad-nav__av">A</div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Strateg_1.jpg" alt=""></div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Strateg_2.jpg" alt=""></div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Strateg_3.jpg" alt=""></div>
               </div>
             </div>
           </div>
@@ -2271,7 +2397,7 @@
               <span class="squad-nav__num">Rola 02</span>
               <span class="squad-nav__name">Project Manager</span>
               <div class="squad-nav__avs">
-                <div class="squad-nav__av">K</div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_PM_1.jpg" alt=""></div>
                 <div class="squad-nav__av">P</div>
               </div>
             </div>
@@ -2282,8 +2408,8 @@
               <span class="squad-nav__num">Rola 03</span>
               <span class="squad-nav__name">UX Designer</span>
               <div class="squad-nav__avs">
-                <div class="squad-nav__av">M</div>
-                <div class="squad-nav__av">J</div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Design_1.jpg" alt=""></div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Design_2.jpg" alt=""></div>
               </div>
             </div>
           </div>
@@ -2293,9 +2419,9 @@
               <span class="squad-nav__num">Rola 04</span>
               <span class="squad-nav__name">Senior Dev</span>
               <div class="squad-nav__avs">
-                <div class="squad-nav__av">T</div>
-                <div class="squad-nav__av">R</div>
-                <div class="squad-nav__av">B</div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Developer_1.jpg" alt=""></div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Developer_2.jpg" alt=""></div>
+                <div class="squad-nav__av"><img src="Codeq Design System/assets/Awatar_Developer_3.jpg" alt=""></div>
               </div>
             </div>
           </div>
@@ -2317,9 +2443,9 @@
             <div class="squad-panel__value">Twój filtr chroniący budżet przed inwestycjami bez sensu. Zanim cokolwiek powstanie — najpierw pytamy "po co?"</div>
             <div class="squad-panel__quote">Większość software house'ów tylko koduje tickety. My najpierw sprawdzamy, czy ten pomysł w ogóle ma sens biznesowy. Ja jestem Twoim filtrem, który chroni budżet przed nietrafionymi inwestycjami.</div>
             <div class="squad-panel__people">
-              <div class="squad-person"><div class="squad-person__av">G</div><div class="squad-person__info"><span class="squad-person__name">Grzegorz</span><span class="squad-person__sub">Senior Partner</span></div></div>
-              <div class="squad-person"><div class="squad-person__av">M</div><div class="squad-person__info"><span class="squad-person__name">Marcin</span><span class="squad-person__sub">Strateg wzrostu</span></div></div>
-              <div class="squad-person"><div class="squad-person__av">A</div><div class="squad-person__info"><span class="squad-person__name">Anna</span><span class="squad-person__sub">Product Strategist</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Strateg_1.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Grzegorz</span><span class="squad-person__sub">Strateg e-commerce</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Strateg_2.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Paweł</span><span class="squad-person__sub">Strateg e-commerce</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Strateg_3.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Tadeusz</span><span class="squad-person__sub">Strateg e-commerce</span></div></div>
             </div>
           </div>
 
@@ -2336,8 +2462,7 @@
             <div class="squad-panel__value">Jedno okienko kontaktowe. Żadnego tłumaczenia deweloperom co chcesz — PM robi to za Ciebie.</div>
             <div class="squad-panel__quote">Programiści mówią o refactoringu, Ty mówisz o sprzedaży. Moją rolą jest tłumaczenie tych dwóch światów. Pilnuję, żebyśmy w Pudełku zmieścili zadania, które dowieziesz na czas.</div>
             <div class="squad-panel__people">
-              <div class="squad-person"><div class="squad-person__av">K</div><div class="squad-person__info"><span class="squad-person__name">Karolina</span><span class="squad-person__sub">Project Manager</span></div></div>
-              <div class="squad-person"><div class="squad-person__av">P</div><div class="squad-person__info"><span class="squad-person__name">Piotr</span><span class="squad-person__sub">PM / Scrum Master</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_PM_1.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Weronika</span><span class="squad-person__sub">Project Manager</span></div></div>
             </div>
           </div>
 
@@ -2354,8 +2479,8 @@
             <div class="squad-panel__value">Usuwa bariery zakupowe. Projektuje ścieżki tak, by klient nie porzucał koszyka. Oszczędza Ci pieniędzy na nietrafionych zmianach.</div>
             <div class="squad-panel__quote">Najdroższy kod to ten, którego nikt nie używa. Zanim programiści zaczną pracę, ja sprawdzam użyteczność i projektuję ścieżki tak, by klient nie porzucał koszyka.</div>
             <div class="squad-panel__people">
-              <div class="squad-person"><div class="squad-person__av">M</div><div class="squad-person__info"><span class="squad-person__name">Monika</span><span class="squad-person__sub">UX / CRO Specialist</span></div></div>
-              <div class="squad-person"><div class="squad-person__av">J</div><div class="squad-person__info"><span class="squad-person__name">Jakub</span><span class="squad-person__sub">UI Designer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Design_1.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Agnieszka</span><span class="squad-person__sub">UX/UI Designer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Design_2.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Karol</span><span class="squad-person__sub">UX/UI Designer</span></div></div>
             </div>
           </div>
 
@@ -2372,9 +2497,9 @@
             <div class="squad-panel__value">Szybki sklep = wyższa pozycja w Google i lepsza sprzedaż. Buduje stabilny fundament pod Twój wzrost ruchu.</div>
             <div class="squad-panel__quote">Nie piszę kodu byle działał. Buduję stabilny fundament, który wytrzyma Twój wzrost ruchu i nie rozsypie się przy pierwszej aktualizacji wtyczki.</div>
             <div class="squad-panel__people">
-              <div class="squad-person"><div class="squad-person__av">T</div><div class="squad-person__info"><span class="squad-person__name">Tomasz</span><span class="squad-person__sub">Tech Lead</span></div></div>
-              <div class="squad-person"><div class="squad-person__av">R</div><div class="squad-person__info"><span class="squad-person__name">Rafał</span><span class="squad-person__sub">Senior Dev</span></div></div>
-              <div class="squad-person"><div class="squad-person__av">B</div><div class="squad-person__info"><span class="squad-person__name">Bartosz</span><span class="squad-person__sub">Backend Dev</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Developer_1.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Kamil</span><span class="squad-person__sub">Developer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Developer_2.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Tomek</span><span class="squad-person__sub">Developer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="Codeq Design System/assets/Awatar_Developer_3.jpg" alt=""></div><div class="squad-person__info"><span class="squad-person__name">Rafał</span><span class="squad-person__sub">Developer</span></div></div>
             </div>
           </div>
 
@@ -2384,186 +2509,126 @@
   </section>
 
   <!-- ================================
-       5. VICTORY PATHS
+       4b. VIDEO TESTIMONIALS
   ================================ -->
-  <section class="victory" id="paths">
+  <section class="video-testimonials section">
+    <div class="container">
+      <div class="section-header" style="color:var(--ink-900)">
+        <p class="label" style="color:var(--codeq-blue)">Opinie klientów</p>
+        <h2 style="color:var(--ink-900)">Nie wierz nam na słowo.</h2>
+        <p style="color:var(--ink-700)">Posłuchaj właścicieli sklepów, którzy przeszli przez Pilotaż i zdecydowali się zostać.</p>
+      </div>
+
+      <div class="vt-rows">
+
+        <!-- Testimonial 1 — video left, quote right -->
+        <div class="vt-row">
+          <div class="vt-video">
+            <!-- Zamień placeholder na <video controls src="wideo1.mp4"> lub <iframe src="..."> -->
+            <div class="vt-video__placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="m15 10 4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span>Wideo klienta 1</span>
+            </div>
+            <div class="vt-video__play">
+              <div class="vt-video__play-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="vt-quote">
+            <span class="vt-quote__mark">"</span>
+            <blockquote>
+              Wpisz tutaj cytat z opinii klienta 1. Najlepiej jedno mocne zdanie, które podsumowuje efekt współpracy.
+            </blockquote>
+            <div class="vt-client">
+              <div class="vt-client__avatar">AK</div>
+              <div class="vt-client__info">
+                <strong>Imię Nazwisko</strong>
+                <span>Właściciel, NazwaSklepu.pl</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="vt-divider">
+
+        <!-- Testimonial 2 — quote left, video right -->
+        <div class="vt-row vt-row--reverse">
+          <div class="vt-video">
+            <!-- Zamień placeholder na <video controls src="wideo2.mp4"> lub <iframe src="..."> -->
+            <div class="vt-video__placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="m15 10 4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span>Wideo klienta 2</span>
+            </div>
+            <div class="vt-video__play">
+              <div class="vt-video__play-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="vt-quote">
+            <span class="vt-quote__mark">"</span>
+            <blockquote>
+              Wpisz tutaj cytat z opinii klienta 2. Najlepiej jedno mocne zdanie, które podsumowuje efekt współpracy.
+            </blockquote>
+            <div class="vt-client">
+              <div class="vt-client__avatar">MB</div>
+              <div class="vt-client__info">
+                <strong>Imię Nazwisko</strong>
+                <span>Właściciel, NazwaSklepu.pl</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       5. SPRINT SIMULATOR
+  ================================ -->
+  <section class="sprint-sim" id="paths">
     <div class="container">
       <div class="section-header">
-        <p class="label">Victory Paths</p>
-        <h2>Nie wiesz od czego zacząć?<br/>Wybierz cel swojego sklepu.</h2>
-        <p>Przygotowaliśmy 3 gotowe ścieżki rozwoju. Zobacz, jak w 3–6 miesięcy poukładać technologię pod wzrost.</p>
+        <p class="label">Twój pierwszy sprint</p>
+        <h2>Co zrobimy w Twoim sklepie<br/>w pierwszym miesiącu?</h2>
+        <p>Wybierz swój główny problem — pokażemy Ci konkretny plan tygodniowy i wyniki, których możesz oczekiwać.</p>
       </div>
 
-      <div class="scenarios">
+      <div class="ss-problems">
 
-        <!-- Scenariusz 1 -->
-        <div class="scenario-card active" onclick="activateScenario(this)">
-          <div class="scenario-card__header">
-            <div class="scenario-card__icon">🛠️</div>
-            <p class="scenario-card__tag">Scenariusz 1 · Pakiet Stability</p>
-            <h3>Optymalizacja Techniczna</h3>
-            <p class="scenario-card__target">Dla sklepów, które "mulą", sypią błędami i boją się aktualizacji.</p>
-          </div>
-          <div class="scenario-card__body">
-            <div class="scenario-card__plan">
-              <p class="scenario-card__plan-title">Plan działania (Sprinty):</p>
-              <div class="plan-steps">
-                <div class="plan-step"><span class="plan-step__num">1</span><span>Pełny update silnika i wtyczek (Test &amp; Deploy)</span></div>
-                <div class="plan-step"><span class="plan-step__num">2</span><span>Optymalizacja bazy danych i kompresja grafik</span></div>
-                <div class="plan-step"><span class="plan-step__num">3</span><span>Konfiguracja cache i zabezpieczeń (Security Score)</span></div>
-              </div>
-            </div>
-            <p class="scenario-card__plan-title" style="margin-bottom:10px">Twarde Wyniki (KPI):</p>
-            <div class="kpi-list">
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>PageSpeed Mobile wzrost do strefy "Green" (&gt;90)</span></div>
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Uptime 99.9% dostępności sklepu</span></div>
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Zero krytycznych podatności wtyczek</span></div>
-            </div>
-            <div class="scenario-card__pkg">
-              <span class="pkg-badge">🛡️ Pakiet STABILITY</span>
-            </div>
-          </div>
-        </div>
+        <button class="ss-problem" data-scenario="tech">
+          <span class="ss-problem__icon">🔧</span>
+          <span class="ss-problem__label">Sklep sypie błędami, działa wolno</span>
+          <span class="ss-problem__pkg">Pakiet Stability</span>
+        </button>
 
-        <!-- Scenariusz 2 -->
-        <div class="scenario-card" onclick="activateScenario(this)">
-          <div class="scenario-card__header">
-            <div class="scenario-card__icon">🚀</div>
-            <p class="scenario-card__tag">Scenariusz 2 · Pakiet Growth</p>
-            <h3>Revenue Booster</h3>
-            <p class="scenario-card__target">Dla sklepów B2C z dużym ruchem, ale niską konwersją i porzuconymi koszykami.</p>
-          </div>
-          <div class="scenario-card__body">
-            <div class="scenario-card__plan">
-              <p class="scenario-card__plan-title">Plan działania (Sprinty):</p>
-              <div class="plan-steps">
-                <div class="plan-step"><span class="plan-step__num">1</span><span>Redesign Karty Produktu (Mobile First UX)</span></div>
-                <div class="plan-step"><span class="plan-step__num">2</span><span>Uproszczenie Checkoutu (One-Step / Express)</span></div>
-                <div class="plan-step"><span class="plan-step__num">3</span><span>Wdrożenie silnika Cross-selling ("Kup razem")</span></div>
-              </div>
-            </div>
-            <p class="scenario-card__plan-title" style="margin-bottom:10px">Twarde Wyniki (KPI):</p>
-            <div class="kpi-list">
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Conversion Rate: wzrost o min. 0,2–0,5 pp.</span></div>
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>AOV (Średni Koszyk): wzrost o 10–15%</span></div>
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Wyraźny spadek porzuconych koszyków</span></div>
-            </div>
-            <div class="scenario-card__pkg">
-              <span class="pkg-badge">🚀 Pakiet GROWTH</span>
-            </div>
-          </div>
-        </div>
+        <button class="ss-problem" data-scenario="conversion">
+          <span class="ss-problem__icon">🚀</span>
+          <span class="ss-problem__label">Mam ruch, ale za mała konwersja</span>
+          <span class="ss-problem__pkg">Pakiet Growth</span>
+        </button>
 
-        <!-- Scenariusz 3 -->
-        <div class="scenario-card" onclick="activateScenario(this)">
-          <div class="scenario-card__header">
-            <div class="scenario-card__icon">🤝</div>
-            <p class="scenario-card__tag">Scenariusz 3 · Pakiet Growth</p>
-            <h3>B2B Ecosystem Builder</h3>
-            <p class="scenario-card__target">Dla hurtowni i producentów tracących czas na ręczną obsługę zapytań i zamówień z maila.</p>
-          </div>
-          <div class="scenario-card__body">
-            <div class="scenario-card__plan">
-              <p class="scenario-card__plan-title">Plan działania (Sprinty):</p>
-              <div class="plan-steps">
-                <div class="plan-step"><span class="plan-step__num">1</span><span>Tiered Pricing (ceny hurtowe po zalogowaniu)</span></div>
-                <div class="plan-step"><span class="plan-step__num">2</span><span>Generator Ofert PDF dla klienta końcowego</span></div>
-                <div class="plan-step"><span class="plan-step__num">3</span><span>Panel Klienta: faktury, Quick Order, powtarzanie zamówień</span></div>
-              </div>
-            </div>
-            <p class="scenario-card__plan-title" style="margin-bottom:10px">Twarde Wyniki (KPI):</p>
-            <div class="kpi-list">
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>−40% zapytań do handlowców (oszczędność czasu)</span></div>
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Self-service: klienci zamawiają sami 24/7</span></div>
-              <div class="kpi-item"><span class="kpi-icon">✓</span><span>Wzrost powracalności partnerów B2B</span></div>
-            </div>
-            <div class="scenario-card__pkg">
-              <span class="pkg-badge">🚀 Pakiet GROWTH</span>
-            </div>
-          </div>
-        </div>
+        <button class="ss-problem" data-scenario="b2b">
+          <span class="ss-problem__icon">🤝</span>
+          <span class="ss-problem__label">Sprzedaję do firm, tonę w mailach</span>
+          <span class="ss-problem__pkg">Pakiet Growth</span>
+        </button>
+
+        <button class="ss-problem" data-scenario="marketing">
+          <span class="ss-problem__icon">📣</span>
+          <span class="ss-problem__label">Marketing nie może sam edytować strony</span>
+          <span class="ss-problem__pkg">Pakiet Stability</span>
+        </button>
 
       </div>
 
-      <!-- Lead Magnet -->
-      <div class="lead-magnet">
-        <div class="lead-magnet__text">
-          <h3>Pobierz pełną Mapę Drogową (PDF)</h3>
-          <p>Szczegółowe zadania dla każdej ścieżki, przykładowe KPI i harmonogram sprintów na 6 miesięcy.</p>
-        </div>
-        <div class="lead-magnet__cta">
-          <a href="#pilot" class="btn btn--primary btn--lg">Pobierz PDF →</a>
-        </div>
-      </div>
+      <div class="ss-panel" id="ss-panel" hidden></div>
 
     </div>
   </section>
 
-
-  <!-- ================================
-       7. PILOT
-  ================================ -->
-  <section class="pilot" id="pilot">
-    <div class="container">
-      <div class="pilot__inner">
-        <div>
-          <div class="section-header" style="text-align:left;margin-bottom:0">
-            <p class="label" style="color:rgba(255,255,255,.75)">Bez umowy na 6 miesięcy</p>
-            <h2 style="color:#fff;margin-bottom:20px">Zacznij od Pilotażu — 2 miesiące bez zobowiązania</h2>
-          </div>
-          <p class="pilot__desc">Normalny abonament, zero deklaracji długoterminowej. Przez pierwsze 2 miesiące pracujemy razem bez podpisywania umowy na 6 miesięcy. Audytujemy sklep, budujemy Mapę Celów i wdrażamy Quick Wins. Po 2 miesiącach — Ty decydujesz.</p>
-          <div class="pilot__values">
-            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Audyt Techniczny i UX Twojego sklepu</span></div>
-            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Sesja Strategiczna (cele OKR)</span></div>
-            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Mapa Rozwoju na 6 miesięcy</span></div>
-            <div class="pilot__value"><span class="pilot__value-icon">✓</span><span>Pierwsze "Quick Wins" (naprawy od ręki)</span></div>
-          </div>
-          <div class="pilot__guarantee">
-            <strong>Co się dzieje po 2 miesiącach?</strong>
-            Masz pełen audyt, Mapę Celów i pierwsze wdrożenia. Podpisujesz umowę na 6 miesięcy i skalujemy razem — albo rozstajesz się z gotowym planem w ręku. Żadnych ukrytych klauzul.
-          </div>
-          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg">Umów rozmowę o Pilotażu →</a>
-        </div>
-
-        <div class="pilot-card">
-          <p class="pilot-card__title">Co otrzymujesz w Pilotażu</p>
-          <h3>2 miesiące bez kontraktu</h3>
-          <p class="pilot-card__sub">Pełna praca zespołu. Zero zobowiązania na 6 miesięcy.</p>
-          <div class="pilot-card__items">
-            <div class="pilot-card__item">
-              <div class="pilot-card__item-icon">🔍</div>
-              <div class="pilot-card__item-text">
-                <strong>Audyt Techniczny</strong>
-                <span>Performance, bezpieczeństwo, dług techniczny</span>
-              </div>
-            </div>
-            <div class="pilot-card__item">
-              <div class="pilot-card__item-icon">🎨</div>
-              <div class="pilot-card__item-text">
-                <strong>Audyt UX & Konwersji</strong>
-                <span>Ścieżki zakupowe, bariery, porzucone koszyki</span>
-              </div>
-            </div>
-            <div class="pilot-card__item">
-              <div class="pilot-card__item-icon">🧠</div>
-              <div class="pilot-card__item-text">
-                <strong>Sesja Strategiczna</strong>
-                <span>Cele OKR, priorytety, mapa na 6 miesięcy</span>
-              </div>
-            </div>
-            <div class="pilot-card__item">
-              <div class="pilot-card__item-icon">⚡</div>
-              <div class="pilot-card__item-text">
-                <strong>Quick Wins</strong>
-                <span>Pierwsze naprawy o wysokim ROI — już w trakcie Pilotażu</span>
-              </div>
-            </div>
-          </div>
-          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg pilot-card__cta">Konsultuj Pilotaż →</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ================================
        8. PRICING
@@ -2722,17 +2787,6 @@
     </div>
   </section>
 
-  <!-- ================================
-       FOOTER
-  ================================ -->
-  <footer>
-    <div class="container">
-      <p><strong>Codeq Care</strong> — Zespół Wzrostu E-commerce w Abonamencie<br/>
-      <a href="mailto:hello@codeq.pl" style="color:var(--codeq-blue)">hello@codeq.pl</a> · codeq.pl<br/>
-      <span style="margin-top:8px;display:block;font-size:.75rem">© 2025 Codeq. Wszystkie prawa zastrzeżone.</span>
-      </p>
-    </div>
-  </footer>
 
   <!-- ================================
        STICKY BAR
@@ -2772,10 +2826,103 @@
     }, { threshold: 0.1 });
     observer.observe(hero);
 
-    function activateScenario(card) {
-      document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
+    const SS_DATA = {
+      tech: {
+        name: 'Optymalizacja Techniczna',
+        pkg: 'Pakiet Stability', pkgClass: 'stability', price: '3 200 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Audyt', tasks: ['Plan & Kickoff — zakres prac, priorytety', 'Audyt techniczny: Core Web Vitals, logi błędów', 'Weryfikacja bezpieczeństwa i długu technicznego'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie', tasks: ['Pełny update silnika i wtyczek (Test & Deploy)', 'Optymalizacja bazy danych i kompresja grafik', 'Konfiguracja cache i zabezpieczeń'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Deploy na produkcję po testach staging', 'Raport PageSpeed przed i po', 'Plan Sprint 2 z backlogu'] }
+        ],
+        kpi: ['PageSpeed Mobile ≥ 90 (strefa Green)', 'Uptime 99.9% dostępności sklepu', 'Zero krytycznych podatności wtyczek']
+      },
+      conversion: {
+        name: 'Revenue Booster',
+        pkg: 'Pakiet Growth', pkgClass: 'growth', price: '6 400 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Roadmapa', tasks: ['Warsztat strategiczny — cel sprintu', 'Audyt UX: ścieżka zakupowa i koszyk', 'Sprint Goal: Redesign Karty Produktu'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev/UX', tasks: ['Redesign Karty Produktu (Mobile First UX)', 'One-Step / Express Checkout', 'Silnik Cross-selling ("Kup razem")'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Deploy na produkcję, testy A/B', 'Raport CR i porzuconych koszyków', 'Backlog i cel Sprint 2'] }
+        ],
+        kpi: ['Conversion Rate wzrost o min. 0,2–0,5 pp.', 'AOV (Średni Koszyk): +10–15%', 'Wyraźny spadek porzuconych koszyków']
+      },
+      b2b: {
+        name: 'B2B Ecosystem Builder',
+        pkg: 'Pakiet Growth', pkgClass: 'growth', price: '6 400 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Analiza', tasks: ['Kickoff — mapowanie procesu zamówień B2B', 'Analiza flow: od zapytania do faktury', 'Sprint Goal: Tiered Pricing + Generator Ofert'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev', tasks: ['Tiered Pricing — ceny hurtowe po zalogowaniu', 'Generator Ofert PDF dla klienta końcowego', 'Quick Order — zamówienia hurtowe w 2 klikach'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Panel Klienta MVP (faktury, historia)', 'Deploy i testy z klientami B2B', 'Plan Sprint 2 (powtarzanie zamówień)'] }
+        ],
+        kpi: ['−40% zapytań do handlowców (oszczędność czasu)', 'Self-service: klienci zamawiają sami 24/7', 'Wzrost powracalności partnerów B2B']
+      },
+      marketing: {
+        name: 'Wsparcie Marketingu',
+        pkg: 'Pakiet Stability', pkgClass: 'stability', price: '3 200 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Audyt CMS', tasks: ['Kickoff — mapa sekcji edytowalnych', 'Audyt struktury treści i bloga', 'Sprint Goal: edytowalne banery + blog SEO'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev/UX', tasks: ['Szablony sekcji edytowalnych (bez kodu)', 'Optymalizacja wpisów blogowych pod SEO', 'Sekcja Zespół / O nas, szablony grafik'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Szkolenie', tasks: ['Deploy + szkolenie zespołu marketingowego', 'Raport SEO Health (audyt treści)', 'Backlog i plan Sprint 2'] }
+        ],
+        kpi: ['SEO Health: Audyt treści ≥ 90/100 pkt', '100% kluczowych treści edytowalnych bez kodu', 'Marketing publikuje samodzielnie w 24h']
+      }
+    };
+
+    function initSprintSim() {
+      document.querySelectorAll('.ss-problem').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.ss-problem').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderSprintPanel(document.getElementById('ss-panel'), SS_DATA[btn.dataset.scenario]);
+        });
+      });
     }
+
+    function renderSprintPanel(panel, data) {
+      const arrowSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>`;
+
+      const weeksHtml = data.weeks.map(w => `
+        <div class="ss-week">
+          <p class="ss-week__period">${w.period}</p>
+          <p class="ss-week__title">${w.title}</p>
+          <ul class="ss-week__tasks">${w.tasks.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        <div class="ss-arrow">${arrowSvg}</div>
+      `).join('');
+
+      panel.innerHTML = `
+        <div class="ss-panel__head">
+          <span class="ss-panel__name">${data.name}</span>
+          <span class="ss-panel__pkg-badge ${data.pkgClass}">${data.pkg} · ${data.price}</span>
+        </div>
+        <div class="ss-timeline">
+          ${weeksHtml}
+          <div class="ss-week ss-week--result">
+            <p class="ss-week__period">Twarde wyniki</p>
+            <p class="ss-week__title">Po pierwszym miesiącu</p>
+            <ul class="ss-week__tasks">${data.kpi.map(k => `<li>${k}</li>`).join('')}</ul>
+          </div>
+        </div>
+        <div class="ss-cta">
+          <a href="#" class="btn btn--primary btn--lg">Umów bezpłatną konsultację →</a>
+          <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pełną ofertę <span class="btn-arrow">→</span></a>
+        </div>
+      `;
+
+      panel.removeAttribute('hidden');
+      panel.classList.remove('entering');
+      void panel.offsetWidth;
+      panel.classList.add('entering');
+
+      const weeks = panel.querySelectorAll('.ss-week');
+      const cta = panel.querySelector('.ss-cta');
+      weeks.forEach((w, i) => setTimeout(() => w.classList.add('visible'), 80 + i * 160));
+      setTimeout(() => cta.classList.add('visible'), 80 + weeks.length * 160 + 80);
+      setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+    }
+
+    initSprintSim();
 
 
     function toggleFaq(questionEl) {
