@@ -1526,137 +1526,155 @@
       .vt-video { max-width: 340px; margin: 0 auto; }
     }
 
-    /* === 5. SPRINT SIMULATOR === */
-    .sprint-sim { background: var(--brand-dark); }
+    /* === 5. CONFIGURATOR === */
+    .configurator { background: var(--brand-dark); padding: var(--section-pad) 0; }
+    .configurator .section-header h2 { color: #fff; }
+    .configurator .section-header p { color: rgba(255,255,255,.6); }
+    .configurator .label { color: var(--blue-400); }
 
-    .ss-problems {
+    .cfg-layout {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-3);
-      margin-bottom: var(--space-7);
+      grid-template-columns: 5fr 4fr;
+      gap: 40px;
+      align-items: start;
     }
-    .ss-problem {
+
+    .cfg-symptoms { display: flex; flex-direction: column; gap: 10px; }
+
+    .cfg-symptom {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 18px;
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius-md);
-      padding: var(--space-5);
+      border-radius: 12px;
       cursor: pointer;
-      text-align: left;
-      transition: all var(--dur-base) var(--ease-out);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-2);
+      transition: background .2s, border-color .2s;
+      user-select: none;
     }
-    .ss-problem:hover {
-      border-color: rgba(49,90,251,.5);
-      background: rgba(49,90,251,.1);
-      transform: translateY(-2px);
-    }
-    .ss-problem.active {
-      border-color: var(--codeq-blue);
-      background: var(--codeq-blue);
-      box-shadow: var(--shadow-glow-blue);
-    }
-    .ss-problem__icon { font-size: 1.6rem; display: block; margin-bottom: var(--space-1); }
-    .ss-problem__label {
-      font-size: 15px; font-weight: var(--fw-semibold);
-      color: rgba(255,255,255,.9); line-height: 1.4; display: block;
-    }
-    .ss-problem.active .ss-problem__label { color: #fff; }
-    .ss-problem__pkg {
-      font-size: 11px; font-weight: var(--fw-semibold);
-      letter-spacing: var(--tracking-wide); text-transform: uppercase;
-      color: var(--blue-400); display: block;
-      margin-top: auto; padding-top: var(--space-3);
-    }
-    .ss-problem.active .ss-problem__pkg { color: rgba(255,255,255,.75); }
+    .cfg-symptom:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .cfg-symptom.is-checked { background: rgba(37,72,250,.15); border-color: rgba(37,72,250,.55); }
 
-    .ss-panel[hidden] { display: none; }
-    .ss-panel.entering {
-      display: block;
-      animation: ssEnter 0.45s var(--ease-out) forwards;
+    .cfg-symptom__check {
+      flex-shrink: 0; margin-top: 2px;
+      width: 20px; height: 20px;
+      border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
     }
-    @keyframes ssEnter {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .cfg-symptom.is-checked .cfg-symptom__check { background: #2548FA; border-color: #2548FA; }
+    .cfg-symptom__check-icon {
+      width: 10px; height: 6px;
+      border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+      opacity: 0; transition: opacity .15s;
     }
-    .ss-panel__head {
-      display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;
-      margin-bottom: var(--space-6);
-      padding-bottom: var(--space-5);
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-    .ss-panel__name { font-size: var(--fs-h3); font-weight: var(--fw-bold); color: #fff; }
-    .ss-panel__pkg-badge {
-      padding: 6px 16px; border-radius: var(--radius-pill);
-      font-size: 11px; font-weight: var(--fw-semibold);
-      letter-spacing: var(--tracking-wide); text-transform: uppercase;
-    }
-    .ss-panel__pkg-badge.stability { background: rgba(49,90,251,.2); color: var(--blue-400); }
-    .ss-panel__pkg-badge.growth { background: rgba(62,190,179,.15); color: var(--accent-teal); }
+    .cfg-symptom.is-checked .cfg-symptom__check-icon { opacity: 1; }
 
-    .ss-timeline {
-      display: grid;
-      grid-template-columns: 1fr 28px 1fr 28px 1fr 28px 1fr;
-      align-items: start;
-      margin-bottom: var(--space-7);
+    .cfg-symptom__icon { font-size: 1.2rem; line-height: 1.5; }
+    .cfg-symptom__body { flex: 1; }
+    .cfg-symptom__text { font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.82); line-height: 1.45; display: block; }
+    .cfg-symptom__cost {
+      font-size: 12px; font-weight: 700; color: #f87171;
+      margin-top: 4px; display: block;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity .2s, transform .2s;
     }
-    .ss-arrow {
-      display: flex; align-items: flex-start; padding-top: 30px;
-      justify-content: center; color: rgba(255,255,255,.2);
+    .cfg-symptom.is-checked .cfg-symptom__cost { opacity: 1; transform: translateY(0); }
+
+    /* Right panel */
+    .cfg-panel {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      overflow: hidden;
+      position: sticky;
+      top: 96px;
     }
-    .ss-week {
+    .cfg-idle {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 48px 28px;
+      min-height: 320px;
+      color: rgba(255,255,255,.38); font-size: 15px; line-height: 1.6;
+    }
+    .cfg-idle-icon { font-size: 2.2rem; display: block; margin-bottom: 14px; }
+
+    .cfg-active { display: none; }
+    .cfg-active.visible { display: block; }
+
+    .cfg-roi {
+      padding: 22px 26px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+    .cfg-roi__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4); display: block;
+    }
+    .cfg-roi__amount {
+      display: block; font-size: 34px; font-weight: 800;
+      color: #f87171; letter-spacing: -0.02em; line-height: 1.1;
+      margin: 6px 0 14px; font-variant-numeric: tabular-nums;
+    }
+    .cfg-roi__meter { height: 4px; background: rgba(255,255,255,.1); border-radius: 2px; }
+    .cfg-roi__fill {
+      height: 100%; background: linear-gradient(90deg, #f87171, #ef4444);
+      border-radius: 2px; transition: width .45s ease;
+    }
+
+    .cfg-rec {
+      padding: 16px 26px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+    .cfg-rec__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4);
+      display: block; margin-bottom: 10px;
+    }
+    .cfg-rec__pkg {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      padding: 4px 12px; border-radius: 6px; margin-bottom: 9px;
+    }
+    .cfg-rec__pkg.stability { background: rgba(99,163,255,.15); color: #93c5fd; }
+    .cfg-rec__pkg.growth { background: rgba(52,211,153,.12); color: #6ee7b7; }
+    .cfg-rec__desc { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.55; margin: 0; }
+
+    .cfg-sprint {
+      padding: 16px 26px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+    .cfg-sprint__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4);
+      display: block; margin-bottom: 8px;
+    }
+    .cfg-sprint__name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .cfg-sprint__weeks { display: flex; gap: 6px; margin-bottom: 12px; }
+    .cfg-sprint__week {
+      flex: 1; padding: 10px 10px 8px;
       background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius-md);
-      padding: var(--space-5);
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
     }
-    .ss-week.visible { opacity: 1; transform: translateY(0); }
-    .ss-week--result {
-      background: var(--codeq-blue);
-      border-color: transparent;
-      box-shadow: var(--shadow-glow-blue);
+    .cfg-sprint__week-period {
+      font-size: 10px; color: rgba(255,255,255,.38); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em;
+      display: block; margin-bottom: 4px;
     }
-    .ss-week__period {
-      font-size: 11px; font-weight: var(--fw-semibold);
-      letter-spacing: var(--tracking-wide); text-transform: uppercase;
-      color: var(--blue-400); margin-bottom: var(--space-2);
+    .cfg-sprint__week-title { font-size: 12.5px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .cfg-sprint__kpis { display: flex; flex-direction: column; gap: 5px; }
+    .cfg-sprint__kpi {
+      font-size: 12.5px; color: #6ee7b7;
+      display: flex; align-items: baseline; gap: 6px;
     }
-    .ss-week--result .ss-week__period { color: rgba(255,255,255,.7); }
-    .ss-week__title {
-      font-size: 15px; font-weight: var(--fw-bold); color: #fff;
-      margin-bottom: var(--space-4); line-height: 1.3;
-    }
-    .ss-week__tasks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
-    .ss-week__tasks li {
-      font-size: 13px; color: var(--blue-300); line-height: 1.5;
-      display: flex; gap: var(--space-2); align-items: flex-start;
-    }
-    .ss-week--result .ss-week__tasks li { color: rgba(255,255,255,.9); }
-    .ss-week__tasks li::before { content: '→'; flex-shrink: 0; color: var(--blue-500); font-size: 12px; margin-top: 2px; }
-    .ss-week--result .ss-week__tasks li::before { content: '✓'; color: rgba(255,255,255,.75); }
+    .cfg-sprint__kpi::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
 
-    .ss-cta {
-      display: flex; gap: var(--space-4); align-items: center; justify-content: center;
-      opacity: 0; transform: translateY(12px);
-      transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
-    }
-    .ss-cta.visible { opacity: 1; transform: translateY(0); }
+    .cfg-cta { padding: 16px 26px 22px; }
+    .cfg-cta .btn { width: 100%; text-align: center; display: block; }
 
-    @media (max-width: 1024px) {
-      .ss-problems { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 900px) {
-      .ss-timeline { grid-template-columns: 1fr; gap: var(--space-3); }
-      .ss-arrow { display: none; }
-      .ss-week { opacity: 1 !important; transform: none !important; }
-      .ss-cta { flex-direction: column; align-items: stretch; }
-      .ss-cta .btn { text-align: center; }
-    }
-    @media (max-width: 640px) {
-      .ss-problems { grid-template-columns: 1fr; }
+    @media (max-width: 960px) {
+      .cfg-layout { grid-template-columns: 1fr; }
+      .cfg-panel { position: static; }
     }
 
     /* === 6. PROCESS === */
@@ -2589,44 +2607,140 @@
   <!-- ================================
        5. SPRINT SIMULATOR
   ================================ -->
-  <section class="sprint-sim" id="paths">
+  <section class="configurator" id="paths">
     <div class="container">
       <div class="section-header">
-        <p class="label">Twój pierwszy sprint</p>
-        <h2>Co zrobimy w Twoim sklepie<br/>w pierwszym miesiącu?</h2>
-        <p>Wybierz swój główny problem — pokażemy Ci konkretny plan tygodniowy i wyniki, których możesz oczekiwać.</p>
+        <p class="label">Konfigurator</p>
+        <h2>Ile tracisz miesięcznie<br/>na złym modelu?</h2>
+        <p>Zaznacz objawy, które rozpoznajesz w swoim sklepie — zobaczysz szacowaną stratę i plan pierwszego sprintu.</p>
       </div>
 
-      <div class="ss-problems">
+      <div class="cfg-layout">
 
-        <button class="ss-problem" data-scenario="tech">
-          <span class="ss-problem__icon">🔧</span>
-          <span class="ss-problem__label">Sklep sypie błędami, działa wolno</span>
-          <span class="ss-problem__pkg">Pakiet Stability</span>
-        </button>
+        <div class="cfg-left">
+          <div class="cfg-symptoms">
 
-        <button class="ss-problem" data-scenario="conversion">
-          <span class="ss-problem__icon">🚀</span>
-          <span class="ss-problem__label">Mam ruch, ale za mała konwersja</span>
-          <span class="ss-problem__pkg">Pakiet Growth</span>
-        </button>
+            <label class="cfg-symptom" data-scenario="model" data-roi="2500">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">💸</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span>
+                <span class="cfg-symptom__cost">−2 500 PLN / mies</span>
+              </span>
+            </label>
 
-        <button class="ss-problem" data-scenario="b2b">
-          <span class="ss-problem__icon">🤝</span>
-          <span class="ss-problem__label">Sprzedaję do firm, tonę w mailach</span>
-          <span class="ss-problem__pkg">Pakiet Growth</span>
-        </button>
+            <label class="cfg-symptom" data-scenario="tech" data-roi="4200">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🐌</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Sklep sypie błędami lub działa wolno — tracę sprzedaż</span>
+                <span class="cfg-symptom__cost">−4 200 PLN / mies</span>
+              </span>
+            </label>
 
-        <button class="ss-problem" data-scenario="marketing">
-          <span class="ss-problem__icon">📣</span>
-          <span class="ss-problem__label">Marketing nie może sam edytować strony</span>
-          <span class="ss-problem__pkg">Pakiet Stability</span>
-        </button>
+            <label class="cfg-symptom" data-scenario="conversion" data-roi="6000">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">📉</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Mam ruch, ale konwersja nie rośnie od miesięcy</span>
+                <span class="cfg-symptom__cost">−6 000 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="1800">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">📞</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Nie mam jednego stałego punktu kontaktu do IT</span>
+                <span class="cfg-symptom__cost">−1 800 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="b2b" data-roi="4500">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🤝</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Sprzedaję do firm B2B i tonę w mailach i ręcznych wycenach</span>
+                <span class="cfg-symptom__cost">−4 500 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="2000">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🔁</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span>
+                <span class="cfg-symptom__cost">−2 000 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="marketing" data-roi="2200">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">📣</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Marketing nie może sam edytować strony bez developera</span>
+                <span class="cfg-symptom__cost">−2 200 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="3000">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🔥</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Gaszę pożary zamiast realizować strategię wzrostu</span>
+                <span class="cfg-symptom__cost">−3 000 PLN / mies</span>
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+        <div class="cfg-right">
+          <div class="cfg-panel" id="cfgPanel">
+
+            <div class="cfg-idle" id="cfgIdle">
+              <span class="cfg-idle-icon">☝️</span>
+              Zaznacz objawy, które rozpoznajesz u siebie — zobaczysz szacowaną stratę i gotowy plan pierwszego sprintu.
+            </div>
+
+            <div class="cfg-active" id="cfgActive">
+
+              <div class="cfg-roi">
+                <span class="cfg-roi__label">Szacowana strata miesięcznie</span>
+                <span class="cfg-roi__amount" id="cfgRoiAmount">0 PLN</span>
+                <div class="cfg-roi__meter"><div class="cfg-roi__fill" id="cfgRoiFill" style="width:0%"></div></div>
+              </div>
+
+              <div class="cfg-rec">
+                <span class="cfg-rec__label">Rekomendacja</span>
+                <span class="cfg-rec__pkg" id="cfgRecPkg"></span>
+                <p class="cfg-rec__desc" id="cfgRecDesc"></p>
+              </div>
+
+              <div class="cfg-sprint" id="cfgSprintBlock" style="display:none">
+                <span class="cfg-sprint__label">Twój pierwszy sprint</span>
+                <p class="cfg-sprint__name" id="cfgSprintName"></p>
+                <div class="cfg-sprint__weeks" id="cfgSprintWeeks"></div>
+                <div class="cfg-sprint__kpis" id="cfgSprintKpis"></div>
+              </div>
+
+              <div class="cfg-cta" id="cfgCta" style="display:none">
+                <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
 
       </div>
-
-      <div class="ss-panel" id="ss-panel" hidden></div>
-
     </div>
   </section>
 
@@ -2933,6 +3047,93 @@
       setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
     }
 
+    function initConfigurator() {
+      const symptoms = document.querySelectorAll('.cfg-symptom');
+      if (!symptoms.length) return;
+
+      const idle        = document.getElementById('cfgIdle');
+      const active      = document.getElementById('cfgActive');
+      const roiAmount   = document.getElementById('cfgRoiAmount');
+      const roiFill     = document.getElementById('cfgRoiFill');
+      const recPkg      = document.getElementById('cfgRecPkg');
+      const recDesc     = document.getElementById('cfgRecDesc');
+      const sprintBlock = document.getElementById('cfgSprintBlock');
+      const sprintName  = document.getElementById('cfgSprintName');
+      const sprintWeeks = document.getElementById('cfgSprintWeeks');
+      const sprintKpis  = document.getElementById('cfgSprintKpis');
+      const ctaBlock    = document.getElementById('cfgCta');
+
+      const MAX_ROI = 26200;
+      const SCENARIO_PRIORITY = ['conversion', 'tech', 'b2b', 'marketing'];
+      const PKG = {
+        stability: { cls: 'stability', label: 'Pakiet Stability · 3 200 PLN / mies', desc: 'Twój sklep potrzebuje stabilnego zaplecza technicznego i jednego dedykowanego zespołu.' },
+        growth:    { cls: 'growth',    label: 'Pakiet Growth · 6 400 PLN / mies',    desc: 'Twój sklep ma potencjał do skalowania — potrzebujesz Stratega, UX Designera i developera w jednym.' }
+      };
+
+      let currentRoi = 0, rafId = null;
+
+      function animateRoi(target) {
+        if (rafId) cancelAnimationFrame(rafId);
+        const from = currentRoi, t0 = performance.now();
+        function step(now) {
+          const p = Math.min((now - t0) / 550, 1);
+          const e = 1 - Math.pow(1 - p, 3);
+          const v = Math.round(from + (target - from) * e);
+          roiAmount.textContent = v.toLocaleString('pl-PL') + ' PLN';
+          roiFill.style.width = (v / MAX_ROI * 100) + '%';
+          if (p < 1) { rafId = requestAnimationFrame(step); } else { currentRoi = target; rafId = null; }
+        }
+        rafId = requestAnimationFrame(step);
+      }
+
+      function update() {
+        const checked = [...symptoms].filter(s => s.classList.contains('is-checked'));
+        if (!checked.length) {
+          idle.style.display = '';
+          active.classList.remove('visible');
+          animateRoi(0);
+          return;
+        }
+        idle.style.display = 'none';
+        active.classList.add('visible');
+
+        const totalRoi = checked.reduce((sum, s) => sum + parseInt(s.dataset.roi || 0), 0);
+        animateRoi(totalRoi);
+
+        const counts = {};
+        checked.forEach(s => { const sc = s.dataset.scenario; if (sc !== 'model') counts[sc] = (counts[sc] || 0) + 1; });
+        const scenario = SCENARIO_PRIORITY.find(sc => counts[sc]) || null;
+
+        const pkgKey = (scenario === 'conversion' || scenario === 'b2b') ? 'growth' : 'stability';
+        const pkg = PKG[pkgKey];
+        recPkg.textContent = pkg.label;
+        recPkg.className = 'cfg-rec__pkg ' + pkg.cls;
+        recDesc.textContent = pkg.desc;
+
+        if (scenario && SS_DATA[scenario]) {
+          const d = SS_DATA[scenario];
+          sprintBlock.style.display = '';
+          sprintName.textContent = d.name;
+          sprintWeeks.innerHTML = d.weeks.map(w => `<div class="cfg-sprint__week"><span class="cfg-sprint__week-period">${w.period}</span><span class="cfg-sprint__week-title">${w.title}</span></div>`).join('');
+          sprintKpis.innerHTML = d.kpi.map(k => `<span class="cfg-sprint__kpi">${k}</span>`).join('');
+        } else {
+          sprintBlock.style.display = 'none';
+        }
+
+        ctaBlock.style.display = checked.length >= 2 ? '' : 'none';
+      }
+
+      symptoms.forEach(label => {
+        label.addEventListener('click', () => {
+          const input = label.querySelector('.cfg-input');
+          input.checked = !input.checked;
+          label.classList.toggle('is-checked', input.checked);
+          update();
+        });
+      });
+    }
+
+    initConfigurator();
     initSprintSim();
 
 
