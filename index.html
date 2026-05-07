@@ -124,16 +124,17 @@
     /* === STICKY NAV === */
     .nav {
       position: fixed;
-      top: 14px; left: 0; right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       background: transparent;
       transition: background var(--dur-base), backdrop-filter var(--dur-base), box-shadow var(--dur-base);
     }
     .nav.scrolled {
-      background: rgba(20,48,220,.95);
+      background: rgba(255,255,255,.96);
       backdrop-filter: blur(20px);
-      box-shadow: 0 1px 0 rgba(255,255,255,.1);
+      box-shadow: 0 1px 0 rgba(0,0,0,.08);
     }
+    .nav.scrolled .nav__logo svg { filter: brightness(0); }
     .nav__inner {
       display: flex;
       align-items: center;
@@ -163,6 +164,8 @@
       letter-spacing: -0.01em;
     }
     .nav__links a:hover { color: #fff; }
+    .nav.scrolled .nav__links a { color: rgba(15,20,60,.62); }
+    .nav.scrolled .nav__links a:hover { color: rgb(15,20,60); }
     .nav__cta { display: flex; gap: var(--space-3); align-items: center; }
     .btn--nav {
       background: transparent;
@@ -191,6 +194,9 @@
     }
     .btn--nav:hover::before { transform: translateX(0); }
     .btn--nav:hover { border-color: #fff; color: #fff; }
+    .nav.scrolled .btn--nav { color: rgba(20,48,220,1); border-color: rgba(20,48,220,.45); }
+    .nav.scrolled .btn--nav::before { background: rgba(20,48,220,.07); }
+    .nav.scrolled .btn--nav:hover { border-color: rgba(20,48,220,1); color: rgba(20,48,220,1); }
 
     @media (max-width: 768px) { .nav__links { display: none; } }
 
@@ -2768,7 +2774,7 @@
   <!-- ================================
        FINAL CTA
   ================================ -->
-  <section class="final-cta">
+  <section class="final-cta" id="finalCta">
     <div class="container">
       <div class="final-cta__inner">
         <p class="label label--white" style="margin-bottom:16px">Gotowy na zmianę?</p>
@@ -2816,10 +2822,20 @@
 
     const stickyBar = document.getElementById('stickyBar');
     const hero = document.getElementById('hero');
-    const observer = new IntersectionObserver(([entry]) => {
-      stickyBar.classList.toggle('visible', !entry.isIntersecting);
-    }, { threshold: 0.1 });
-    observer.observe(hero);
+    const finalCta = document.getElementById('finalCta');
+    let heroVisible = true;
+    let finalCtaVisible = false;
+    const updateStickyBar = () => {
+      stickyBar.classList.toggle('visible', !heroVisible && !finalCtaVisible);
+    };
+    new IntersectionObserver(([entry]) => {
+      heroVisible = entry.isIntersecting;
+      updateStickyBar();
+    }, { threshold: 0.1 }).observe(hero);
+    new IntersectionObserver(([entry]) => {
+      finalCtaVisible = entry.isIntersecting;
+      updateStickyBar();
+    }, { threshold: 0.1 }).observe(finalCta);
 
     const SS_DATA = {
       tech: {
