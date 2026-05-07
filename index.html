@@ -1677,6 +1677,50 @@
       .cfg-panel { position: static; }
     }
 
+    /* === CONFIGURATOR MODAL === */
+    .cfg-modal-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(8,12,40,.88);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s;
+    }
+    .cfg-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .cfg-modal {
+      background: #0f1633;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      width: 100%; max-width: 960px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 44px 48px 48px;
+      transform: translateY(22px) scale(.98);
+      transition: transform .32s var(--ease-out);
+    }
+    .cfg-modal-overlay.open .cfg-modal { transform: translateY(0) scale(1); }
+    .cfg-modal__close {
+      position: absolute; top: 18px; right: 18px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: rgba(255,255,255,.65);
+      font-size: 17px; line-height: 1;
+      transition: background .2s;
+    }
+    .cfg-modal__close:hover { background: rgba(255,255,255,.14); color: #fff; }
+    .cfg-modal__title { font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -.025em; margin-bottom: 8px; }
+    .cfg-modal__sub { font-size: 15px; color: rgba(255,255,255,.5); margin-bottom: 32px; line-height: 1.55; }
+    .cfg-modal .cfg-panel { position: sticky; top: 16px; }
+    @media (max-width: 700px) {
+      .cfg-modal { padding: 32px 20px 36px; }
+      .cfg-modal .cfg-panel { position: static; }
+    }
+
     /* === 6. PROCESS === */
     .process { background: var(--brand-dark); }
     .process-visual {
@@ -1860,7 +1904,7 @@
         <div class="nav__links">
           <a href="#problem">Problem</a>
           <a href="#squad">Zespół</a>
-          <a href="#paths">Ścieżki</a>
+          <a href="#" class="cfg-modal-trigger">Ścieżki</a>
           <a href="#pricing">Cennik</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -1921,7 +1965,7 @@
                 </div>
                 <span class="cta-preview__text">Odpowiedz na 5 pytań, a otrzymasz symulację Roadmapy wzrostu dopasowaną do Twojego sklepu.</span>
               </div>
-              <a href="#paths" class="btn btn--outline-white btn--lg">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
+              <a href="#" class="btn btn--outline-white btn--lg cfg-modal-trigger">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
             </div>
           </div>
 
@@ -2607,13 +2651,15 @@
   <!-- ================================
        5. SPRINT SIMULATOR
   ================================ -->
-  <section class="configurator" id="paths">
-    <div class="container">
-      <div class="section-header">
-        <p class="label">Konfigurator</p>
-        <h2>Ile tracisz miesięcznie<br/>na złym modelu?</h2>
-        <p>Zaznacz objawy, które rozpoznajesz w swoim sklepie — zobaczysz szacowaną stratę i plan pierwszego sprintu.</p>
-      </div>
+  <div id="paths"></div>
+
+  <!-- CONFIGURATOR MODAL -->
+  <div class="cfg-modal-overlay" id="cfgModalOverlay" role="dialog" aria-modal="true" aria-label="Konfigurator">
+    <div class="cfg-modal">
+      <button class="cfg-modal__close" id="cfgModalClose" aria-label="Zamknij">✕</button>
+      <p class="label" style="color:var(--blue-400);font-size:11px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;margin-bottom:10px">Konfigurator</p>
+      <h2 class="cfg-modal__title">Ile tracisz miesięcznie<br/>na złym modelu?</h2>
+      <p class="cfg-modal__sub">Zaznacz objawy, które rozpoznajesz w swoim sklepie — zobaczysz szacowaną stratę i plan pierwszego sprintu.</p>
 
       <div class="cfg-layout">
 
@@ -2742,7 +2788,8 @@
 
       </div>
     </div>
-  </section>
+    </div>
+  </div>
 
 
   <!-- ================================
@@ -3046,6 +3093,28 @@
       setTimeout(() => cta.classList.add('visible'), 80 + weeks.length * 160 + 80);
       setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
     }
+
+    // Configurator modal
+    (function () {
+      const overlay = document.getElementById('cfgModalOverlay');
+      const closeBtn = document.getElementById('cfgModalClose');
+      if (!overlay) return;
+
+      function openModal(e) {
+        if (e) e.preventDefault();
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.cfg-modal-trigger').forEach(el => el.addEventListener('click', openModal));
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+    })();
 
     function initConfigurator() {
       const symptoms = document.querySelectorAll('.cfg-symptom');
