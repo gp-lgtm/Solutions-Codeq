@@ -1677,50 +1677,6 @@
       .cfg-panel { position: static; }
     }
 
-    /* === CONFIGURATOR MODAL === */
-    .cfg-modal-overlay {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(8,12,40,.88);
-      backdrop-filter: blur(10px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
-      opacity: 0; pointer-events: none;
-      transition: opacity .25s;
-    }
-    .cfg-modal-overlay.open { opacity: 1; pointer-events: all; }
-    .cfg-modal {
-      background: #0f1633;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 24px;
-      width: 100%; max-width: 960px;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      padding: 44px 48px 48px;
-      transform: translateY(22px) scale(.98);
-      transition: transform .32s var(--ease-out);
-    }
-    .cfg-modal-overlay.open .cfg-modal { transform: translateY(0) scale(1); }
-    .cfg-modal__close {
-      position: absolute; top: 18px; right: 18px;
-      width: 36px; height: 36px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: rgba(255,255,255,.65);
-      font-size: 17px; line-height: 1;
-      transition: background .2s;
-    }
-    .cfg-modal__close:hover { background: rgba(255,255,255,.14); color: #fff; }
-    .cfg-modal__title { font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -.025em; margin-bottom: 8px; }
-    .cfg-modal__sub { font-size: 15px; color: rgba(255,255,255,.5); margin-bottom: 32px; line-height: 1.55; }
-    .cfg-modal .cfg-panel { position: sticky; top: 16px; }
-    @media (max-width: 700px) {
-      .cfg-modal { padding: 32px 20px 36px; }
-      .cfg-modal .cfg-panel { position: static; }
-    }
-
     /* === 6. PROCESS === */
     .process { background: var(--brand-dark); }
     .process-visual {
@@ -1904,7 +1860,7 @@
         <div class="nav__links">
           <a href="#problem">Problem</a>
           <a href="#squad">Zespół</a>
-          <a href="#" class="cfg-modal-trigger">Ścieżki</a>
+          <a href="konfigurator.html">Ścieżki</a>
           <a href="#pricing">Cennik</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -1965,7 +1921,7 @@
                 </div>
                 <span class="cta-preview__text">Odpowiedz na 5 pytań, a otrzymasz symulację Roadmapy wzrostu dopasowaną do Twojego sklepu.</span>
               </div>
-              <a href="#" class="btn btn--outline-white btn--lg cfg-modal-trigger">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
+              <a href="konfigurator.html" class="btn btn--outline-white btn--lg">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
             </div>
           </div>
 
@@ -2654,142 +2610,6 @@
   <div id="paths"></div>
 
   <!-- CONFIGURATOR MODAL -->
-  <div class="cfg-modal-overlay" id="cfgModalOverlay" role="dialog" aria-modal="true" aria-label="Konfigurator">
-    <div class="cfg-modal">
-      <button class="cfg-modal__close" id="cfgModalClose" aria-label="Zamknij">✕</button>
-      <p class="label" style="color:var(--blue-400);font-size:11px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;margin-bottom:10px">Konfigurator</p>
-      <h2 class="cfg-modal__title">Ile tracisz miesięcznie<br/>na złym modelu?</h2>
-      <p class="cfg-modal__sub">Zaznacz objawy, które rozpoznajesz w swoim sklepie — zobaczysz szacowaną stratę i plan pierwszego sprintu.</p>
-
-      <div class="cfg-layout">
-
-        <div class="cfg-left">
-          <div class="cfg-symptoms">
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="2500">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">💸</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span>
-                <span class="cfg-symptom__cost">−2 500 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="tech" data-roi="4200">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🐌</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Sklep sypie błędami lub działa wolno — tracę sprzedaż</span>
-                <span class="cfg-symptom__cost">−4 200 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="conversion" data-roi="6000">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">📉</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Mam ruch, ale konwersja nie rośnie od miesięcy</span>
-                <span class="cfg-symptom__cost">−6 000 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="1800">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">📞</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Nie mam jednego stałego punktu kontaktu do IT</span>
-                <span class="cfg-symptom__cost">−1 800 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="b2b" data-roi="4500">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🤝</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Sprzedaję do firm B2B i tonę w mailach i ręcznych wycenach</span>
-                <span class="cfg-symptom__cost">−4 500 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="2000">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🔁</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span>
-                <span class="cfg-symptom__cost">−2 000 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="marketing" data-roi="2200">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">📣</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Marketing nie może sam edytować strony bez developera</span>
-                <span class="cfg-symptom__cost">−2 200 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="3000">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🔥</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Gaszę pożary zamiast realizować strategię wzrostu</span>
-                <span class="cfg-symptom__cost">−3 000 PLN / mies</span>
-              </span>
-            </label>
-
-          </div>
-        </div>
-
-        <div class="cfg-right">
-          <div class="cfg-panel" id="cfgPanel">
-
-            <div class="cfg-idle" id="cfgIdle">
-              <span class="cfg-idle-icon">☝️</span>
-              Zaznacz objawy, które rozpoznajesz u siebie — zobaczysz szacowaną stratę i gotowy plan pierwszego sprintu.
-            </div>
-
-            <div class="cfg-active" id="cfgActive">
-
-              <div class="cfg-roi">
-                <span class="cfg-roi__label">Szacowana strata miesięcznie</span>
-                <span class="cfg-roi__amount" id="cfgRoiAmount">0 PLN</span>
-                <div class="cfg-roi__meter"><div class="cfg-roi__fill" id="cfgRoiFill" style="width:0%"></div></div>
-              </div>
-
-              <div class="cfg-rec">
-                <span class="cfg-rec__label">Rekomendacja</span>
-                <span class="cfg-rec__pkg" id="cfgRecPkg"></span>
-                <p class="cfg-rec__desc" id="cfgRecDesc"></p>
-              </div>
-
-              <div class="cfg-sprint" id="cfgSprintBlock" style="display:none">
-                <span class="cfg-sprint__label">Twój pierwszy sprint</span>
-                <p class="cfg-sprint__name" id="cfgSprintName"></p>
-                <div class="cfg-sprint__weeks" id="cfgSprintWeeks"></div>
-                <div class="cfg-sprint__kpis" id="cfgSprintKpis"></div>
-              </div>
-
-              <div class="cfg-cta" id="cfgCta" style="display:none">
-                <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    </div>
-  </div>
 
 
   <!-- ================================
@@ -3093,28 +2913,6 @@
       setTimeout(() => cta.classList.add('visible'), 80 + weeks.length * 160 + 80);
       setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
     }
-
-    // Configurator modal
-    (function () {
-      const overlay = document.getElementById('cfgModalOverlay');
-      const closeBtn = document.getElementById('cfgModalClose');
-      if (!overlay) return;
-
-      function openModal(e) {
-        if (e) e.preventDefault();
-        overlay.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeModal() {
-        overlay.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-
-      document.querySelectorAll('.cfg-modal-trigger').forEach(el => el.addEventListener('click', openModal));
-      closeBtn.addEventListener('click', closeModal);
-      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
-    })();
 
     function initConfigurator() {
       const symptoms = document.querySelectorAll('.cfg-symptom');

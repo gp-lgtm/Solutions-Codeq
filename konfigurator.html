@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konfigurator — Codeq Care</title>
+  <link rel="stylesheet" href="Codeq Design System/colors_and_type.css" />
+  <style>
+    /* === BLUE SCALE === */
+    :root {
+      --b50:  #f4f6ff;
+      --b100: #e6ebff;
+      --b200: #cdd6fd;
+      --b300: #a9bafc;
+      --b400: #7e96f9;
+      --b500: #5570f6;
+      --b600: #3350f6;
+      --b700: #1F3FF9;
+      --b800: #1935e0;
+      --b900: #1528b8;
+      --b950: #132EF8;
+      --brand-dark: #1528b8;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+    a { text-decoration: none; color: inherit; }
+
+    /* === BASE === */
+    body {
+      background: #0d1230;
+      color: #fff;
+      min-height: 100vh;
+      font-family: var(--font-body);
+    }
+
+    .label {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--b400);
+    }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 var(--space-5); }
+
+    /* === BUTTONS === */
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: 14px 28px; border-radius: var(--radius-pill);
+      font-family: var(--font-display); font-weight: var(--fw-semibold);
+      font-size: 15px; letter-spacing: var(--tracking-hero);
+      cursor: pointer; border: 1.5px solid transparent;
+      transition: all var(--dur-base) var(--ease-out);
+      white-space: nowrap; text-decoration: none;
+    }
+    .btn--primary {
+      background: var(--codeq-blue); color: #fff; border-color: var(--codeq-blue);
+    }
+    .btn--primary:hover {
+      background: var(--codeq-blue-deep); border-color: var(--codeq-blue-deep);
+      box-shadow: var(--shadow-glow-blue); transform: translateY(-1px);
+    }
+    .btn--outline-white {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,.5);
+    }
+    .btn--outline-white:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+    .btn--lg { padding: 16px 32px; font-size: 15px; }
+
+    /* === NAV === */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: transparent;
+      transition: background var(--dur-base), backdrop-filter var(--dur-base), box-shadow var(--dur-base);
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,.8);
+      backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: 0 1px 0 rgba(0,0,0,.08), inset 0 -1px 0 rgba(255,255,255,.4);
+    }
+    .nav.scrolled .nav__logo svg path { fill: #2548FA; }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between; height: 76px;
+    }
+    .nav__logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .nav__links {
+      display: flex; gap: var(--space-7); align-items: center;
+      margin-left: auto; margin-right: var(--space-6);
+    }
+    .nav__links a {
+      font-size: 15px; font-weight: var(--fw-medium);
+      color: rgba(255,255,255,.82); transition: color var(--dur-fast);
+      text-decoration: none; letter-spacing: -0.01em;
+    }
+    .nav__links a:hover, .nav__links a.active { color: #fff; }
+    .nav.scrolled .nav__links a { color: rgba(15,20,60,.62); }
+    .nav.scrolled .nav__links a:hover, .nav.scrolled .nav__links a.active { color: rgb(15,20,60); }
+    .nav__cta { display: flex; gap: var(--space-3); align-items: center; }
+    .btn--nav {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,.75); border-radius: 6px;
+      padding: 10px 22px; font-family: var(--font-display); font-size: 15px;
+      font-weight: var(--fw-semibold); letter-spacing: -0.01em;
+      cursor: pointer; text-decoration: none;
+      transition: border-color var(--dur-fast), color var(--dur-fast);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn--nav::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,.12); transform: translateX(-100%);
+      transition: transform .3s ease;
+    }
+    .btn--nav:hover::before { transform: translateX(0); }
+    .btn--nav:hover { border-color: #fff; color: #fff; }
+    .nav.scrolled .btn--nav { color: rgba(20,48,220,1); border-color: rgba(20,48,220,.45); }
+    .nav.scrolled .btn--nav:hover { border-color: rgba(20,48,220,1); color: rgba(20,48,220,1); }
+    @media (max-width: 768px) { .nav__links { display: none; } }
+
+    /* === PAGE HEADER === */
+    .cfg-page-header {
+      padding: 140px 0 64px;
+      text-align: center;
+    }
+    .cfg-page-header .label { margin-bottom: 16px; display: block; }
+    .cfg-page-header h1 {
+      font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+      color: #fff; margin-bottom: 18px;
+    }
+    .cfg-page-header p {
+      font-size: 17px; color: rgba(255,255,255,.55);
+      max-width: 520px; margin: 0 auto; line-height: 1.6;
+    }
+
+    /* === CONFIGURATOR === */
+    .cfg-wrap { padding: 0 0 96px; }
+
+    .cfg-layout {
+      display: grid; grid-template-columns: 5fr 4fr; gap: 40px; align-items: start;
+    }
+    .cfg-symptoms { display: flex; flex-direction: column; gap: 10px; }
+
+    .cfg-symptom {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; cursor: pointer;
+      transition: background .2s, border-color .2s; user-select: none;
+    }
+    .cfg-symptom:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .cfg-symptom.is-checked { background: rgba(37,72,250,.15); border-color: rgba(37,72,250,.55); }
+
+    .cfg-symptom__check {
+      flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px;
+      border: 1.5px solid rgba(255,255,255,.3); border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+    .cfg-symptom.is-checked .cfg-symptom__check { background: #2548FA; border-color: #2548FA; }
+    .cfg-symptom__check-icon {
+      width: 10px; height: 6px;
+      border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+      opacity: 0; transition: opacity .15s;
+    }
+    .cfg-symptom.is-checked .cfg-symptom__check-icon { opacity: 1; }
+
+    .cfg-symptom__icon { font-size: 1.2rem; line-height: 1.5; }
+    .cfg-symptom__body { flex: 1; }
+    .cfg-symptom__text { font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.82); line-height: 1.45; display: block; }
+    .cfg-symptom__cost {
+      font-size: 12px; font-weight: 700; color: #f87171; margin-top: 4px; display: block;
+      opacity: 0; transform: translateY(-4px); transition: opacity .2s, transform .2s;
+    }
+    .cfg-symptom.is-checked .cfg-symptom__cost { opacity: 1; transform: translateY(0); }
+
+    .cfg-panel {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px; overflow: hidden; position: sticky; top: 96px;
+    }
+    .cfg-idle {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 48px 28px; min-height: 320px;
+      color: rgba(255,255,255,.38); font-size: 15px; line-height: 1.6;
+    }
+    .cfg-idle-icon { font-size: 2.2rem; display: block; margin-bottom: 14px; }
+
+    .cfg-active { display: none; }
+    .cfg-active.visible { display: block; }
+
+    .cfg-roi { padding: 22px 26px 18px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .cfg-roi__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4); display: block;
+    }
+    .cfg-roi__amount {
+      display: block; font-size: 34px; font-weight: 800;
+      color: #f87171; letter-spacing: -0.02em; line-height: 1.1;
+      margin: 6px 0 14px; font-variant-numeric: tabular-nums;
+    }
+    .cfg-roi__meter { height: 4px; background: rgba(255,255,255,.1); border-radius: 2px; }
+    .cfg-roi__fill {
+      height: 100%; background: linear-gradient(90deg, #f87171, #ef4444);
+      border-radius: 2px; transition: width .45s ease;
+    }
+
+    .cfg-rec { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .cfg-rec__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4); display: block; margin-bottom: 10px;
+    }
+    .cfg-rec__pkg {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      padding: 4px 12px; border-radius: 6px; margin-bottom: 9px;
+    }
+    .cfg-rec__pkg.stability { background: rgba(99,163,255,.15); color: #93c5fd; }
+    .cfg-rec__pkg.growth { background: rgba(52,211,153,.12); color: #6ee7b7; }
+    .cfg-rec__desc { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.55; margin: 0; }
+
+    .cfg-sprint { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,.09); }
+    .cfg-sprint__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.4); display: block; margin-bottom: 8px;
+    }
+    .cfg-sprint__name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .cfg-sprint__weeks { display: flex; gap: 6px; margin-bottom: 12px; }
+    .cfg-sprint__week {
+      flex: 1; padding: 10px 10px 8px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 10px;
+    }
+    .cfg-sprint__week-period {
+      font-size: 10px; color: rgba(255,255,255,.38); font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 4px;
+    }
+    .cfg-sprint__week-title { font-size: 12.5px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .cfg-sprint__kpis { display: flex; flex-direction: column; gap: 5px; }
+    .cfg-sprint__kpi { font-size: 12.5px; color: #6ee7b7; display: flex; align-items: baseline; gap: 6px; }
+    .cfg-sprint__kpi::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+
+    .cfg-cta { padding: 16px 26px 22px; }
+    .cfg-cta .btn { width: 100%; text-align: center; display: block; }
+
+    @media (max-width: 960px) {
+      .cfg-layout { grid-template-columns: 1fr; }
+      .cfg-panel { position: static; }
+    }
+    @media (max-width: 640px) {
+      .cfg-page-header { padding: 110px 0 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="nav__logo" href="index.html" aria-label="Codeq Care">
+          <svg width="122" height="41" viewBox="0 0 122 41" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:30px;width:auto;display:block"><g clip-path="url(#nv_clip)"><path d="M42.6948 18.45V34.0563C42.6259 34.0219 42.5227 33.9875 42.4194 33.9188C42.4194 33.9188 42.385 33.9188 42.3506 33.8844C42.2474 33.85 42.1097 33.7813 42.0065 33.7469C41.8688 33.7125 41.7655 33.6781 41.6279 33.6094C41.4902 33.575 41.387 33.5406 41.2493 33.5062C41.1116 33.4719 41.0084 33.4375 40.8707 33.4375H40.8363C40.7331 33.4375 40.6298 33.4031 40.4922 33.4031H40.4578C40.3545 33.4031 40.2168 33.3688 40.1136 33.3688H40.0792C39.9759 33.3688 39.8383 33.3688 39.7006 33.3688H34.5383V20.0312C34.5383 19.9281 34.5383 19.8594 34.5383 19.7906C34.5383 19.6187 34.5383 19.4469 34.5039 19.3094C34.5039 19.1375 34.4694 19 34.4694 18.8281C34.4694 18.6906 34.435 18.5531 34.435 18.45C34.435 18.3812 34.4006 18.3469 34.4006 18.2781C34.4006 18.2094 34.4006 18.175 34.3662 18.1406C34.3662 18.0719 34.3318 17.9688 34.3318 17.8656C34.2629 17.5563 34.1941 17.2813 34.1253 17.0063C34.0909 16.9031 34.0565 16.8 34.022 16.6969C34.022 16.6625 33.9876 16.6281 33.9876 16.5938C33.9532 16.525 33.9188 16.4219 33.8844 16.3531C33.8155 16.1812 33.7467 16.0094 33.6779 15.8375C33.6435 15.7344 33.5746 15.6312 33.5402 15.5281C33.4714 15.3906 33.4026 15.2531 33.3337 15.1156C33.2649 15.0125 33.2305 14.9094 33.1616 14.8406C33.0928 14.7375 33.024 14.6344 32.9552 14.5312C32.6454 14.0844 32.3013 13.6719 31.9227 13.2937C31.8539 13.225 31.7506 13.1219 31.6818 13.0531L31.5441 12.95C31.4065 12.8469 31.3032 12.7438 31.1655 12.6406C31.0623 12.5719 30.9591 12.5031 30.8902 12.4C30.8214 12.3313 30.7526 12.2969 30.6837 12.2625C30.5805 12.1937 30.4428 12.0906 30.3396 12.0219C30.2707 11.9875 30.2019 11.9188 30.1331 11.8844C29.7889 11.6438 29.4103 11.4375 29.0662 11.2656C28.9629 11.2312 28.8941 11.1625 28.7909 11.1281C28.5155 10.9906 28.2402 10.8531 27.9649 10.75C27.8616 10.7156 27.7928 10.6812 27.6896 10.6469C26.1753 10.0281 24.661 9.68437 23.3532 9.44375C23.2844 9.40937 23.1811 9.375 23.1123 9.375C23.0435 9.375 22.9402 9.34063 22.8714 9.34063C22.8026 9.34063 22.6993 9.30625 22.6305 9.30625C22.5616 9.30625 22.5272 9.27188 22.4584 9.27188C22.2175 9.2375 21.9766 9.20312 21.7701 9.20312C21.6324 9.20312 21.4948 9.16875 21.3915 9.16875C21.2539 9.16875 21.1506 9.13437 21.0474 9.13437C22.5272 8.4125 24.1448 8 25.8311 8H32.5078C35.0201 8.10313 37.2915 9.03125 39.0467 10.5438C39.15 10.6125 39.2188 10.7156 39.322 10.7844C41.4214 12.7094 42.6948 15.4594 42.6948 18.45Z" fill="white"/><path d="M32.9891 16.0779C33.058 16.1811 33.0924 16.3186 33.1268 16.4217C32.232 15.4936 30.993 14.9436 29.6164 14.9436H28.2742C27.0008 15.0123 25.8307 15.4936 24.9703 16.3186L24.9359 16.3529C23.9034 17.2467 23.2495 18.5529 23.2495 20.0311V28.9686C23.2495 30.3092 23.8346 31.5811 24.7638 32.4748C24.5229 32.4061 24.3164 32.3029 24.0755 32.1998C24.0067 32.1654 23.9034 32.1311 23.8346 32.0967C23.7658 32.0623 23.6625 32.0279 23.5937 31.9936C23.4904 31.9592 23.3872 31.8904 23.2495 31.8561C23.043 31.7529 22.8021 31.6498 22.5612 31.5123C22.4924 31.4779 22.4236 31.4436 22.3203 31.3748C22.2171 31.3061 22.1138 31.2373 21.9762 31.1686C21.8385 31.0998 21.7008 30.9967 21.5632 30.9279C21.4599 30.8592 21.3567 30.7904 21.2878 30.7561C21.219 30.7217 21.1502 30.6529 21.0814 30.6186C20.5651 30.2748 20.0833 29.8967 19.6015 29.4498C19.4982 29.3467 19.395 29.2779 19.2917 29.1748C19.1197 29.0029 18.982 28.8654 18.8099 28.6936C18.6378 28.5217 18.5002 28.3498 18.3281 28.1436C18.1904 27.9717 18.0528 27.7998 17.9151 27.6279C17.743 27.4217 17.6054 27.2154 17.4677 26.9748C17.4333 26.9061 17.3645 26.8373 17.3301 26.7686C17.0203 26.2529 16.745 25.7373 16.4697 25.1529C16.332 24.8779 16.2288 24.5686 16.1255 24.2592C16.0911 24.1561 16.0567 24.0529 16.0223 23.9498C15.9878 23.8467 15.9534 23.7436 15.919 23.6404C15.8846 23.5373 15.8502 23.4342 15.8158 23.3311C15.6781 22.9186 15.5749 22.4717 15.506 22.0248C15.4716 21.8873 15.4716 21.7498 15.4372 21.6123C15.4028 21.3717 15.3684 21.1311 15.334 20.8904C15.2995 20.6498 15.2651 20.3748 15.2651 20.1342C15.2651 19.9967 15.2307 19.8592 15.2307 19.7217C15.2307 19.5842 15.1963 19.4467 15.1963 19.3092C15.1963 19.2061 15.1963 19.1029 15.1963 18.9998C15.1963 18.8279 15.1963 18.6904 15.1963 18.5186V18.4842C15.2651 14.9436 17.0203 11.6779 19.9801 9.75293C20.0145 9.75293 20.0489 9.75293 20.0489 9.75293C20.1177 9.75293 20.2554 9.75293 20.3586 9.75293C20.393 9.75293 20.4275 9.75293 20.4963 9.75293C20.5651 9.75293 20.5995 9.75293 20.634 9.75293C20.7028 9.75293 20.7372 9.75293 20.806 9.75293C21.3223 9.7873 22.045 9.85605 22.8365 9.99355C22.9742 10.0623 23.0775 10.0623 23.1807 10.0623C23.284 10.0623 23.3872 10.0967 23.5249 10.1311C23.6625 10.1654 23.8002 10.1998 23.9378 10.1998C24.3852 10.3029 24.8327 10.4061 25.2801 10.5092C25.4521 10.5436 25.6242 10.6123 25.7963 10.6467C26.2437 10.7842 26.7255 10.9561 27.2073 11.1279C27.3106 11.1623 27.4138 11.1967 27.5171 11.2654C27.6203 11.2998 27.7236 11.3686 27.8268 11.4029C28.1365 11.5404 28.4807 11.7123 28.7904 11.8842C28.8937 11.9186 28.9969 11.9873 29.1002 12.0561C29.2034 12.1248 29.3067 12.1592 29.4099 12.2279C29.9262 12.5373 30.408 12.8811 30.8898 13.2936C30.9242 13.3279 30.9586 13.3623 31.0275 13.3967C31.0963 13.4654 31.1651 13.5342 31.2684 13.6029C31.4404 13.7748 31.6469 13.9811 31.819 14.1873C31.9911 14.3936 32.1632 14.5998 32.3352 14.8404C32.4041 14.9092 32.4385 14.9779 32.4729 15.0811C32.6106 15.2873 32.7482 15.4936 32.8515 15.7342C32.8859 15.8717 32.9547 15.9748 32.9891 16.0779Z" fill="white"/><path d="M48.0293 41H25.8656C20.1526 41 15.4033 36.3594 15.2656 30.6875V23.8125C15.3345 24.0188 15.4033 24.225 15.4721 24.3969C15.5065 24.5 15.5409 24.6031 15.5754 24.7062C15.7474 25.1187 15.8851 25.4969 16.0916 25.8406C16.1604 25.9781 16.2293 26.1156 16.2981 26.2531C16.3669 26.425 16.4702 26.5625 16.5734 26.7344C16.6422 26.8375 16.6767 26.9406 16.7455 27.0438C16.7799 27.1125 16.8143 27.1813 16.8832 27.25C16.952 27.3531 17.0208 27.4219 17.0552 27.525C17.2961 27.9031 17.5715 28.2469 17.8468 28.5563C17.9845 28.7281 18.1221 28.8656 18.2598 29.0031C18.5351 29.2781 18.776 29.5531 19.0513 29.7938C19.0858 29.8281 19.1202 29.8625 19.1546 29.8625C19.189 29.8969 19.2578 29.9656 19.3267 30C19.3611 30.0344 19.3611 30.0344 19.3955 30.0688C19.4299 30.1031 19.4299 30.1031 19.4643 30.1375C19.5332 30.2063 19.6364 30.275 19.7397 30.3438C19.9117 30.4813 20.0838 30.6188 20.2559 30.7563C20.3591 30.825 20.428 30.8938 20.5312 30.9625C20.9786 31.2719 21.426 31.5813 21.839 31.8219C21.9078 31.8563 22.0111 31.925 22.0799 31.9594C22.1832 32.0281 22.3208 32.0969 22.4241 32.1313C22.5617 32.2 22.665 32.2688 22.8026 32.3031C22.9059 32.3719 23.0435 32.4063 23.1812 32.475C23.25 32.5094 23.3189 32.5438 23.3877 32.5781C23.5254 32.6469 23.6286 32.6813 23.7319 32.75C23.8695 32.8188 24.0072 32.8531 24.1448 32.9219C24.2825 32.9906 24.4202 33.025 24.5578 33.0938C24.6611 33.1281 24.7987 33.1625 24.902 33.2313C24.9364 33.2313 24.9364 33.2313 24.9708 33.2313C25.1773 33.3 25.3494 33.3688 25.5559 33.4375C25.6247 33.4719 25.728 33.4719 25.7968 33.5063C26.1065 33.6094 26.3819 33.6781 26.6572 33.7469C26.8293 33.7813 27.0013 33.8156 27.1734 33.85C27.1734 33.85 27.1734 33.85 27.2078 33.85C27.5864 33.9531 27.965 34.0219 28.3435 34.0563C28.55 34.0563 29.4104 34.0563 33.9189 34.0563H39.8728C40.9741 34.0563 42.0409 34.3656 43.039 34.95C43.5896 35.2594 44.1059 35.6719 44.5877 36.0844C44.6221 36.1188 44.6565 36.1188 44.6565 36.1531C46.4117 37.9063 47.5819 40.1063 48.0293 41Z" fill="white"/><path d="M63.7229 28.1777L63.4476 27.9027C63.3788 27.834 63.2755 27.834 63.1723 27.9371C62.1742 28.7621 61.0729 29.3465 59.6275 29.3465C56.7021 29.3465 54.3963 26.9746 54.3963 24.0871C54.3963 21.1996 56.7021 18.7934 59.6275 18.7934C61.0041 18.7934 62.2086 19.309 63.1723 20.1684C63.2755 20.2715 63.3443 20.2715 63.4476 20.1684L63.7229 19.8934C63.7917 19.8246 63.7917 19.6871 63.6885 19.584C62.5872 18.5871 61.3138 18.0371 59.6275 18.0371C56.2891 18.0371 53.5703 20.7184 53.5703 24.0871C53.5703 27.4559 56.2891 30.1027 59.6275 30.1027C61.1073 30.1027 62.5872 29.5871 63.7229 28.4871C63.8262 28.3496 63.8262 28.2121 63.7229 28.1777Z" fill="white"/><path d="M73.428 18.0371C70.0897 18.0371 67.4053 20.7184 67.4053 24.0871C67.4053 27.4559 70.0897 30.1027 73.428 30.1027C76.8007 30.1027 79.4851 27.4559 79.4851 24.0871C79.4851 20.7184 76.8007 18.0371 73.428 18.0371ZM73.428 29.3121C70.5027 29.3121 68.128 26.9746 68.128 24.0527C68.128 21.1309 70.5027 18.759 73.428 18.759C76.3533 18.759 78.728 21.1309 78.728 24.0527C78.728 26.9746 76.3533 29.3121 73.428 29.3121Z" fill="white"/><path d="M87.7796 18.209H84.2348C84.1316 18.209 84.0283 18.3121 84.0283 18.4152V29.6902C84.0283 29.7934 84.1316 29.8965 84.2348 29.8965H87.7796C91.0147 29.8965 93.6647 27.284 93.6647 24.0184C93.6647 20.8215 91.0147 18.209 87.7796 18.209ZM87.642 29.1746H84.8199V18.8965H87.642C90.5673 18.8965 92.8387 21.1309 92.8387 24.0184C92.8387 26.9402 90.5673 29.1746 87.642 29.1746Z" fill="white"/><path d="M105.159 18.8965C105.262 18.8965 105.366 18.7934 105.366 18.6902V18.4152C105.366 18.3121 105.262 18.209 105.159 18.209H98.4482C98.3449 18.209 98.2417 18.3121 98.2417 18.4152V29.6902C98.2417 29.7934 98.3449 29.8965 98.4482 29.8965H105.159C105.262 29.8965 105.366 29.7934 105.366 29.6902V29.4152C105.366 29.3121 105.262 29.209 105.159 29.209H99.0333V24.259H104.333C104.436 24.259 104.54 24.1559 104.54 24.0527V23.7777C104.54 23.6746 104.436 23.5715 104.333 23.5715H99.0333V18.8965H105.159Z" fill="white"/><path d="M121.266 24.0529C121.266 20.7186 118.581 18.0029 115.209 18.0029C111.87 18.0029 109.186 20.6842 109.186 24.0529C109.186 27.4217 111.87 30.0686 115.209 30.0686C115.725 30.0686 116.276 29.9998 116.723 29.8967L118.582 32.9561C118.65 33.0936 118.754 33.1279 118.788 33.1279H119.339C119.476 33.1279 119.511 32.9561 119.442 32.8873L117.446 29.6561C119.717 28.7623 121.266 26.6311 121.266 24.0529ZM115.209 29.3123C112.283 29.3123 109.909 26.9748 109.909 24.0529C109.909 21.1311 112.283 18.7592 115.209 18.7592C118.134 18.7592 120.509 21.1311 120.509 24.0529C120.543 26.9748 118.169 29.3123 115.209 29.3123Z" fill="white"/></g><path d="M11.2106 0C10.3822 0 9.62277 0.262495 8.95336 0.780209C8.31158 1.27655 7.8843 1.90872 7.63274 2.36842C7.38119 1.90869 6.95391 1.27655 6.31213 0.780209C5.64271 0.262495 4.88326 0 4.05489 0C1.74325 0 0 1.8908 0 4.39819C0 7.10704 2.17483 8.96039 5.46722 11.7661C6.02632 12.2426 6.66005 12.7827 7.31873 13.3587C7.40555 13.4347 7.51706 13.4766 7.63274 13.4766C7.74843 13.4766 7.85994 13.4347 7.94676 13.3587C8.6055 12.7826 9.2392 12.2426 9.79862 11.7658C13.0907 8.96039 15.2655 7.10704 15.2655 4.39819C15.2655 1.8908 13.5222 0 11.2106 0Z" fill="white"/><defs><clipPath id="nv_clip"><rect width="106" height="33" fill="white" transform="translate(15.2656 8)"/></clipPath></defs></svg>
+        </a>
+        <div class="nav__links">
+          <a href="index.html#problem">Problem</a>
+          <a href="index.html#squad">Zespół</a>
+          <a href="konfigurator.html" class="active">Ścieżki</a>
+          <a href="index.html#pricing">Cennik</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+        <div class="nav__cta">
+          <a href="mailto:hello@codeq.pl" class="btn--nav">Napisz do nas</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="cfg-page-header">
+    <div class="container">
+      <span class="label">Konfigurator</span>
+      <h1>Ile tracisz miesięcznie<br/>na złym modelu?</h1>
+      <p>Zaznacz objawy, które rozpoznajesz w swoim sklepie — zobaczysz szacowaną stratę i plan pierwszego sprintu.</p>
+    </div>
+  </header>
+
+  <main class="cfg-wrap">
+    <div class="container">
+      <div class="cfg-layout">
+
+        <div class="cfg-left">
+          <div class="cfg-symptoms">
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="2500">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">💸</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span>
+                <span class="cfg-symptom__cost">−2 500 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="tech" data-roi="4200">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🐌</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Sklep sypie błędami lub działa wolno — tracę sprzedaż</span>
+                <span class="cfg-symptom__cost">−4 200 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="conversion" data-roi="6000">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">📉</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Mam ruch, ale konwersja nie rośnie od miesięcy</span>
+                <span class="cfg-symptom__cost">−6 000 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="1800">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">📞</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Nie mam jednego stałego punktu kontaktu do IT</span>
+                <span class="cfg-symptom__cost">−1 800 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="b2b" data-roi="4500">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🤝</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Sprzedaję do firm B2B i tonę w mailach i ręcznych wycenach</span>
+                <span class="cfg-symptom__cost">−4 500 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="2000">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🔁</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span>
+                <span class="cfg-symptom__cost">−2 000 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="marketing" data-roi="2200">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">📣</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Marketing nie może sam edytować strony bez developera</span>
+                <span class="cfg-symptom__cost">−2 200 PLN / mies</span>
+              </span>
+            </label>
+
+            <label class="cfg-symptom" data-scenario="model" data-roi="3000">
+              <input type="checkbox" class="cfg-input" hidden>
+              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
+              <span class="cfg-symptom__icon">🔥</span>
+              <span class="cfg-symptom__body">
+                <span class="cfg-symptom__text">Gaszę pożary zamiast realizować strategię wzrostu</span>
+                <span class="cfg-symptom__cost">−3 000 PLN / mies</span>
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+        <div class="cfg-right">
+          <div class="cfg-panel" id="cfgPanel">
+
+            <div class="cfg-idle" id="cfgIdle">
+              <span class="cfg-idle-icon">☝️</span>
+              Zaznacz objawy, które rozpoznajesz u siebie — zobaczysz szacowaną stratę i gotowy plan pierwszego sprintu.
+            </div>
+
+            <div class="cfg-active" id="cfgActive">
+
+              <div class="cfg-roi">
+                <span class="cfg-roi__label">Szacowana strata miesięcznie</span>
+                <span class="cfg-roi__amount" id="cfgRoiAmount">0 PLN</span>
+                <div class="cfg-roi__meter"><div class="cfg-roi__fill" id="cfgRoiFill" style="width:0%"></div></div>
+              </div>
+
+              <div class="cfg-rec">
+                <span class="cfg-rec__label">Rekomendacja</span>
+                <span class="cfg-rec__pkg" id="cfgRecPkg"></span>
+                <p class="cfg-rec__desc" id="cfgRecDesc"></p>
+              </div>
+
+              <div class="cfg-sprint" id="cfgSprintBlock" style="display:none">
+                <span class="cfg-sprint__label">Twój pierwszy sprint</span>
+                <p class="cfg-sprint__name" id="cfgSprintName"></p>
+                <div class="cfg-sprint__weeks" id="cfgSprintWeeks"></div>
+                <div class="cfg-sprint__kpis" id="cfgSprintKpis"></div>
+              </div>
+
+              <div class="cfg-cta" id="cfgCta" style="display:none">
+                <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Sprint data
+    const SS_DATA = {
+      tech: {
+        name: 'Optymalizacja Techniczna',
+        pkg: 'Pakiet Stability', pkgClass: 'stability', price: '3 200 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Audyt', tasks: ['Plan & Kickoff — zakres prac, priorytety', 'Audyt techniczny: Core Web Vitals, logi błędów', 'Weryfikacja bezpieczeństwa i długu technicznego'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie', tasks: ['Pełny update silnika i wtyczek (Test & Deploy)', 'Optymalizacja bazy danych i kompresja grafik', 'Konfiguracja cache i zabezpieczeń'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Deploy na produkcję po testach staging', 'Raport PageSpeed przed i po', 'Plan Sprint 2 z backlogu'] }
+        ],
+        kpi: ['PageSpeed Mobile ≥ 90 (strefa Green)', 'Uptime 99.9% dostępności sklepu', 'Zero krytycznych podatności wtyczek']
+      },
+      conversion: {
+        name: 'Revenue Booster',
+        pkg: 'Pakiet Growth', pkgClass: 'growth', price: '6 400 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Roadmapa', tasks: ['Warsztat strategiczny — cel sprintu', 'Audyt UX: ścieżka zakupowa i koszyk', 'Sprint Goal: Redesign Karty Produktu'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev/UX', tasks: ['Redesign Karty Produktu (Mobile First UX)', 'One-Step / Express Checkout', 'Silnik Cross-selling ("Kup razem")'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Deploy na produkcję, testy A/B', 'Raport CR i porzuconych koszyków', 'Backlog i cel Sprint 2'] }
+        ],
+        kpi: ['Conversion Rate wzrost o min. 0,2–0,5 pp.', 'AOV (Średni Koszyk): +10–15%', 'Wyraźny spadek porzuconych koszyków']
+      },
+      b2b: {
+        name: 'B2B Ecosystem Builder',
+        pkg: 'Pakiet Growth', pkgClass: 'growth', price: '6 400 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Analiza', tasks: ['Kickoff — mapowanie procesu zamówień B2B', 'Analiza flow: od zapytania do faktury', 'Sprint Goal: Tiered Pricing + Generator Ofert'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev', tasks: ['Tiered Pricing — ceny hurtowe po zalogowaniu', 'Generator Ofert PDF dla klienta końcowego', 'Quick Order — zamówienia hurtowe w 2 klikach'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Panel Klienta MVP (faktury, historia)', 'Deploy i testy z klientami B2B', 'Plan Sprint 2 (powtarzanie zamówień)'] }
+        ],
+        kpi: ['−40% zapytań do handlowców (oszczędność czasu)', 'Self-service: klienci zamawiają sami 24/7', 'Wzrost powracalności partnerów B2B']
+      },
+      marketing: {
+        name: 'Wsparcie Marketingu',
+        pkg: 'Pakiet Stability', pkgClass: 'stability', price: '3 200 PLN / mies',
+        weeks: [
+          { period: 'Tydzień 1', title: 'Kickoff & Audyt CMS', tasks: ['Kickoff — mapa sekcji edytowalnych', 'Audyt struktury treści i bloga', 'Sprint Goal: edytowalne banery + blog SEO'] },
+          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev/UX', tasks: ['Szablony sekcji edytowalnych (bez kodu)', 'Optymalizacja wpisów blogowych pod SEO', 'Sekcja Zespół / O nas, szablony grafik'] },
+          { period: 'Tydzień 4', title: 'Odbiór & Szkolenie', tasks: ['Deploy + szkolenie zespołu marketingowego', 'Raport SEO Health (audyt treści)', 'Backlog i plan Sprint 2'] }
+        ],
+        kpi: ['SEO Health: Audyt treści ≥ 90/100 pkt', '100% kluczowych treści edytowalnych bez kodu', 'Marketing publikuje samodzielnie w 24h']
+      }
+    };
+
+    // Configurator logic
+    (function () {
+      const symptoms    = document.querySelectorAll('.cfg-symptom');
+      if (!symptoms.length) return;
+      const idle        = document.getElementById('cfgIdle');
+      const active      = document.getElementById('cfgActive');
+      const roiAmount   = document.getElementById('cfgRoiAmount');
+      const roiFill     = document.getElementById('cfgRoiFill');
+      const recPkg      = document.getElementById('cfgRecPkg');
+      const recDesc     = document.getElementById('cfgRecDesc');
+      const sprintBlock = document.getElementById('cfgSprintBlock');
+      const sprintName  = document.getElementById('cfgSprintName');
+      const sprintWeeks = document.getElementById('cfgSprintWeeks');
+      const sprintKpis  = document.getElementById('cfgSprintKpis');
+      const ctaBlock    = document.getElementById('cfgCta');
+
+      const MAX_ROI = 26200;
+      const SCENARIO_PRIORITY = ['conversion', 'tech', 'b2b', 'marketing'];
+      const PKG = {
+        stability: { cls: 'stability', label: 'Pakiet Stability · 3 200 PLN / mies', desc: 'Twój sklep potrzebuje stabilnego zaplecza technicznego i jednego dedykowanego zespołu.' },
+        growth:    { cls: 'growth',    label: 'Pakiet Growth · 6 400 PLN / mies',    desc: 'Twój sklep ma potencjał do skalowania — potrzebujesz Stratega, UX Designera i developera w jednym.' }
+      };
+
+      let currentRoi = 0, rafId = null;
+
+      function animateRoi(target) {
+        if (rafId) cancelAnimationFrame(rafId);
+        const from = currentRoi, t0 = performance.now();
+        function step(now) {
+          const p = Math.min((now - t0) / 550, 1);
+          const e = 1 - Math.pow(1 - p, 3);
+          const v = Math.round(from + (target - from) * e);
+          roiAmount.textContent = v.toLocaleString('pl-PL') + ' PLN';
+          roiFill.style.width = (v / MAX_ROI * 100) + '%';
+          if (p < 1) { rafId = requestAnimationFrame(step); } else { currentRoi = target; rafId = null; }
+        }
+        rafId = requestAnimationFrame(step);
+      }
+
+      function update() {
+        const checked = [...symptoms].filter(s => s.classList.contains('is-checked'));
+        if (!checked.length) {
+          idle.style.display = '';
+          active.classList.remove('visible');
+          animateRoi(0);
+          return;
+        }
+        idle.style.display = 'none';
+        active.classList.add('visible');
+
+        const totalRoi = checked.reduce((sum, s) => sum + parseInt(s.dataset.roi || 0), 0);
+        animateRoi(totalRoi);
+
+        const counts = {};
+        checked.forEach(s => { const sc = s.dataset.scenario; if (sc !== 'model') counts[sc] = (counts[sc] || 0) + 1; });
+        const scenario = SCENARIO_PRIORITY.find(sc => counts[sc]) || null;
+
+        const pkgKey = (scenario === 'conversion' || scenario === 'b2b') ? 'growth' : 'stability';
+        const pkg = PKG[pkgKey];
+        recPkg.textContent = pkg.label;
+        recPkg.className = 'cfg-rec__pkg ' + pkg.cls;
+        recDesc.textContent = pkg.desc;
+
+        if (scenario && SS_DATA[scenario]) {
+          const d = SS_DATA[scenario];
+          sprintBlock.style.display = '';
+          sprintName.textContent = d.name;
+          sprintWeeks.innerHTML = d.weeks.map(w => `<div class="cfg-sprint__week"><span class="cfg-sprint__week-period">${w.period}</span><span class="cfg-sprint__week-title">${w.title}</span></div>`).join('');
+          sprintKpis.innerHTML = d.kpi.map(k => `<span class="cfg-sprint__kpi">${k}</span>`).join('');
+        } else {
+          sprintBlock.style.display = 'none';
+        }
+
+        ctaBlock.style.display = checked.length >= 2 ? '' : 'none';
+      }
+
+      symptoms.forEach(label => {
+        label.addEventListener('click', () => {
+          const input = label.querySelector('.cfg-input');
+          input.checked = !input.checked;
+          label.classList.toggle('is-checked', input.checked);
+          update();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
