@@ -1439,46 +1439,31 @@
     /* === 4b. VIDEO TESTIMONIALS === */
     .video-testimonials { background: #fff; }
 
-    .vt-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .vt-head { position: sticky; top: 120px; }
-    .vt-head .label { color: var(--codeq-blue); }
-    .vt-head h2 { color: var(--ink-900); margin-bottom: 12px; }
-    .vt-head p { color: var(--ink-600); font-size: 16px; line-height: 1.6; }
+    .vt-cards { display: flex; flex-direction: column; gap: 20px; }
 
-    .vt-cards {
+    .vt-card {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
+      grid-template-columns: 240px 1fr;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #e4e8ff;
+      background: #f8f9ff;
+      min-height: 300px;
     }
-    .vt-card { display: flex; flex-direction: column; gap: 20px; }
 
     .vt-video {
       position: relative;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: 0 24px 64px rgba(49,90,251,.12), 0 4px 16px rgba(0,0,0,.08);
       background: var(--ink-900);
-      transition: box-shadow var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
-    }
-    .vt-video:hover {
-      box-shadow: var(--shadow-glow-blue), 0 4px 16px rgba(0,0,0,.1);
-      transform: translateY(-6px);
+      overflow: hidden;
     }
     .vt-video video {
-      width: 100%; display: block;
-      aspect-ratio: 9 / 16; object-fit: cover;
-      border-radius: var(--radius-xl);
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
     .vt-video__placeholder {
-      aspect-ratio: 9 / 16;
+      width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(135deg, var(--ink-900) 0%, #1a2a6c 100%);
+      background: linear-gradient(160deg, var(--ink-900) 0%, #1a2a6c 100%);
       color: rgba(255,255,255,.25);
       font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
       font-weight: var(--fw-semibold);
@@ -1491,9 +1476,8 @@
       pointer-events: none;
     }
     .vt-video__play-btn {
-      width: 56px; height: 56px;
-      background: var(--codeq-blue);
-      border-radius: 50%;
+      width: 52px; height: 52px;
+      background: var(--codeq-blue); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 32px rgba(49,90,251,.5);
       transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
@@ -1503,28 +1487,29 @@
       box-shadow: 0 12px 40px rgba(49,90,251,.65);
     }
 
-    .vt-card__quote blockquote {
-      font-size: 15px; line-height: 1.6; color: var(--ink-800);
-      font-weight: var(--fw-medium); margin: 0 0 14px;
+    .vt-card__body {
+      padding: 36px 40px;
+      display: flex; flex-direction: column; justify-content: center; gap: 20px;
+    }
+    .vt-card__body blockquote {
+      font-size: clamp(16px, 1.4vw, 20px);
+      line-height: 1.55; color: var(--ink-900);
+      font-weight: var(--fw-medium); margin: 0;
       font-style: normal;
     }
     .vt-client { display: flex; align-items: center; gap: 12px; }
     .vt-client__avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--blue-150); flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: var(--blue-150);
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: var(--fw-bold); color: var(--codeq-blue);
+      font-size: 14px; font-weight: var(--fw-bold); color: var(--codeq-blue);
     }
     .vt-client__info strong { display: block; font-size: 14px; color: var(--ink-900); font-weight: var(--fw-semibold); }
-    .vt-client__info span { font-size: 12px; color: var(--ink-500); }
+    .vt-client__info span { font-size: 13px; color: var(--ink-500); }
 
-    @media (max-width: 960px) {
-      .vt-layout { grid-template-columns: 1fr; gap: 40px; }
-      .vt-head { position: static; }
-      .vt-cards { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .vt-cards { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+    @media (max-width: 720px) {
+      .vt-card { grid-template-columns: 1fr; }
+      .vt-video { min-height: 260px; }
     }
 
     /* === 5. CONFIGURATOR === */
@@ -2391,64 +2376,59 @@
   ================================ -->
   <section class="video-testimonials section">
     <div class="container">
-      <div class="vt-layout">
+      <div class="section-header">
+        <p class="label" style="color:var(--codeq-blue)">Opinie klientów</p>
+        <h2 style="color:var(--ink-900)">Nie wierz nam na słowo.</h2>
+        <p style="color:var(--ink-700)">Posłuchaj właścicieli sklepów, którzy przeszli przez Pilotaż i zdecydowali się zostać.</p>
+      </div>
 
-        <!-- Left: sticky header -->
-        <div class="vt-head">
-          <p class="label">Opinie klientów</p>
-          <h2>Nie wierz nam na słowo.</h2>
-          <p>Posłuchaj właścicieli sklepów, którzy przeszli przez Pilotaż i zdecydowali się zostać.</p>
-        </div>
+      <div class="vt-cards">
 
-        <!-- Right: video cards -->
-        <div class="vt-cards">
-
-          <!-- Card 1 -->
-          <div class="vt-card">
-            <div class="vt-video">
-              <video controls playsinline style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;border-radius:var(--radius-xl)">
-                <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/quicktime">
-                <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/mp4">
-              </video>
-            </div>
-            <div class="vt-card__quote">
-              <blockquote>"Wpisz tutaj cytat z opinii klienta 1. Jedno mocne zdanie podsumowujące efekt."</blockquote>
-              <div class="vt-client">
-                <div class="vt-client__avatar">AK</div>
-                <div class="vt-client__info">
-                  <strong>Imię Nazwisko</strong>
-                  <span>Właściciel, NazwaSklepu.pl</span>
-                </div>
+        <!-- Card 1 -->
+        <div class="vt-card">
+          <div class="vt-video">
+            <video controls playsinline>
+              <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/quicktime">
+              <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/mp4">
+            </video>
+          </div>
+          <div class="vt-card__body">
+            <blockquote>"Wpisz tutaj cytat z opinii klienta 1. Jedno mocne zdanie, które podsumowuje efekt współpracy."</blockquote>
+            <div class="vt-client">
+              <div class="vt-client__avatar">AK</div>
+              <div class="vt-client__info">
+                <strong>Imię Nazwisko</strong>
+                <span>Właściciel, NazwaSklepu.pl</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Card 2 -->
-          <div class="vt-card">
-            <div class="vt-video">
-              <div class="vt-video__placeholder">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="m15 10 4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                <span>Wideo klienta 2</span>
-              </div>
-              <div class="vt-video__play">
-                <div class="vt-video__play-btn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-                </div>
-              </div>
+        <!-- Card 2 -->
+        <div class="vt-card">
+          <div class="vt-video">
+            <div class="vt-video__placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="m15 10 4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span>Wideo klienta 2</span>
             </div>
-            <div class="vt-card__quote">
-              <blockquote>"Wpisz tutaj cytat z opinii klienta 2. Jedno mocne zdanie podsumowujące efekt."</blockquote>
-              <div class="vt-client">
-                <div class="vt-client__avatar">MB</div>
-                <div class="vt-client__info">
-                  <strong>Imię Nazwisko</strong>
-                  <span>Właściciel, NazwaSklepu.pl</span>
-                </div>
+            <div class="vt-video__play">
+              <div class="vt-video__play-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
               </div>
             </div>
           </div>
-
+          <div class="vt-card__body">
+            <blockquote>"Wpisz tutaj cytat z opinii klienta 2. Jedno mocne zdanie, które podsumowuje efekt współpracy."</blockquote>
+            <div class="vt-client">
+              <div class="vt-client__avatar">MB</div>
+              <div class="vt-client__info">
+                <strong>Imię Nazwisko</strong>
+                <span>Właściciel, NazwaSklepu.pl</span>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
