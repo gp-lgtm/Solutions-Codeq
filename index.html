@@ -1809,25 +1809,18 @@
     .final-cta p { font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: var(--space-7); max-width: 480px; margin-left: auto; margin-right: auto; }
     .final-cta__btns { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
 
-    .final-cta__team {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0; margin-bottom: var(--space-7);
+    .final-cta__avatars {
+      display: flex; justify-content: center;
+      margin-bottom: var(--space-6);
     }
     .final-cta__av {
-      width: 52px; height: 52px; border-radius: 50%;
-      border: 3px solid rgba(255,255,255,.25);
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2.5px solid rgba(255,255,255,.3);
       object-fit: cover; object-position: top;
-      margin-left: -14px;
-      box-shadow: 0 4px 16px rgba(0,0,0,.25);
-      transition: transform .2s ease;
+      margin-left: -10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }
     .final-cta__av:first-child { margin-left: 0; }
-    .final-cta__av:hover { transform: translateY(-4px) scale(1.08); z-index: 1; }
-    .final-cta__team-label {
-      margin-left: 20px; text-align: left;
-      font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5;
-    }
-    .final-cta__team-label strong { display: block; color: #fff; font-size: 14px; font-weight: 600; }
 
     /* === STICKY CTA BAR === */
     .sticky-bar {
@@ -2610,19 +2603,16 @@
   <section class="final-cta" id="finalCta">
     <div class="container">
       <div class="final-cta__inner">
-        <p class="label label--white" style="margin-bottom:16px">Gotowy na zmianę?</p>
+        <div class="final-cta__avatars">
+          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_1.jpg" alt="">
+          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_2.jpg" alt="">
+          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_3.jpg" alt="">
+          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_4.jpg" alt="">
+          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_5.jpg" alt="">
+          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_6.jpg" alt="">
+        </div>
         <h2>Twój sklep zasługuje<br/>na profesjonalny plan.</h2>
         <p>Dołącz do grona e-commerce'ów, które rosną w trybie ciągłym — z pełnym zespołem ekspertów w abonamencie.</p>
-        <div class="final-cta__team">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_Strateg_1.jpg" alt="Strateg">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_PM_1.jpg" alt="PM">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_Design_1.jpg" alt="Design">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_Developer_1.jpg" alt="Developer">
-          <div class="final-cta__team-label">
-            <strong>4 seniorskie role w pakiecie</strong>
-            Twój zespół gotowy od pierwszego dnia.
-          </div>
-        </div>
         <div class="final-cta__btns">
           <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg">Zacznij Pilotaż →</a>
           <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety</a>
