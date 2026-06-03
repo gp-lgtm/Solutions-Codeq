@@ -1885,6 +1885,132 @@
     }
     .final-cta__av:first-child { margin-left: 0; }
 
+    /* === CONTACT MODAL === */
+    .contact-overlay {
+      position: fixed; inset: 0; z-index: 950;
+      background: rgba(10,15,46,.7); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    .contact-overlay.open { opacity: 1; pointer-events: auto; }
+
+    .contact-modal {
+      background: #fff; border-radius: 24px;
+      max-width: 860px; width: 100%;
+      max-height: 92vh; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative;
+      transform: translateY(20px) scale(.98);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 32px 80px rgba(10,15,46,.3);
+    }
+    .contact-overlay.open .contact-modal { transform: translateY(0) scale(1); }
+
+    .contact-modal__close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.7); font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s ease;
+    }
+    .contact-modal__close:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+    /* Left — dark, objections */
+    .contact-modal__left {
+      background: var(--brand-dark); padding: 48px 40px;
+      display: flex; flex-direction: column; justify-content: center;
+      overflow-y: auto;
+    }
+    .contact-modal__left .label { color: rgba(255,255,255,.45); margin-bottom: 14px; }
+    .contact-modal__left h3 {
+      font-size: clamp(22px, 2.2vw, 28px); font-weight: 800;
+      color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 32px;
+    }
+    .contact-objections { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .contact-objections li {
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .contact-obj__icon {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+      margin-top: 1px;
+    }
+    .contact-obj__text strong { display: block; font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .contact-obj__text span { font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+    /* Right — white, form */
+    .contact-modal__right {
+      padding: 48px 40px; overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+    .contact-avatars { display: flex; margin-bottom: 20px; }
+    .contact-avatars img {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2.5px solid #fff; object-fit: cover; object-position: top;
+      margin-left: -10px; box-shadow: 0 2px 6px rgba(0,0,0,.12);
+    }
+    .contact-avatars img:first-child { margin-left: 0; }
+    .contact-modal__right h3 {
+      font-size: 22px; font-weight: 800; color: #0a0f2e;
+      letter-spacing: -0.025em; margin-bottom: 6px;
+    }
+    .contact-modal__right > p { font-size: 14px; color: #64748b; margin-bottom: 28px; line-height: 1.6; }
+    .contact-modal__right > p a { color: var(--codeq-blue); font-weight: 600; text-decoration: none; }
+    .contact-modal__right > p a:hover { text-decoration: underline; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%; padding: 14px 16px;
+      border: 1.5px solid #e4e8ff; border-radius: 12px;
+      font-size: 14.5px; color: #0a0f2e; background: #f8f9ff;
+      font-family: inherit; outline: none; resize: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--codeq-blue);
+      box-shadow: 0 0 0 3px rgba(31,63,249,.1);
+      background: #fff;
+    }
+    .contact-form textarea { min-height: 110px; }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #94a3b8; }
+
+    .contact-gdpr { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+    .contact-gdpr input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--codeq-blue); }
+    .contact-gdpr span { font-size: 12px; color: #64748b; line-height: 1.5; }
+    .contact-gdpr a { color: var(--codeq-blue); }
+
+    .contact-form .btn--submit {
+      width: 100%; padding: 15px; border-radius: 12px;
+      background: var(--codeq-blue); color: #fff;
+      border: none; font-size: 15px; font-weight: 700;
+      cursor: pointer; letter-spacing: -0.01em;
+      transition: background .18s ease, transform .15s ease;
+    }
+    .contact-form .btn--submit:hover { background: #1535e8; transform: translateY(-1px); }
+
+    .contact-success {
+      display: none; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; gap: 16px; flex: 1;
+    }
+    .contact-success.visible { display: flex; }
+    .contact-form.hidden { display: none; }
+    .contact-success__icon { font-size: 3rem; }
+    .contact-success h4 { font-size: 20px; font-weight: 800; color: #0a0f2e; }
+    .contact-success p { font-size: 14px; color: #64748b; line-height: 1.6; }
+
+    @media (max-width: 700px) {
+      .contact-modal { grid-template-columns: 1fr; max-height: 95vh; }
+      .contact-modal__left { padding: 32px 28px; }
+      .contact-modal__right { padding: 32px 28px; }
+    }
+
     /* === STICKY CTA BAR === */
     .sticky-bar {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
@@ -1930,7 +2056,7 @@
           <a href="#faq">FAQ</a>
         </div>
         <div class="nav__cta">
-          <a href="mailto:hello@codeq.pl" class="btn--nav">Napisz do nas</a>
+          <a href="mailto:hello@codeq.pl" class="btn--nav js-contact">Napisz do nas</a>
         </div>
       </div>
     </div>
@@ -2606,7 +2732,7 @@
             <div class="price-feature"><span class="price-feature__check">✓</span><span>SLA – priorytetowa reakcja na awarie</span></div>
             <div class="price-feature"><span class="price-feature__check">✓</span><span>Dla: sklepów potrzebujących stabilnego zaplecza tech</span></div>
           </div>
-          <a href="mailto:hello@codeq.pl" class="btn btn--outline-blue btn--lg price-card__cta">Wybierz Stability →</a>
+          <a href="mailto:hello@codeq.pl" class="btn btn--outline-blue btn--lg price-card__cta js-contact">Wybierz Stability →</a>
         </div>
 
         <!-- Growth -->
@@ -2628,7 +2754,7 @@
             <div class="price-feature"><span class="price-feature__check">✓</span><span>Kwartalny Przegląd Biznesowy (QBR)</span></div>
             <div class="price-feature"><span class="price-feature__check">✓</span><span>Dla: e-commerce skalujący sprzedaż i automatyzację B2B</span></div>
           </div>
-          <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg price-card__cta">Wybierz Growth →</a>
+          <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg price-card__cta js-contact">Wybierz Growth →</a>
         </div>
 
       </div>
@@ -2732,7 +2858,7 @@
         <h2>Twój sklep zasługuje<br/>na profesjonalny plan.</h2>
         <p>Dołącz do grona e-commerce'ów, które rosną w trybie ciągłym — z pełnym zespołem ekspertów w abonamencie.</p>
         <div class="final-cta__btns">
-          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg">Zacznij Pilotaż →</a>
+          <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg js-contact">Zacznij Pilotaż →</a>
           <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety</a>
         </div>
       </div>
@@ -2745,7 +2871,7 @@
   ================================ -->
   <div class="sticky-bar" id="stickyBar">
     <p class="sticky-bar__text"><strong>Twój sklep zasługuje na profesjonalny plan.</strong> Pierwsze 2 miesiące bez umowy na 6 miesięcy.</p>
-    <a href="mailto:hello@codeq.pl" class="btn btn--primary">Zacznij Pilotaż →</a>
+    <a href="mailto:hello@codeq.pl" class="btn btn--primary js-contact">Zacznij Pilotaż →</a>
   </div>
 
   <!-- ROLE BOTTOM SHEET (mobile) -->
@@ -2759,6 +2885,83 @@
       <span class="role-sheet__title">Strateg</span>
       <span class="role-sheet__desc">...</span>
       <span class="role-sheet__kpi">...</span>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div class="contact-overlay" id="contactOverlay" aria-hidden="true">
+    <div class="contact-modal" role="dialog" aria-modal="true">
+      <button class="contact-modal__close" id="contactClose" aria-label="Zamknij">✕</button>
+
+      <!-- Left: objection busters -->
+      <div class="contact-modal__left">
+        <span class="label">Zacznij Pilotaż</span>
+        <h3>Bez zobowiązań.<br/>Bez ryzyka.</h3>
+        <ul class="contact-objections">
+          <li>
+            <span class="contact-obj__icon">⚡</span>
+            <div class="contact-obj__text">
+              <strong>Odpowiadamy w 24h robocze</strong>
+              <span>Żaden formularz nie przepadnie bez echa.</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-obj__icon">🛡️</span>
+            <div class="contact-obj__text">
+              <strong>Pilotaż bez umowy na 6 mcy</strong>
+              <span>Po 2 miesiącach decydujesz: zostajesz lub rozstajesz się z gotowym planem w ręku.</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-obj__icon">💬</span>
+            <div class="contact-obj__text">
+              <strong>Zero pitchy i prezentacji</strong>
+              <span>Napisz co Cię boli. My zaproponujemy konkretny plan działania.</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-obj__icon">🔒</span>
+            <div class="contact-obj__text">
+              <strong>Flat Fee — zero niespodzianek</strong>
+              <span>Jedna faktura, wiesz z góry ile płacisz. Brak ukrytych kosztów.</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-obj__icon">👥</span>
+            <div class="contact-obj__text">
+              <strong>Stały zespół od dnia 1</strong>
+              <span>Nie tłumaczysz kontekstu od nowa przy każdym nowym projekcie.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact-modal__right">
+        <div class="contact-avatars">
+          <img src="Codeq Design System/assets/Awatar_Strateg_1.jpg" alt="">
+          <img src="Codeq Design System/assets/Awatar_PM_1.jpg" alt="">
+          <img src="Codeq Design System/assets/Awatar_Design_1.jpg" alt="">
+        </div>
+        <h3>Skontaktuj się z nami</h3>
+        <p>Wypełnij formularz lub napisz na<br><a href="mailto:hello@codeq.pl">hello@codeq.pl</a></p>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <input type="email" name="email" placeholder="Twój email*" required>
+          <textarea name="message" placeholder="Zadaj nam pytanie lub opisz sytuację swojego sklepu*" required></textarea>
+          <label class="contact-gdpr">
+            <input type="checkbox" required>
+            <span>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="#" target="_blank">polityką prywatności</a>.</span>
+          </label>
+          <button type="submit" class="btn--submit">Wyślij</button>
+        </form>
+
+        <div class="contact-success" id="contactSuccess">
+          <span class="contact-success__icon">✅</span>
+          <h4>Gotowe! Odezwiemy się wkrótce.</h4>
+          <p>Zazwyczaj odpowiadamy w ciągu 24h roboczych.<br>Sprawdź również folder spam.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2800,7 +3003,7 @@
             </div>
             <div class="dr-footer">
               <div class="dr-cta" id="drCta">
-                <a href="#pilot" class="btn btn--primary btn--lg" style="display:block;text-align:center;white-space:normal;line-height:1.3" id="diagnozaCtaLink">Zacznij Pilotaż →</a>
+                <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg js-contact" style="display:block;text-align:center;white-space:normal;line-height:1.3" id="diagnozaCtaLink">Zacznij Pilotaż →</a>
               </div>
             </div>
           </div>
@@ -3125,6 +3328,45 @@
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => activateStory(nav.dataset.story));
     });
+
+    // Contact modal
+    (function () {
+      const overlay  = document.getElementById('contactOverlay');
+      const closeBtn = document.getElementById('contactClose');
+      const form     = document.getElementById('contactForm');
+      const success  = document.getElementById('contactSuccess');
+      if (!overlay) return;
+
+      function openContact() {
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeContact() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      // Hook up all pilot/contact CTAs
+      document.querySelectorAll('.js-contact').forEach(el => {
+        el.addEventListener('click', e => { e.preventDefault(); openContact(); });
+      });
+
+      closeBtn.addEventListener('click', closeContact);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeContact(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+
+      // Form submit → success state + mailto fallback
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const email   = form.querySelector('[name="email"]').value;
+        const message = form.querySelector('[name="message"]').value;
+        window.location.href = `mailto:hello@codeq.pl?subject=Zapytanie o Codeq Care&body=${encodeURIComponent(message)}%0A%0AEmail: ${encodeURIComponent(email)}`;
+        form.classList.add('hidden');
+        success.classList.add('visible');
+      });
+    })();
 
     // Diagnoza modal
     (function () {
