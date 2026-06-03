@@ -1777,17 +1777,34 @@
       margin-bottom: 40px;
     }
     .cases__qualifier::before { content: '🎯'; }
+    .cases-slider-wrap { position: relative; margin-bottom: 24px; }
     .cases-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 20px; margin-bottom: 24px;
+      display: flex; gap: 16px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: 4px;
     }
+    .cases-grid::-webkit-scrollbar { display: none; }
     .case-card {
       background: #fff; border: 1px solid #e4e8ff;
       border-radius: 20px; overflow: hidden;
       display: flex; flex-direction: column;
+      flex: 0 0 320px; scroll-snap-align: start;
       transition: box-shadow .2s ease, transform .2s ease;
     }
-    .case-card:hover { box-shadow: 0 12px 40px rgba(31,63,249,.1); transform: translateY(-3px); }
+    .case-card:hover { box-shadow: 0 8px 28px rgba(31,63,249,.08); transform: translateY(-2px); }
+    .cases-nav {
+      display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 16px;
+    }
+    .cases-nav__btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid #e4e8ff; background: #fff;
+      color: #64748b; font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s ease;
+    }
+    .cases-nav__btn:hover { border-color: var(--codeq-blue); color: var(--codeq-blue); background: #f0f4ff; }
+    .cases-nav__btn:disabled { opacity: .3; cursor: default; }
     .case-card__top {
       padding: 24px 24px 20px;
       border-bottom: 1px solid #f1f5f9;
@@ -1814,18 +1831,27 @@
       padding-left: 12px; border-left: 2px solid #e4e8ff;
     }
     .case-intervention {
-      font-size: 10px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.12em; color: #94a3b8; margin-bottom: 10px; display: block;
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #f1f5f9; border: 1px solid #e2e8f0;
+      border-radius: 99px; padding: 4px 10px 4px 8px;
+      font-size: 11px; font-weight: 600; color: #475569;
+      letter-spacing: 0.01em; margin-bottom: 14px;
+      text-transform: none;
+    }
+    .case-intervention::before {
+      content: '🔧';
+      font-size: 12px;
+      line-height: 1;
     }
     .case-results { display: flex; flex-direction: column; gap: 8px; }
     .case-result {
       display: flex; align-items: baseline; gap: 8px;
     }
     .case-result__num {
-      font-size: 22px; font-weight: 800; color: var(--codeq-blue);
-      letter-spacing: -0.03em; line-height: 1; flex-shrink: 0;
+      font-size: 15px; font-weight: 700; color: #334155;
+      letter-spacing: -0.01em; line-height: 1; flex-shrink: 0;
     }
-    .case-result__label { font-size: 13px; color: #475569; font-weight: 500; }
+    .case-result__label { font-size: 13px; color: #94a3b8; font-weight: 400; }
     .case-card__footer {
       padding: 14px 24px;
       background: #f8f9ff; border-top: 1px solid #f1f5f9;
@@ -1836,8 +1862,8 @@
     .cases__disclaimer {
       text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.6;
     }
-    @media (max-width: 900px) {
-      .cases-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto 24px; }
+    @media (max-width: 640px) {
+      .case-card { flex: 0 0 280px; }
     }
 
     /* === 8. PRICING === */
@@ -2769,86 +2795,116 @@
         <span class="cases__qualifier">Pracujemy z e-commerce na 2–20M PLN rocznego obrotu</span>
       </div>
 
-      <div class="cases-grid">
-
-        <!-- Card 1: Core Web Vitals -->
-        <div class="case-card">
-          <div class="case-card__top">
-            <div class="case-tag">
-              <span class="case-tag__icon">🏠</span>
-              Home & Deco
-            </div>
-            <span class="case-revenue">5–8M PLN / rok</span>
-          </div>
-          <div class="case-card__body">
-            <p class="case-problem">"PageSpeed 38/100, wysoki bounce rate na mobile — tracimy ruch z reklam zanim zdąży skonwertować."</p>
-            <span class="case-intervention">Core Web Vitals + Optymalizacja techniczna</span>
-            <div class="case-results">
-              <div class="case-result">
-                <span class="case-result__num">91/100</span>
-                <span class="case-result__label">PageSpeed (z 38)</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num">−22%</span>
-                <span class="case-result__label">bounce rate na mobile</span>
-              </div>
-            </div>
-          </div>
-          <div class="case-card__footer">3 miesiące współpracy</div>
+      <div class="cases-slider-wrap">
+        <div class="cases-nav">
+          <button class="cases-nav__btn" id="casesPrev" aria-label="Poprzedni">←</button>
+          <button class="cases-nav__btn" id="casesNext" aria-label="Następny">→</button>
         </div>
+        <div class="cases-grid" id="casesGrid">
 
-        <!-- Card 2: UX + konwersja -->
-        <div class="case-card">
-          <div class="case-card__top">
-            <div class="case-tag">
-              <span class="case-tag__icon">👗</span>
-              Fashion multi-brand
+          <!-- Card 1: Core Web Vitals -->
+          <div class="case-card">
+            <div class="case-card__top">
+              <div class="case-tag"><span class="case-tag__icon">🏠</span>Home & Deco</div>
+              <span class="case-revenue">5–8M PLN / rok</span>
             </div>
-            <span class="case-revenue">3–6M PLN / rok</span>
-          </div>
-          <div class="case-card__body">
-            <p class="case-problem">"Sklep działa, ale konwersja stoi w miejscu od roku. Trzy zmiany agencji — każda zaczyna od zera."</p>
-            <span class="case-intervention">Audyt UX + przebudowa ścieżki zakupowej</span>
-            <div class="case-results">
-              <div class="case-result">
-                <span class="case-result__num">+16%</span>
-                <span class="case-result__label">CR na mobile</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num">+9%</span>
-                <span class="case-result__label">średnia wartość koszyka</span>
+            <div class="case-card__body">
+              <p class="case-problem">"PageSpeed 38/100, wysoki bounce na mobile — tracimy ruch z reklam zanim zdąży skonwertować."</p>
+              <span class="case-intervention">Core Web Vitals + Optymalizacja techniczna</span>
+              <div class="case-results">
+                <div class="case-result"><span class="case-result__num">91/100</span><span class="case-result__label">PageSpeed (z 38)</span></div>
+                <div class="case-result"><span class="case-result__num">−22%</span><span class="case-result__label">bounce rate na mobile</span></div>
               </div>
             </div>
+            <div class="case-card__footer">3 miesiące współpracy</div>
           </div>
-          <div class="case-card__footer">4 miesiące współpracy</div>
+
+          <!-- Card 2: UX + konwersja -->
+          <div class="case-card">
+            <div class="case-card__top">
+              <div class="case-tag"><span class="case-tag__icon">👗</span>Fashion multi-brand</div>
+              <span class="case-revenue">3–6M PLN / rok</span>
+            </div>
+            <div class="case-card__body">
+              <p class="case-problem">"Sklep działa, ale konwersja stoi w miejscu od roku. Trzy zmiany agencji — każda zaczyna od zera."</p>
+              <span class="case-intervention">Audyt UX + przebudowa ścieżki zakupowej</span>
+              <div class="case-results">
+                <div class="case-result"><span class="case-result__num">+16%</span><span class="case-result__label">CR na mobile</span></div>
+                <div class="case-result"><span class="case-result__num">+9%</span><span class="case-result__label">średnia wartość koszyka</span></div>
+              </div>
+            </div>
+            <div class="case-card__footer">4 miesiące współpracy</div>
+          </div>
+
+          <!-- Card 3: Komunikacja + opinie -->
+          <div class="case-card">
+            <div class="case-card__top">
+              <div class="case-tag"><span class="case-tag__icon">💊</span>Suplementy & zdrowie</div>
+              <span class="case-revenue">8–14M PLN / rok</span>
+            </div>
+            <div class="case-card__body">
+              <p class="case-problem">"Mało opinii, słaba konwersja z Google Ads. Produkt dobry — ale sklep tego nie komunikuje."</p>
+              <span class="case-intervention">Komunikacja produktowa + pozyskiwanie opinii</span>
+              <div class="case-results">
+                <div class="case-result"><span class="case-result__num">×2,8</span><span class="case-result__label">więcej opinii w 60 dni</span></div>
+                <div class="case-result"><span class="case-result__num">+12%</span><span class="case-result__label">CR z Google Ads</span></div>
+              </div>
+            </div>
+            <div class="case-card__footer">5 miesięcy współpracy</div>
+          </div>
+
+          <!-- Card 4: Automatyzacja B2B -->
+          <div class="case-card">
+            <div class="case-card__top">
+              <div class="case-tag"><span class="case-tag__icon">🏭</span>B2B Wholesale</div>
+              <span class="case-revenue">12–20M PLN / rok</span>
+            </div>
+            <div class="case-card__body">
+              <p class="case-problem">"Zamówienia B2B obsługujemy ręcznie. Dział handlowy traci czas na rzeczy, które powinien robić system."</p>
+              <span class="case-intervention">Automatyzacja procesów + integracja ERP</span>
+              <div class="case-results">
+                <div class="case-result"><span class="case-result__num">−65%</span><span class="case-result__label">czas obsługi zamówienia B2B</span></div>
+                <div class="case-result"><span class="case-result__num">+28%</span><span class="case-result__label">zamówień online vs telefon</span></div>
+              </div>
+            </div>
+            <div class="case-card__footer">6 miesięcy współpracy</div>
+          </div>
+
+          <!-- Card 5: Bezpieczeństwo + dług techniczny -->
+          <div class="case-card">
+            <div class="case-card__top">
+              <div class="case-tag"><span class="case-tag__icon">🛡️</span>Sport & Outdoor</div>
+              <span class="case-revenue">4–7M PLN / rok</span>
+            </div>
+            <div class="case-card__body">
+              <p class="case-problem">"Sklep ma 6 lat i nikt nie wie co jest pod maską. Boimy się każdej aktualizacji — może coś zepsuć."</p>
+              <span class="case-intervention">Audyt techniczny + spłata długu technicznego</span>
+              <div class="case-results">
+                <div class="case-result"><span class="case-result__num">0</span><span class="case-result__label">incydentów bezpieczeństwa po audycie</span></div>
+                <div class="case-result"><span class="case-result__num">−40%</span><span class="case-result__label">czas wdrożenia nowych funkcji</span></div>
+              </div>
+            </div>
+            <div class="case-card__footer">4 miesiące współpracy</div>
+          </div>
+
+          <!-- Card 6: Strategia + OKR -->
+          <div class="case-card">
+            <div class="case-card__top">
+              <div class="case-tag"><span class="case-tag__icon">🧴</span>Beauty & Kosmetyki</div>
+              <span class="case-revenue">6–10M PLN / rok</span>
+            </div>
+            <div class="case-card__body">
+              <p class="case-problem">"Robimy dużo rzeczy jednocześnie, ale nie wiemy co naprawdę przekłada się na sprzedaż."</p>
+              <span class="case-intervention">Sesja strategiczna OKR + Mapa Celów + Sprint</span>
+              <div class="case-results">
+                <div class="case-result"><span class="case-result__num">+19%</span><span class="case-result__label">przychód online w kwartale</span></div>
+                <div class="case-result"><span class="case-result__num">−30%</span><span class="case-result__label">liczba równoległych inicjatyw</span></div>
+              </div>
+            </div>
+            <div class="case-card__footer">3 miesiące współpracy</div>
+          </div>
+
         </div>
-
-        <!-- Card 3: Komunikacja + opinie -->
-        <div class="case-card">
-          <div class="case-card__top">
-            <div class="case-tag">
-              <span class="case-tag__icon">💊</span>
-              Suplementy & zdrowie
-            </div>
-            <span class="case-revenue">8–14M PLN / rok</span>
-          </div>
-          <div class="case-card__body">
-            <p class="case-problem">"Mało opinii, słaba konwersja z Google Ads. Produkt dobry — ale sklep tego nie komunikuje."</p>
-            <span class="case-intervention">Komunikacja produktowa + pozyskiwanie opinii</span>
-            <div class="case-results">
-              <div class="case-result">
-                <span class="case-result__num">+180%</span>
-                <span class="case-result__label">liczba opinii w 60 dni</span>
-              </div>
-              <div class="case-result">
-                <span class="case-result__num">+12%</span>
-                <span class="case-result__label">CR z Google Ads</span>
-              </div>
-            </div>
-          </div>
-          <div class="case-card__footer">5 miesięcy współpracy</div>
-        </div>
-
       </div>
       <p class="cases__disclaimer">Wyniki zanonimizowane. Efekty zależą od skali sklepu, branży i zakresu współpracy.</p>
     </div>
@@ -3734,6 +3790,27 @@
     document.getElementById('roleSheetOverlay').addEventListener('click', function(e) {
       if (e.target === this) closeRoleSheet();
     });
+
+    // Cases slider
+    (function () {
+      const grid = document.getElementById('casesGrid');
+      const prev = document.getElementById('casesPrev');
+      const next = document.getElementById('casesNext');
+      if (!grid || !prev || !next) return;
+
+      function cardWidth() {
+        const card = grid.querySelector('.case-card');
+        if (!card) return 320;
+        return card.offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+      }
+
+      prev.addEventListener('click', () => {
+        grid.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', () => {
+        grid.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+      });
+    })();
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
