@@ -2661,6 +2661,53 @@
     </div>
   </div>
 
+  <!-- DIAGNOZA MODAL -->
+  <div class="diagnoza-modal-overlay" id="diagnozaOverlay" aria-hidden="true">
+    <div class="diagnoza-modal" role="dialog" aria-modal="true" aria-labelledby="diagnozaModalTitle">
+      <button class="diagnoza-modal__close" id="diagnozaClose" aria-label="Zamknij">✕</button>
+      <div class="diagnoza-modal__head">
+        <span class="label">Diagnoza modelu</span>
+        <h2 id="diagnozaModalTitle">Które z tych objawów<br/>rozpoznajesz u siebie?</h2>
+        <p>Zaznacz wszystko co pasuje — otrzymasz diagnozę swojego modelu współpracy.</p>
+      </div>
+      <div class="diagnoza-layout">
+        <div class="diagnoza-checks">
+          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">💸</span><span class="dcheck__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span></label>
+          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">📞</span><span class="dcheck__text">Nie mam jednego stałego punktu kontaktu do IT</span></label>
+          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">🔁</span><span class="dcheck__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span></label>
+          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">📉</span><span class="dcheck__text">Sklep działa, ale konwersja nie rośnie od miesięcy</span></label>
+          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">🔥</span><span class="dcheck__text">Gaszę pożary zamiast realizować strategię wzrostu</span></label>
+          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">❓</span><span class="dcheck__text">Nie wiem co przyniesie największy ROI dla mojego sklepu teraz</span></label>
+        </div>
+        <div class="diagnoza-result" id="diagnozaResult">
+          <div class="dr-idle" id="drIdle">
+            <span class="dr-idle-arrow">☝️</span>
+            Zaznacz objawy, które rozpoznajesz u siebie — otrzymasz diagnozę swojego modelu współpracy.
+          </div>
+          <div class="dr-active" id="drActive">
+            <div class="dr-header">
+              <div class="dr-count-row">
+                <span class="dr-count">Rozpoznanych objawów</span>
+                <span class="dr-num"><span id="drNum">0</span><span style="font-size:16px;color:#94a3b8">/6</span></span>
+              </div>
+              <div class="dr-meter"><div class="dr-meter__fill" id="drFill"></div></div>
+            </div>
+            <div class="dr-body">
+              <span class="dr-badge" id="drBadge"></span>
+              <p class="dr-title" id="drTitle"></p>
+              <p class="dr-desc"  id="drDesc"></p>
+            </div>
+            <div class="dr-footer">
+              <div class="dr-cta" id="drCta">
+                <a href="#pilot" class="btn btn--primary btn--lg" style="display:block;text-align:center" id="diagnozaCtaLink">Sprawdź jak Codeq Care to naprawia →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================================
        JAVASCRIPT
   ================================ -->
@@ -3155,52 +3202,6 @@
       });
     });
   </script>
-  <!-- DIAGNOZA MODAL -->
-  <div class="diagnoza-modal-overlay" id="diagnozaOverlay" aria-hidden="true">
-    <div class="diagnoza-modal" role="dialog" aria-modal="true" aria-labelledby="diagnozaModalTitle">
-      <button class="diagnoza-modal__close" id="diagnozaClose" aria-label="Zamknij">✕</button>
-      <div class="diagnoza-modal__head">
-        <span class="label">Diagnoza modelu</span>
-        <h2 id="diagnozaModalTitle">Które z tych objawów<br/>rozpoznajesz u siebie?</h2>
-        <p>Zaznacz wszystko co pasuje — otrzymasz diagnozę swojego modelu współpracy.</p>
-      </div>
-      <div class="diagnoza-layout">
-        <div class="diagnoza-checks">
-          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">💸</span><span class="dcheck__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span></label>
-          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">📞</span><span class="dcheck__text">Nie mam jednego stałego punktu kontaktu do IT</span></label>
-          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">🔁</span><span class="dcheck__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span></label>
-          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">📉</span><span class="dcheck__text">Sklep działa, ale konwersja nie rośnie od miesięcy</span></label>
-          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">🔥</span><span class="dcheck__text">Gaszę pożary zamiast realizować strategię wzrostu</span></label>
-          <label class="dcheck"><input type="checkbox" class="dcheck__input"><span class="dcheck__box"></span><span class="dcheck__icon">❓</span><span class="dcheck__text">Nie wiem co przyniesie największy ROI dla mojego sklepu teraz</span></label>
-        </div>
-        <div class="diagnoza-result" id="diagnozaResult">
-          <div class="dr-idle" id="drIdle">
-            <span class="dr-idle-arrow">☝️</span>
-            Zaznacz objawy, które rozpoznajesz u siebie — otrzymasz diagnozę swojego modelu współpracy.
-          </div>
-          <div class="dr-active" id="drActive">
-            <div class="dr-header">
-              <div class="dr-count-row">
-                <span class="dr-count">Rozpoznanych objawów</span>
-                <span class="dr-num"><span id="drNum">0</span><span style="font-size:16px;color:#94a3b8">/6</span></span>
-              </div>
-              <div class="dr-meter"><div class="dr-meter__fill" id="drFill"></div></div>
-            </div>
-            <div class="dr-body">
-              <span class="dr-badge" id="drBadge"></span>
-              <p class="dr-title" id="drTitle"></p>
-              <p class="dr-desc"  id="drDesc"></p>
-            </div>
-            <div class="dr-footer">
-              <div class="dr-cta" id="drCta">
-                <a href="#pilot" class="btn btn--primary btn--lg" style="display:block;text-align:center" id="diagnozaCtaLink">Sprawdź jak Codeq Care to naprawia →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </body>
 </html>
