@@ -3,33 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Konfigurator — Codeq Care</title>
+  <title>Sprint Box — Codeq Care</title>
   <link rel="stylesheet" href="Codeq Design System/colors_and_type.css" />
   <style>
-    /* === BLUE SCALE === */
     :root {
-      --b50:  #f4f6ff;
-      --b100: #e6ebff;
-      --b200: #cdd6fd;
-      --b300: #a9bafc;
-      --b400: #7e96f9;
-      --b500: #5570f6;
-      --b600: #3350f6;
-      --b700: #1F3FF9;
-      --b800: #1935e0;
-      --b900: #1528b8;
-      --b950: #132EF8;
-      --brand-dark: #1528b8;
+      --b400: #7e96f9; --b500: #5570f6; --b700: #1F3FF9;
+      --sz-s:  #3EBEB3;
+      --sz-m:  #7e96f9;
+      --sz-l:  #EF9645;
+      --sz-xl: #a855f7;
     }
 
-    /* === RESET === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     img { max-width: 100%; display: block; }
-    ul { list-style: none; }
     a { text-decoration: none; color: inherit; }
 
-    /* === BASE === */
     body {
       background: #0d1230;
       color: #fff;
@@ -55,18 +44,11 @@
       transition: all var(--dur-base) var(--ease-out);
       white-space: nowrap; text-decoration: none;
     }
-    .btn--primary {
-      background: var(--codeq-blue); color: #fff; border-color: var(--codeq-blue);
-    }
+    .btn--primary { background: var(--codeq-blue); color: #fff; border-color: var(--codeq-blue); }
     .btn--primary:hover {
       background: var(--codeq-blue-deep); border-color: var(--codeq-blue-deep);
       box-shadow: var(--shadow-glow-blue); transform: translateY(-1px);
     }
-    .btn--outline-white {
-      background: transparent; color: #fff;
-      border: 1.5px solid rgba(255,255,255,.5);
-    }
-    .btn--outline-white:hover { border-color: #fff; background: rgba(255,255,255,.08); }
     .btn--lg { padding: 16px 32px; font-size: 15px; }
 
     /* === NAV === */
@@ -81,9 +63,7 @@
       box-shadow: 0 1px 0 rgba(0,0,0,.08), inset 0 -1px 0 rgba(255,255,255,.4);
     }
     .nav.scrolled .nav__logo svg path { fill: #2548FA; }
-    .nav__inner {
-      display: flex; align-items: center; justify-content: space-between; height: 76px;
-    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 76px; }
     .nav__logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
     .nav__links {
       display: flex; gap: var(--space-7); align-items: center;
@@ -119,10 +99,7 @@
     @media (max-width: 768px) { .nav__links { display: none; } }
 
     /* === PAGE HEADER === */
-    .cfg-page-header {
-      padding: 140px 0 64px;
-      text-align: center;
-    }
+    .cfg-page-header { padding: 136px 0 52px; text-align: center; }
     .cfg-page-header .label { margin-bottom: 16px; display: block; }
     .cfg-page-header h1 {
       font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px);
@@ -130,130 +107,260 @@
       color: #fff; margin-bottom: 18px;
     }
     .cfg-page-header p {
-      font-size: 17px; color: rgba(255,255,255,.55);
-      max-width: 520px; margin: 0 auto; line-height: 1.6;
+      font-size: 16px; color: rgba(255,255,255,.5);
+      max-width: 500px; margin: 0 auto; line-height: 1.65;
     }
 
-    /* === CONFIGURATOR === */
-    .cfg-wrap { padding: 0 0 96px; }
+    /* === MAIN LAYOUT === */
+    .cfg-wrap { padding: 0 0 100px; }
+    .cfg-layout { display: grid; grid-template-columns: 5fr 4fr; gap: 40px; align-items: start; }
 
-    .cfg-layout {
-      display: grid; grid-template-columns: 5fr 4fr; gap: 40px; align-items: start;
+    /* === CATEGORY FILTERS === */
+    .cfg-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+    .cfg-filter {
+      padding: 7px 16px; border-radius: var(--radius-pill);
+      font-size: 12.5px; font-weight: 600; cursor: pointer;
+      border: 1.5px solid rgba(255,255,255,.14);
+      background: transparent; color: rgba(255,255,255,.5);
+      transition: all var(--dur-fast); font-family: var(--font-body);
     }
-    .cfg-symptoms { display: flex; flex-direction: column; gap: 10px; }
+    .cfg-filter:hover { border-color: rgba(255,255,255,.3); color: rgba(255,255,255,.82); }
+    .cfg-filter.is-active { background: rgba(37,72,250,.22); border-color: rgba(37,72,250,.65); color: #fff; }
 
-    .cfg-symptom {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 14px 18px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 12px; cursor: pointer;
-      transition: background .2s, border-color .2s; user-select: none;
+    /* === TASK CARDS === */
+    .cfg-tasks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+    .task-card {
+      position: relative; padding: 14px 15px 13px;
+      background: rgba(255,255,255,.05); border: 1.5px solid rgba(255,255,255,.09);
+      border-radius: 14px; cursor: pointer;
+      transition: background .18s, border-color .18s, opacity .18s;
+      user-select: none;
     }
-    .cfg-symptom:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
-    .cfg-symptom.is-checked { background: rgba(37,72,250,.15); border-color: rgba(37,72,250,.55); }
+    .task-card:hover:not(.is-disabled) { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+    .task-card.is-selected { background: rgba(37,72,250,.14); border-color: rgba(37,72,250,.5); }
+    .task-card.is-disabled { opacity: 0.32; cursor: not-allowed; }
+    .task-card.shake { animation: cardShake .35s ease; }
 
-    .cfg-symptom__check {
-      flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px;
-      border: 1.5px solid rgba(255,255,255,.3); border-radius: 5px;
+    @keyframes cardShake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-5px); }
+      40%      { transform: translateX(5px); }
+      60%      { transform: translateX(-3px); }
+      80%      { transform: translateX(3px); }
+    }
+
+    .task-card__top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 8px;
+    }
+    .size-badge {
+      font-size: 9.5px; font-weight: 800; padding: 2px 7px;
+      border-radius: 4px; letter-spacing: .07em; text-transform: uppercase; flex-shrink: 0;
+    }
+    .size-badge--S  { background: rgba(62,190,179,.18); color: var(--sz-s); }
+    .size-badge--M  { background: rgba(126,150,249,.18); color: var(--sz-m); }
+    .size-badge--L  { background: rgba(239,150,69,.18);  color: var(--sz-l); }
+    .size-badge--XL { background: rgba(168,85,247,.18);  color: var(--sz-xl); }
+
+    .task-card__check {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,.22);
       display: flex; align-items: center; justify-content: center;
-      transition: background .2s, border-color .2s;
+      flex-shrink: 0; transition: all .18s;
     }
-    .cfg-symptom.is-checked .cfg-symptom__check { background: #2548FA; border-color: #2548FA; }
-    .cfg-symptom__check-icon {
-      width: 10px; height: 6px;
-      border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+    .task-card.is-selected .task-card__check { background: #2548FA; border-color: #2548FA; }
+    .task-card__check-icon {
+      width: 8px; height: 5px;
+      border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff;
       transform: rotate(-45deg) translateY(-1px);
       opacity: 0; transition: opacity .15s;
     }
-    .cfg-symptom.is-checked .cfg-symptom__check-icon { opacity: 1; }
+    .task-card.is-selected .task-card__check-icon { opacity: 1; }
 
-    .cfg-symptom__icon { font-size: 1.2rem; line-height: 1.5; }
-    .cfg-symptom__body { flex: 1; }
-    .cfg-symptom__text { font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.82); line-height: 1.45; display: block; }
-    .cfg-symptom__cost {
-      font-size: 12px; font-weight: 700; color: #f87171; margin-top: 4px; display: block;
-      opacity: 0; transform: translateY(-4px); transition: opacity .2s, transform .2s;
-    }
-    .cfg-symptom.is-checked .cfg-symptom__cost { opacity: 1; transform: translateY(0); }
+    .task-card__name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.88); line-height: 1.35; margin-bottom: 4px; }
+    .task-card__desc { font-size: 11.5px; color: rgba(255,255,255,.38); line-height: 1.4; }
+    .task-card__hours { font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.4); margin-top: 9px; }
 
-    .cfg-panel {
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+    /* === BOX PANEL === */
+    .cfg-box-panel {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
       border-radius: 20px; overflow: hidden; position: sticky; top: 96px;
     }
-    .cfg-idle {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 48px 28px; min-height: 320px;
-      color: rgba(255,255,255,.38); font-size: 15px; line-height: 1.6;
-    }
-    .cfg-idle-icon { font-size: 2.2rem; display: block; margin-bottom: 14px; }
 
-    .cfg-active { display: none; }
-    .cfg-active.visible { display: block; }
+    /* Package Toggle */
+    .cfg-pkg-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .cfg-pkg-row-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.3);
+    }
+    .cfg-pkg-btns { display: flex; gap: 5px; }
+    .cfg-pkg-btn {
+      padding: 5px 13px; border-radius: var(--radius-pill);
+      font-size: 11.5px; font-weight: 700; cursor: pointer;
+      border: 1.5px solid rgba(255,255,255,.18);
+      background: transparent; color: rgba(255,255,255,.45);
+      transition: all var(--dur-fast); font-family: var(--font-body);
+      white-space: nowrap;
+    }
+    .cfg-pkg-btn:hover { border-color: rgba(255,255,255,.4); color: rgba(255,255,255,.8); }
+    .cfg-pkg-btn.is-active { background: #2548FA; border-color: #2548FA; color: #fff; }
 
-    .cfg-roi { padding: 22px 26px 18px; border-bottom: 1px solid rgba(255,255,255,.09); }
-    .cfg-roi__label {
-      font-size: 11px; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.4); display: block;
+    /* Capacity bar */
+    .cfg-cap-wrap { padding: 16px 20px 14px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .cfg-cap-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .cfg-cap-title {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.3);
     }
-    .cfg-roi__amount {
-      display: block; font-size: 34px; font-weight: 800;
-      color: #f87171; letter-spacing: -0.02em; line-height: 1.1;
-      margin: 6px 0 14px; font-variant-numeric: tabular-nums;
+    .cfg-cap-hours {
+      font-size: 20px; font-weight: 800; letter-spacing: -0.02em;
+      color: #fff; font-variant-numeric: tabular-nums;
     }
-    .cfg-roi__meter { height: 4px; background: rgba(255,255,255,.1); border-radius: 2px; }
-    .cfg-roi__fill {
-      height: 100%; background: linear-gradient(90deg, #f87171, #ef4444);
-      border-radius: 2px; transition: width .45s ease;
+    .cfg-cap-bar { height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+    .cfg-cap-fill {
+      height: 100%; border-radius: 3px; width: 0%;
+      background: var(--sz-s);
+      transition: width .4s var(--ease-out), background-color .3s ease;
+    }
+    .cfg-cap-fill.is-warn   { background: var(--sz-l); }
+    .cfg-cap-fill.is-danger { background: #ef4444; }
+    .cfg-cap-sub { font-size: 11.5px; color: rgba(255,255,255,.3); }
+    .cfg-cap-sub.is-warning { color: #EF9645; }
+    .cfg-cap-sub.is-good    { color: var(--sz-s); }
+
+    /* Box inner */
+    .cfg-box-inner {
+      min-height: 160px; padding: 14px 18px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .cfg-box-empty {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; min-height: 148px;
+      color: rgba(255,255,255,.22); font-size: 13px; line-height: 1.6;
+      gap: 12px;
+    }
+    .cfg-box-empty-icon {
+      width: 38px; height: 38px;
+      border: 1.5px dashed rgba(255,255,255,.15); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .cfg-rec { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,.09); }
-    .cfg-rec__label {
-      font-size: 11px; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.4); display: block; margin-bottom: 10px;
+    .cfg-chips { display: flex; flex-direction: column; gap: 5px; }
+    .task-chip {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 10px; border-radius: 10px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.09);
+      animation: chipSlide .22s var(--ease-out);
     }
-    .cfg-rec__pkg {
-      display: inline-block; font-size: 12px; font-weight: 700;
-      padding: 4px 12px; border-radius: 6px; margin-bottom: 9px;
+    @keyframes chipSlide {
+      from { opacity: 0; transform: translateY(-5px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .cfg-rec__pkg.stability { background: rgba(99,163,255,.15); color: #93c5fd; }
-    .cfg-rec__pkg.growth { background: rgba(52,211,153,.12); color: #6ee7b7; }
-    .cfg-rec__desc { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.55; margin: 0; }
+    .task-chip__left { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; }
+    .task-chip__size {
+      font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 3px;
+      flex-shrink: 0; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .task-chip__name {
+      font-size: 12px; font-weight: 500; color: rgba(255,255,255,.75);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .task-chip__h { font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.35); flex-shrink: 0; margin: 0 6px; }
+    .task-chip__rm {
+      width: 19px; height: 19px; border-radius: 50%; border: none;
+      background: rgba(255,255,255,.09); color: rgba(255,255,255,.45);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 14px; line-height: 1; flex-shrink: 0;
+      transition: background .15s, color .15s; font-family: var(--font-body);
+    }
+    .task-chip__rm:hover { background: rgba(239,68,68,.22); color: #f87171; }
 
-    .cfg-sprint { padding: 16px 26px; border-bottom: 1px solid rgba(255,255,255,.09); }
-    .cfg-sprint__label {
-      font-size: 11px; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.4); display: block; margin-bottom: 8px;
+    .cfg-free-note {
+      margin-top: 9px; padding: 9px 12px; border-radius: 9px;
+      background: rgba(62,190,179,.07); border: 1px solid rgba(62,190,179,.18);
+      font-size: 12px; color: rgba(62,190,179,.8); line-height: 1.5;
     }
-    .cfg-sprint__name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 12px; }
-    .cfg-sprint__weeks { display: flex; gap: 6px; margin-bottom: 12px; }
-    .cfg-sprint__week {
-      flex: 1; padding: 10px 10px 8px;
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 10px;
-    }
-    .cfg-sprint__week-period {
-      font-size: 10px; color: rgba(255,255,255,.38); font-weight: 600;
-      text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 4px;
-    }
-    .cfg-sprint__week-title { font-size: 12.5px; font-weight: 700; color: #fff; line-height: 1.3; }
-    .cfg-sprint__kpis { display: flex; flex-direction: column; gap: 5px; }
-    .cfg-sprint__kpi { font-size: 12.5px; color: #6ee7b7; display: flex; align-items: baseline; gap: 6px; }
-    .cfg-sprint__kpi::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+    .cfg-free-note strong { color: #3EBEB3; font-weight: 700; }
 
-    .cfg-cta { padding: 16px 26px 22px; }
-    .cfg-cta .btn { width: 100%; text-align: center; display: block; }
+    /* Cost section */
+    .cfg-cost { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .cfg-cost__title {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.3);
+      margin-bottom: 12px; display: block;
+    }
+    .cfg-cost__row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: rgba(255,255,255,.5); padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .cfg-cost__row:last-of-type { border-bottom: none; }
+    .cfg-cost__val { font-weight: 700; color: rgba(255,255,255,.7); }
+    .cfg-cost__val--strike { text-decoration: line-through; color: rgba(255,255,255,.3); font-weight: 500; }
 
+    .cfg-cost__pkg {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 13px; border-radius: 10px; margin-top: 6px;
+      background: rgba(37,72,250,.12); border: 1px solid rgba(37,72,250,.28);
+    }
+    .cfg-cost__pkg-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85); }
+    .cfg-cost__pkg-price { font-size: 15px; font-weight: 800; color: var(--b400); letter-spacing: -0.02em; }
+
+    .cfg-verdict {
+      margin-top: 11px; padding: 10px 13px; border-radius: 10px;
+      border: 1px solid rgba(62,190,179,.2); background: rgba(62,190,179,.06);
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .cfg-verdict__line {
+      font-size: 12px; color: rgba(62,190,179,.85); line-height: 1.45;
+      display: flex; align-items: baseline; gap: 6px;
+    }
+    .cfg-verdict__line::before { content: '✓'; font-weight: 800; color: #3EBEB3; flex-shrink: 0; font-size: 11px; }
+    .cfg-verdict__line.is-savings { color: #fff; font-weight: 600; font-size: 13px; }
+    .cfg-verdict__line.is-savings::before { font-size: 12px; }
+
+    .cfg-overflow-note {
+      margin-top: 11px; padding: 10px 13px; border-radius: 10px;
+      border: 1px solid rgba(239,150,69,.25); background: rgba(239,150,69,.07);
+      font-size: 12px; color: rgba(239,150,69,.85); line-height: 1.5;
+    }
+
+    /* CTA */
+    .cfg-cta { padding: 14px 20px 18px; }
+    .cfg-cta .btn { width: 100%; justify-content: center; }
+
+    /* Toast */
+    .cfg-toast {
+      position: fixed; bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(72px);
+      background: rgba(12,16,50,.96); border: 1px solid rgba(239,68,68,.35);
+      border-radius: 12px; padding: 11px 20px;
+      font-size: 13px; color: #f87171; font-weight: 500;
+      transition: transform .3s var(--ease-out), opacity .3s;
+      opacity: 0; z-index: 200; white-space: nowrap; pointer-events: none;
+      backdrop-filter: blur(12px);
+    }
+    .cfg-toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* Responsive */
     @media (max-width: 960px) {
       .cfg-layout { grid-template-columns: 1fr; }
-      .cfg-panel { position: static; }
+      .cfg-box-panel { position: static; }
     }
     @media (max-width: 640px) {
-      .cfg-page-header { padding: 110px 0 48px; }
+      .cfg-page-header { padding: 108px 0 40px; }
+      .cfg-tasks { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav class="nav" id="mainNav">
     <div class="container">
       <div class="nav__inner">
@@ -274,138 +381,86 @@
     </div>
   </nav>
 
+  <!-- HEADER -->
   <header class="cfg-page-header">
     <div class="container">
-      <span class="label">Konfigurator</span>
-      <h1>Ile tracisz miesięcznie<br/>na złym modelu?</h1>
-      <p>Zaznacz objawy, które rozpoznajesz w swoim sklepie — zobaczysz szacowaną stratę i plan pierwszego sprintu.</p>
+      <span class="label">Sprint Box Simulator</span>
+      <h1>Co zmieścisz<br>w jednym sprincie?</h1>
+      <p>Wybierz zadania, które chcesz zrealizować. Zobaczysz ile kosztują godzinowo — i ile u nas. Cena jest stała.</p>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="cfg-wrap">
     <div class="container">
       <div class="cfg-layout">
 
+        <!-- LEFT: Task Picker -->
         <div class="cfg-left">
-          <div class="cfg-symptoms">
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="2500">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">💸</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Płacę za godziny pracy, nie za wyniki sprzedażowe</span>
-                <span class="cfg-symptom__cost">−2 500 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="tech" data-roi="4200">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🐌</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Sklep sypie błędami lub działa wolno — tracę sprzedaż</span>
-                <span class="cfg-symptom__cost">−4 200 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="conversion" data-roi="6000">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">📉</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Mam ruch, ale konwersja nie rośnie od miesięcy</span>
-                <span class="cfg-symptom__cost">−6 000 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="1800">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">📞</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Nie mam jednego stałego punktu kontaktu do IT</span>
-                <span class="cfg-symptom__cost">−1 800 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="b2b" data-roi="4500">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🤝</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Sprzedaję do firm B2B i tonę w mailach i ręcznych wycenach</span>
-                <span class="cfg-symptom__cost">−4 500 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="2000">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🔁</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Każdy nowy projekt startuje od zera — tłumaczę kontekst od nowa</span>
-                <span class="cfg-symptom__cost">−2 000 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="marketing" data-roi="2200">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">📣</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Marketing nie może sam edytować strony bez developera</span>
-                <span class="cfg-symptom__cost">−2 200 PLN / mies</span>
-              </span>
-            </label>
-
-            <label class="cfg-symptom" data-scenario="model" data-roi="3000">
-              <input type="checkbox" class="cfg-input" hidden>
-              <span class="cfg-symptom__check"><span class="cfg-symptom__check-icon"></span></span>
-              <span class="cfg-symptom__icon">🔥</span>
-              <span class="cfg-symptom__body">
-                <span class="cfg-symptom__text">Gaszę pożary zamiast realizować strategię wzrostu</span>
-                <span class="cfg-symptom__cost">−3 000 PLN / mies</span>
-              </span>
-            </label>
-
+          <div class="cfg-filters" role="group" aria-label="Kategoria zadań">
+            <button class="cfg-filter is-active" data-cat="all">Wszystkie</button>
+            <button class="cfg-filter" data-cat="ux">UX &amp; Sprzedaż</button>
+            <button class="cfg-filter" data-cat="tech">Sklep &amp; Tech</button>
+            <button class="cfg-filter" data-cat="marketing">Marketing</button>
+            <button class="cfg-filter" data-cat="b2b">B2B</button>
           </div>
+          <div class="cfg-tasks" id="cfgTasks" role="list" aria-label="Dostępne zadania"></div>
         </div>
 
+        <!-- RIGHT: Box Panel -->
         <div class="cfg-right">
-          <div class="cfg-panel" id="cfgPanel">
+          <div class="cfg-box-panel">
 
-            <div class="cfg-idle" id="cfgIdle">
-              <span class="cfg-idle-icon">☝️</span>
-              Zaznacz objawy, które rozpoznajesz u siebie — zobaczysz szacowaną stratę i gotowy plan pierwszego sprintu.
+            <!-- Package toggle -->
+            <div class="cfg-pkg-row">
+              <span class="cfg-pkg-row-label">Pakiet</span>
+              <div class="cfg-pkg-btns">
+                <button class="cfg-pkg-btn is-active" data-pkg="growth">Growth · 35h</button>
+                <button class="cfg-pkg-btn" data-pkg="stability">Stability · 16h</button>
+              </div>
             </div>
 
-            <div class="cfg-active" id="cfgActive">
-
-              <div class="cfg-roi">
-                <span class="cfg-roi__label">Szacowana strata miesięcznie</span>
-                <span class="cfg-roi__amount" id="cfgRoiAmount">0 PLN</span>
-                <div class="cfg-roi__meter"><div class="cfg-roi__fill" id="cfgRoiFill" style="width:0%"></div></div>
+            <!-- Capacity -->
+            <div class="cfg-cap-wrap">
+              <div class="cfg-cap-top">
+                <span class="cfg-cap-title">Pojemnosc pudełka</span>
+                <span class="cfg-cap-hours" id="cfgCapHours">0 / 35h</span>
               </div>
-
-              <div class="cfg-rec">
-                <span class="cfg-rec__label">Rekomendacja</span>
-                <span class="cfg-rec__pkg" id="cfgRecPkg"></span>
-                <p class="cfg-rec__desc" id="cfgRecDesc"></p>
-              </div>
-
-              <div class="cfg-sprint" id="cfgSprintBlock" style="display:none">
-                <span class="cfg-sprint__label">Twój pierwszy sprint</span>
-                <p class="cfg-sprint__name" id="cfgSprintName"></p>
-                <div class="cfg-sprint__weeks" id="cfgSprintWeeks"></div>
-                <div class="cfg-sprint__kpis" id="cfgSprintKpis"></div>
-              </div>
-
-              <div class="cfg-cta" id="cfgCta" style="display:none">
-                <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
-              </div>
-
+              <div class="cfg-cap-bar"><div class="cfg-cap-fill" id="cfgCapFill"></div></div>
+              <span class="cfg-cap-sub" id="cfgCapSub">Kliknij zadania po lewej — dodaj je do sprintu.</span>
             </div>
+
+            <!-- Box inner: chips or empty state -->
+            <div class="cfg-box-inner" id="cfgBoxInner">
+              <div class="cfg-box-empty">
+                <div class="cfg-box-empty-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 8H3M21 8l-2 11H5L3 8M21 8l-1.5-4H4.5L3 8M9 12v4M15 12v4"/>
+                  </svg>
+                </div>
+                Wybierz zadania z lewej — zobaczysz co mieści się w jednym sprincie.
+              </div>
+            </div>
+
+            <!-- Cost comparison (hidden initially) -->
+            <div class="cfg-cost" id="cfgCost" style="display:none">
+              <span class="cfg-cost__title">Porównanie kosztów</span>
+              <div class="cfg-cost__row">
+                <span>Stawka rynkowa (~200 PLN/h)</span>
+                <span class="cfg-cost__val" id="cfgHourlyCost">—</span>
+              </div>
+              <div class="cfg-cost__pkg">
+                <span class="cfg-cost__pkg-name" id="cfgPkgName">Codeq Care Growth</span>
+                <span class="cfg-cost__pkg-price" id="cfgPkgPrice">6 400 PLN/mies</span>
+              </div>
+              <div id="cfgVerdict"></div>
+            </div>
+
+            <!-- CTA (hidden initially) -->
+            <div class="cfg-cta" id="cfgCta" style="display:none">
+              <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
+            </div>
+
           </div>
         </div>
 
@@ -413,142 +468,325 @@
     </div>
   </main>
 
-  <script>
-    // Nav scroll
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    });
+  <!-- Toast -->
+  <div class="cfg-toast" id="cfgToast" role="alert" aria-live="assertive"></div>
 
-    // Sprint data
-    const SS_DATA = {
-      tech: {
-        name: 'Optymalizacja Techniczna',
-        pkg: 'Pakiet Stability', pkgClass: 'stability', price: '3 200 PLN / mies',
-        weeks: [
-          { period: 'Tydzień 1', title: 'Kickoff & Audyt', tasks: ['Plan & Kickoff — zakres prac, priorytety', 'Audyt techniczny: Core Web Vitals, logi błędów', 'Weryfikacja bezpieczeństwa i długu technicznego'] },
-          { period: 'Tydzień 2–3', title: 'Wdrożenie', tasks: ['Pełny update silnika i wtyczek (Test & Deploy)', 'Optymalizacja bazy danych i kompresja grafik', 'Konfiguracja cache i zabezpieczeń'] },
-          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Deploy na produkcję po testach staging', 'Raport PageSpeed przed i po', 'Plan Sprint 2 z backlogu'] }
-        ],
-        kpi: ['PageSpeed Mobile ≥ 90 (strefa Green)', 'Uptime 99.9% dostępności sklepu', 'Zero krytycznych podatności wtyczek']
-      },
-      conversion: {
-        name: 'Revenue Booster',
-        pkg: 'Pakiet Growth', pkgClass: 'growth', price: '6 400 PLN / mies',
-        weeks: [
-          { period: 'Tydzień 1', title: 'Kickoff & Roadmapa', tasks: ['Warsztat strategiczny — cel sprintu', 'Audyt UX: ścieżka zakupowa i koszyk', 'Sprint Goal: Redesign Karty Produktu'] },
-          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev/UX', tasks: ['Redesign Karty Produktu (Mobile First UX)', 'One-Step / Express Checkout', 'Silnik Cross-selling ("Kup razem")'] },
-          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Deploy na produkcję, testy A/B', 'Raport CR i porzuconych koszyków', 'Backlog i cel Sprint 2'] }
-        ],
-        kpi: ['Conversion Rate wzrost o min. 0,2–0,5 pp.', 'AOV (Średni Koszyk): +10–15%', 'Wyraźny spadek porzuconych koszyków']
-      },
-      b2b: {
-        name: 'B2B Ecosystem Builder',
-        pkg: 'Pakiet Growth', pkgClass: 'growth', price: '6 400 PLN / mies',
-        weeks: [
-          { period: 'Tydzień 1', title: 'Kickoff & Analiza', tasks: ['Kickoff — mapowanie procesu zamówień B2B', 'Analiza flow: od zapytania do faktury', 'Sprint Goal: Tiered Pricing + Generator Ofert'] },
-          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev', tasks: ['Tiered Pricing — ceny hurtowe po zalogowaniu', 'Generator Ofert PDF dla klienta końcowego', 'Quick Order — zamówienia hurtowe w 2 klikach'] },
-          { period: 'Tydzień 4', title: 'Odbiór & Raport', tasks: ['Panel Klienta MVP (faktury, historia)', 'Deploy i testy z klientami B2B', 'Plan Sprint 2 (powtarzanie zamówień)'] }
-        ],
-        kpi: ['−40% zapytań do handlowców (oszczędność czasu)', 'Self-service: klienci zamawiają sami 24/7', 'Wzrost powracalności partnerów B2B']
-      },
-      marketing: {
-        name: 'Wsparcie Marketingu',
-        pkg: 'Pakiet Stability', pkgClass: 'stability', price: '3 200 PLN / mies',
-        weeks: [
-          { period: 'Tydzień 1', title: 'Kickoff & Audyt CMS', tasks: ['Kickoff — mapa sekcji edytowalnych', 'Audyt struktury treści i bloga', 'Sprint Goal: edytowalne banery + blog SEO'] },
-          { period: 'Tydzień 2–3', title: 'Wdrożenie Dev/UX', tasks: ['Szablony sekcji edytowalnych (bez kodu)', 'Optymalizacja wpisów blogowych pod SEO', 'Sekcja Zespół / O nas, szablony grafik'] },
-          { period: 'Tydzień 4', title: 'Odbiór & Szkolenie', tasks: ['Deploy + szkolenie zespołu marketingowego', 'Raport SEO Health (audyt treści)', 'Backlog i plan Sprint 2'] }
-        ],
-        kpi: ['SEO Health: Audyt treści ≥ 90/100 pkt', '100% kluczowych treści edytowalnych bez kodu', 'Marketing publikuje samodzielnie w 24h']
-      }
+  <script>
+    // ─────────────────────────────────────────────
+    // DATA
+    // ─────────────────────────────────────────────
+    const TASKS = [
+      // UX & Sprzedaż
+      {id:'t01', label:'Redesign Karty Produktu',      desc:'Mobile First, UX konwersji, galeria i CTA',            cat:'ux',        size:'XL', hours:24},
+      {id:'t02', label:'One-Step Checkout',             desc:'Uproszczenie i przyspieszenie ścieżki zakupu',          cat:'ux',        size:'XL', hours:22},
+      {id:'t03', label:'Silnik Cross-sell / Upsell',   desc:'Rekomendacje "Kup razem" na karcie produktu',           cat:'ux',        size:'L',  hours:14},
+      {id:'t04', label:'Optymalizacja Mobile UX',      desc:'Nawigacja i checkout na urządzeniach mobilnych',        cat:'ux',        size:'L',  hours:12},
+      {id:'t05', label:'Porzucony Koszyk — flow',      desc:'Exit intent popup + sekwencja email',                   cat:'ux',        size:'M',  hours:7},
+      {id:'t06', label:'Wyszukiwarka z Filtrowaniem',  desc:'Autocomplete, sortowanie, filtrowanie fasetowe',        cat:'ux',        size:'M',  hours:8},
+      // Sklep & Tech
+      {id:'t07', label:'Optymalizacja Core Web Vitals',desc:'PageSpeed Mobile do strefy Green (90+)',                cat:'tech',      size:'L',  hours:16},
+      {id:'t08', label:'Audyt Bezpieczeństwa + Update',desc:'Wtyczki, SSL, zero krytycznych podatności',            cat:'tech',      size:'M',  hours:6},
+      {id:'t09', label:'Integracja ERP / Magazyn',     desc:'Synchronizacja stanów i zamówień na żywo',             cat:'tech',      size:'XL', hours:28},
+      {id:'t10', label:'Konfiguracja Cache i CDN',     desc:'Redis / Varnish / CloudFlare — tuning serwera',        cat:'tech',      size:'M',  hours:5},
+      {id:'t11', label:'Aktualizacje CMS i Wtyczek',   desc:'Staging → testy regresji → deploy na produkcję',       cat:'tech',      size:'S',  hours:2},
+      {id:'t12', label:'Monitoring i Alerty Uptime',   desc:'Logi błędów, Slack alerty, SLA 99.9%',                 cat:'tech',      size:'S',  hours:3},
+      // Marketing
+      {id:'t13', label:'Edytowalne Sekcje CMS',        desc:'Marketing edytuje samodzielnie, bez kodu',             cat:'marketing', size:'M',  hours:8},
+      {id:'t14', label:'Optymalizacja Bloga pod SEO',  desc:'Schema, nagłówki, meta tagi, ALT, linkowanie',         cat:'marketing', size:'M',  hours:6},
+      {id:'t15', label:'Nowy Landing Page',            desc:'Projekt UX + wdrożenie w jednym sprincie',             cat:'marketing', size:'L',  hours:18},
+      {id:'t16', label:'Strona Zespół / O nas',        desc:'Nowy design, treści, sekcja z ludźmi',                 cat:'marketing', size:'M',  hours:5},
+      {id:'t17', label:'Wymiana Banerów Kampanii',     desc:'Nowe formaty, banery sezonowe, A/B copy',              cat:'marketing', size:'S',  hours:2},
+      // B2B
+      {id:'t18', label:'Tiered Pricing B2B',           desc:'Ceny hurtowe i grupowe po zalogowaniu klienta',        cat:'b2b',       size:'L',  hours:16},
+      {id:'t19', label:'Generator Ofert PDF',          desc:'Klient generuje wycenę samodzielnie, bez handlowca',   cat:'b2b',       size:'L',  hours:12},
+      {id:'t20', label:'Panel Klienta B2B (MVP)',      desc:'Faktury, historia zamówień, powtarzanie',              cat:'b2b',       size:'XL', hours:26},
+      {id:'t21', label:'Quick Order Form',             desc:'Zamówienia hurtowe w 2 klikach bez katalogu',          cat:'b2b',       size:'M',  hours:8},
+    ];
+
+    const TASKS_MAP = Object.fromEntries(TASKS.map(t => [t.id, t]));
+
+    const PKG = {
+      growth:    {label:'Growth',    price:6400, cap:35},
+      stability: {label:'Stability', price:3200, cap:16},
     };
 
-    // Configurator logic
-    (function () {
-      const symptoms    = document.querySelectorAll('.cfg-symptom');
-      if (!symptoms.length) return;
-      const idle        = document.getElementById('cfgIdle');
-      const active      = document.getElementById('cfgActive');
-      const roiAmount   = document.getElementById('cfgRoiAmount');
-      const roiFill     = document.getElementById('cfgRoiFill');
-      const recPkg      = document.getElementById('cfgRecPkg');
-      const recDesc     = document.getElementById('cfgRecDesc');
-      const sprintBlock = document.getElementById('cfgSprintBlock');
-      const sprintName  = document.getElementById('cfgSprintName');
-      const sprintWeeks = document.getElementById('cfgSprintWeeks');
-      const sprintKpis  = document.getElementById('cfgSprintKpis');
-      const ctaBlock    = document.getElementById('cfgCta');
+    const SIZE_COLOR = {S:'--sz-s', M:'--sz-m', L:'--sz-l', XL:'--sz-xl'};
 
-      const MAX_ROI = 26200;
-      const SCENARIO_PRIORITY = ['conversion', 'tech', 'b2b', 'marketing'];
-      const PKG = {
-        stability: { cls: 'stability', label: 'Pakiet Stability · 3 200 PLN / mies', desc: 'Twój sklep potrzebuje stabilnego zaplecza technicznego i jednego dedykowanego zespołu.' },
-        growth:    { cls: 'growth',    label: 'Pakiet Growth · 6 400 PLN / mies',    desc: 'Twój sklep ma potencjał do skalowania — potrzebujesz Stratega, UX Designera i developera w jednym.' }
-      };
+    // ─────────────────────────────────────────────
+    // STATE
+    // ─────────────────────────────────────────────
+    let pkg       = 'growth';
+    let selected  = new Set();
+    let cat       = 'all';
+    let toastTmr  = null;
 
-      let currentRoi = 0, rafId = null;
+    // ─────────────────────────────────────────────
+    // HELPERS
+    // ─────────────────────────────────────────────
+    const usedH  = () => [...selected].reduce((s,id) => s + TASKS_MAP[id].hours, 0);
+    const cap    = () => PKG[pkg].cap;
+    const price  = () => PKG[pkg].price;
+    const remH   = () => cap() - usedH();
+    const pct    = () => Math.min(usedH() / cap() * 100, 100);
+    const hourly = () => usedH() * 200;
 
-      function animateRoi(target) {
-        if (rafId) cancelAnimationFrame(rafId);
-        const from = currentRoi, t0 = performance.now();
-        function step(now) {
-          const p = Math.min((now - t0) / 550, 1);
-          const e = 1 - Math.pow(1 - p, 3);
-          const v = Math.round(from + (target - from) * e);
-          roiAmount.textContent = v.toLocaleString('pl-PL') + ' PLN';
-          roiFill.style.width = (v / MAX_ROI * 100) + '%';
-          if (p < 1) { rafId = requestAnimationFrame(step); } else { currentRoi = target; rafId = null; }
-        }
-        rafId = requestAnimationFrame(step);
-      }
+    function fmt(n) { return n.toLocaleString('pl-PL') + ' PLN'; }
 
-      function update() {
-        const checked = [...symptoms].filter(s => s.classList.contains('is-checked'));
-        if (!checked.length) {
-          idle.style.display = '';
-          active.classList.remove('visible');
-          animateRoi(0);
-          return;
-        }
-        idle.style.display = 'none';
-        active.classList.add('visible');
+    function showToast(msg) {
+      const el = document.getElementById('cfgToast');
+      el.textContent = msg;
+      el.classList.add('visible');
+      clearTimeout(toastTmr);
+      toastTmr = setTimeout(() => el.classList.remove('visible'), 3200);
+    }
 
-        const totalRoi = checked.reduce((sum, s) => sum + parseInt(s.dataset.roi || 0), 0);
-        animateRoi(totalRoi);
+    function shakeCard(id) {
+      const el = document.querySelector(`[data-task-id="${id}"]`);
+      if (!el) return;
+      el.classList.remove('shake');
+      void el.offsetWidth;
+      el.classList.add('shake');
+      el.addEventListener('animationend', () => el.classList.remove('shake'), {once:true});
+    }
 
-        const counts = {};
-        checked.forEach(s => { const sc = s.dataset.scenario; if (sc !== 'model') counts[sc] = (counts[sc] || 0) + 1; });
-        const scenario = SCENARIO_PRIORITY.find(sc => counts[sc]) || null;
+    // ─────────────────────────────────────────────
+    // RENDER: TASK GRID
+    // ─────────────────────────────────────────────
+    function renderGrid() {
+      const container = document.getElementById('cfgTasks');
+      const used = usedH();
+      const capacity = cap();
 
-        const pkgKey = (scenario === 'conversion' || scenario === 'b2b') ? 'growth' : 'stability';
-        const pkg = PKG[pkgKey];
-        recPkg.textContent = pkg.label;
-        recPkg.className = 'cfg-rec__pkg ' + pkg.cls;
-        recDesc.textContent = pkg.desc;
+      const list = cat === 'all' ? TASKS : TASKS.filter(t => t.cat === cat);
 
-        if (scenario && SS_DATA[scenario]) {
-          const d = SS_DATA[scenario];
-          sprintBlock.style.display = '';
-          sprintName.textContent = d.name;
-          sprintWeeks.innerHTML = d.weeks.map(w => `<div class="cfg-sprint__week"><span class="cfg-sprint__week-period">${w.period}</span><span class="cfg-sprint__week-title">${w.title}</span></div>`).join('');
-          sprintKpis.innerHTML = d.kpi.map(k => `<span class="cfg-sprint__kpi">${k}</span>`).join('');
-        } else {
-          sprintBlock.style.display = 'none';
-        }
+      container.innerHTML = list.map(t => {
+        const isSel  = selected.has(t.id);
+        const fits   = isSel || (used + t.hours <= capacity);
+        const isDis  = !fits;
+        const color  = `var(${SIZE_COLOR[t.size]})`;
 
-        ctaBlock.style.display = checked.length >= 2 ? '' : 'none';
-      }
+        return `
+          <div
+            class="task-card${isSel ? ' is-selected' : ''}${isDis ? ' is-disabled' : ''}"
+            data-task-id="${t.id}"
+            role="checkbox"
+            aria-checked="${isSel}"
+            tabindex="${isDis ? -1 : 0}"
+          >
+            <div class="task-card__top">
+              <span class="size-badge size-badge--${t.size}">${t.size} · ${t.hours}h</span>
+              <span class="task-card__check"><span class="task-card__check-icon"></span></span>
+            </div>
+            <div class="task-card__name">${t.label}</div>
+            <div class="task-card__desc">${t.desc}</div>
+          </div>
+        `.trim();
+      }).join('');
 
-      symptoms.forEach(label => {
-        label.addEventListener('click', () => {
-          const input = label.querySelector('.cfg-input');
-          input.checked = !input.checked;
-          label.classList.toggle('is-checked', input.checked);
-          update();
+      container.querySelectorAll('.task-card').forEach(card => {
+        const id = card.dataset.taskId;
+        const task = TASKS_MAP[id];
+
+        card.addEventListener('click', () => {
+          if (card.classList.contains('is-disabled')) {
+            shakeCard(id);
+            const needed = task.hours - remH();
+            if (pkg === 'stability' && task.hours > PKG.stability.cap) {
+              showToast(`To zadanie (${task.hours}h) przekracza pojemność Stability. Wybierz Growth.`);
+            } else {
+              showToast(`Brakuje ${needed}h. Usuń inne zadanie lub przełącz na ${pkg === 'stability' ? 'Growth' : 'większy pakiet'}.`);
+            }
+            return;
+          }
+          if (selected.has(id)) {
+            selected.delete(id);
+          } else {
+            selected.add(id);
+          }
+          renderAll();
+        });
+
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
         });
       });
-    })();
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: BOX
+    // ─────────────────────────────────────────────
+    function renderBox() {
+      const used = usedH();
+      const capacity = cap();
+      const rem = remH();
+      const p = pct();
+
+      // Hours label
+      document.getElementById('cfgCapHours').textContent = `${used} / ${capacity}h`;
+
+      // Fill bar
+      const fill = document.getElementById('cfgCapFill');
+      fill.style.width = p + '%';
+      fill.className = 'cfg-cap-fill' + (p >= 90 ? ' is-danger' : p >= 65 ? ' is-warn' : '');
+
+      // Sub caption
+      const sub = document.getElementById('cfgCapSub');
+      if (used === 0) {
+        sub.textContent = `Pojemność ${PKG[pkg].label}: ${capacity}h sprintu`;
+        sub.className = 'cfg-cap-sub';
+      } else if (rem > 0) {
+        sub.textContent = `${rem}h wolnych — trafia na utrzymanie i bieżące sprawy`;
+        sub.className = 'cfg-cap-sub is-good';
+      } else if (rem === 0) {
+        sub.textContent = 'Pudełko wypełnione idealnie.';
+        sub.className = 'cfg-cap-sub is-good';
+      } else {
+        sub.textContent = `Przekroczono o ${Math.abs(rem)}h — usuń zadanie lub przełącz pakiet.`;
+        sub.className = 'cfg-cap-sub is-warning';
+      }
+
+      // Box inner
+      const inner = document.getElementById('cfgBoxInner');
+
+      if (selected.size === 0) {
+        inner.innerHTML = `
+          <div class="cfg-box-empty">
+            <div class="cfg-box-empty-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8H3M21 8l-2 11H5L3 8M21 8l-1.5-4H4.5L3 8M9 12v4M15 12v4"/>
+              </svg>
+            </div>
+            Wybierz zadania z lewej — zobaczysz co mieści się w jednym sprincie.
+          </div>
+        `;
+        return;
+      }
+
+      const chips = [...selected].map(id => {
+        const t = TASKS_MAP[id];
+        return `
+          <div class="task-chip">
+            <div class="task-chip__left">
+              <span class="task-chip__size size-badge size-badge--${t.size}">${t.size}</span>
+              <span class="task-chip__name">${t.label}</span>
+            </div>
+            <span class="task-chip__h">${t.hours}h</span>
+            <button class="task-chip__rm" data-rm="${t.id}" aria-label="Usuń ${t.label}">&times;</button>
+          </div>
+        `.trim();
+      }).join('');
+
+      const freeNote = (rem > 0 && used > 0) ? `
+        <div class="cfg-free-note">
+          <strong>${rem}h</strong> wolnych w tym sprincie — nie przepadają. Trafiają na utrzymanie, aktualizacje i bieżące zgłoszenia.
+        </div>
+      ` : '';
+
+      inner.innerHTML = `<div class="cfg-chips">${chips}</div>${freeNote}`;
+
+      inner.querySelectorAll('[data-rm]').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          selected.delete(btn.dataset.rm);
+          renderAll();
+        });
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: COST
+    // ─────────────────────────────────────────────
+    function renderCost() {
+      const costEl = document.getElementById('cfgCost');
+      const ctaEl  = document.getElementById('cfgCta');
+
+      if (selected.size === 0) {
+        costEl.style.display = 'none';
+        ctaEl.style.display  = 'none';
+        return;
+      }
+
+      costEl.style.display = '';
+      ctaEl.style.display  = '';
+
+      const h      = hourly();
+      const p      = price();
+      const pkgLbl = `Codeq Care ${PKG[pkg].label}`;
+      const pkgPrc = `${fmt(p)}\u00a0/\u00a0mies`;
+      const diff   = h - p;
+      const rem    = remH();
+      const used   = usedH();
+
+      document.getElementById('cfgHourlyCost').textContent = fmt(h);
+      document.getElementById('cfgPkgName').textContent    = pkgLbl;
+      document.getElementById('cfgPkgPrice').textContent   = pkgPrc;
+
+      const verdictEl = document.getElementById('cfgVerdict');
+
+      if (diff > 0) {
+        // Package is cheaper — show savings
+        verdictEl.innerHTML = `
+          <div class="cfg-verdict">
+            <div class="cfg-verdict__line is-savings">Taniej o ${fmt(diff)} vs stawka godzinowa</div>
+            <div class="cfg-verdict__line">PM, QA i Strateg — w cenie pakietu</div>
+            <div class="cfg-verdict__line">Stała faktura. Zero niespodzianek w budżecie.</div>
+            ${rem > 0 ? `<div class="cfg-verdict__line">${rem}h wolnych — na utrzymanie i bieżące sprawy</div>` : ''}
+          </div>
+        `;
+      } else {
+        // Hourly cheaper or equal — show honest message + context
+        verdictEl.innerHTML = `
+          <div class="cfg-verdict">
+            <div class="cfg-verdict__line">Stała faktura. Zero niespodzianek w budżecie.</div>
+            <div class="cfg-verdict__line">PM, QA i Strateg — w cenie pakietu</div>
+            ${rem > 0 ? `<div class="cfg-verdict__line"><strong>${rem}h</strong> wolnych — na utrzymanie, aktualizacje i awarie</div>` : ''}
+            <div class="cfg-verdict__line">Pełny ROI widoczny po 3–5 miesiącach współpracy</div>
+          </div>
+        `;
+      }
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER ALL
+    // ─────────────────────────────────────────────
+    function renderAll() {
+      renderGrid();
+      renderBox();
+      renderCost();
+    }
+
+    // ─────────────────────────────────────────────
+    // EVENTS & INIT
+    // ─────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAll();
+
+      // Category filters
+      document.querySelectorAll('.cfg-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cfg-filter').forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          cat = btn.dataset.cat;
+          renderGrid();
+        });
+      });
+
+      // Package toggle
+      document.querySelectorAll('.cfg-pkg-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cfg-pkg-btn').forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          pkg = btn.dataset.pkg;
+          renderAll();
+        });
+      });
+
+      // Nav scroll
+      const nav = document.getElementById('mainNav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+      }, {passive: true});
+    });
   </script>
 </body>
 </html>
