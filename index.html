@@ -854,6 +854,48 @@
     /* === DARK PAGE BASE === */
     body { background: var(--brand-dark); }
 
+    /* === LOGO BAR === */
+    .logo-bar {
+      background: #fff;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+      padding: 20px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .logo-bar::before, .logo-bar::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+      pointer-events: none;
+    }
+    .logo-bar::before { left: 0; background: linear-gradient(90deg, #fff 40%, transparent); }
+    .logo-bar::after  { right: 0; background: linear-gradient(-90deg, #fff 40%, transparent); }
+    .logo-bar__label {
+      text-align: center;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #94a3b8; margin-bottom: 16px;
+    }
+    .logo-bar__track { overflow: hidden; }
+    .logo-bar__inner {
+      display: flex; align-items: center; gap: 0;
+      width: max-content;
+      animation: logoScroll 28s linear infinite;
+    }
+    .logo-bar__inner:hover { animation-play-state: paused; }
+    @keyframes logoScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .logo-item {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 40px; white-space: nowrap;
+      font-size: 17px; font-weight: 800; letter-spacing: -0.03em;
+      color: #cbd5e1;
+      transition: color .2s ease;
+      user-select: none;
+    }
+    .logo-item:hover { color: #94a3b8; }
+
     /* === 2. PROBLEM — light section === */
     .problem { background: #fff; }
     .section-header { text-align: center; margin-bottom: var(--space-8); }
@@ -1969,6 +2011,43 @@
       </div>
     </div>
   </section>
+
+  <!-- ================================
+       1b. LOGO BAR
+  ================================ -->
+  <div class="logo-bar">
+    <p class="logo-bar__label">Zaufali nam</p>
+    <div class="logo-bar__track">
+      <div class="logo-bar__inner">
+        <!-- Zestaw 1 -->
+        <span class="logo-item">Modivo</span>
+        <span class="logo-item">Answear</span>
+        <span class="logo-item">Eobuwie</span>
+        <span class="logo-item">Vistula</span>
+        <span class="logo-item">Wittchen</span>
+        <span class="logo-item">Apart</span>
+        <span class="logo-item">Bytom</span>
+        <span class="logo-item">Wojas</span>
+        <span class="logo-item">Diverse</span>
+        <span class="logo-item">Ochnik</span>
+        <span class="logo-item">Lavard</span>
+        <span class="logo-item">Ryłko</span>
+        <!-- Zestaw 2 (duplikat dla pętli) -->
+        <span class="logo-item">Modivo</span>
+        <span class="logo-item">Answear</span>
+        <span class="logo-item">Eobuwie</span>
+        <span class="logo-item">Vistula</span>
+        <span class="logo-item">Wittchen</span>
+        <span class="logo-item">Apart</span>
+        <span class="logo-item">Bytom</span>
+        <span class="logo-item">Wojas</span>
+        <span class="logo-item">Diverse</span>
+        <span class="logo-item">Ochnik</span>
+        <span class="logo-item">Lavard</span>
+        <span class="logo-item">Ryłko</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ================================
        2. PROBLEM
