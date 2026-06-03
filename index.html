@@ -1766,6 +1766,80 @@
       .sprint-box { margin: 0; }
     }
 
+    /* === CASE STUDIES === */
+    .cases { background: #f8f9ff; }
+    .cases .section-header p { max-width: 600px; }
+    .cases__qualifier {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #eef1ff; border: 1px solid #c7d2fe;
+      border-radius: 99px; padding: 7px 16px;
+      font-size: 13px; font-weight: 600; color: var(--codeq-blue);
+      margin-bottom: 40px;
+    }
+    .cases__qualifier::before { content: '🎯'; }
+    .cases-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-bottom: 24px;
+    }
+    .case-card {
+      background: #fff; border: 1px solid #e4e8ff;
+      border-radius: 20px; overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow .2s ease, transform .2s ease;
+    }
+    .case-card:hover { box-shadow: 0 12px 40px rgba(31,63,249,.1); transform: translateY(-3px); }
+    .case-card__top {
+      padding: 24px 24px 20px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .case-tag {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; font-weight: 700; color: #334155;
+    }
+    .case-tag__icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: #f1f5f9; display: flex; align-items: center;
+      justify-content: center; font-size: 14px; flex-shrink: 0;
+    }
+    .case-revenue {
+      font-size: 11px; font-weight: 600; color: #94a3b8;
+      background: #f8fafc; border: 1px solid #e2e8f0;
+      padding: 3px 9px; border-radius: 99px; white-space: nowrap;
+    }
+    .case-card__body { padding: 20px 24px; flex: 1; }
+    .case-problem {
+      font-size: 14px; color: #64748b; line-height: 1.6;
+      font-style: italic; margin-bottom: 20px;
+      padding-left: 12px; border-left: 2px solid #e4e8ff;
+    }
+    .case-intervention {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: #94a3b8; margin-bottom: 10px; display: block;
+    }
+    .case-results { display: flex; flex-direction: column; gap: 8px; }
+    .case-result {
+      display: flex; align-items: baseline; gap: 8px;
+    }
+    .case-result__num {
+      font-size: 22px; font-weight: 800; color: var(--codeq-blue);
+      letter-spacing: -0.03em; line-height: 1; flex-shrink: 0;
+    }
+    .case-result__label { font-size: 13px; color: #475569; font-weight: 500; }
+    .case-card__footer {
+      padding: 14px 24px;
+      background: #f8f9ff; border-top: 1px solid #f1f5f9;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: #94a3b8;
+    }
+    .case-card__footer::before { content: '⏱'; font-size: 11px; }
+    .cases__disclaimer {
+      text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .cases-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto 24px; }
+    }
+
     /* === 8. PRICING === */
     .pricing { background: var(--brand-dark); }
     .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 880px; margin: 0 auto; }
@@ -2682,6 +2756,103 @@
 
   <!-- CONFIGURATOR MODAL -->
 
+  <!-- ================================
+       7b. CASE STUDIES
+  ================================ -->
+  <section class="cases section" id="cases">
+    <div class="container">
+      <div class="section-header">
+        <h2 style="color:#0a0f2e">Sklepy, które z nami rosną.</h2>
+        <p style="color:#64748b">Różne problemy, różne interwencje — jeden model współpracy.</p>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <span class="cases__qualifier">Pracujemy z e-commerce na 2–20M PLN rocznego obrotu</span>
+      </div>
+
+      <div class="cases-grid">
+
+        <!-- Card 1: Core Web Vitals -->
+        <div class="case-card">
+          <div class="case-card__top">
+            <div class="case-tag">
+              <span class="case-tag__icon">🏠</span>
+              Home & Deco
+            </div>
+            <span class="case-revenue">5–8M PLN / rok</span>
+          </div>
+          <div class="case-card__body">
+            <p class="case-problem">"PageSpeed 38/100, wysoki bounce rate na mobile — tracimy ruch z reklam zanim zdąży skonwertować."</p>
+            <span class="case-intervention">Core Web Vitals + Optymalizacja techniczna</span>
+            <div class="case-results">
+              <div class="case-result">
+                <span class="case-result__num">91/100</span>
+                <span class="case-result__label">PageSpeed (z 38)</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num">−22%</span>
+                <span class="case-result__label">bounce rate na mobile</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__footer">3 miesiące współpracy</div>
+        </div>
+
+        <!-- Card 2: UX + konwersja -->
+        <div class="case-card">
+          <div class="case-card__top">
+            <div class="case-tag">
+              <span class="case-tag__icon">👗</span>
+              Fashion multi-brand
+            </div>
+            <span class="case-revenue">3–6M PLN / rok</span>
+          </div>
+          <div class="case-card__body">
+            <p class="case-problem">"Sklep działa, ale konwersja stoi w miejscu od roku. Trzy zmiany agencji — każda zaczyna od zera."</p>
+            <span class="case-intervention">Audyt UX + przebudowa ścieżki zakupowej</span>
+            <div class="case-results">
+              <div class="case-result">
+                <span class="case-result__num">+16%</span>
+                <span class="case-result__label">CR na mobile</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num">+9%</span>
+                <span class="case-result__label">średnia wartość koszyka</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__footer">4 miesiące współpracy</div>
+        </div>
+
+        <!-- Card 3: Komunikacja + opinie -->
+        <div class="case-card">
+          <div class="case-card__top">
+            <div class="case-tag">
+              <span class="case-tag__icon">💊</span>
+              Suplementy & zdrowie
+            </div>
+            <span class="case-revenue">8–14M PLN / rok</span>
+          </div>
+          <div class="case-card__body">
+            <p class="case-problem">"Mało opinii, słaba konwersja z Google Ads. Produkt dobry — ale sklep tego nie komunikuje."</p>
+            <span class="case-intervention">Komunikacja produktowa + pozyskiwanie opinii</span>
+            <div class="case-results">
+              <div class="case-result">
+                <span class="case-result__num">+180%</span>
+                <span class="case-result__label">liczba opinii w 60 dni</span>
+              </div>
+              <div class="case-result">
+                <span class="case-result__num">+12%</span>
+                <span class="case-result__label">CR z Google Ads</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-card__footer">5 miesięcy współpracy</div>
+        </div>
+
+      </div>
+      <p class="cases__disclaimer">Wyniki zanonimizowane. Efekty zależą od skali sklepu, branży i zakresu współpracy.</p>
+    </div>
+  </section>
 
   <!-- ================================
        8. PRICING
