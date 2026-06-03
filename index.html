@@ -1439,7 +1439,7 @@
     /* === 4b. VIDEO TESTIMONIALS === */
     .video-testimonials { background: #fff; }
 
-    .vt-cards { display: flex; flex-direction: column; gap: 20px; }
+    .vt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
     .vt-card {
       display: grid;
@@ -1507,6 +1507,9 @@
     .vt-client__info strong { display: block; font-size: 14px; color: var(--ink-900); font-weight: var(--fw-semibold); }
     .vt-client__info span { font-size: 13px; color: var(--ink-500); }
 
+    @media (max-width: 900px) {
+      .vt-cards { grid-template-columns: 1fr; }
+    }
     @media (max-width: 720px) {
       .vt-card { grid-template-columns: 1fr; }
       .vt-video { min-height: 260px; }
