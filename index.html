@@ -2207,7 +2207,7 @@
             <div class="story-section__body">
               <span class="story-section__tag">Miesiąc 1 · Diagnoza</span>
               <h3>Odkrywamy możliwości Twojego sklepu.</h3>
-              <div class="sprint-loop">
+              <div class="sprint-loop" id="sprintLoopDiagnoza">
                 <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🔍</span><span class="sprint-step__role">Tech + UX</span><h4>Audyt techniczny i UX</h4><p>PageSpeed, bezpieczeństwo, dług techniczny i ścieżki zakupowe.</p></div>
                 <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🎯</span><span class="sprint-step__role">Strateg</span><h4>Sesja strategiczna i OKR</h4><p>Priorytety na 6 miesięcy. Każde zadanie ma sens biznesowy.</p></div>
                 <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🗺️</span><span class="sprint-step__role">Strateg + PM</span><h4>Mapa wzrostu</h4><p>Roadmapa wdrożeń — wiesz co, kiedy i dlaczego trafia do realizacji.</p></div>
@@ -2239,7 +2239,7 @@
             <div class="story-section__body">
               <span class="story-section__tag">Miesiąc 6 · QBR</span>
               <h3>Przegląd wyników i decyzja o kolejnym cyklu.</h3>
-              <div class="sprint-loop">
+              <div class="sprint-loop" id="sprintLoopQBR">
                 <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">📊</span><span class="sprint-step__role">Strateg + PM</span><h4>Przegląd wyników</h4><p>Podsumowanie wzrostów CR, AOV, PageSpeed za cały cykl.</p></div>
                 <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🔄</span><span class="sprint-step__role">Strateg</span><h4>Korekta kursu</h4><p>Analiza i nowe priorytety dostosowane do aktualnych wyników.</p></div>
                 <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🤝</span><span class="sprint-step__role">Cały zespół</span><h4>QBR z zespołem</h4><p>Kwartalny Przegląd Biznesowy — Ty, Strateg i PM przy jednym stole.</p></div>
@@ -2954,8 +2954,10 @@
       }
       return { start, reset };
     }
-    const loopA = makeSprintLoop('sprintLoop');
-    const loopB = makeSprintLoop('sprintLoopB');
+    const loopA         = makeSprintLoop('sprintLoop');
+    const loopB         = makeSprintLoop('sprintLoopB');
+    const loopDiagnoza  = makeSprintLoop('sprintLoopDiagnoza');
+    const loopQBR       = makeSprintLoop('sprintLoopQBR');
 
     // Variant A — Phase tabs
     document.querySelectorAll('.phase-tab').forEach(tab => {
@@ -2981,9 +2983,12 @@
       if (target) target.classList.add('ss-active');
       const nav = document.querySelector(`.story-nav__item[data-story="${id}"]`);
       if (nav) nav.classList.add('sn-active');
-      loopB.reset();
+      [loopB, loopDiagnoza, loopQBR].forEach(l => l.reset());
+      if (id === 'ss-1') requestAnimationFrame(() => loopDiagnoza.start());
       if (id === 'ss-2') requestAnimationFrame(() => loopB.start());
+      if (id === 'ss-3') requestAnimationFrame(() => loopQBR.start());
     }
+    requestAnimationFrame(() => loopDiagnoza.start());
 
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => activateStory(nav.dataset.story));
