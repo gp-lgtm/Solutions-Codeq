@@ -1743,29 +1743,21 @@
     }
 
     /* === CASE STUDIES === */
-    .cases { background: var(--surface-alt); --cases-gutter: clamp(24px, calc((100vw - 1160px) / 2), 220px); }
+    .cases { background: #f8f9ff; --cases-gutter: clamp(24px, calc((100vw - 1160px) / 2), 220px); }
     .cases-stage {
-      position: relative; overflow: hidden;
+      position: relative;
       width: 100vw; margin-left: calc(50% - 50vw);
-      background: var(--blue-100);
-      border-top: 1px solid var(--blue-150); border-bottom: 1px solid var(--blue-150);
-      padding: 48px var(--cases-gutter) 52px;
+      padding: 48px 0 52px;
     }
-    .cases-stage__corner {
-      position: absolute; top: 0; right: 0; width: 340px; height: 240px;
-      background: linear-gradient(135deg, rgba(49,90,251,.07), rgba(49,90,251,0) 70%);
-      border-bottom-left-radius: 140px; pointer-events: none;
-    }
+    .cases-stage__corner { display: none; }
     .cases-stage__head {
-      position: relative; z-index: 1;
       display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
-      margin-bottom: 10px;
+      padding: 0 var(--cases-gutter); margin-bottom: 10px;
     }
     .cases-stage__head h2 { color: var(--ink-900); letter-spacing: var(--tracking-hero); }
     .cases-stage__sub {
-      position: relative; z-index: 1;
       color: var(--ink-500); font-size: 15px; line-height: 1.5;
-      max-width: 560px; margin-bottom: 32px;
+      padding: 0 var(--cases-gutter); max-width: calc(560px + var(--cases-gutter)); margin-bottom: 32px;
     }
     .cases-nav { display: flex; gap: 10px; flex-shrink: 0; }
     .cases-nav__btn {
@@ -1779,11 +1771,11 @@
     .cases-nav__btn:active { transform: scale(.94); }
 
     .cases-grid {
-      position: relative; z-index: 1;
       display: flex; gap: 20px;
       overflow-x: auto; scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--cases-gutter);
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      margin: 0 calc(-1 * var(--cases-gutter)); padding: 4px var(--cases-gutter) 8px;
+      padding: 4px var(--cases-gutter) 8px;
     }
     .cases-grid::-webkit-scrollbar { display: none; }
 
