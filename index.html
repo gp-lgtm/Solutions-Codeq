@@ -1481,6 +1481,8 @@
 
     /* === 4b. VIDEO TESTIMONIALS === */
     .video-testimonials { background: var(--blue-100); }
+    .video-testimonials .section-header { text-align: left; margin-inline: 0; }
+    .video-testimonials .section-header p { margin-inline: 0; }
 
     /* Slider */
     .vt-slider { position: relative; width: 100vw; margin-left: calc(50% - 50vw); }
@@ -1522,6 +1524,8 @@
       object-fit: cover; display: block;
     }
     .vt-poster { background: linear-gradient(160deg, #1a2a6c 0%, var(--ink-900) 100%); }
+    .vt-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 0; }
+    .vt-slide--video.is-playing .vt-cover { display: none; }
     .vt-grad {
       position: absolute; inset: 0; pointer-events: none;
       background: linear-gradient(to top, rgba(8,12,40,.92) 0%, rgba(8,12,40,.25) 45%, transparent 72%);
@@ -1546,17 +1550,6 @@
     .vt-slide--video.is-playing .vt-grad,
     .vt-slide--video.is-playing .vt-play,
     .vt-slide--video.is-playing .vt-video-author { opacity: 0; pointer-events: none; }
-
-    /* Nav */
-    .vt-nav { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
-    .vt-nav__btn {
-      width: 46px; height: 46px; border-radius: 50%;
-      border: 1px solid var(--border-1); background: var(--surface); color: var(--ink-700);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 18px; line-height: 1;
-      transition: border-color var(--dur-base), color var(--dur-base), background var(--dur-base);
-    }
-    .vt-nav__btn:hover { border-color: var(--codeq-blue); color: var(--codeq-blue); background: #f0f4ff; }
 
     @media (max-width: 640px) {
       .vt-slide { flex-basis: 84vw; min-height: 460px; }
@@ -2762,6 +2755,8 @@
               <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/quicktime">
               <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/mp4">
             </video>
+            <!-- Okładka: podmień src na własny plik. Znika po kliknięciu Play. -->
+            <img class="vt-cover" src="Codeq Design System/assets/cover-klient-1.jpg" alt="" onerror="this.remove()">
             <div class="vt-grad"></div>
             <button class="vt-play" aria-label="Odtwórz wideo">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
@@ -2788,6 +2783,8 @@
           <!-- 4: wideo (placeholder) -->
           <article class="vt-slide vt-slide--video">
             <div class="vt-poster"></div>
+            <!-- Okładka: podmień src na własny plik. -->
+            <img class="vt-cover" src="Codeq Design System/assets/cover-klient-2.jpg" alt="" onerror="this.remove()">
             <div class="vt-grad"></div>
             <button class="vt-play" aria-label="Odtwórz wideo">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
@@ -2811,11 +2808,6 @@
             </div>
           </article>
 
-        </div>
-
-        <div class="vt-nav">
-          <button class="vt-nav__btn" id="vtPrev" aria-label="Poprzedni">←</button>
-          <button class="vt-nav__btn" id="vtNext" aria-label="Następny">→</button>
         </div>
       </div>
     </div>
