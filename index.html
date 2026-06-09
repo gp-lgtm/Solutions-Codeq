@@ -1868,7 +1868,7 @@
 
     /* === 8. PRICING === */
     .pricing { background: var(--brand-dark); }
-    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 880px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 1180px; margin: 0 auto; align-items: start; }
 
     /* Pricing toggle */
     .pricing-toggle-wrap { display: flex; justify-content: center; margin-bottom: var(--space-8); }
@@ -1920,6 +1920,12 @@
     .price-feature__check { color: rgba(255,255,255,.75); flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
     .price-card__cta { width: 100%; justify-content: center; }
 
+    /* Enterprise card */
+    .price-card--enterprise { background: rgba(255,255,255,.03); border-style: dashed; border-color: rgba(255,255,255,.18); }
+    .price-card--enterprise .price-card__amount { font-size: 30px; }
+    .price-card__amount--custom { font-size: 30px !important; letter-spacing: -0.02em; }
+
+    @media (max-width: 1024px) { .pricing-grid { grid-template-columns: 1fr; max-width: 560px; } }
     @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
 
     /* === 9. FAQ === */
@@ -2982,6 +2988,26 @@
             <div class="price-feature"><span class="price-feature__check">✓</span><span>Dla: e-commerce skalujący sprzedaż i automatyzację B2B</span></div>
           </div>
           <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg price-card__cta js-contact">Wybierz Growth →</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="price-card price-card--enterprise">
+          <p class="price-card__name">Pakiet Enterprise</p>
+          <h3>Skala & Indywidualne dopasowanie</h3>
+          <div class="price-card__price">
+            <span class="price-card__amount price-card__amount--custom">Wycena indywidualna</span>
+          </div>
+          <p class="price-card__period">Zakres i model rozliczeń dopasowane do Twojej organizacji</p>
+          <div class="price-card__divider"></div>
+          <div class="price-card__features">
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Wszystko z pakietu Growth</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Dedykowany, rozszerzony zespół (dev, design, strategia)</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Integracje, automatyzacje i architektura pod skalę</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Indywidualne SLA i priorytety roadmapy</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Dedykowany kontakt i model rozliczeń</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><span>Dla: dużych e-commerce i projektów o niestandardowych wymaganiach</span></div>
+          </div>
+          <a href="mailto:hello@codeq.pl" class="btn btn--outline-blue btn--lg price-card__cta js-contact">Porozmawiajmy →</a>
         </div>
 
       </div>
