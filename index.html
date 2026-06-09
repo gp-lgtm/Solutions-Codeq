@@ -1482,16 +1482,16 @@
     /* === 4b. VIDEO TESTIMONIALS === */
     .video-testimonials { background: #fff; }
 
-    .vt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .vt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: min(1320px, calc(100vw - 48px)); margin-inline: auto; }
 
     .vt-card {
       display: grid;
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 300px 1fr;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid #e4e8ff;
       background: #f8f9ff;
-      min-height: 300px;
+      min-height: 360px;
     }
 
     .vt-video {
@@ -1548,7 +1548,7 @@
       font-size: 14px; font-weight: var(--fw-bold); color: var(--codeq-blue);
     }
     .vt-client__info strong { display: block; font-size: 14px; color: var(--ink-900); font-weight: var(--fw-semibold); }
-    .vt-client__info span { font-size: 13px; color: var(--ink-500); }
+    .vt-client__info span { font-size: 13px; color: var(--ink-500); white-space: nowrap; }
 
     @media (max-width: 900px) {
       .vt-cards { grid-template-columns: 1fr; }
@@ -2752,7 +2752,7 @@
               <div class="vt-client__avatar">AK</div>
               <div class="vt-client__info">
                 <strong>Imię Nazwisko</strong>
-                <span>Właściciel, NazwaSklepu.pl</span>
+                <span>Właściciel @ NazwaSklepu</span>
               </div>
             </div>
           </div>
@@ -2777,7 +2777,7 @@
               <div class="vt-client__avatar">MB</div>
               <div class="vt-client__info">
                 <strong>Imię Nazwisko</strong>
-                <span>Właściciel, NazwaSklepu.pl</span>
+                <span>Właściciel @ NazwaSklepu</span>
               </div>
             </div>
           </div>
