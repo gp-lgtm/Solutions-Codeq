@@ -1480,82 +1480,87 @@
     @media (max-width: 768px) { .ba-grid { grid-template-columns: 1fr; } }
 
     /* === 4b. VIDEO TESTIMONIALS === */
-    .video-testimonials { background: #fff; }
+    .video-testimonials { background: var(--blue-100); }
 
-    .vt-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: min(1320px, calc(100vw - 48px)); margin-inline: auto; }
-
-    .vt-card {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid #e4e8ff;
-      background: #f8f9ff;
-      min-height: 360px;
+    /* Slider */
+    .vt-slider { position: relative; max-width: 1200px; margin: 0 auto; }
+    .vt-track {
+      display: flex; gap: 24px; align-items: center;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      padding: 28px 4px;
     }
+    .vt-track::-webkit-scrollbar { display: none; }
 
-    .vt-video {
-      position: relative;
-      background: var(--ink-900);
-      overflow: hidden;
+    .vt-slide { flex: 0 0 360px; scroll-snap-align: center; border-radius: var(--radius-xl); }
+
+    /* Text testimonial */
+    .vt-slide--text {
+      background: var(--surface); border: 1px solid var(--border-1);
+      box-shadow: 0 12px 44px rgba(20,30,80,.06);
+      padding: 36px 34px; min-height: 440px;
+      display: flex; flex-direction: column;
     }
-    .vt-video video {
-      width: 100%; height: 100%;
+    .vt-avatar {
+      width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
+      border: 1px solid var(--border-1); display: block;
+    }
+    .vt-headline { font-weight: var(--fw-bold); font-size: 18px; color: var(--ink-900); margin: 30px 0 14px; line-height: 1.4; }
+    .vt-text { font-size: 15px; line-height: 1.65; color: var(--ink-700); margin: 0; }
+    .vt-author { margin-top: auto; padding-top: 28px; }
+    .vt-author__name { font-size: 24px; font-weight: var(--fw-semibold); color: var(--ink-900); letter-spacing: -0.01em; }
+    .vt-author__role { font-size: 14px; color: var(--ink-500); margin-top: 4px; }
+
+    /* Video / featured testimonial */
+    .vt-slide--video {
+      flex: 0 0 380px; min-height: 540px;
+      position: relative; overflow: hidden; background: var(--ink-900);
+    }
+    .vt-slide--video video,
+    .vt-poster {
+      position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
-    .vt-video__placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(160deg, var(--ink-900) 0%, #1a2a6c 100%);
-      color: rgba(255,255,255,.25);
-      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-      font-weight: var(--fw-semibold);
-      gap: var(--space-3); flex-direction: column;
+    .vt-poster { background: linear-gradient(160deg, #1a2a6c 0%, var(--ink-900) 100%); }
+    .vt-grad {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top, rgba(8,12,40,.92) 0%, rgba(8,12,40,.25) 45%, transparent 72%);
+      transition: opacity var(--dur-base);
     }
-    .vt-video__placeholder svg { opacity: 0.3; }
-    .vt-video__play {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-    }
-    .vt-video__play-btn {
-      width: 52px; height: 52px;
-      background: var(--codeq-blue); border-radius: 50%;
+    .vt-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 64px; height: 64px; background: var(--codeq-blue); border-radius: 50%;
+      border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 32px rgba(49,90,251,.5);
-      transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+      transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-base);
     }
-    .vt-video:hover .vt-video__play-btn {
-      transform: scale(1.1);
-      box-shadow: 0 12px 40px rgba(49,90,251,.65);
+    .vt-slide--video:hover .vt-play { transform: translate(-50%,-50%) scale(1.1); }
+    .vt-video-author {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      padding: 28px 30px; text-align: center; color: #fff;
+      transition: opacity var(--dur-base);
     }
+    .vt-video-author__name { font-size: 26px; font-weight: var(--fw-semibold); letter-spacing: -0.01em; }
+    .vt-video-author__role { font-size: 14px; color: rgba(255,255,255,.78); margin-top: 4px; }
+    .vt-slide--video.is-playing .vt-grad,
+    .vt-slide--video.is-playing .vt-play,
+    .vt-slide--video.is-playing .vt-video-author { opacity: 0; pointer-events: none; }
 
-    .vt-card__body {
-      padding: 36px 40px;
-      display: flex; flex-direction: column; justify-content: center; gap: 20px;
-    }
-    .vt-card__body blockquote {
-      font-size: clamp(16px, 1.4vw, 20px);
-      line-height: 1.55; color: var(--ink-900);
-      font-weight: var(--fw-medium); margin: 0;
-      font-style: normal;
-    }
-    .vt-client { display: flex; align-items: center; gap: 12px; }
-    .vt-client__avatar {
-      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
-      background: var(--blue-150);
+    /* Nav */
+    .vt-nav { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
+    .vt-nav__btn {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid var(--border-1); background: var(--surface); color: var(--ink-700);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: var(--fw-bold); color: var(--codeq-blue);
+      cursor: pointer; font-size: 18px; line-height: 1;
+      transition: border-color var(--dur-base), color var(--dur-base), background var(--dur-base);
     }
-    .vt-client__info strong { display: block; font-size: 14px; color: var(--ink-900); font-weight: var(--fw-semibold); }
-    .vt-client__info span { font-size: 13px; color: var(--ink-500); white-space: nowrap; }
+    .vt-nav__btn:hover { border-color: var(--codeq-blue); color: var(--codeq-blue); background: #f0f4ff; }
 
-    @media (max-width: 900px) {
-      .vt-cards { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 720px) {
-      .vt-card { grid-template-columns: 1fr; }
-      .vt-video { min-height: 260px; }
+    @media (max-width: 640px) {
+      .vt-slide { flex-basis: 84vw; }
+      .vt-slide--video { min-height: 480px; }
     }
 
     /* === 5. CONFIGURATOR === */
@@ -2736,53 +2741,77 @@
         <p style="color:var(--ink-700)">Posłuchaj właścicieli sklepów, którzy przeszli przez Pilotaż i zdecydowali się zostać.</p>
       </div>
 
-      <div class="vt-cards">
+      <div class="vt-slider">
+        <div class="vt-track" id="vtTrack">
 
-        <!-- Card 1 -->
-        <div class="vt-card">
-          <div class="vt-video">
-            <video controls playsinline>
+          <!-- 1: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <img class="vt-avatar" src="Codeq Design System/assets/Awatar_1.jpg" alt="">
+            <p class="vt-headline">"Wpisz tutaj mocny nagłówek opinii — jedno zdanie."</p>
+            <p class="vt-text">Dłuższy opis efektu współpracy w 2–3 zdaniach. Pokaż konkretny rezultat, który klient osiągnął dzięki współpracy.</p>
+            <div class="vt-author">
+              <div class="vt-author__name">Imię Nazwisko</div>
+              <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+            </div>
+          </article>
+
+          <!-- 2: wideo -->
+          <article class="vt-slide vt-slide--video">
+            <video playsinline preload="metadata">
               <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/quicktime">
               <source src="Codeq Design System/assets/dr_nerwica.mov" type="video/mp4">
             </video>
-          </div>
-          <div class="vt-card__body">
-            <blockquote>"Wpisz tutaj cytat z opinii klienta 1. Jedno mocne zdanie, które podsumowuje efekt współpracy."</blockquote>
-            <div class="vt-client">
-              <div class="vt-client__avatar">AK</div>
-              <div class="vt-client__info">
-                <strong>Imię Nazwisko</strong>
-                <span>Właściciel @ NazwaSklepu</span>
-              </div>
+            <div class="vt-grad"></div>
+            <button class="vt-play" aria-label="Odtwórz wideo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="vt-video-author">
+              <div class="vt-video-author__name">Imię Nazwisko</div>
+              <div class="vt-video-author__role">Właściciel @ NazwaSklepu</div>
             </div>
-          </div>
+          </article>
+
+          <!-- 3: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <img class="vt-avatar" src="Codeq Design System/assets/Awatar_4.jpg" alt="">
+            <p class="vt-headline">"Wpisz tutaj mocny nagłówek opinii — jedno zdanie."</p>
+            <p class="vt-text">Dłuższy opis efektu współpracy w 2–3 zdaniach. Pokaż konkretny rezultat, który klient osiągnął dzięki współpracy.</p>
+            <div class="vt-author">
+              <div class="vt-author__name">Imię Nazwisko</div>
+              <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+            </div>
+          </article>
+
+          <!-- 4: wideo (placeholder) -->
+          <article class="vt-slide vt-slide--video">
+            <div class="vt-poster"></div>
+            <div class="vt-grad"></div>
+            <button class="vt-play" aria-label="Odtwórz wideo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="vt-video-author">
+              <div class="vt-video-author__name">Imię Nazwisko</div>
+              <div class="vt-video-author__role">Właściciel @ NazwaSklepu</div>
+            </div>
+          </article>
+
+          <!-- 5: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <img class="vt-avatar" src="Codeq Design System/assets/Awatar_6.jpg" alt="">
+            <p class="vt-headline">"Wpisz tutaj mocny nagłówek opinii — jedno zdanie."</p>
+            <p class="vt-text">Dłuższy opis efektu współpracy w 2–3 zdaniach. Pokaż konkretny rezultat, który klient osiągnął dzięki współpracy.</p>
+            <div class="vt-author">
+              <div class="vt-author__name">Imię Nazwisko</div>
+              <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+            </div>
+          </article>
+
         </div>
 
-        <!-- Card 2 -->
-        <div class="vt-card">
-          <div class="vt-video">
-            <div class="vt-video__placeholder">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="m15 10 4.553-2.276A1 1 0 0 1 21 8.723v6.554a1 1 0 0 1-1.447.894L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-              <span>Wideo klienta 2</span>
-            </div>
-            <div class="vt-video__play">
-              <div class="vt-video__play-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
-              </div>
-            </div>
-          </div>
-          <div class="vt-card__body">
-            <blockquote>"Wpisz tutaj cytat z opinii klienta 2. Jedno mocne zdanie, które podsumowuje efekt współpracy."</blockquote>
-            <div class="vt-client">
-              <div class="vt-client__avatar">MB</div>
-              <div class="vt-client__info">
-                <strong>Imię Nazwisko</strong>
-                <span>Właściciel @ NazwaSklepu</span>
-              </div>
-            </div>
-          </div>
+        <div class="vt-nav">
+          <button class="vt-nav__btn" id="vtPrev" aria-label="Poprzedni">←</button>
+          <button class="vt-nav__btn" id="vtNext" aria-label="Następny">→</button>
         </div>
-
       </div>
     </div>
   </section>
@@ -3833,6 +3862,33 @@
       });
       next.addEventListener('click', () => {
         grid.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+      });
+    })();
+
+    // Testimonials slider
+    (function () {
+      const track = document.getElementById('vtTrack');
+      if (!track) return;
+      const prev = document.getElementById('vtPrev');
+      const next = document.getElementById('vtNext');
+
+      function slideWidth() {
+        const s = track.querySelector('.vt-slide');
+        if (!s) return 380;
+        return s.offsetWidth + parseInt(getComputedStyle(track).gap || '24');
+      }
+      prev && prev.addEventListener('click', () => track.scrollBy({ left: -slideWidth(), behavior: 'smooth' }));
+      next && next.addEventListener('click', () => track.scrollBy({ left: slideWidth(), behavior: 'smooth' }));
+
+      track.querySelectorAll('.vt-play').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.vt-slide--video');
+          const video = card && card.querySelector('video');
+          if (!video) return;
+          card.classList.add('is-playing');
+          video.setAttribute('controls', '');
+          video.play();
+        });
       });
     })();
 
