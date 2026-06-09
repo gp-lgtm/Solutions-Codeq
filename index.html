@@ -1932,41 +1932,18 @@
 
     /* === FINAL CTA === */
     .final-cta {
-      background: var(--brand-dark);
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--codeq-blue-deep) 100%);
       padding: var(--space-9) 0; text-align: center; color: #fff;
       position: relative; overflow: hidden;
-    }
-    .final-cta::before {
-      content: '';
-      position: absolute; right: -8%; top: -30%;
-      width: 60%; height: 160%; transform: rotate(22deg);
-      background: linear-gradient(180deg, rgba(255,255,255,.1) 4%, rgba(255,255,255,0) 99%);
-      border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%;
-      pointer-events: none;
     }
     .final-cta__inner { position: relative; z-index: 1; }
     .final-cta h2 { color: #fff; margin-bottom: var(--space-4); }
     .final-cta p { font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: var(--space-7); max-width: 480px; margin-left: auto; margin-right: auto; }
     .final-cta__btns { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
 
-    .final-cta__clutch {
-      display: inline-flex; align-items: center; gap: 12px;
-      margin-bottom: var(--space-6);
-      padding: 9px 16px; border-radius: var(--radius-pill);
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
-      text-decoration: none; color: #fff;
-      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
-    }
-    .final-cta__clutch:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); color: #fff; }
-    .clutch-stars { display: inline-flex; gap: 2px; color: #ff3d2e; }
-    .clutch-stars svg { width: 17px; height: 17px; display: block; }
-    .clutch-text { font-size: 14px; color: rgba(255,255,255,.82); font-weight: var(--fw-medium); white-space: nowrap; }
-    .clutch-text strong { color: #fff; font-weight: var(--fw-bold); }
-    .clutch-logo {
-      font-family: var(--font-display); font-weight: 700; font-size: 19px;
-      letter-spacing: -0.02em; color: #fff; display: inline-flex; align-items: flex-end;
-    }
-    .clutch-logo__mark { width: 6px; height: 6px; border-radius: 50%; background: #ff3d2e; margin: 0 0 4px 2px; }
+    .final-cta .hero__proof { margin-bottom: var(--space-6); }
+    .final-cta .hero__proof__tip { left: 50%; transform: translate(-50%, -4px); }
+    .final-cta .hero__proof:hover .hero__proof__tip { transform: translate(-50%, 0); }
 
     /* === CONTACT MODAL === */
     .contact-overlay {
@@ -3184,16 +3161,21 @@
   <section class="final-cta" id="finalCta">
     <div class="container">
       <div class="final-cta__inner">
-        <a class="final-cta__clutch" href="https://clutch.co/" target="_blank" rel="noopener" aria-label="5.0 rating na Clutch">
-          <span class="clutch-stars" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
-          </span>
-          <span class="clutch-text"><strong>5.0</strong> rating na</span>
-          <span class="clutch-logo">Clutch<span class="clutch-logo__mark" aria-hidden="true"></span></span>
+        <a class="hero__proof" href="https://clutch.co/profile/codeq" target="_blank" rel="noopener noreferrer">
+          <span class="hero__proof__tip">Tu znajdziesz autoryzowane i rzetelne opinie naszych klientów na temat współpracy z Codeq. Weryfikowane przez platformę Clutch.</span>
+          <span>5.0 rating</span>
+          <svg width="61" height="17" viewBox="0 0 61 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Clutch" role="img">
+            <g clip-path="url(#clip0_clutch_cta)">
+              <path d="M15.8794 0H18.6551V17H15.8794V0ZM28.3702 11.577C28.3702 14.1787 26.1379 14.3861 25.4738 14.3861C23.8146 14.3861 23.5127 12.8642 23.5127 11.9462V5.44H20.7369V11.9326C20.7369 13.5442 21.2532 14.8743 22.1581 15.761C22.9575 16.5451 24.1553 16.9735 25.4529 16.9735C26.3731 16.9735 27.6763 16.6926 28.3702 16.0718V17H31.146V5.44H28.3702V11.577ZM36.6975 1.36H33.9217V5.44H31.8399V8.16H33.9217V17H36.6975V8.16H38.7793V5.44H36.6975V1.36ZM47.5208 13.5436C46.9164 14.076 46.1184 14.3711 45.2426 14.3711C43.3121 14.3711 41.8944 12.9819 41.8944 11.0745C41.8944 9.16708 43.267 7.83632 45.2426 7.83632C46.1031 7.83632 46.9164 8.11716 47.5361 8.6496L47.9573 9.00456L49.8288 7.17128L49.3604 6.75716C48.2592 5.78272 46.797 5.236 45.2419 5.236C41.7722 5.236 39.2526 7.68944 39.2526 11.0602C39.2526 14.4167 41.8326 16.9578 45.2419 16.9578C46.8262 16.9578 48.3036 16.4111 49.391 15.421L49.8434 15.0069L47.9427 13.175L47.5208 13.5436ZM59.7362 6.44776C58.9367 5.6644 57.9999 5.236 56.7023 5.236C55.7821 5.236 54.7398 5.51684 54.0459 6.137V0H51.2701V17H54.0459V10.6318C54.0459 8.03012 55.932 7.8234 56.5961 7.8234C58.2553 7.8234 58.2095 9.34592 58.2095 10.2626V17H60.9852V10.2768C60.9852 8.66524 60.6418 7.33516 59.7362 6.44776Z" fill="white"/>
+              <path d="M45.1504 9.1377C45.6827 9.1377 46.1931 9.34489 46.5695 9.71369C46.9458 10.0825 47.1573 10.5827 47.1573 11.1043C47.1573 11.6258 46.9458 12.126 46.5695 12.4948C46.1931 12.8636 45.6827 13.0708 45.1504 13.0708C44.6182 13.0708 44.1077 12.8636 43.7314 12.4948C43.355 12.126 43.1436 11.6258 43.1436 11.1043C43.1436 10.5827 43.355 10.0825 43.7314 9.71369C44.1077 9.34489 44.6182 9.1377 45.1504 9.1377Z" fill="#FF3D2E"/>
+              <path d="M11.9932 12.7303C10.9377 13.7945 9.50402 14.3712 7.9954 14.3712C4.90322 14.3712 2.65487 11.9912 2.65487 8.72447C2.65487 5.44279 4.90322 3.06279 7.9954 3.06279C9.48944 3.06279 10.9072 3.63875 11.9786 4.68867L12.4005 5.10279L14.2561 3.28447L13.8488 2.87035C12.3103 1.31791 10.2285 0.476074 7.9954 0.476074C3.43971 0.476074 0.0151367 4.02363 0.0151367 8.73875C0.0151367 13.4396 3.45498 16.9729 7.9954 16.9729C10.2438 16.9729 12.3256 16.1161 13.864 14.5636L14.2714 14.1495L12.431 12.3019L11.9932 12.7303Z" fill="white"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_clutch_cta">
+                <rect width="61" height="17" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
         </a>
         <h2>Twój sklep zasługuje<br/>na profesjonalny plan.</h2>
         <p>Dołącz do grona e-commerce'ów, które rosną w trybie ciągłym — z pełnym zespołem ekspertów w abonamencie.</p>
