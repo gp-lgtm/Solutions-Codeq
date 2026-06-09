@@ -1503,12 +1503,12 @@
       display: flex; flex-direction: column;
     }
     .vt-avatar {
-      width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
-      border: 1px solid var(--border-1); display: block;
+      width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+      border: 1px solid var(--border-1); display: block; flex-shrink: 0;
     }
-    .vt-headline { font-weight: var(--fw-bold); font-size: 18px; color: var(--ink-900); margin: 30px 0 14px; line-height: 1.4; }
+    .vt-headline { font-weight: var(--fw-bold); font-size: 18px; color: var(--ink-900); margin: 0 0 14px; line-height: 1.4; }
     .vt-text { font-size: 15px; line-height: 1.65; color: var(--ink-700); margin: 0; }
-    .vt-author { margin-top: auto; padding-top: 28px; }
+    .vt-author { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 14px; }
     .vt-author__name { font-size: 14px; font-weight: var(--fw-bold); color: var(--ink-900); }
     .vt-author__role { font-size: 14px; color: var(--ink-500); margin-top: 4px; }
 
@@ -2745,12 +2745,14 @@
 
           <!-- 1: tekst -->
           <article class="vt-slide vt-slide--text">
-            <img class="vt-avatar" src="Codeq Design System/assets/Awatar_1.jpg" alt="">
             <p class="vt-headline">"Wpisz tutaj mocny nagłówek opinii — jedno zdanie."</p>
             <p class="vt-text">Dłuższy opis efektu współpracy w 2–3 zdaniach. Pokaż konkretny rezultat, który klient osiągnął dzięki współpracy.</p>
             <div class="vt-author">
-              <div class="vt-author__name">Imię Nazwisko</div>
-              <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+              <img class="vt-avatar" src="Codeq Design System/assets/Awatar_1.jpg" alt="">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Imię Nazwisko</div>
+                <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+              </div>
             </div>
           </article>
 
@@ -2772,12 +2774,14 @@
 
           <!-- 3: tekst -->
           <article class="vt-slide vt-slide--text">
-            <img class="vt-avatar" src="Codeq Design System/assets/Awatar_4.jpg" alt="">
             <p class="vt-headline">"Wpisz tutaj mocny nagłówek opinii — jedno zdanie."</p>
             <p class="vt-text">Dłuższy opis efektu współpracy w 2–3 zdaniach. Pokaż konkretny rezultat, który klient osiągnął dzięki współpracy.</p>
             <div class="vt-author">
-              <div class="vt-author__name">Imię Nazwisko</div>
-              <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+              <img class="vt-avatar" src="Codeq Design System/assets/Awatar_4.jpg" alt="">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Imię Nazwisko</div>
+                <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+              </div>
             </div>
           </article>
 
@@ -2796,12 +2800,14 @@
 
           <!-- 5: tekst -->
           <article class="vt-slide vt-slide--text">
-            <img class="vt-avatar" src="Codeq Design System/assets/Awatar_6.jpg" alt="">
             <p class="vt-headline">"Wpisz tutaj mocny nagłówek opinii — jedno zdanie."</p>
             <p class="vt-text">Dłuższy opis efektu współpracy w 2–3 zdaniach. Pokaż konkretny rezultat, który klient osiągnął dzięki współpracy.</p>
             <div class="vt-author">
-              <div class="vt-author__name">Imię Nazwisko</div>
-              <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+              <img class="vt-avatar" src="Codeq Design System/assets/Awatar_6.jpg" alt="">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Imię Nazwisko</div>
+                <div class="vt-author__role">Właściciel @ NazwaSklepu</div>
+              </div>
             </div>
           </article>
 
