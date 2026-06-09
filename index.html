@@ -1932,7 +1932,7 @@
 
     /* === FINAL CTA === */
     .final-cta {
-      background: linear-gradient(135deg, var(--brand-dark), var(--codeq-blue) 60%, var(--blue-500));
+      background: var(--brand-dark);
       padding: var(--space-9) 0; text-align: center; color: #fff;
       position: relative; overflow: hidden;
     }
@@ -1949,18 +1949,24 @@
     .final-cta p { font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: var(--space-7); max-width: 480px; margin-left: auto; margin-right: auto; }
     .final-cta__btns { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
 
-    .final-cta__avatars {
-      display: flex; justify-content: center;
+    .final-cta__clutch {
+      display: inline-flex; align-items: center; gap: 12px;
       margin-bottom: var(--space-6);
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+      text-decoration: none; color: #fff;
+      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
     }
-    .final-cta__av {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 2.5px solid rgba(255,255,255,.3);
-      object-fit: cover; object-position: top;
-      margin-left: -10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    .final-cta__clutch:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.3); color: #fff; }
+    .clutch-stars { display: inline-flex; gap: 2px; color: #ff3d2e; }
+    .clutch-stars svg { width: 17px; height: 17px; display: block; }
+    .clutch-text { font-size: 14px; color: rgba(255,255,255,.82); font-weight: var(--fw-medium); white-space: nowrap; }
+    .clutch-text strong { color: #fff; font-weight: var(--fw-bold); }
+    .clutch-logo {
+      font-family: var(--font-display); font-weight: 700; font-size: 19px;
+      letter-spacing: -0.02em; color: #fff; display: inline-flex; align-items: flex-end;
     }
-    .final-cta__av:first-child { margin-left: 0; }
+    .clutch-logo__mark { width: 6px; height: 6px; border-radius: 50%; background: #ff3d2e; margin: 0 0 4px 2px; }
 
     /* === CONTACT MODAL === */
     .contact-overlay {
@@ -3178,14 +3184,17 @@
   <section class="final-cta" id="finalCta">
     <div class="container">
       <div class="final-cta__inner">
-        <div class="final-cta__avatars">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_1.jpg" alt="">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_2.jpg" alt="">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_3.jpg" alt="">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_4.jpg" alt="">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_5.jpg" alt="">
-          <img class="final-cta__av" src="Codeq Design System/assets/Awatar_6.jpg" alt="">
-        </div>
+        <a class="final-cta__clutch" href="https://clutch.co/" target="_blank" rel="noopener" aria-label="5.0 rating na Clutch">
+          <span class="clutch-stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169L12 18.896l-7.335 3.867 1.401-8.169L.132 9.21l8.2-1.192z"/></svg>
+          </span>
+          <span class="clutch-text"><strong>5.0</strong> rating na</span>
+          <span class="clutch-logo">Clutch<span class="clutch-logo__mark" aria-hidden="true"></span></span>
+        </a>
         <h2>Twój sklep zasługuje<br/>na profesjonalny plan.</h2>
         <p>Dołącz do grona e-commerce'ów, które rosną w trybie ciągłym — z pełnym zespołem ekspertów w abonamencie.</p>
         <div class="final-cta__btns">
