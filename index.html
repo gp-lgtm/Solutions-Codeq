@@ -1868,7 +1868,7 @@
 
     /* === 8. PRICING === */
     .pricing { background: var(--brand-dark); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 1180px; margin: 0 auto; align-items: start; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 1180px; margin: 0 auto; align-items: stretch; }
 
     /* Pricing toggle */
     .pricing-toggle-wrap { display: flex; justify-content: center; margin-bottom: var(--space-8); }
@@ -1895,7 +1895,9 @@
       border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-md);
       padding: var(--space-7) var(--space-6);
       transition: all var(--dur-base) var(--ease-out); position: relative;
+      display: flex; flex-direction: column;
     }
+    .price-card__cta { margin-top: auto; }
     .price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(49,90,251,.2); border-color: rgba(255,255,255,.2); }
     .price-card--featured { background: rgba(49,90,251,.12); border-color: var(--codeq-blue); border-width: 2px; box-shadow: 0 20px 60px rgba(49,90,251,.3); }
     .price-card__badge {
@@ -1922,8 +1924,6 @@
 
     /* Enterprise card */
     .price-card--enterprise { background: rgba(255,255,255,.03); border-style: dashed; border-color: rgba(255,255,255,.18); }
-    .price-card--enterprise .price-card__amount { font-size: 30px; }
-    .price-card__amount--custom { font-size: 30px !important; letter-spacing: -0.02em; }
 
     @media (max-width: 1024px) { .pricing-grid { grid-template-columns: 1fr; max-width: 560px; } }
     @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
@@ -2993,11 +2993,8 @@
         <!-- Enterprise -->
         <div class="price-card price-card--enterprise">
           <p class="price-card__name">Pakiet Enterprise</p>
-          <h3>Skala & Indywidualne dopasowanie</h3>
-          <div class="price-card__price">
-            <span class="price-card__amount price-card__amount--custom">Wycena indywidualna</span>
-          </div>
-          <p class="price-card__period">Zakres i model rozliczeń dopasowane do Twojej organizacji</p>
+          <h3>Indywidualne dopasowanie</h3>
+          <p class="price-card__period">Wycena, zakres i model rozliczeń dopasowane do Twojej organizacji</p>
           <div class="price-card__divider"></div>
           <div class="price-card__features">
             <div class="price-feature"><span class="price-feature__check">✓</span><span>Wszystko z pakietu Growth</span></div>
