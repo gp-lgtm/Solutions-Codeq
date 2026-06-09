@@ -2102,15 +2102,45 @@
     /* === STICKY CTA BAR === */
     .sticky-bar {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
-      background: rgba(19,46,248,.96); backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+      background: linear-gradient(118deg, var(--codeq-blue-deep) 0%, var(--codeq-blue) 52%, var(--codeq-blue-dark) 100%);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 -10px 36px rgba(8,20,80,.30);
+      padding: 15px 24px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-5);
       transform: translateY(100%); transition: transform .4s var(--ease-out);
+      overflow: hidden;
+    }
+    .sticky-bar::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(620px 220px at 10% 130%, rgba(255,255,255,.12), transparent 70%);
     }
     .sticky-bar.visible { transform: translateY(0); }
-    .sticky-bar__text { font-size: 14px; font-weight: var(--fw-semibold); color: rgba(255,255,255,.85); }
-    .sticky-bar__text strong { color: #fff; }
-    @media (max-width: 640px) { .sticky-bar { flex-direction: column; text-align: center; } }
+    .sticky-bar__text {
+      position: relative; display: flex; align-items: center; gap: var(--space-3);
+      font-size: 14px; font-weight: var(--fw-semibold); color: rgba(255,255,255,.72); line-height: 1.4;
+    }
+    .sticky-bar__text strong { color: #fff; font-weight: var(--fw-bold); }
+    .sticky-bar__sub { color: rgba(255,255,255,.78); }
+    .sticky-bar__pulse {
+      flex-shrink: 0; width: 9px; height: 9px; border-radius: 50%;
+      background: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,.6);
+      animation: stickyPulse 2.2s var(--ease-out) infinite;
+    }
+    @keyframes stickyPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,.55); }
+      70%  { box-shadow: 0 0 0 9px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .sticky-bar__cta { position: relative; box-shadow: 0 6px 22px rgba(8,20,80,.28); }
+    .sticky-bar__cta:hover { transform: translateY(-1px); }
+    .sticky-bar__cta .btn-arrow { transition: transform .2s var(--ease-out); }
+    .sticky-bar__cta:hover .btn-arrow { transform: translateX(4px); }
+    @media (prefers-reduced-motion: reduce) { .sticky-bar__pulse { animation: none; } }
+    @media (max-width: 640px) {
+      .sticky-bar { flex-direction: column; text-align: center; gap: var(--space-3); padding: 14px 18px; }
+      .sticky-bar__text { justify-content: center; }
+      .sticky-bar__cta { width: 100%; justify-content: center; }
+    }
 
     /* === FOOTER === */
     footer { background: rgba(0,0,0,.3); border-top: 1px solid rgba(255,255,255,.07); color: var(--blue-300); padding: var(--space-7) 0; text-align: center; font-size: 14px; }
@@ -3108,8 +3138,11 @@
        STICKY BAR
   ================================ -->
   <div class="sticky-bar" id="stickyBar">
-    <p class="sticky-bar__text"><strong>Twój sklep zasługuje na profesjonalny plan.</strong> Pierwsze 2 miesiące bez umowy na 6 miesięcy.</p>
-    <a href="mailto:hello@codeq.pl" class="btn btn--primary js-contact">Zacznij Pilotaż →</a>
+    <p class="sticky-bar__text">
+      <span class="sticky-bar__pulse" aria-hidden="true"></span>
+      <span><strong>Twój sklep zasługuje na profesjonalny plan.</strong> <span class="sticky-bar__sub">Pierwsze 2 miesiące bez umowy na 6 miesięcy.</span></span>
+    </p>
+    <a href="mailto:hello@codeq.pl" class="btn btn--white btn--lg sticky-bar__cta js-contact">Zacznij Pilotaż <span class="btn-arrow">→</span></a>
   </div>
 
   <!-- ROLE BOTTOM SHEET (mobile) -->
