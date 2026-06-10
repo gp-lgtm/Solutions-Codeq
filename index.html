@@ -889,13 +889,16 @@
     }
     .logo-item {
       display: flex; align-items: center; justify-content: center;
-      padding: 0 40px; white-space: nowrap;
-      font-size: 17px; font-weight: 800; letter-spacing: -0.03em;
-      color: #cbd5e1;
-      transition: color .2s ease;
+      padding: 0 38px;
       user-select: none;
     }
-    .logo-item:hover { color: #94a3b8; }
+    .logo-item img {
+      height: 32px; width: auto; display: block;
+      filter: grayscale(1);
+      opacity: .55;
+      transition: opacity .2s ease, filter .2s ease;
+    }
+    .logo-item img:hover { filter: grayscale(0); opacity: 1; }
 
     /* === 2. PROBLEM — light section === */
     .problem { background: #fff; }
@@ -1757,7 +1760,7 @@
     .cases-stage__head h2 { color: var(--ink-900); letter-spacing: var(--tracking-hero); }
     .cases-stage__sub {
       color: var(--ink-500); font-size: 15px; line-height: 1.5;
-      padding: 0 var(--cases-gutter); max-width: calc(560px + var(--cases-gutter)); margin-bottom: 32px;
+      padding: 0 var(--cases-gutter); max-width: calc(720px + var(--cases-gutter)); margin-bottom: 32px;
     }
     .cases-nav { display: flex; gap: 10px; flex-shrink: 0; }
     .cases-nav__btn {
@@ -1807,20 +1810,27 @@
     }
     .case-block__head svg { width: 18px; height: 18px; color: var(--codeq-blue); flex-shrink: 0; }
     .case-block p { font-size: 13.5px; line-height: 1.55; color: var(--ink-700); }
-    .case-metric { margin-top: auto; padding-top: 4px; }
-    .case-metric__num {
-      font-family: var(--font-display); font-weight: 700;
-      font-size: 40px; line-height: 1; color: var(--codeq-blue); letter-spacing: -0.02em;
+    .case-results { margin-top: auto; padding-top: 4px; }
+    .case-results__list { display: flex; flex-direction: column; gap: 9px; }
+    .case-results__list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 14px; line-height: 1.45; color: var(--ink-700);
     }
-    .case-metric__label { display: block; font-size: 14px; color: var(--ink-700); margin-top: 6px; }
-    .case-metric__sec {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--ink-500); margin-top: 12px;
-    }
-    .case-metric__sec svg { width: 15px; height: 15px; color: var(--accent-teal); flex-shrink: 0; }
+    .case-results__list li strong { color: var(--ink-900); font-weight: 700; }
+    .case-results__list svg { width: 16px; height: 16px; color: var(--accent-teal); flex-shrink: 0; margin-top: 2px; }
 
+    .cases-cta {
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      text-align: center; margin-top: 48px;
+    }
+    .cases-cta__lead {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(20px, 2.4vw, 26px); color: var(--ink-900);
+      letter-spacing: -0.02em; line-height: 1.25; max-width: 600px;
+    }
     .cases__disclaimer {
-      text-align: center; font-size: 12px; color: var(--ink-500); line-height: 1.6; margin-top: 24px;
+      text-align: center; font-size: 12px; color: var(--ink-500); line-height: 1.6;
+      margin-top: 6px; max-width: 560px;
     }
     @media (max-width: 860px) {
       .cases-stage { padding-top: 32px; padding-bottom: 36px; }
@@ -2235,32 +2245,36 @@
     <p class="logo-bar__label">Zaufali nam</p>
     <div class="logo-bar__track">
       <div class="logo-bar__inner">
-        <!-- Zestaw 1 -->
-        <span class="logo-item">Modivo</span>
-        <span class="logo-item">Answear</span>
-        <span class="logo-item">Eobuwie</span>
-        <span class="logo-item">Vistula</span>
-        <span class="logo-item">Wittchen</span>
-        <span class="logo-item">Apart</span>
-        <span class="logo-item">Bytom</span>
-        <span class="logo-item">Wojas</span>
-        <span class="logo-item">Diverse</span>
-        <span class="logo-item">Ochnik</span>
-        <span class="logo-item">Lavard</span>
-        <span class="logo-item">Ryłko</span>
+        <!-- Zestaw 1 (7 logo × 2 dla szerokości) -->
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_1.svg" alt="Klient 1" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_2.svg" alt="Klient 2" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_3.svg" alt="Klient 3" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_4.svg" alt="Klient 4" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_5.svg" alt="Klient 5" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_6.svg" alt="Klient 6" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_7.svg" alt="Klient 7" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_1.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_2.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_3.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_4.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_5.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_6.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_7.svg" alt="" loading="lazy"></span>
         <!-- Zestaw 2 (duplikat dla pętli) -->
-        <span class="logo-item">Modivo</span>
-        <span class="logo-item">Answear</span>
-        <span class="logo-item">Eobuwie</span>
-        <span class="logo-item">Vistula</span>
-        <span class="logo-item">Wittchen</span>
-        <span class="logo-item">Apart</span>
-        <span class="logo-item">Bytom</span>
-        <span class="logo-item">Wojas</span>
-        <span class="logo-item">Diverse</span>
-        <span class="logo-item">Ochnik</span>
-        <span class="logo-item">Lavard</span>
-        <span class="logo-item">Ryłko</span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_1.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_2.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_3.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_4.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_5.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_6.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_7.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_1.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_2.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_3.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_4.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_5.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_6.svg" alt="" loading="lazy"></span>
+        <span class="logo-item"><img src="Codeq Design System/assets/Logo_7.svg" alt="" loading="lazy"></span>
       </div>
     </div>
   </div>
@@ -2572,6 +2586,7 @@
           <symbol id="ci-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
           <symbol id="ci-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
           <symbol id="ci-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+          <symbol id="ci-results" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 16.5 8.5 11.5 1 19"/><polyline points="17 6 23 6 23 12"/></symbol>
           <symbol id="ci-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
           <symbol id="ci-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
         </svg>
@@ -2607,10 +2622,12 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Core Web Vitals + optymalizacja techniczna frontu i backendu.</p>
               </div>
-              <div class="case-metric">
-                <span class="case-metric__num">91/100</span>
-                <span class="case-metric__label">PageSpeed (z 38/100)</span>
-                <span class="case-metric__sec"><svg><use href="#ci-tick"/></svg>−22% bounce rate na mobile</span>
+              <div class="case-results">
+                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
+                <ul class="case-results__list">
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>91/100</strong> PageSpeed (z 38/100)</span></li>
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>−22%</strong> bounce rate na mobile</span></li>
+                </ul>
               </div>
             </div>
           </article>
@@ -2635,10 +2652,12 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Audyt UX + przebudowa ścieżki zakupowej.</p>
               </div>
-              <div class="case-metric">
-                <span class="case-metric__num">+16%</span>
-                <span class="case-metric__label">CR na mobile</span>
-                <span class="case-metric__sec"><svg><use href="#ci-tick"/></svg>+9% średnia wartość koszyka</span>
+              <div class="case-results">
+                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
+                <ul class="case-results__list">
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>+16%</strong> CR na mobile</span></li>
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>+9%</strong> średnia wartość koszyka</span></li>
+                </ul>
               </div>
             </div>
           </article>
@@ -2663,10 +2682,12 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Komunikacja produktowa + system pozyskiwania opinii.</p>
               </div>
-              <div class="case-metric">
-                <span class="case-metric__num">×2,8</span>
-                <span class="case-metric__label">więcej opinii w 60 dni</span>
-                <span class="case-metric__sec"><svg><use href="#ci-tick"/></svg>+12% CR z Google Ads</span>
+              <div class="case-results">
+                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
+                <ul class="case-results__list">
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>×2,8</strong> więcej opinii w 60 dni</span></li>
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>+12%</strong> CR z Google Ads</span></li>
+                </ul>
               </div>
             </div>
           </article>
@@ -2691,10 +2712,12 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Automatyzacja procesów + integracja z systemem ERP.</p>
               </div>
-              <div class="case-metric">
-                <span class="case-metric__num">−65%</span>
-                <span class="case-metric__label">czas obsługi zamówienia B2B</span>
-                <span class="case-metric__sec"><svg><use href="#ci-tick"/></svg>+28% zamówień online vs telefon</span>
+              <div class="case-results">
+                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
+                <ul class="case-results__list">
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>−65%</strong> czas obsługi zamówienia B2B</span></li>
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>+28%</strong> zamówień online vs telefon</span></li>
+                </ul>
               </div>
             </div>
           </article>
@@ -2719,10 +2742,12 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Audyt techniczny + spłata długu technicznego.</p>
               </div>
-              <div class="case-metric">
-                <span class="case-metric__num">0</span>
-                <span class="case-metric__label">incydentów bezpieczeństwa po audycie</span>
-                <span class="case-metric__sec"><svg><use href="#ci-tick"/></svg>−40% czas wdrożenia nowych funkcji</span>
+              <div class="case-results">
+                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
+                <ul class="case-results__list">
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>0</strong> incydentów bezpieczeństwa po audycie</span></li>
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>−40%</strong> czas wdrożenia nowych funkcji</span></li>
+                </ul>
               </div>
             </div>
           </article>
@@ -2747,17 +2772,23 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Sesja OKR + Mapa Celów + Sprint wdrożeniowy.</p>
               </div>
-              <div class="case-metric">
-                <span class="case-metric__num">+19%</span>
-                <span class="case-metric__label">przychód online w kwartale</span>
-                <span class="case-metric__sec"><svg><use href="#ci-tick"/></svg>−30% równoległych inicjatyw</span>
+              <div class="case-results">
+                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
+                <ul class="case-results__list">
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>+19%</strong> przychód online w kwartale</span></li>
+                  <li><svg><use href="#ci-tick"/></svg><span><strong>−30%</strong> równoległych inicjatyw</span></li>
+                </ul>
               </div>
             </div>
           </article>
 
         </div>
       </div>
-      <p class="cases__disclaimer">Wyniki zanonimizowane. Efekty zależą od skali sklepu, branży i zakresu współpracy.</p>
+      <div class="cases-cta">
+        <p class="cases-cta__lead">Twój sklep może być następną historią wzrostu.</p>
+        <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg js-contact">Zacznij Pilotaż →</a>
+        <p class="cases__disclaimer">Wyniki zanonimizowane. Efekty zależą od skali sklepu, branży i zakresu współpracy.</p>
+      </div>
     </div>
   </section>
 
