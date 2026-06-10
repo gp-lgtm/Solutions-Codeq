@@ -61,22 +61,57 @@
       white-space: nowrap;
       text-decoration: none;
       position: relative;
-      overflow: hidden;
-      isolation: isolate;
     }
-    /* === Position-aware hover fill (kjbrum-style) === */
-    .btn__pa {
-      position: absolute; inset: 0; z-index: -1; pointer-events: none;
-      background: var(--pa-fill, rgba(255,255,255,.14));
-      transform: translateY(101%);
-      transition: transform .36s cubic-bezier(.22,.61,.36,1);
+    /* === Bubbly button — particle burst on click === */
+    .btn { --bubble: var(--codeq-blue); }
+    .btn--white, .btn--outline-white, .btn--outline-blue { --bubble: #fff; }
+    .btn::before, .btn::after {
+      position: absolute; content: ''; display: block;
+      width: 140%; height: 100%; left: -20%;
+      z-index: -1; background-repeat: no-repeat;
+      transition: all ease-in-out .5s;
     }
-    .btn--primary, .btn--submit { --pa-fill: rgba(255,255,255,.16); }
-    .btn--white { --pa-fill: rgba(10,28,140,.10); }
-    .btn--outline-white, .btn--outline-blue { --pa-fill: rgba(255,255,255,.16); }
-    .btn--nav { --pa-fill: rgba(255,255,255,.14); }
-    .nav.scrolled .btn--nav { --pa-fill: rgba(20,48,220,.09); }
-    .compare-diagnoza-btn { --pa-fill: rgba(49,90,251,.09); }
+    .btn::before {
+      display: none; top: -75%;
+      background-image:
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, transparent 20%, var(--bubble) 20%, transparent 30%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, var(--bubble) 15%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%);
+      background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+    }
+    .btn::after {
+      display: none; bottom: -75%;
+      background-image:
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, transparent 10%, var(--bubble) 15%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%),
+        radial-gradient(circle, var(--bubble) 20%, transparent 20%);
+      background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+    }
+    .btn.animate::before { display: block; animation: btnTopBubbles ease-in-out .75s forwards; }
+    .btn.animate::after  { display: block; animation: btnBottomBubbles ease-in-out .75s forwards; }
+    .btn:active { transform: scale(.96); }
+    @keyframes btnTopBubbles {
+      0%   { background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%; }
+      50%  { background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%; }
+      100% { background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+             background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+    }
+    @keyframes btnBottomBubbles {
+      0%   { background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%; }
+      50%  { background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%; }
+      100% { background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+             background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+    }
     .btn--primary {
       background: var(--codeq-blue);
       color: #fff;
@@ -178,8 +213,6 @@
       transition: border-color var(--dur-fast), color var(--dur-fast);
       white-space: nowrap;
       position: relative;
-      overflow: hidden;
-      isolation: isolate;
     }
     .btn--nav:hover { border-color: #fff; color: #fff; }
     .nav.scrolled .btn--nav { color: rgba(20,48,220,1); border-color: rgba(20,48,220,.45); }
@@ -1180,7 +1213,6 @@
       color: #64748b; font-size: 13.5px; font-weight: 600;
       cursor: pointer; text-align: center;
       transition: all .18s ease; letter-spacing: -0.01em;
-      position: relative; overflow: hidden; isolation: isolate;
     }
     .compare-diagnoza-btn:hover {
       background: #f0f4ff; border-color: var(--codeq-blue); color: var(--codeq-blue);
@@ -2042,7 +2074,6 @@
       border: none; font-size: 15px; font-weight: 700;
       cursor: pointer; letter-spacing: -0.01em;
       transition: background .18s ease, transform .15s ease;
-      position: relative; overflow: hidden; isolation: isolate;
     }
     .contact-form .btn--submit:hover { background: #1535e8; transform: translateY(-1px); }
 
@@ -3313,41 +3344,16 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    /* Position-aware button hover fill (kjbrum-style) */
-    (function () {
-      if (window.matchMedia('(hover: none)').matches) return;
-      const DIRS = ['top', 'right', 'bottom', 'left'];
-      const OFF = {
-        top: 'translateY(-101%)',
-        right: 'translateX(101%)',
-        bottom: 'translateY(101%)',
-        left: 'translateX(-101%)'
-      };
-      const dir = (e, el) => {
-        const r = el.getBoundingClientRect();
-        const w = r.width, h = r.height;
-        const x = (e.clientX - r.left - w / 2) * (w > h ? h / w : 1);
-        const y = (e.clientY - r.top - h / 2) * (h > w ? w / h : 1);
-        return DIRS[Math.round(Math.atan2(y, x) / 1.5707963267948966 + 5) % 4];
-      };
-      document.querySelectorAll('.btn, .btn--nav, .btn--submit, .compare-diagnoza-btn').forEach(btn => {
-        const pa = document.createElement('span');
-        pa.className = 'btn__pa';
-        pa.setAttribute('aria-hidden', 'true');
-        btn.insertBefore(pa, btn.firstChild);
-        btn.addEventListener('mouseenter', e => {
-          pa.style.transition = 'none';
-          pa.style.transform = OFF[dir(e, btn)];
-          pa.getBoundingClientRect();          // flush, so the slide-in animates
-          pa.style.transition = '';
-          pa.style.transform = 'translate(0,0)';
-        });
-        btn.addEventListener('mouseleave', e => {
-          pa.style.transition = '';
-          pa.style.transform = OFF[dir(e, btn)];
-        });
-      });
-    })();
+    /* Bubbly button — particle burst on click */
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.btn');
+      if (!btn) return;
+      btn.classList.remove('animate');
+      // force reflow so the animation can restart on rapid clicks
+      void btn.offsetWidth;
+      btn.classList.add('animate');
+      setTimeout(() => btn.classList.remove('animate'), 750);
+    });
 
     const stickyBar = document.getElementById('stickyBar');
     const hero = document.getElementById('hero');
