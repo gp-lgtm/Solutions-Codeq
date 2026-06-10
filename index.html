@@ -1815,12 +1815,10 @@
     .case-results__list svg { width: 16px; height: 16px; color: var(--accent-teal); flex-shrink: 0; margin-top: 2px; }
 
     .cases-cta {
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      text-align: center; margin-top: 20px;
+      padding: 0 var(--cases-gutter); margin-bottom: 28px;
     }
     .cases-cta__lead {
-      font-size: 16px; font-weight: 500; color: var(--ink-700);
-      line-height: 1.6; max-width: 640px;
+      font-size: 16px; font-weight: 500; color: var(--ink-700); line-height: 1.6;
     }
     .cases-cta__link {
       color: var(--codeq-blue); font-weight: 600; text-decoration: none;
@@ -1828,10 +1826,6 @@
       transition: border-color .2s ease;
     }
     .cases-cta__link:hover { border-bottom-color: var(--codeq-blue); }
-    .cases__disclaimer {
-      text-align: center; font-size: 12px; color: var(--ink-500); line-height: 1.6;
-      max-width: 560px;
-    }
     @media (max-width: 860px) {
       .cases-stage { padding-top: 32px; padding-bottom: 36px; }
       .cases-stage__head h2 { font-size: 28px; }
@@ -2598,6 +2592,9 @@
           </div>
         </div>
         <p class="cases-stage__sub">Różne problemy, różne interwencje — jeden model współpracy. Pracujemy z e-commerce na 2–20M PLN rocznego obrotu.</p>
+        <div class="cases-cta">
+          <p class="cases-cta__lead">Twój sklep może być następną historią wzrostu. <a href="mailto:hello@codeq.pl" class="cases-cta__link js-contact">Zacznij Pilotaż →</a></p>
+        </div>
 
         <div class="cases-grid" id="casesGrid">
 
@@ -2740,10 +2737,6 @@
           </article>
 
         </div>
-      </div>
-      <div class="cases-cta">
-        <p class="cases-cta__lead">Twój sklep może być następną historią wzrostu. <a href="mailto:hello@codeq.pl" class="cases-cta__link js-contact">Zacznij Pilotaż →</a></p>
-        <p class="cases__disclaimer">Realne projekty, dane zanonimizowane na życzenie klientów. Sprawdźmy, jaki wzrost jest możliwy w Twoim sklepie.</p>
       </div>
     </div>
   </section>
