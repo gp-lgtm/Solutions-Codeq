@@ -60,7 +60,23 @@
       transition: all var(--dur-base) var(--ease-out);
       white-space: nowrap;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
     }
+    /* === Position-aware hover fill (kjbrum-style) === */
+    .btn__pa {
+      position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: var(--pa-fill, rgba(255,255,255,.14));
+      transform: translateY(101%);
+      transition: transform .36s cubic-bezier(.22,.61,.36,1);
+    }
+    .btn--primary, .btn--submit { --pa-fill: rgba(255,255,255,.16); }
+    .btn--white { --pa-fill: rgba(10,28,140,.10); }
+    .btn--outline-white, .btn--outline-blue { --pa-fill: rgba(255,255,255,.16); }
+    .btn--nav { --pa-fill: rgba(255,255,255,.14); }
+    .nav.scrolled .btn--nav { --pa-fill: rgba(20,48,220,.09); }
+    .compare-diagnoza-btn { --pa-fill: rgba(49,90,251,.09); }
     .btn--primary {
       background: var(--codeq-blue);
       color: #fff;
@@ -77,19 +93,8 @@
       background: transparent;
       color: #fff;
       border: 1.5px solid rgba(255,255,255,.75);
-      position: relative;
-      overflow: hidden;
       transition: border-color .2s ease, color .2s ease;
     }
-    .btn--outline-white::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,.12);
-      transform: translateX(-100%);
-      transition: transform .3s ease;
-    }
-    .btn--outline-white:hover::before { transform: translateX(0); }
     .btn--outline-white:hover {
       border-color: #fff;
       color: #fff;
@@ -105,20 +110,9 @@
       background: #fff;
       color: var(--codeq-blue);
       border: 1.5px solid rgba(255,255,255,.75);
-      position: relative;
-      overflow: hidden;
       transition: box-shadow .2s ease, color .2s ease;
     }
-    .btn--white::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,20,120,.08);
-      transform: translateX(-100%);
-      transition: transform .3s ease;
-    }
     .btn--white:hover { box-shadow: 0 8px 24px rgba(41,68,242,.35); color: var(--codeq-blue); }
-    .btn--white:hover::before { transform: translateX(0); }
     .btn-arrow { display: inline-block; transition: transform .2s ease; }
     .btn--lg { padding: 16px 32px; font-size: 15px; font-weight: var(--fw-semibold); letter-spacing: -0.01em; }
 
@@ -185,19 +179,10 @@
       white-space: nowrap;
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
-    .btn--nav::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,.12);
-      transform: translateX(-100%);
-      transition: transform .3s ease;
-    }
-    .btn--nav:hover::before { transform: translateX(0); }
     .btn--nav:hover { border-color: #fff; color: #fff; }
     .nav.scrolled .btn--nav { color: rgba(20,48,220,1); border-color: rgba(20,48,220,.45); }
-    .nav.scrolled .btn--nav::before { background: rgba(20,48,220,.07); }
     .nav.scrolled .btn--nav:hover { border-color: rgba(20,48,220,1); color: rgba(20,48,220,1); }
 
     @media (max-width: 768px) { .nav__links { display: none; } }
@@ -1195,6 +1180,7 @@
       color: #64748b; font-size: 13.5px; font-weight: 600;
       cursor: pointer; text-align: center;
       transition: all .18s ease; letter-spacing: -0.01em;
+      position: relative; overflow: hidden; isolation: isolate;
     }
     .compare-diagnoza-btn:hover {
       background: #f0f4ff; border-color: var(--codeq-blue); color: var(--codeq-blue);
@@ -2051,11 +2037,12 @@
     .contact-gdpr a { color: var(--codeq-blue); }
 
     .contact-form .btn--submit {
-      width: 100%; padding: 15px; border-radius: 12px;
+      width: 100%; padding: 15px; border-radius: 6px;
       background: var(--codeq-blue); color: #fff;
       border: none; font-size: 15px; font-weight: 700;
       cursor: pointer; letter-spacing: -0.01em;
       transition: background .18s ease, transform .15s ease;
+      position: relative; overflow: hidden; isolation: isolate;
     }
     .contact-form .btn--submit:hover { background: #1535e8; transform: translateY(-1px); }
 
@@ -3325,6 +3312,42 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     });
+
+    /* Position-aware button hover fill (kjbrum-style) */
+    (function () {
+      if (window.matchMedia('(hover: none)').matches) return;
+      const DIRS = ['top', 'right', 'bottom', 'left'];
+      const OFF = {
+        top: 'translateY(-101%)',
+        right: 'translateX(101%)',
+        bottom: 'translateY(101%)',
+        left: 'translateX(-101%)'
+      };
+      const dir = (e, el) => {
+        const r = el.getBoundingClientRect();
+        const w = r.width, h = r.height;
+        const x = (e.clientX - r.left - w / 2) * (w > h ? h / w : 1);
+        const y = (e.clientY - r.top - h / 2) * (h > w ? w / h : 1);
+        return DIRS[Math.round(Math.atan2(y, x) / 1.5707963267948966 + 5) % 4];
+      };
+      document.querySelectorAll('.btn, .btn--nav, .btn--submit, .compare-diagnoza-btn').forEach(btn => {
+        const pa = document.createElement('span');
+        pa.className = 'btn__pa';
+        pa.setAttribute('aria-hidden', 'true');
+        btn.insertBefore(pa, btn.firstChild);
+        btn.addEventListener('mouseenter', e => {
+          pa.style.transition = 'none';
+          pa.style.transform = OFF[dir(e, btn)];
+          pa.getBoundingClientRect();          // flush, so the slide-in animates
+          pa.style.transition = '';
+          pa.style.transform = 'translate(0,0)';
+        });
+        btn.addEventListener('mouseleave', e => {
+          pa.style.transition = '';
+          pa.style.transform = OFF[dir(e, btn)];
+        });
+      });
+    })();
 
     const stickyBar = document.getElementById('stickyBar');
     const hero = document.getElementById('hero');
