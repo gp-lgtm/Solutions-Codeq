@@ -1815,17 +1815,22 @@
     .case-results__list svg { width: 16px; height: 16px; color: var(--accent-teal); flex-shrink: 0; margin-top: 2px; }
 
     .cases-cta {
-      display: flex; flex-direction: column; align-items: center; gap: 18px;
-      text-align: center; margin-top: 48px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      text-align: center; margin-top: 40px;
     }
     .cases-cta__lead {
-      font-family: var(--font-display); font-weight: 700;
-      font-size: clamp(20px, 2.4vw, 26px); color: var(--ink-900);
-      letter-spacing: -0.02em; line-height: 1.25; max-width: 600px;
+      font-size: 16px; font-weight: 500; color: var(--ink-700);
+      line-height: 1.6; max-width: 640px;
     }
+    .cases-cta__link {
+      color: var(--codeq-blue); font-weight: 600; text-decoration: none;
+      white-space: nowrap; border-bottom: 1px solid transparent;
+      transition: border-color .2s ease;
+    }
+    .cases-cta__link:hover { border-bottom-color: var(--codeq-blue); }
     .cases__disclaimer {
       text-align: center; font-size: 12px; color: var(--ink-500); line-height: 1.6;
-      margin-top: 6px; max-width: 560px;
+      max-width: 560px;
     }
     @media (max-width: 860px) {
       .cases-stage { padding-top: 32px; padding-bottom: 36px; }
@@ -2616,13 +2621,6 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Core Web Vitals + optymalizacja techniczna frontu i backendu.</p>
               </div>
-              <div class="case-results">
-                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
-                <ul class="case-results__list">
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>91/100</strong> PageSpeed (z 38/100)</span></li>
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>−22%</strong> bounce rate na mobile</span></li>
-                </ul>
-              </div>
             </div>
           </article>
 
@@ -2645,13 +2643,6 @@
               <div class="case-block">
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Audyt UX + przebudowa ścieżki zakupowej.</p>
-              </div>
-              <div class="case-results">
-                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
-                <ul class="case-results__list">
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>+16%</strong> CR na mobile</span></li>
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>+9%</strong> średnia wartość koszyka</span></li>
-                </ul>
               </div>
             </div>
           </article>
@@ -2676,13 +2667,6 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Komunikacja produktowa + system pozyskiwania opinii.</p>
               </div>
-              <div class="case-results">
-                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
-                <ul class="case-results__list">
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>×2,8</strong> więcej opinii w 60 dni</span></li>
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>+12%</strong> CR z Google Ads</span></li>
-                </ul>
-              </div>
             </div>
           </article>
 
@@ -2705,13 +2689,6 @@
               <div class="case-block">
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Automatyzacja procesów + integracja z systemem ERP.</p>
-              </div>
-              <div class="case-results">
-                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
-                <ul class="case-results__list">
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>−65%</strong> czas obsługi zamówienia B2B</span></li>
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>+28%</strong> zamówień online vs telefon</span></li>
-                </ul>
               </div>
             </div>
           </article>
@@ -2736,13 +2713,6 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Audyt techniczny + spłata długu technicznego.</p>
               </div>
-              <div class="case-results">
-                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
-                <ul class="case-results__list">
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>0</strong> incydentów bezpieczeństwa po audycie</span></li>
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>−40%</strong> czas wdrożenia nowych funkcji</span></li>
-                </ul>
-              </div>
             </div>
           </article>
 
@@ -2766,21 +2736,13 @@
                 <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
                 <p>Sesja OKR + Mapa Celów + Sprint wdrożeniowy.</p>
               </div>
-              <div class="case-results">
-                <div class="case-block__head"><svg><use href="#ci-results"/></svg>Rezultaty</div>
-                <ul class="case-results__list">
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>+19%</strong> przychód online w kwartale</span></li>
-                  <li><svg><use href="#ci-tick"/></svg><span><strong>−30%</strong> równoległych inicjatyw</span></li>
-                </ul>
-              </div>
             </div>
           </article>
 
         </div>
       </div>
       <div class="cases-cta">
-        <p class="cases-cta__lead">Twój sklep może być następną historią wzrostu.</p>
-        <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg js-contact">Zacznij Pilotaż →</a>
+        <p class="cases-cta__lead">Twój sklep może być następną historią wzrostu. <a href="mailto:hello@codeq.pl" class="cases-cta__link js-contact">Zacznij Pilotaż →</a></p>
         <p class="cases__disclaimer">Wyniki zanonimizowane. Efekty zależą od skali sklepu, branży i zakresu współpracy.</p>
       </div>
     </div>
