@@ -336,72 +336,6 @@
     }
     .cfg-free-note strong { color: #3EBEB3; font-weight: 700; }
 
-    /* Cost section */
-    .cfg-cost { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,.07); }
-
-    .cfg-savings-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 11.5px; font-weight: 700; color: #3EBEB3;
-      background: rgba(62,190,179,.1); border: 1px solid rgba(62,190,179,.22);
-      padding: 4px 11px; border-radius: 6px; margin-bottom: 11px;
-    }
-    .cfg-savings-badge::before { content: '↓'; font-size: 13px; }
-
-    .cfg-compare { display: flex; flex-direction: column; gap: 0; }
-
-    .cfg-compare__block {
-      padding: 11px 13px; border-radius: 10px;
-    }
-    .cfg-compare__block--old {
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-    }
-    .cfg-compare__block--new {
-      background: rgba(37,72,250,.12); border: 1px solid rgba(37,72,250,.3);
-    }
-
-    .cfg-compare__label {
-      display: block; font-size: 9.5px; font-weight: 700;
-      letter-spacing: .09em; text-transform: uppercase;
-      color: rgba(255,255,255,.3); margin-bottom: 5px;
-    }
-    .cfg-compare__block--new .cfg-compare__label { color: rgba(126,150,249,.65); }
-
-    .cfg-compare__price-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 3px;
-    }
-    .cfg-compare__price {
-      font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
-      color: rgba(255,255,255,.55);
-    }
-    .cfg-compare__block--new .cfg-compare__price { color: var(--b400); }
-    .cfg-compare__price-sub { font-size: 11px; font-weight: 500; color: rgba(255,255,255,.3); }
-    .cfg-compare__block--new .cfg-compare__price-sub { color: rgba(126,150,249,.5); }
-    .cfg-compare__calc {
-      font-size: 11px; color: rgba(255,255,255,.28); margin-bottom: 9px;
-    }
-
-    .cfg-compare__points { display: flex; flex-direction: column; gap: 3px; }
-    .cfg-compare__con, .cfg-compare__pro {
-      font-size: 11px; line-height: 1.4;
-      display: flex; align-items: baseline; gap: 5px;
-    }
-    .cfg-compare__con { color: rgba(255,255,255,.35); }
-    .cfg-compare__con::before { content: '×'; font-weight: 800; color: rgba(248,113,113,.5); flex-shrink: 0; }
-    .cfg-compare__pro { color: rgba(62,190,179,.82); }
-    .cfg-compare__pro::before { content: '✓'; font-weight: 800; color: #3EBEB3; flex-shrink: 0; }
-
-    .cfg-compare__sep {
-      display: flex; align-items: center; gap: 8px; padding: 6px 0;
-    }
-    .cfg-compare__sep::before, .cfg-compare__sep::after {
-      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.07);
-    }
-    .cfg-compare__sep-text {
-      font-size: 9.5px; font-weight: 800; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.18);
-    }
-
     /* CTA */
     .cfg-cta { padding: 14px 20px 18px; }
     .cfg-cta .btn { width: 100%; justify-content: center; }
@@ -527,9 +461,6 @@
               </div>
             </div>
 
-            <!-- Cost comparison (hidden initially, fully rendered by JS) -->
-            <div class="cfg-cost" id="cfgCost" style="display:none"></div>
-
             <!-- CTA (hidden initially) -->
             <div class="cfg-cta" id="cfgCta" style="display:none">
               <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
@@ -613,12 +544,8 @@
     // ─────────────────────────────────────────────
     const usedH  = () => [...selected].reduce((s,id) => s + TASKS_MAP[id].hours, 0);
     const cap    = () => PKG[pkg].cap;
-    const price  = () => PKG[pkg].price;
     const remH   = () => cap() - usedH();
     const pct    = () => Math.min(usedH() / cap() * 100, 100);
-    const hourly = () => usedH() * 200;
-
-    function fmt(n) { return n.toLocaleString('pl-PL') + ' PLN'; }
 
     function showToast(msg) {
       const el = document.getElementById('cfgToast');
@@ -833,68 +760,11 @@
     }
 
     // ─────────────────────────────────────────────
-    // RENDER: COST
+    // RENDER: CTA
     // ─────────────────────────────────────────────
-    function renderCost() {
-      const costEl = document.getElementById('cfgCost');
-      const ctaEl  = document.getElementById('cfgCta');
-
-      if (selected.size === 0) {
-        costEl.style.display = 'none';
-        ctaEl.style.display  = 'none';
-        return;
-      }
-
-      costEl.style.display = '';
-      ctaEl.style.display  = '';
-
-      const h    = hourly();
-      const p    = price();
-      const used = usedH();
-      const rem  = remH();
-      const diff = h - p;
-      const pkgLbl = `Codeq Care ${PKG[pkg].label}`;
-
-      const savingsBadge = diff > 0
-        ? `<div class="cfg-savings-badge">Taniej o ${fmt(diff)} vs stawka godzinowa</div>`
-        : '';
-
-      const remPro = rem > 0
-        ? `<div class="cfg-compare__pro">+${rem}h bufor — utrzymanie i bieżące sprawy</div>`
-        : '';
-
-      costEl.innerHTML = `
-        ${savingsBadge}
-        <div class="cfg-compare">
-          <div class="cfg-compare__block cfg-compare__block--old">
-            <span class="cfg-compare__label">Zlecenie godzinowe (rynek)</span>
-            <div class="cfg-compare__price-row">
-              <span class="cfg-compare__price">${fmt(h)}</span>
-              <span class="cfg-compare__price-sub">zmienna</span>
-            </div>
-            <span class="cfg-compare__calc">${used}h × 200 PLN/h</span>
-            <div class="cfg-compare__points">
-              <div class="cfg-compare__con">Cena rośnie z każdą godziną</div>
-              <div class="cfg-compare__con">PM, QA i Strateg — osobno</div>
-              <div class="cfg-compare__con">Brak gwarancji wyniku</div>
-            </div>
-          </div>
-          <div class="cfg-compare__sep"><span class="cfg-compare__sep-text">vs</span></div>
-          <div class="cfg-compare__block cfg-compare__block--new">
-            <span class="cfg-compare__label">${pkgLbl}</span>
-            <div class="cfg-compare__price-row">
-              <span class="cfg-compare__price">${fmt(p)}</span>
-              <span class="cfg-compare__price-sub">stała / mies</span>
-            </div>
-            <span class="cfg-compare__calc">niezależnie od czasu realizacji</span>
-            <div class="cfg-compare__points">
-              <div class="cfg-compare__pro">PM, QA i Strateg w cenie</div>
-              <div class="cfg-compare__pro">Sprint Goal — cel z gwarancją</div>
-              ${remPro}
-            </div>
-          </div>
-        </div>
-      `;
+    function renderCta() {
+      const ctaEl = document.getElementById('cfgCta');
+      ctaEl.style.display = selected.size === 0 ? 'none' : '';
     }
 
     // ─────────────────────────────────────────────
@@ -905,7 +775,7 @@
       renderGrid();
       renderGoal();
       renderBox();
-      renderCost();
+      renderCta();
     }
 
     // ─────────────────────────────────────────────
