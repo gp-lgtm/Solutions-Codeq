@@ -115,6 +115,55 @@
     .cfg-wrap { padding: 0 0 100px; }
     .cfg-layout { display: grid; grid-template-columns: 5fr 4fr; gap: 40px; align-items: start; }
 
+    /* === PRESETS (Victory Paths) === */
+    .cfg-presets { margin-bottom: 34px; }
+    .cfg-presets-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+    .cfg-presets-head h2 {
+      font-family: var(--font-display); font-size: 17px; font-weight: 800;
+      letter-spacing: -0.02em; color: #fff;
+    }
+    .cfg-presets-head span { font-size: 13px; color: rgba(255,255,255,.4); }
+    .cfg-presets-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(214px, 1fr)); gap: 10px;
+    }
+    .preset-card {
+      --accent: #5570f6;
+      position: relative; text-align: left; cursor: pointer; overflow: hidden;
+      padding: 14px 15px 13px; border-radius: 14px;
+      background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.09);
+      display: flex; flex-direction: column; gap: 5px;
+      transition: background .18s, border-color .18s, transform .18s;
+      font-family: var(--font-body);
+    }
+    .preset-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--accent); opacity: .75;
+    }
+    .preset-card:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
+    .preset-card.is-active { background: rgba(37,72,250,.14); border-color: rgba(37,72,250,.5); }
+    .preset-card__pkg {
+      align-self: flex-start; font-size: 9px; font-weight: 800; letter-spacing: .08em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
+      color: var(--accent); background: rgba(255,255,255,.06);
+    }
+    .preset-card__name { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .preset-card__hint { font-size: 11.5px; color: rgba(255,255,255,.42); line-height: 1.4; flex: 1; }
+    .preset-card__meta { font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,.32); margin-top: 2px; }
+
+    /* === GOAL BANNER (active preset) === */
+    .cfg-goal-banner {
+      padding: 13px 20px; border-bottom: 1px solid rgba(255,255,255,.07);
+      background: linear-gradient(90deg, rgba(37,72,250,.18), rgba(37,72,250,.03));
+      display: flex; flex-direction: column; gap: 3px;
+      animation: chipSlide .25s var(--ease-out);
+    }
+    .cfg-goal-label {
+      font-size: 9.5px; font-weight: 800; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--b400);
+    }
+    .cfg-goal-name { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .cfg-goal-kpi { font-size: 11.5px; color: rgba(255,255,255,.55); line-height: 1.4; }
+
     /* === CATEGORY FILTERS === */
     .cfg-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
     .cfg-filter {
@@ -416,6 +465,16 @@
   <!-- MAIN -->
   <main class="cfg-wrap">
     <div class="container">
+
+      <!-- PRESETS: Victory Paths -->
+      <section class="cfg-presets">
+        <div class="cfg-presets-head">
+          <h2>Zacznij od gotowego celu</h2>
+          <span>— albo złóż własny sprint z klocków poniżej.</span>
+        </div>
+        <div class="cfg-presets-grid" id="cfgPresets" role="list" aria-label="Gotowe scenariusze sprintu"></div>
+      </section>
+
       <div class="cfg-layout">
 
         <!-- LEFT: Task Picker -->
@@ -433,6 +492,9 @@
         <!-- RIGHT: Box Panel -->
         <div class="cfg-right">
           <div class="cfg-box-panel">
+
+            <!-- Goal banner (active preset) -->
+            <div class="cfg-goal-banner" id="cfgGoal" style="display:none"></div>
 
             <!-- Package toggle -->
             <div class="cfg-pkg-row">
@@ -495,6 +557,7 @@
       {id:'t04', label:'Optymalizacja Mobile UX',      desc:'Nawigacja i checkout na urządzeniach mobilnych',        cat:'ux',        size:'L',  hours:12},
       {id:'t05', label:'Porzucony Koszyk — flow',      desc:'Exit intent popup + sekwencja email',                   cat:'ux',        size:'M',  hours:7},
       {id:'t06', label:'Wyszukiwarka z Filtrowaniem',  desc:'Autocomplete, sortowanie, filtrowanie fasetowe',        cat:'ux',        size:'M',  hours:8},
+      {id:'t24', label:'A/B Testy Konwersji',          desc:'Testy CTA, układu i copy na realnym ruchu',             cat:'ux',        size:'M',  hours:6},
       // Sklep & Tech
       {id:'t07', label:'Optymalizacja Core Web Vitals',desc:'PageSpeed Mobile do strefy Green (90+)',                cat:'tech',      size:'L',  hours:16},
       {id:'t08', label:'Audyt Bezpieczeństwa + Update',desc:'Wtyczki, SSL, zero krytycznych podatności',            cat:'tech',      size:'M',  hours:6},
@@ -508,6 +571,8 @@
       {id:'t15', label:'Nowy Landing Page',            desc:'Projekt UX + wdrożenie w jednym sprincie',             cat:'marketing', size:'L',  hours:18},
       {id:'t16', label:'Strona Zespół / O nas',        desc:'Nowy design, treści, sekcja z ludźmi',                 cat:'marketing', size:'M',  hours:5},
       {id:'t17', label:'Wymiana Banerów Kampanii',     desc:'Nowe formaty, banery sezonowe, A/B copy',              cat:'marketing', size:'S',  hours:2},
+      {id:'t22', label:'Integracja CRM & Automation',  desc:'Scoring leadów + automatyzacja kampanii e-mail',        cat:'marketing', size:'L',  hours:12},
+      {id:'t23', label:'Lead Magnet + Newsletter',     desc:'Popup zapisu, e-book, budowa bazy mailowej',            cat:'marketing', size:'M',  hours:5},
       // B2B
       {id:'t18', label:'Tiered Pricing B2B',           desc:'Ceny hurtowe i grupowe po zalogowaniu klienta',        cat:'b2b',       size:'L',  hours:16},
       {id:'t19', label:'Generator Ofert PDF',          desc:'Klient generuje wycenę samodzielnie, bez handlowca',   cat:'b2b',       size:'L',  hours:12},
@@ -524,13 +589,24 @@
 
     const SIZE_COLOR = {S:'--sz-s', M:'--sz-m', L:'--sz-l', XL:'--sz-xl'};
 
+    // Gotowe scenariusze sprintu (Victory Paths) — punkt startu, edytowalny
+    const PRESETS = [
+      {id:'revenue',   name:'Revenue Booster',          hint:'Konwersja — mniej porzuceń, wyższy CR',          pkg:'growth',    accent:'#3EBEB3', tasks:['t02','t05','t10'],       kpi:'CR +0.2–0.5pp · AOV +10–15%'},
+      {id:'b2b',       name:'B2B Ecosystem',            hint:'Automatyzacja sprzedaży hurtowej',               pkg:'growth',    accent:'#a855f7', tasks:['t18','t19','t12','t11'], kpi:'−40% zapytań „jaka cena?" · samoobsługa B2B'},
+      {id:'leadgen',   name:'Lead Generation Machine',  hint:'Pozyskiwanie leadów ze strony www',              pkg:'growth',    accent:'#EF9645', tasks:['t15','t22','t23'],       kpi:'Cost Per Lead ↓ · Quality Score ↑'},
+      {id:'tech',      name:'Optymalizacja techniczna', hint:'Szybkość, bezpieczeństwo, stabilność',           pkg:'stability', accent:'#5570f6', tasks:['t08','t10','t12','t11'], kpi:'PageSpeed Green · Uptime 99.9% · 0 podatności'},
+      {id:'marketing', name:'Wsparcie marketingu',      hint:'Marketing edytuje stronę bez programisty',       pkg:'stability', accent:'#7e96f9', tasks:['t13','t14','t17'],       kpi:'SEO Health 90/100 · zero kodu po stronie marketingu'},
+    ];
+    const PRESETS_MAP = Object.fromEntries(PRESETS.map(p => [p.id, p]));
+
     // ─────────────────────────────────────────────
     // STATE
     // ─────────────────────────────────────────────
-    let pkg       = 'growth';
-    let selected  = new Set();
-    let cat       = 'all';
-    let toastTmr  = null;
+    let pkg          = 'growth';
+    let selected     = new Set();
+    let cat          = 'all';
+    let activePreset = null;
+    let toastTmr     = null;
 
     // ─────────────────────────────────────────────
     // HELPERS
@@ -559,6 +635,55 @@
       void el.offsetWidth;
       el.classList.add('shake');
       el.addEventListener('animationend', () => el.classList.remove('shake'), {once:true});
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: PRESETS (Victory Paths)
+    // ─────────────────────────────────────────────
+    function renderPresets() {
+      const el = document.getElementById('cfgPresets');
+      el.innerHTML = PRESETS.map(p => {
+        const totalH = p.tasks.reduce((s,id) => s + TASKS_MAP[id].hours, 0);
+        const isActive = activePreset === p.id;
+        return `
+          <button class="preset-card${isActive ? ' is-active' : ''}" data-preset="${p.id}" style="--accent:${p.accent}" role="listitem">
+            <span class="preset-card__pkg">${PKG[p.pkg].label}</span>
+            <span class="preset-card__name">${p.name}</span>
+            <span class="preset-card__hint">${p.hint}</span>
+            <span class="preset-card__meta">${p.tasks.length} klocki · ${totalH}h</span>
+          </button>
+        `.trim();
+      }).join('');
+
+      el.querySelectorAll('.preset-card').forEach(btn => {
+        btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+      });
+    }
+
+    function applyPreset(id) {
+      const p = PRESETS_MAP[id];
+      if (!p) return;
+      pkg = p.pkg;
+      document.querySelectorAll('.cfg-pkg-btn').forEach(b =>
+        b.classList.toggle('is-active', b.dataset.pkg === pkg));
+      selected = new Set(p.tasks);
+      activePreset = id;
+      renderAll();
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: GOAL BANNER
+    // ─────────────────────────────────────────────
+    function renderGoal() {
+      const el = document.getElementById('cfgGoal');
+      if (!activePreset) { el.style.display = 'none'; return; }
+      const p = PRESETS_MAP[activePreset];
+      el.style.display = '';
+      el.innerHTML = `
+        <span class="cfg-goal-label">Cel sprintu</span>
+        <span class="cfg-goal-name">${p.name}</span>
+        <span class="cfg-goal-kpi">${p.kpi}</span>
+      `;
     }
 
     // ─────────────────────────────────────────────
@@ -615,6 +740,7 @@
           } else {
             selected.add(id);
           }
+          activePreset = null;
           renderAll();
         });
 
@@ -700,6 +826,7 @@
         btn.addEventListener('click', e => {
           e.stopPropagation();
           selected.delete(btn.dataset.rm);
+          activePreset = null;
           renderAll();
         });
       });
@@ -774,7 +901,9 @@
     // RENDER ALL
     // ─────────────────────────────────────────────
     function renderAll() {
+      renderPresets();
       renderGrid();
+      renderGoal();
       renderBox();
       renderCost();
     }
@@ -801,6 +930,7 @@
           document.querySelectorAll('.cfg-pkg-btn').forEach(b => b.classList.remove('is-active'));
           btn.classList.add('is-active');
           pkg = btn.dataset.pkg;
+          activePreset = null;
           renderAll();
         });
       });
