@@ -112,7 +112,23 @@
     }
 
     /* === MAIN LAYOUT === */
-    .cfg-wrap { padding: 0 0 100px; }
+    .cfg-wrap { padding: 120px 0 100px; }
+
+    /* === APP SHELL (sidebar + main) === */
+    .cfg-app { display: grid; grid-template-columns: 264px 1fr; gap: 44px; align-items: start; }
+    .cfg-app__sidebar { position: sticky; top: 100px; }
+    .cfg-app__main { min-width: 0; }
+    .cfg-side-head { margin-bottom: 22px; }
+    .cfg-side-head .label { display: block; margin-bottom: 10px; }
+    .cfg-side-title {
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.18; color: #fff;
+    }
+    @media (max-width: 860px) {
+      .cfg-app { grid-template-columns: 1fr; gap: 26px; }
+      .cfg-app__sidebar { position: static; }
+      .cfg-side-head { margin-bottom: 16px; }
+    }
     .cfg-layout { display: grid; grid-template-columns: 5fr 4fr; gap: 40px; align-items: start; }
 
     /* === PRESETS (Victory Paths) === */
@@ -163,18 +179,6 @@
     }
     .cfg-goal-name { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
     .cfg-goal-kpi { font-size: 11.5px; color: rgba(255,255,255,.55); line-height: 1.4; }
-
-    /* === CATEGORY FILTERS === */
-    .cfg-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
-    .cfg-filter {
-      padding: 7px 16px; border-radius: var(--radius-pill);
-      font-size: 12.5px; font-weight: 600; cursor: pointer;
-      border: 1.5px solid rgba(255,255,255,.14);
-      background: transparent; color: rgba(255,255,255,.5);
-      transition: all var(--dur-fast); font-family: var(--font-body);
-    }
-    .cfg-filter:hover { border-color: rgba(255,255,255,.3); color: rgba(255,255,255,.82); }
-    .cfg-filter.is-active { background: rgba(37,72,250,.22); border-color: rgba(37,72,250,.65); color: #fff; }
 
     /* === TASK CARDS === */
     .cfg-tasks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -336,9 +340,148 @@
     }
     .cfg-free-note strong { color: #3EBEB3; font-weight: 700; }
 
-    /* CTA */
-    .cfg-cta { padding: 14px 20px 18px; }
-    .cfg-cta .btn { width: 100%; justify-content: center; }
+    /* === STEPPER === */
+    .cfg-stepper { display: flex; flex-direction: column; gap: 5px; }
+    .cfg-stepper__item {
+      width: 100%; display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; border-radius: 12px; text-align: left;
+      background: rgba(255,255,255,.03); border: 1.5px solid rgba(255,255,255,.07);
+      font-family: var(--font-body); cursor: default;
+      transition: background .2s, border-color .2s, opacity .2s;
+    }
+    .cfg-stepper__item.is-active { background: rgba(37,72,250,.12); border-color: rgba(37,72,250,.4); }
+    .cfg-stepper__item.is-done { cursor: pointer; }
+    .cfg-stepper__item.is-done:hover { border-color: rgba(255,255,255,.25); }
+    .cfg-stepper__item:disabled { opacity: .45; }
+    .cfg-stepper__num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; font-family: var(--font-display);
+      background: rgba(255,255,255,.08); color: rgba(255,255,255,.5); transition: all .2s;
+    }
+    .cfg-stepper__item.is-active .cfg-stepper__num { background: #2548FA; color: #fff; }
+    .cfg-stepper__item.is-done .cfg-stepper__num { background: rgba(62,190,179,.2); color: #3EBEB3; }
+    .cfg-stepper__txt { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+    .cfg-stepper__klabel { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+    .cfg-stepper__title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (max-width: 860px) {
+      .cfg-stepper { flex-direction: row; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+      .cfg-stepper__item { width: auto; flex: 1 0 auto; justify-content: center; padding: 11px 12px; }
+      .cfg-stepper__txt { display: none; }
+      .cfg-stepper__item.is-active { flex: 2 0 auto; }
+      .cfg-stepper__item.is-active .cfg-stepper__txt { display: flex; }
+    }
+
+    /* === STEP SECTIONS === */
+    .cfg-step[hidden] { display: none; }
+    .cfg-step { animation: stepIn .35s var(--ease-out); }
+    @keyframes stepIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .cfg-step-intro { margin-bottom: 26px; max-width: 720px; }
+    .cfg-step-kicker { display: block; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--b400); margin-bottom: 9px; }
+    .cfg-step-intro h2 {
+      font-family: var(--font-display); font-size: clamp(23px, 3.2vw, 31px);
+      font-weight: 800; letter-spacing: -0.02em; color: #fff; line-height: 1.15; margin-bottom: 12px;
+    }
+    .cfg-step-intro p { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.6; }
+    .cfg-step-intro p strong { color: rgba(255,255,255,.8); font-weight: 600; }
+
+    /* === SYMPTOMS (Diagnoza) === */
+    .cfg-symptoms { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-items: start; }
+    @media (max-width: 760px) { .cfg-symptoms { grid-template-columns: 1fr; } }
+    .symptom-card {
+      display: flex; flex-direction: column; text-align: left; cursor: pointer; overflow: hidden;
+      padding: 16px 17px; border-radius: 14px; font-family: var(--font-body);
+      background: rgba(255,255,255,.04); border: 1.5px solid rgba(255,255,255,.09);
+      transition: background .18s, border-color .18s;
+    }
+    .symptom-card:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
+    .symptom-card.is-selected { background: rgba(37,72,250,.12); border-color: rgba(37,72,250,.5); }
+    .symptom-card__hyp { display: flex; align-items: flex-start; gap: 12px; }
+    .symptom-card__quote { flex: 1; font-size: 15px; font-weight: 600; color: #fff; line-height: 1.4; letter-spacing: -0.01em; }
+    .symptom-card__quote::before { content: '„'; color: rgba(255,255,255,.3); }
+    .symptom-card__quote::after { content: '"'; color: rgba(255,255,255,.3); }
+    .symptom-card .task-card__check { margin-top: 1px; }
+    .symptom-card.is-selected .task-card__check { background: #2548FA; border-color: #2548FA; }
+    .symptom-card.is-selected .task-card__check-icon { opacity: 1; }
+    .symptom-dx {
+      display: flex; flex-direction: column; max-height: 0; opacity: 0; overflow: hidden;
+      border-top: 1px solid transparent;
+      transition: max-height .3s var(--ease-out), opacity .25s, margin-top .3s, padding-top .3s;
+    }
+    .symptom-card.is-selected .symptom-dx {
+      max-height: 240px; opacity: 1; margin-top: 13px; padding-top: 13px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .symptom-dx__role {
+      align-self: flex-start; font-size: 9.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      color: #3EBEB3; background: rgba(62,190,179,.1); border: 1px solid rgba(62,190,179,.22);
+      padding: 3px 9px; border-radius: 5px; margin-bottom: 8px;
+    }
+    .symptom-dx__text { font-size: 12.5px; color: rgba(255,255,255,.62); line-height: 1.5; }
+
+    /* === BACKLOG === */
+    .cfg-backlog-stat {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px;
+      padding: 16px 20px; margin-bottom: 24px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 14px;
+    }
+    .cfg-backlog-stat__item { display: flex; flex-direction: column; gap: 2px; }
+    .cfg-backlog-stat__num { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; font-variant-numeric: tabular-nums; }
+    .cfg-backlog-stat__num.accent { color: var(--b400); }
+    .cfg-backlog-stat__lbl { font-size: 11px; color: rgba(255,255,255,.4); }
+    .cfg-backlog-stat__sep { width: 1px; align-self: stretch; background: rgba(255,255,255,.1); }
+    .cfg-backlog-stat__msg { flex: 1; min-width: 220px; font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.5; }
+    .cfg-backlog-stat__msg strong { color: #fff; }
+    .cfg-backlog-group { margin-bottom: 22px; }
+    .cfg-backlog-group__head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 11px; }
+    .cfg-backlog-group__title { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .cfg-backlog-group__sub { font-size: 11.5px; color: rgba(255,255,255,.35); }
+    .cfg-backlog-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    @media (max-width: 760px) { .cfg-backlog-list { grid-template-columns: 1fr; } }
+    .backlog-item {
+      display: flex; align-items: center; gap: 11px; padding: 12px 14px; border-radius: 12px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    }
+    .backlog-item__body { flex: 1; min-width: 0; }
+    .backlog-item__name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.88); }
+    .backlog-item__desc { font-size: 11px; color: rgba(255,255,255,.36); margin-top: 2px; line-height: 1.4; }
+    .backlog-item__star {
+      display: inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      color: #EF9645; background: rgba(239,150,69,.13); border: 1px solid rgba(239,150,69,.3);
+      padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle;
+    }
+    .backlog-item__h { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.4); flex-shrink: 0; }
+
+    /* === ROADMAP === */
+    .cfg-roadmap { display: flex; flex-direction: column; gap: 14px; }
+    .roadmap-sprint {
+      display: grid; grid-template-columns: 158px 1fr; gap: 18px; padding: 18px 20px; border-radius: 16px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+    }
+    .roadmap-sprint.is-first { background: rgba(37,72,250,.1); border-color: rgba(37,72,250,.35); }
+    .roadmap-sprint__meta { display: flex; flex-direction: column; gap: 5px; }
+    .roadmap-sprint__badge { font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--b400); }
+    .roadmap-sprint.is-first .roadmap-sprint__badge { color: #fff; }
+    .roadmap-sprint__goal { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.25; }
+    .roadmap-sprint__cap { font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.4); font-variant-numeric: tabular-nums; }
+    .roadmap-sprint__tasks { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
+    .roadmap-chip {
+      display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; padding: 6px 11px; border-radius: 9px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); color: rgba(255,255,255,.72);
+    }
+    .roadmap-chip .size-badge { font-size: 8.5px; padding: 1px 5px; }
+    .roadmap-more { font-size: 12.5px; color: rgba(255,255,255,.4); padding: 6px 4px; }
+    @media (max-width: 640px) { .roadmap-sprint { grid-template-columns: 1fr; gap: 11px; } }
+
+    /* === STEP NAV BUTTONS === */
+    .cfg-navbtns {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 38px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .cfg-navbtns__hint { font-size: 12.5px; color: rgba(255,255,255,.38); margin-right: auto; }
+    .btn--ghost { background: transparent; color: rgba(255,255,255,.7); border: 1.5px solid rgba(255,255,255,.18); }
+    .btn--ghost:hover { border-color: rgba(255,255,255,.4); color: #fff; box-shadow: none; transform: none; }
+    .btn:disabled { opacity: .35; pointer-events: none; }
 
     /* Toast */
     .cfg-toast {
@@ -387,89 +530,117 @@
     </div>
   </nav>
 
-  <!-- HEADER -->
-  <header class="cfg-page-header">
-    <div class="container">
-      <span class="label">Sprint Box Simulator</span>
-      <h1>Co zmieścisz<br>w jednym sprincie?</h1>
-      <p>Wybierz zadania, które chcesz zrealizować. Zobaczysz ile kosztują godzinowo — i ile u nas. Cena jest stała.</p>
-    </div>
-  </header>
-
   <!-- MAIN -->
   <main class="cfg-wrap">
     <div class="container">
+      <div class="cfg-app">
 
-      <!-- PRESETS: Victory Paths -->
-      <section class="cfg-presets">
-        <div class="cfg-presets-head">
-          <h2>Zacznij od gotowego celu</h2>
-          <span>— albo złóż własny sprint z klocków poniżej.</span>
+        <!-- SIDEBAR: pionowy stepper -->
+        <aside class="cfg-app__sidebar">
+          <div class="cfg-side-head">
+            <span class="label">Symulator współpracy</span>
+            <h2 class="cfg-side-title">Od objawu do roadmapy wzrostu</h2>
+          </div>
+          <div class="cfg-stepper" id="cfgStepper" role="list" aria-label="Etapy procesu"></div>
+        </aside>
+
+        <!-- MAIN: treść aktywnego kroku -->
+        <div class="cfg-app__main">
+
+      <!-- STEP 1: DIAGNOZA -->
+      <section class="cfg-step" data-step="1">
+        <div class="cfg-step-intro">
+          <span class="cfg-step-kicker">Krok 1 — Diagnoza</span>
+          <h2>Zacznijmy od tego, co Cię uwiera</h2>
+          <p>Ty znasz objawy — my stawiamy diagnozę. Wskaż ten, który frustruje Cię <strong>najbardziej</strong>. Zobaczysz, jak czyta go nasz zespół i którą rolę uruchamiamy.</p>
         </div>
-        <div class="cfg-presets-grid" id="cfgPresets" role="list" aria-label="Gotowe scenariusze sprintu"></div>
+        <div class="cfg-symptoms" id="cfgSymptoms" role="group" aria-label="Objawy i hipotezy"></div>
       </section>
 
-      <div class="cfg-layout">
+      <!-- STEP 2: BACKLOG -->
+      <section class="cfg-step" data-step="2" hidden>
+        <div class="cfg-step-intro">
+          <span class="cfg-step-kicker">Krok 2 — Backlog</span>
+          <h2>Z diagnozy powstaje backlog</h2>
+          <p>Każdy zdiagnozowany problem rozkładamy na konkretne rozwiązania — od <strong>Quick Winów</strong> po <strong>Kamienie milowe</strong>. Zobacz, ile ich jest. Jeden sprint nie wystarczy — i właśnie dlatego trzeba priorytetyzować.</p>
+        </div>
+        <div class="cfg-backlog-stat" id="cfgBacklogStat"></div>
+        <div id="cfgBacklog"></div>
+      </section>
 
-        <!-- LEFT: Task Picker -->
-        <div class="cfg-left">
-          <div class="cfg-filters" role="group" aria-label="Kategoria zadań">
-            <button class="cfg-filter is-active" data-cat="all">Wszystkie</button>
-            <button class="cfg-filter" data-cat="ux">UX &amp; Sprzedaż</button>
-            <button class="cfg-filter" data-cat="tech">Sklep &amp; Tech</button>
-            <button class="cfg-filter" data-cat="marketing">Marketing</button>
-            <button class="cfg-filter" data-cat="b2b">B2B</button>
-          </div>
-          <div class="cfg-tasks" id="cfgTasks" role="list" aria-label="Dostępne zadania"></div>
+      <!-- STEP 3: PLAN SPRINTU -->
+      <section class="cfg-step" data-step="3" hidden>
+        <div class="cfg-step-intro">
+          <span class="cfg-step-kicker">Krok 3 — Plan sprintu</span>
+          <h2>Priorytetyzujemy: pierwszy sprint</h2>
+          <p>Wybieramy <strong>cel</strong> na najbliższy miesiąc i dobieramy z backlogu zadania, które go dowiozą — najpierw największy bloker. Tyle, ile zmieści <strong>pojemność pakietu</strong>.</p>
         </div>
 
-        <!-- RIGHT: Box Panel -->
-        <div class="cfg-right">
-          <div class="cfg-box-panel">
+        <section class="cfg-presets">
+          <div class="cfg-presets-head">
+            <h2>Wybierz cel sprintu</h2>
+            <span>— na bazie Twojej diagnozy.</span>
+          </div>
+          <div class="cfg-presets-grid" id="cfgPresets" role="list" aria-label="Cele sprintu"></div>
+        </section>
 
-            <!-- Goal banner (active preset) -->
-            <div class="cfg-goal-banner" id="cfgGoal" style="display:none"></div>
-
-            <!-- Package toggle -->
-            <div class="cfg-pkg-row">
-              <span class="cfg-pkg-row-label">Pakiet</span>
-              <div class="cfg-pkg-btns">
-                <button class="cfg-pkg-btn is-active" data-pkg="growth">Growth · 35h</button>
-                <button class="cfg-pkg-btn" data-pkg="stability">Stability · 16h</button>
-              </div>
+        <div class="cfg-layout">
+          <!-- LEFT: Backlog picker -->
+          <div class="cfg-left">
+            <div class="cfg-presets-head" style="margin-bottom:14px">
+              <h2 style="font-size:15px">Backlog — wybierz priorytety</h2>
             </div>
+            <div class="cfg-tasks" id="cfgTasks" role="list" aria-label="Backlog zadań"></div>
+          </div>
 
-            <!-- Capacity -->
-            <div class="cfg-cap-wrap">
-              <div class="cfg-cap-top">
-                <span class="cfg-cap-title">Pojemnosc pudełka</span>
-                <span class="cfg-cap-hours" id="cfgCapHours">0 / 35h</span>
-              </div>
-              <div class="cfg-cap-bar"><div class="cfg-cap-fill" id="cfgCapFill"></div></div>
-              <span class="cfg-cap-sub" id="cfgCapSub">Kliknij zadania po lewej — dodaj je do sprintu.</span>
-            </div>
+          <!-- RIGHT: Box Panel -->
+          <div class="cfg-right">
+            <div class="cfg-box-panel">
+              <div class="cfg-goal-banner" id="cfgGoal" style="display:none"></div>
 
-            <!-- Box inner: chips or empty state -->
-            <div class="cfg-box-inner" id="cfgBoxInner">
-              <div class="cfg-box-empty">
-                <div class="cfg-box-empty-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 8H3M21 8l-2 11H5L3 8M21 8l-1.5-4H4.5L3 8M9 12v4M15 12v4"/>
-                  </svg>
+              <div class="cfg-pkg-row">
+                <span class="cfg-pkg-row-label">Pakiet</span>
+                <div class="cfg-pkg-btns">
+                  <button class="cfg-pkg-btn is-active" data-pkg="growth">Growth · 35h</button>
+                  <button class="cfg-pkg-btn" data-pkg="stability">Stability · 16h</button>
                 </div>
-                Wybierz zadania z lewej — zobaczysz co mieści się w jednym sprincie.
               </div>
-            </div>
 
-            <!-- CTA (hidden initially) -->
-            <div class="cfg-cta" id="cfgCta" style="display:none">
-              <a href="mailto:hello@codeq.pl" class="btn btn--primary btn--lg">Zacznij Pilotaż →</a>
-            </div>
+              <div class="cfg-cap-wrap">
+                <div class="cfg-cap-top">
+                  <span class="cfg-cap-title">Pojemność pudełka</span>
+                  <span class="cfg-cap-hours" id="cfgCapHours">0 / 35h</span>
+                </div>
+                <div class="cfg-cap-bar"><div class="cfg-cap-fill" id="cfgCapFill"></div></div>
+                <span class="cfg-cap-sub" id="cfgCapSub"></span>
+              </div>
 
+              <div class="cfg-box-inner" id="cfgBoxInner"></div>
+            </div>
           </div>
         </div>
+      </section>
 
+      <!-- STEP 4: ROADMAPA WZROSTU -->
+      <section class="cfg-step" data-step="4" hidden>
+        <div class="cfg-step-intro">
+          <span class="cfg-step-kicker">Krok 4 — Roadmapa wzrostu</span>
+          <h2>Reszta backlogu nie znika</h2>
+          <p>To, co nie zmieściło się w pierwszym sprincie, układamy w <strong>Roadmapę wzrostu</strong> na kolejne miesiące. Stały zespół, przewidywalny rytm, mierzalne cele — sprint po sprincie.</p>
+        </div>
+        <div class="cfg-roadmap" id="cfgRoadmap"></div>
+      </section>
+
+      <!-- STEP NAV -->
+      <div class="cfg-navbtns">
+        <button class="btn btn--ghost" id="cfgBack" type="button">← Wstecz</button>
+        <span class="cfg-navbtns__hint" id="cfgHint"></span>
+        <button class="btn btn--primary" id="cfgNext" type="button">Dalej →</button>
+        <a class="btn btn--primary btn--lg" id="cfgCtaFinal" href="mailto:hello@codeq.pl" style="display:none">Umów rozmowę o roadmapie →</a>
       </div>
+
+        </div><!-- /cfg-app__main -->
+      </div><!-- /cfg-app -->
     </div>
   </main>
 
@@ -518,7 +689,33 @@
       stability: {label:'Stability', price:3200, cap:16},
     };
 
-    const SIZE_COLOR = {S:'--sz-s', M:'--sz-m', L:'--sz-l', XL:'--sz-xl'};
+    const SIZE_ORDER = {S:0, M:1, L:2, XL:3};
+
+    // Mapa: ścieżka (Victory Path) → kategoria backlogu
+    const PATH_CAT = { revenue:'ux', b2b:'b2b', leadgen:'marketing', tech:'tech', marketing:'marketing' };
+
+    // Objawy klienta → diagnoza Codeq → ścieżka rozwiązania
+    const SYMPTOMS = [
+      {id:'s1', path:'revenue',   role:'UX & Strateg',  quote:'Ruch jest, ale sprzedaż stoi w miejscu',
+       dx:'To problem konwersji, nie ruchu — ścieżka zakupowa gubi klientów. Bierzemy na warsztat kartę produktu i checkout.'},
+      {id:'s2', path:'revenue',   role:'UX Designer',   quote:'Klienci masowo porzucają koszyk',
+       dx:'Tarcie w checkoucie i koszty dostawy odkrywane za późno. Upraszczamy ścieżkę i odzyskujemy porzucone koszyki.'},
+      {id:'s3', path:'tech',      role:'Senior Dev',    quote:'Sklep wolno działa, zwłaszcza na telefonie',
+       dx:'Core Web Vitals poza strefą Green — to kosztuje pozycje w Google i konwersję mobile. Optymalizujemy wydajność i domykamy bezpieczeństwo.'},
+      {id:'s4', path:'b2b',       role:'Strateg & Dev', quote:'Klienci B2B wciąż dzwonią z pytaniem o cenę',
+       dx:'Brak samoobsługi hurtowej obciąża handlowców. Automatyzujemy ceny, oferty i panel klienta.'},
+      {id:'s5', path:'marketing', role:'Dev & UX',      quote:'Marketing czeka na programistę przy każdej zmianie',
+       dx:'Sztywne szablony blokują zespół marketingu. Dajemy edytowalne sekcje i porządkujemy SEO.'},
+      {id:'s6', path:'leadgen',   role:'Strateg & UX',  quote:'Wydaję na reklamy, a leadów jak na lekarstwo',
+       dx:'Ruch trafia w stronę bez lejka. Budujemy dedykowane landingi i maszynę do pozyskiwania leadów.'},
+    ];
+
+    const STEPS = [
+      {n:1, k:'Krok 1', t:'Diagnoza'},
+      {n:2, k:'Krok 2', t:'Backlog'},
+      {n:3, k:'Krok 3', t:'Plan sprintu'},
+      {n:4, k:'Krok 4', t:'Roadmapa wzrostu'},
+    ];
 
     // Gotowe scenariusze sprintu (Victory Paths) — punkt startu, edytowalny
     const PRESETS = [
@@ -533,9 +730,10 @@
     // ─────────────────────────────────────────────
     // STATE
     // ─────────────────────────────────────────────
+    let step         = 1;
+    let symptoms     = new Set();   // krok 1 — wybrane objawy
     let pkg          = 'growth';
-    let selected     = new Set();
-    let cat          = 'all';
+    let selected     = new Set();   // krok 3 — zadania w sprincie
     let activePreset = null;
     let toastTmr     = null;
 
@@ -546,6 +744,34 @@
     const cap    = () => PKG[pkg].cap;
     const remH   = () => cap() - usedH();
     const pct    = () => Math.min(usedH() / cap() * 100, 100);
+
+    // Liczba mnoga (PL): 1 / 2-4 / 5+
+    function plural(n, one, few, many) {
+      if (n === 1) return one;
+      const d = n % 10, dd = n % 100;
+      return (d >= 2 && d <= 4 && !(dd >= 12 && dd <= 14)) ? few : many;
+    }
+
+    // Ścieżki (Victory Paths) wynikające z wybranych objawów — bez duplikatów, w kolejności
+    function chosenPaths() {
+      const seen = new Set(), out = [];
+      SYMPTOMS.forEach(s => { if (symptoms.has(s.id) && !seen.has(s.path)) { seen.add(s.path); out.push(s.path); } });
+      return out;
+    }
+    // Zbiór zadań z diagnozy rekomendowanych jako priorytet
+    function recommendedIds() {
+      const ids = new Set();
+      chosenPaths().forEach(p => PRESETS_MAP[p].tasks.forEach(id => ids.add(id)));
+      return ids;
+    }
+    // Pełny backlog = zadania z kategorii wybranych ścieżek + rekomendacje
+    function poolIds() {
+      const cats = new Set(chosenPaths().map(p => PATH_CAT[p]));
+      const ids = new Set();
+      TASKS.forEach(t => { if (cats.has(t.cat)) ids.add(t.id); });
+      chosenPaths().forEach(p => PRESETS_MAP[p].tasks.forEach(id => ids.add(id)));
+      return [...ids];
+    }
 
     function showToast(msg) {
       const el = document.getElementById('cfgToast');
@@ -565,19 +791,222 @@
     }
 
     // ─────────────────────────────────────────────
+    // RENDER: STEPPER
+    // ─────────────────────────────────────────────
+    function renderStepper() {
+      const el = document.getElementById('cfgStepper');
+      el.innerHTML = STEPS.map(s => {
+        const state = s.n === step ? 'is-active' : (s.n < step ? 'is-done' : '');
+        return `
+          <button class="cfg-stepper__item ${state}" data-goto="${s.n}" type="button" role="listitem" ${s.n < step ? '' : (s.n === step ? '' : 'disabled')}>
+            <span class="cfg-stepper__num">${s.n < step ? '✓' : s.n}</span>
+            <span class="cfg-stepper__txt">
+              <span class="cfg-stepper__klabel">${s.k}</span>
+              <span class="cfg-stepper__title">${s.t}</span>
+            </span>
+          </button>
+        `.trim();
+      }).join('');
+      el.querySelectorAll('[data-goto]').forEach(b => {
+        b.addEventListener('click', () => { const n = +b.dataset.goto; if (n < step) goToStep(n); });
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: SYMPTOMS (krok 1)
+    // ─────────────────────────────────────────────
+    function renderSymptoms() {
+      const el = document.getElementById('cfgSymptoms');
+      el.innerHTML = SYMPTOMS.map(s => {
+        const sel = symptoms.has(s.id);
+        return `
+          <button class="symptom-card${sel ? ' is-selected' : ''}" data-symptom="${s.id}" type="button" aria-pressed="${sel}">
+            <span class="symptom-card__hyp">
+              <span class="symptom-card__quote">${s.quote}</span>
+              <span class="task-card__check"><span class="task-card__check-icon"></span></span>
+            </span>
+            <span class="symptom-dx">
+              <span class="symptom-dx__role">Diagnoza · ${s.role}</span>
+              <span class="symptom-dx__text">${s.dx}</span>
+            </span>
+          </button>
+        `.trim();
+      }).join('');
+      el.querySelectorAll('[data-symptom]').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.dataset.symptom;
+          // wybór pojedynczy: klik w aktywny odznacza, klik w inny zamienia
+          symptoms = symptoms.has(id) ? new Set() : new Set([id]);
+          // zmiana objawu unieważnia dobór z dalszych kroków
+          selected = new Set();
+          activePreset = null;
+          renderSymptoms();
+          updateNav();
+        });
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: BACKLOG (krok 2)
+    // ─────────────────────────────────────────────
+    function renderBacklog() {
+      const pool = poolIds().map(id => TASKS_MAP[id]);
+      const rec = recommendedIds();
+      const totalH = pool.reduce((s,t) => s + t.hours, 0);
+      const sprints = Math.max(1, Math.ceil(totalH / 35));
+
+      document.getElementById('cfgBacklogStat').innerHTML = `
+        <div class="cfg-backlog-stat__item"><span class="cfg-backlog-stat__num">${pool.length}</span><span class="cfg-backlog-stat__lbl">zadań w backlogu</span></div>
+        <div class="cfg-backlog-stat__sep"></div>
+        <div class="cfg-backlog-stat__item"><span class="cfg-backlog-stat__num">~${totalH}h</span><span class="cfg-backlog-stat__lbl">łącznej pracy</span></div>
+        <div class="cfg-backlog-stat__sep"></div>
+        <div class="cfg-backlog-stat__item"><span class="cfg-backlog-stat__num accent">35h</span><span class="cfg-backlog-stat__lbl">mieści jeden sprint</span></div>
+        <div class="cfg-backlog-stat__msg"><strong>~${totalH}h pracy, 35h na sprint.</strong> To materiał na ~${sprints} ${plural(sprints,'sprint','sprinty','sprintów')}. Nie zrobimy wszystkiego naraz — dlatego ustalamy priorytety.</div>
+      `;
+
+      const quick = pool.filter(t => t.size === 'S' || t.size === 'M').sort((a,b) => a.hours - b.hours);
+      const mile  = pool.filter(t => t.size === 'L' || t.size === 'XL').sort((a,b) => a.hours - b.hours);
+
+      const itemHTML = t => `
+        <div class="backlog-item">
+          <span class="size-badge size-badge--${t.size}">${t.size}</span>
+          <div class="backlog-item__body">
+            <div class="backlog-item__name">${t.label}${rec.has(t.id) ? ' <span class="backlog-item__star">priorytet</span>' : ''}</div>
+            <div class="backlog-item__desc">${t.desc}</div>
+          </div>
+          <span class="backlog-item__h">${t.hours}h</span>
+        </div>`.trim();
+
+      const group = (title, sub, items) => items.length ? `
+        <div class="cfg-backlog-group">
+          <div class="cfg-backlog-group__head">
+            <span class="cfg-backlog-group__title">${title}</span>
+            <span class="cfg-backlog-group__sub">${sub}</span>
+          </div>
+          <div class="cfg-backlog-list">${items.map(itemHTML).join('')}</div>
+        </div>` : '';
+
+      document.getElementById('cfgBacklog').innerHTML =
+        group('Quick Wins', 'S–M · szybkie usprawnienia i utrzymanie', quick) +
+        group('Kamienie milowe', 'L–XL · większe wdrożenia i redesigny', mile);
+    }
+
+    // ─────────────────────────────────────────────
+    // RENDER: ROADMAPA WZROSTU (krok 4)
+    // ─────────────────────────────────────────────
+    function binGoal(binTasks) {
+      const paths = chosenPaths();
+      let best = null, bestN = -1;
+      paths.forEach(p => {
+        const c = PATH_CAT[p];
+        const n = binTasks.filter(t => t.cat === c).length;
+        if (n > bestN) { bestN = n; best = p; }
+      });
+      return best ? PRESETS_MAP[best].name : 'Rozwój & optymalizacja';
+    }
+
+    function renderRoadmap() {
+      const sprintCap = cap();
+      const s1tasks = [...selected].map(id => TASKS_MAP[id]);
+      const s1used  = s1tasks.reduce((s,t) => s + t.hours, 0);
+      const goal1   = activePreset ? PRESETS_MAP[activePreset].name : 'Pierwszy sprint';
+
+      // Pozostały backlog → pakowanie zachłanne w sprinty po sprintCap
+      const remaining = poolIds().filter(id => !selected.has(id)).map(id => TASKS_MAP[id]).sort((a,b) => b.hours - a.hours);
+      const bins = [];
+      remaining.forEach(t => {
+        let placed = false;
+        for (const bin of bins) {
+          if (bin.used + t.hours <= sprintCap) { bin.tasks.push(t); bin.used += t.hours; placed = true; break; }
+        }
+        if (!placed) bins.push({ tasks:[t], used:t.hours });
+      });
+
+      const totalSprints = 1 + bins.length;
+      const sprintCard = (n, goal, tasks, used, first) => `
+        <div class="roadmap-sprint${first ? ' is-first' : ''}">
+          <div class="roadmap-sprint__meta">
+            <span class="roadmap-sprint__badge">Sprint ${n}</span>
+            <span class="roadmap-sprint__goal">${goal}</span>
+            <span class="roadmap-sprint__cap">${used}h / ${sprintCap}h</span>
+          </div>
+          <div class="roadmap-sprint__tasks">
+            ${tasks.map(t => `<span class="roadmap-chip"><span class="size-badge size-badge--${t.size}">${t.size}</span>${t.label}</span>`).join('')}
+          </div>
+        </div>`.trim();
+
+      let cards = sprintCard(1, goal1, s1tasks, s1used, true);
+      bins.slice(0,4).forEach((bin,i) => cards += sprintCard(i+2, binGoal(bin.tasks), bin.tasks, bin.used, false));
+      if (bins.length > 4) cards += `<div class="roadmap-more">+ ${bins.length - 4} ${plural(bins.length-4,'kolejny sprint','kolejne sprinty','kolejnych sprintów')} w pełnej Roadmapie</div>`;
+
+      document.getElementById('cfgRoadmap').innerHTML = `
+        <div class="cfg-backlog-stat" style="margin-bottom:8px">
+          <div class="cfg-backlog-stat__item"><span class="cfg-backlog-stat__num accent">${totalSprints}</span><span class="cfg-backlog-stat__lbl">${plural(totalSprints,'sprint','sprinty','sprintów')} w planie</span></div>
+          <div class="cfg-backlog-stat__sep"></div>
+          <div class="cfg-backlog-stat__item"><span class="cfg-backlog-stat__num">≈${totalSprints}</span><span class="cfg-backlog-stat__lbl">${plural(totalSprints,'miesiąc','miesiące','miesięcy')} współpracy</span></div>
+          <div class="cfg-backlog-stat__msg"><strong>Nic nie ginie.</strong> Każdy sprint to jeden cel i mierzalny efekt — realizowany przez ten sam zespół w stałym rytmie.</div>
+        </div>
+        ${cards}`;
+    }
+
+    // ─────────────────────────────────────────────
+    // NAWIGACJA KROKÓW
+    // ─────────────────────────────────────────────
+    function goToStep(n) {
+      if (n > step) {
+        if (step === 1 && symptoms.size === 0) { showToast('Wybierz objaw, żebyśmy mogli postawić diagnozę.'); return; }
+        if (step === 3 && selected.size === 0) { showToast('Dodaj przynajmniej jedno zadanie do sprintu.'); return; }
+      }
+      step = n;
+      document.querySelectorAll('.cfg-step').forEach(sec => { sec.hidden = (+sec.dataset.step !== step); });
+
+      if (step === 2) renderBacklog();
+      if (step === 3) {
+        if (selected.size === 0 && chosenPaths().length) applyPreset(chosenPaths()[0]); // applyPreset → renderStep3
+        else renderStep3();
+      }
+      if (step === 4) renderRoadmap();
+
+      renderStepper();
+      updateNav();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateNav() {
+      const back = document.getElementById('cfgBack');
+      const next = document.getElementById('cfgNext');
+      const cta  = document.getElementById('cfgCtaFinal');
+      const hint = document.getElementById('cfgHint');
+
+      back.style.display = step === 1 ? 'none' : '';
+      if (step === 4) { next.style.display = 'none'; cta.style.display = ''; }
+      else            { next.style.display = '';     cta.style.display = 'none'; }
+      next.textContent = step === 3 ? 'Zobacz roadmapę →' : 'Dalej →';
+
+      const hints = {
+        1: symptoms.size ? 'Diagnoza gotowa — przejdź dalej' : 'Wybierz najbardziej frustrujący objaw',
+        2: 'Tak wygląda materiał z Pilotażu',
+        3: `${usedH()} / ${cap()}h zaplanowane`,
+        4: 'Gotowe — to Twój plan wzrostu',
+      };
+      hint.textContent = hints[step] || '';
+    }
+
+    // ─────────────────────────────────────────────
     // RENDER: PRESETS (Victory Paths)
     // ─────────────────────────────────────────────
     function renderPresets() {
       const el = document.getElementById('cfgPresets');
-      el.innerHTML = PRESETS.map(p => {
+      el.innerHTML = chosenPaths().map(pid => {
+        const p = PRESETS_MAP[pid];
         const totalH = p.tasks.reduce((s,id) => s + TASKS_MAP[id].hours, 0);
         const isActive = activePreset === p.id;
         return `
-          <button class="preset-card${isActive ? ' is-active' : ''}" data-preset="${p.id}" style="--accent:${p.accent}" role="listitem">
+          <button class="preset-card${isActive ? ' is-active' : ''}" data-preset="${p.id}" style="--accent:${p.accent}" role="listitem" type="button">
             <span class="preset-card__pkg">${PKG[p.pkg].label}</span>
             <span class="preset-card__name">${p.name}</span>
             <span class="preset-card__hint">${p.hint}</span>
-            <span class="preset-card__meta">${p.tasks.length} klocki · ${totalH}h</span>
+            <span class="preset-card__meta">${p.tasks.length} ${plural(p.tasks.length,'zadanie','zadania','zadań')} · ${totalH}h</span>
           </button>
         `.trim();
       }).join('');
@@ -595,7 +1024,7 @@
         b.classList.toggle('is-active', b.dataset.pkg === pkg));
       selected = new Set(p.tasks);
       activePreset = id;
-      renderAll();
+      renderStep3();
     }
 
     // ─────────────────────────────────────────────
@@ -621,13 +1050,13 @@
       const used = usedH();
       const capacity = cap();
 
-      const list = cat === 'all' ? TASKS : TASKS.filter(t => t.cat === cat);
+      const list = poolIds().map(id => TASKS_MAP[id])
+        .sort((a,b) => SIZE_ORDER[a.size] - SIZE_ORDER[b.size] || a.hours - b.hours);
 
       container.innerHTML = list.map(t => {
         const isSel  = selected.has(t.id);
         const fits   = isSel || (used + t.hours <= capacity);
         const isDis  = !fits;
-        const color  = `var(${SIZE_COLOR[t.size]})`;
 
         return `
           <div
@@ -668,7 +1097,7 @@
             selected.add(id);
           }
           activePreset = null;
-          renderAll();
+          renderStep3();
         });
 
         card.addEventListener('keydown', e => {
@@ -754,54 +1183,42 @@
           e.stopPropagation();
           selected.delete(btn.dataset.rm);
           activePreset = null;
-          renderAll();
+          renderStep3();
         });
       });
     }
 
     // ─────────────────────────────────────────────
-    // RENDER: CTA
+    // RENDER: KROK 3 (orkiestrator)
     // ─────────────────────────────────────────────
-    function renderCta() {
-      const ctaEl = document.getElementById('cfgCta');
-      ctaEl.style.display = selected.size === 0 ? 'none' : '';
-    }
-
-    // ─────────────────────────────────────────────
-    // RENDER ALL
-    // ─────────────────────────────────────────────
-    function renderAll() {
+    function renderStep3() {
       renderPresets();
       renderGrid();
       renderGoal();
       renderBox();
-      renderCta();
+      updateNav();
     }
 
     // ─────────────────────────────────────────────
     // EVENTS & INIT
     // ─────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
-      renderAll();
+      renderStepper();
+      renderSymptoms();
+      updateNav();
 
-      // Category filters
-      document.querySelectorAll('.cfg-filter').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.cfg-filter').forEach(b => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          cat = btn.dataset.cat;
-          renderGrid();
-        });
-      });
+      // Step navigation
+      document.getElementById('cfgBack').addEventListener('click', () => goToStep(Math.max(1, step - 1)));
+      document.getElementById('cfgNext').addEventListener('click', () => goToStep(Math.min(4, step + 1)));
 
-      // Package toggle
+      // Package toggle (krok 3)
       document.querySelectorAll('.cfg-pkg-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('.cfg-pkg-btn').forEach(b => b.classList.remove('is-active'));
           btn.classList.add('is-active');
           pkg = btn.dataset.pkg;
           activePreset = null;
-          renderAll();
+          renderStep3();
         });
       });
 
