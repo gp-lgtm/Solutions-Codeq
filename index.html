@@ -1200,6 +1200,16 @@
       background: #f0f4ff; border-color: var(--codeq-blue); color: var(--codeq-blue);
     }
 
+    .compare-cta {
+      display: block; margin-top: 28px; width: 100%;
+      padding: 13px 20px; border-radius: 6px;
+      background: #fff; color: var(--codeq-blue);
+      font-size: 13.5px; font-weight: 700; text-align: center;
+      letter-spacing: -0.01em; text-decoration: none;
+      transition: background .18s ease, transform .15s ease, box-shadow .18s ease;
+    }
+    .compare-cta:hover { background: #eef2ff; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,15,46,.22); }
+
     /* === DIAGNOZA MODAL === */
     .diagnoza-modal-overlay {
       position: fixed; inset: 0; z-index: 900;
@@ -2203,11 +2213,12 @@
               <div class="cta-preview">
                 <div class="cta-preview__header">
                   <span class="cta-preview__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
-                  <span class="cta-preview__title">Sprint Box Simulator</span>
+                  <span class="cta-preview__title">Symulator współpracy</span>
                 </div>
-                <span class="cta-preview__text">Wybierz zadania, które chcesz zrealizować — zobaczysz ile kosztują godzinowo i ile u nas. Cena jest stała.</span>
+                <span class="cta-preview__text">Wskaż swój największy problem — pokażemy diagnozę, backlog i gotowy plan pierwszego sprintu, krok po kroku jak w realnej współpracy.</span>
+                <div class="cta-preview__footer">Twój plan wzrostu w 2 minuty, bez zobowiązań</div>
               </div>
-              <a href="konfigurator.html" class="btn btn--outline-white btn--lg">Zaplanuj wzrost <span class="btn-arrow">→</span></a>
+              <a href="https://gp-lgtm.github.io/Solutions-Codeq/konfigurator.html" target="_blank" rel="noopener" class="btn btn--outline-white btn--lg">Zobacz, jak pracujemy <span class="btn-arrow">→</span></a>
             </div>
           </div>
 
@@ -2297,6 +2308,7 @@
             <div class="compare-item"><span class="compare-dot">✓</span>KPI co miesiąc: CR, AOV, PageSpeed</div>
             <div class="compare-item"><span class="compare-dot">✓</span>Jeden punkt kontaktu — PM pilnuje wszystkiego</div>
           </div>
+          <a href="https://gp-lgtm.github.io/Solutions-Codeq/konfigurator.html" target="_blank" rel="noopener" class="compare-cta">Zobacz, jak pracujemy — symulator współpracy →</a>
         </div>
 
         <!-- Before: Stary świat (left, clips over) -->
@@ -2311,7 +2323,6 @@
             <div class="compare-item"><span class="compare-dot">✕</span>Brak strategii — każdy projekt od nowa</div>
             <div class="compare-item"><span class="compare-dot">✕</span>Niedostępność w kryzysie, chaos komunikacji</div>
           </div>
-          <button class="compare-diagnoza-btn" id="openDiagnoza">Brzmi znajomo? Sprawdź swój model →</button>
         </div>
 
       </div>
