@@ -909,8 +909,6 @@
       stability: {label:'Stability', price:3200, cap:16},
     };
 
-    const SIZE_ORDER = {S:0, M:1, L:2, XL:3};
-
     // Mapa: ścieżka (Victory Path) → kategoria backlogu
     const PATH_CAT = { revenue:'ux', b2b:'b2b', leadgen:'marketing', tech:'tech', marketing:'marketing' };
 
@@ -933,8 +931,7 @@
     const STEPS = [
       {n:1, k:'Krok 1', t:'Diagnoza'},
       {n:2, k:'Krok 2', t:'Backlog'},
-      {n:3, k:'Krok 3', t:'Plan sprintu'},
-      {n:4, k:'Krok 4', t:'Roadmapa wzrostu'},
+      {n:3, k:'Krok 3', t:'Roadmapa wzrostu'},
     ];
 
     // Gotowe scenariusze sprintu (Victory Paths) — punkt startu, edytowalny
@@ -960,10 +957,7 @@
     // ─────────────────────────────────────────────
     // HELPERS
     // ─────────────────────────────────────────────
-    const usedH  = () => [...selected].reduce((s,id) => s + TASKS_MAP[id].hours, 0);
     const cap    = () => PKG[pkg].cap;
-    const remH   = () => cap() - usedH();
-    const pct    = () => Math.min(usedH() / cap() * 100, 100);
 
     // Liczba mnoga (PL): 1 / 2-4 / 5+
     function plural(n, one, few, many) {
@@ -999,15 +993,6 @@
       el.classList.add('visible');
       clearTimeout(toastTmr);
       toastTmr = setTimeout(() => el.classList.remove('visible'), 3200);
-    }
-
-    function shakeCard(id) {
-      const el = document.querySelector(`[data-task-id="${id}"]`);
-      if (!el) return;
-      el.classList.remove('shake');
-      void el.offsetWidth;
-      el.classList.add('shake');
-      el.addEventListener('animationend', () => el.classList.remove('shake'), {once:true});
     }
 
     // ─────────────────────────────────────────────
@@ -1175,17 +1160,12 @@
     function goToStep(n) {
       if (n > step) {
         if (step === 1 && symptoms.size === 0) { showToast('Wybierz objaw, żebyśmy mogli postawić diagnozę.'); return; }
-        if (step === 3 && selected.size === 0) { showToast('Dodaj przynajmniej jedno zadanie do sprintu.'); return; }
       }
       step = n;
       document.querySelectorAll('.cfg-step').forEach(sec => { sec.hidden = (+sec.dataset.step !== step); });
 
       if (step === 2) renderBacklog();
-      if (step === 3) {
-        if (selected.size === 0 && chosenPaths().length) applyPreset(chosenPaths()[0]); // applyPreset → renderStep3
-        else renderStep3();
-      }
-      if (step === 4) renderRoadmap();
+      if (step === 3) { composeFirstSprint(); renderRoadmap(); }
 
       renderStepper();
       updateNav();
@@ -1199,224 +1179,26 @@
       const hint = document.getElementById('cfgHint');
 
       back.style.display = step === 1 ? 'none' : '';
-      if (step === 4) { next.style.display = 'none'; cta.style.display = ''; }
+      if (step === 3) { next.style.display = 'none'; cta.style.display = ''; }
       else            { next.style.display = '';     cta.style.display = 'none'; }
-      next.textContent = step === 3 ? 'Zobacz roadmapę →' : 'Dalej →';
+      next.textContent = step === 2 ? 'Zobacz roadmapę →' : 'Dalej →';
 
       const hints = {
         1: symptoms.size ? 'Diagnoza gotowa — przejdź dalej' : 'Wybierz najbardziej frustrujący objaw',
         2: 'Tak wygląda materiał z Pilotażu',
-        3: `${usedH()} / ${cap()}h zaplanowane`,
-        4: 'Gotowe — to Twój plan wzrostu',
+        3: 'Gotowe — to Twój plan wzrostu',
       };
       hint.textContent = hints[step] || '';
     }
 
-    // ─────────────────────────────────────────────
-    // RENDER: PRESETS (Victory Paths)
-    // ─────────────────────────────────────────────
-    function renderPresets() {
-      const el = document.getElementById('cfgPresets');
-      el.innerHTML = chosenPaths().map(pid => {
-        const p = PRESETS_MAP[pid];
-        const totalH = p.tasks.reduce((s,id) => s + TASKS_MAP[id].hours, 0);
-        const isActive = activePreset === p.id;
-        return `
-          <button class="preset-card${isActive ? ' is-active' : ''}" data-preset="${p.id}" style="--accent:${p.accent}" role="listitem" type="button">
-            <span class="preset-card__pkg">${PKG[p.pkg].label}</span>
-            <span class="preset-card__name">${p.name}</span>
-            <span class="preset-card__hint">${p.hint}</span>
-            <span class="preset-card__meta">${p.tasks.length} ${plural(p.tasks.length,'zadanie','zadania','zadań')} · ${totalH}h</span>
-          </button>
-        `.trim();
-      }).join('');
-
-      el.querySelectorAll('.preset-card').forEach(btn => {
-        btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
-      });
-    }
-
-    function applyPreset(id) {
+    // Pierwszy sprint dobierany automatycznie z diagnozy (Victory Path)
+    function composeFirstSprint() {
+      const id = chosenPaths()[0];
+      if (!id) return;
       const p = PRESETS_MAP[id];
-      if (!p) return;
       pkg = p.pkg;
-      document.querySelectorAll('.cfg-pkg-btn').forEach(b =>
-        b.classList.toggle('is-active', b.dataset.pkg === pkg));
       selected = new Set(p.tasks);
       activePreset = id;
-      renderStep3();
-    }
-
-    // ─────────────────────────────────────────────
-    // RENDER: GOAL BANNER
-    // ─────────────────────────────────────────────
-    function renderGoal() {
-      const el = document.getElementById('cfgGoal');
-      if (!activePreset) { el.style.display = 'none'; return; }
-      const p = PRESETS_MAP[activePreset];
-      el.style.display = '';
-      el.innerHTML = `
-        <span class="cfg-goal-label">Cel sprintu</span>
-        <span class="cfg-goal-name">${p.name}</span>
-        <span class="cfg-goal-kpi">${p.kpi}</span>
-      `;
-    }
-
-    // ─────────────────────────────────────────────
-    // RENDER: TASK GRID
-    // ─────────────────────────────────────────────
-    function renderGrid() {
-      const container = document.getElementById('cfgTasks');
-      const used = usedH();
-      const capacity = cap();
-
-      const list = poolIds().map(id => TASKS_MAP[id])
-        .sort((a,b) => SIZE_ORDER[a.size] - SIZE_ORDER[b.size] || a.hours - b.hours);
-
-      container.innerHTML = list.map(t => {
-        const isSel  = selected.has(t.id);
-        const fits   = isSel || (used + t.hours <= capacity);
-        const isDis  = !fits;
-
-        return `
-          <div
-            class="task-card${isSel ? ' is-selected' : ''}${isDis ? ' is-disabled' : ''}"
-            data-task-id="${t.id}"
-            role="checkbox"
-            aria-checked="${isSel}"
-            tabindex="${isDis ? -1 : 0}"
-          >
-            <div class="task-card__top">
-              <span class="size-badge size-badge--${t.size}">${t.size} · ${t.hours}h</span>
-              <span class="task-card__check"><span class="task-card__check-icon"></span></span>
-            </div>
-            <div class="task-card__name">${t.label}</div>
-            <div class="task-card__desc">${t.desc}</div>
-          </div>
-        `.trim();
-      }).join('');
-
-      container.querySelectorAll('.task-card').forEach(card => {
-        const id = card.dataset.taskId;
-        const task = TASKS_MAP[id];
-
-        card.addEventListener('click', () => {
-          if (card.classList.contains('is-disabled')) {
-            shakeCard(id);
-            const needed = task.hours - remH();
-            if (pkg === 'stability' && task.hours > PKG.stability.cap) {
-              showToast(`To zadanie (${task.hours}h) przekracza pojemność Stability. Wybierz Growth.`);
-            } else {
-              showToast(`Brakuje ${needed}h. Usuń inne zadanie lub przełącz na ${pkg === 'stability' ? 'Growth' : 'większy pakiet'}.`);
-            }
-            return;
-          }
-          if (selected.has(id)) {
-            selected.delete(id);
-          } else {
-            selected.add(id);
-          }
-          activePreset = null;
-          renderStep3();
-        });
-
-        card.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
-        });
-      });
-    }
-
-    // ─────────────────────────────────────────────
-    // RENDER: BOX
-    // ─────────────────────────────────────────────
-    function renderBox() {
-      const used = usedH();
-      const capacity = cap();
-      const rem = remH();
-      const p = pct();
-
-      // Hours label
-      document.getElementById('cfgCapHours').textContent = `${used} / ${capacity}h`;
-
-      // Fill bar
-      const fill = document.getElementById('cfgCapFill');
-      fill.style.width = p + '%';
-      fill.className = 'cfg-cap-fill' + (p >= 90 ? ' is-danger' : p >= 65 ? ' is-warn' : '');
-
-      // Sub caption
-      const sub = document.getElementById('cfgCapSub');
-      if (used === 0) {
-        sub.textContent = `Pojemność ${PKG[pkg].label}: ${capacity}h sprintu`;
-        sub.className = 'cfg-cap-sub';
-      } else if (rem > 0) {
-        sub.textContent = `${rem}h wolnych — trafia na utrzymanie i bieżące sprawy`;
-        sub.className = 'cfg-cap-sub is-good';
-      } else if (rem === 0) {
-        sub.textContent = 'Pudełko wypełnione idealnie.';
-        sub.className = 'cfg-cap-sub is-good';
-      } else {
-        sub.textContent = `Przekroczono o ${Math.abs(rem)}h — usuń zadanie lub przełącz pakiet.`;
-        sub.className = 'cfg-cap-sub is-warning';
-      }
-
-      // Box inner
-      const inner = document.getElementById('cfgBoxInner');
-
-      if (selected.size === 0) {
-        inner.innerHTML = `
-          <div class="cfg-box-empty">
-            <div class="cfg-box-empty-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 8H3M21 8l-2 11H5L3 8M21 8l-1.5-4H4.5L3 8M9 12v4M15 12v4"/>
-              </svg>
-            </div>
-            Wybierz zadania z lewej — zobaczysz co mieści się w jednym sprincie.
-          </div>
-        `;
-        return;
-      }
-
-      const chips = [...selected].map(id => {
-        const t = TASKS_MAP[id];
-        return `
-          <div class="task-chip">
-            <div class="task-chip__left">
-              <span class="task-chip__size size-badge size-badge--${t.size}">${t.size}</span>
-              <span class="task-chip__name">${t.label}</span>
-            </div>
-            <span class="task-chip__h">${t.hours}h</span>
-            <button class="task-chip__rm" data-rm="${t.id}" aria-label="Usuń ${t.label}">&times;</button>
-          </div>
-        `.trim();
-      }).join('');
-
-      const freeNote = (rem > 0 && used > 0) ? `
-        <div class="cfg-free-note">
-          <strong>${rem}h</strong> wolnych w tym sprincie — nie przepadają. Trafiają na utrzymanie, aktualizacje i bieżące zgłoszenia.
-        </div>
-      ` : '';
-
-      inner.innerHTML = `<div class="cfg-chips">${chips}</div>${freeNote}`;
-
-      inner.querySelectorAll('[data-rm]').forEach(btn => {
-        btn.addEventListener('click', e => {
-          e.stopPropagation();
-          selected.delete(btn.dataset.rm);
-          activePreset = null;
-          renderStep3();
-        });
-      });
-    }
-
-    // ─────────────────────────────────────────────
-    // RENDER: KROK 3 (orkiestrator)
-    // ─────────────────────────────────────────────
-    function renderStep3() {
-      renderPresets();
-      renderGrid();
-      renderGoal();
-      renderBox();
-      updateNav();
     }
 
     // ─────────────────────────────────────────────
@@ -1429,18 +1211,7 @@
 
       // Step navigation
       document.getElementById('cfgBack').addEventListener('click', () => goToStep(Math.max(1, step - 1)));
-      document.getElementById('cfgNext').addEventListener('click', () => goToStep(Math.min(4, step + 1)));
-
-      // Package toggle (krok 3)
-      document.querySelectorAll('.cfg-pkg-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.cfg-pkg-btn').forEach(b => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          pkg = btn.dataset.pkg;
-          activePreset = null;
-          renderStep3();
-        });
-      });
+      document.getElementById('cfgNext').addEventListener('click', () => goToStep(Math.min(3, step + 1)));
     });
 
     // ─────────────────────────────────────────────
