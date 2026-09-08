@@ -2130,8 +2130,56 @@
     }
 
     /* === FOOTER === */
-    footer { background: rgba(0,0,0,.3); border-top: 1px solid rgba(255,255,255,.07); color: var(--blue-300); padding: var(--space-7) 0; text-align: center; font-size: 14px; }
-    footer strong { color: #fff; }
+    .site-footer {
+      background: rgba(0,0,0,.32);
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: rgba(255,255,255,.5);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .site-footer__inner {
+      max-width: 1160px; margin: 0 auto; padding: 60px 24px 40px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px 80px; align-items: start;
+    }
+    .site-footer__company-name {
+      font-size: 17px; font-weight: 700; color: #fff;
+      margin-bottom: 12px; display: block;
+    }
+    .site-footer__address { margin-bottom: 16px; }
+    .site-footer__address p { margin-bottom: 2px; }
+    .site-footer__contact a {
+      color: rgba(255,255,255,.6);
+      transition: color .15s;
+    }
+    .site-footer__contact a:hover { color: #fff; }
+    .site-footer__contact p { margin-bottom: 2px; }
+    .site-footer__right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 24px;
+    }
+    .site-footer__badge {
+      display: block; flex-shrink: 0;
+    }
+    .site-footer__badge svg { display: block; }
+    .site-footer__links {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+    }
+    .site-footer__links a {
+      color: rgba(255,255,255,.5); font-size: 13px; font-weight: 500;
+      transition: color .15s;
+    }
+    .site-footer__links a:hover { color: #fff; }
+    .site-footer__bottom {
+      max-width: 1160px; margin: 0 auto;
+      padding: 16px 24px 28px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      font-size: 12px; color: rgba(255,255,255,.3);
+    }
+    @media (max-width: 640px) {
+      .site-footer__inner { grid-template-columns: 1fr; }
+      .site-footer__right { align-items: flex-start; }
+      .site-footer__links { align-items: flex-start; }
+    }
 
     /* === UTILS === */
     .mt-8 { margin-top: 8px; }
@@ -3940,6 +3988,46 @@
       });
     });
   </script>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <!-- Lewa: dane firmy -->
+      <div>
+        <span class="site-footer__company-name">Codeq Sp. z o.o.</span>
+        <div class="site-footer__address">
+          <p>Ul. Mostowa 2 / 80-778 Gdańsk</p>
+          <p>NIP: 957-114-03-31 / KRS: 0000946446</p>
+        </div>
+        <div class="site-footer__contact">
+          <p><a href="mailto:biuro@codeq.pl">biuro@codeq.pl</a></p>
+          <p><a href="tel:+48509785922">+48 509-785-922</a> / <a href="tel:+48571940175">+48 571-940-175</a></p>
+        </div>
+      </div>
+
+      <!-- Prawa: badge Clutch + linki -->
+      <div class="site-footer__right">
+        <a class="site-footer__badge" href="https://clutch.co" target="_blank" rel="noopener" aria-label="Codeq na Clutch — Top Developers Poland">
+          <!-- Clutch hexagon badge -->
+          <svg width="88" height="100" viewBox="0 0 88 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="44,2 86,25 86,75 44,98 2,75 2,25" fill="#0f1f3d" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+            <text x="44" y="26" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" font-weight="700" letter-spacing="1.5" fill="rgba(255,255,255,.55)" text-transform="uppercase">TOP</text>
+            <text x="44" y="35" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7" font-weight="600" letter-spacing="1" fill="rgba(255,255,255,.45)">DEVELOPERS</text>
+            <!-- Clutch wordmark -->
+            <text x="44" y="58" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#E8173A">Clutch</text>
+            <text x="44" y="72" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" font-weight="600" letter-spacing="1.5" fill="rgba(255,255,255,.5)">POLAND</text>
+            <text x="44" y="83" text-anchor="middle" font-family="system-ui,sans-serif" font-size="7.5" font-weight="600" letter-spacing="1" fill="rgba(255,255,255,.4)">2020</text>
+          </svg>
+        </a>
+        <div class="site-footer__links">
+          <a href="https://clutch.co" target="_blank" rel="noopener">Profil na Clutch</a>
+          <a href="#regulamin">Regulamin</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      &copy; 2025 Codeq Sp. z o.o. Wszelkie prawa zastrzeżone.
+    </div>
+  </footer>
 
 </body>
 </html>
