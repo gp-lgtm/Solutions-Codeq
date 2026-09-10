@@ -1476,8 +1476,15 @@
       font-size: 14px; font-weight: var(--fw-medium);
       letter-spacing: -0.01em; text-decoration: none;
       margin-bottom: 28px;
+      transition: all var(--dur-base) var(--ease-out);
     }
     .vt-clutch-badge svg { display: block; }
+    .vt-clutch-badge:hover {
+      background: var(--codeq-blue-deep);
+      box-shadow: var(--shadow-glow-blue);
+      transform: translateY(-1px);
+      color: #fff;
+    }
 
     /* Slider */
     .vt-slider { position: relative; width: 100vw; margin-left: calc(50% - 50vw); }
