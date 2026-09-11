@@ -314,7 +314,9 @@
       text-underline-offset: 3px;
       transition: text-decoration-color var(--dur-fast);
     }
-    .lead-role:hover { text-decoration-color: rgba(255,255,255,.85); }
+    @media (hover: hover) {
+      .lead-role:hover { text-decoration-color: rgba(255,255,255,.85); }
+    }
     .lead-role:focus-visible { outline: none; text-decoration-color: rgba(255,255,255,.85); }
     .lead-role .role-chip__tooltip {
       left: 0;
@@ -608,7 +610,7 @@
     }
 
     @media (max-width: 640px) {
-      .hero__ctas { flex-direction: column; align-items: stretch; }
+      .hero__ctas { flex-direction: column; align-items: stretch; width: 100%; }
       .cta-wrap { width: 100%; align-items: stretch; }
       .cta-wrap .btn--lg { width: 100%; justify-content: center; }
       .cta-price-note { order: -1; text-align: center; }
