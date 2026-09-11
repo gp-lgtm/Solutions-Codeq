@@ -607,6 +607,13 @@
       .video-ask { width: 100%; max-width: 300px; aspect-ratio: 9/16; }
     }
 
+    @media (max-width: 640px) {
+      .hero__ctas { flex-direction: column; align-items: stretch; }
+      .cta-wrap { width: 100%; align-items: stretch; }
+      .cta-wrap .btn--lg { width: 100%; justify-content: center; }
+      .cta-price-note { order: -1; text-align: center; }
+    }
+
     /* === TEAM STACK TOOLTIPS === */
 
     .role-chip__tooltip {
@@ -1465,8 +1472,6 @@
     /* === 4b. VIDEO TESTIMONIALS === */
     .video-testimonials { background: #f8f9ff; }
     .vt-clutch-badge {
-      position: relative;
-      z-index: 5;
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--codeq-blue); color: #fff;
       padding: 9px 18px; border-radius: 999px;
@@ -1481,16 +1486,6 @@
       box-shadow: var(--shadow-glow-blue);
       transform: translateY(-1px);
       color: #fff;
-    }
-    .vt-clutch-badge:hover .hero__proof__tip,
-    .vt-clutch-badge:focus-visible .hero__proof__tip {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .vt-clutch-badge .hero__proof__tip {
-      background: var(--codeq-blue-deep);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
     }
 
     /* Slider */
