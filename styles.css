@@ -1466,6 +1466,7 @@
     .video-testimonials { background: #f8f9ff; }
     .vt-clutch-badge {
       position: relative;
+      z-index: 5;
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--codeq-blue); color: #fff;
       padding: 9px 18px; border-radius: 999px;
