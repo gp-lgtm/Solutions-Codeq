@@ -1487,6 +1487,11 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .vt-clutch-badge .hero__proof__tip {
+      background: var(--codeq-blue-deep);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
 
     /* Slider */
     .vt-slider { position: relative; width: 100vw; margin-left: calc(50% - 50vw); }
