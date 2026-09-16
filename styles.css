@@ -1083,8 +1083,11 @@
     @media (max-width: 768px) {
       .squad-selector { grid-template-columns: 1fr; }
       .squad-nav { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
-      .squad-nav__item { flex-direction: column; align-items: flex-start; gap: 6px; min-width: 140px; border-left: none; border-bottom: 3px solid transparent; }
+      .squad-nav__item { flex-direction: row; align-items: center; gap: 8px; min-width: auto; padding: 14px 16px; border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; }
       .squad-nav__item.sq-active { border-left-color: transparent; border-bottom-color: #fff; }
+      .squad-nav__icon { font-size: 1.15rem; }
+      .squad-nav__num, .squad-nav__avs { display: none; }
+      .squad-nav__name { margin-bottom: 0; }
       .squad-panel { padding: 28px 24px; }
     }
 
