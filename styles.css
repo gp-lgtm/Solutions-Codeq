@@ -1428,7 +1428,7 @@
       padding: 28px 24px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
     .story-section__tag {
       font-size: 10px; font-weight: 700; text-transform: uppercase;
