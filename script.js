@@ -349,7 +349,7 @@
         }
         const email   = form.querySelector('[name="email"]').value;
         const message = form.querySelector('[name="message"]').value;
-        window.location.href = `mailto:hello@codeq.pl?subject=Zapytanie o Codeq Care&body=${encodeURIComponent(message)}%0A%0AEmail: ${encodeURIComponent(email)}`;
+        window.location.href = `mailto:biuro@codeq.pl?subject=Zapytanie o Codeq Care&body=${encodeURIComponent(message)}%0A%0AEmail: ${encodeURIComponent(email)}`;
         form.classList.add('hidden');
         success.classList.add('visible');
       });
