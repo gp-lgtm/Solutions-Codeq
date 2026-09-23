@@ -1549,6 +1549,16 @@
       background: linear-gradient(to top, rgba(8,12,40,.92) 0%, rgba(8,12,40,.25) 45%, transparent 72%);
       transition: opacity var(--dur-base);
     }
+    .vt-badge {
+      position: absolute; top: 20px; left: 20px; z-index: 1;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(8,12,40,.55); backdrop-filter: blur(6px);
+      color: #fff; font-size: 11px; font-weight: var(--fw-semibold);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 999px;
+      transition: opacity var(--dur-base);
+    }
+    .vt-slide--video.is-playing .vt-badge { opacity: 0; pointer-events: none; }
     .vt-play {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
       width: 64px; height: 64px; background: var(--codeq-blue); border-radius: 50%;
