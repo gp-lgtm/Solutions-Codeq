@@ -1503,13 +1503,13 @@
     }
 
     /* Slider */
-    .vt-slider { position: relative; width: 100vw; margin-left: calc(50% - 50vw); }
+    .vt-slider { position: relative; }
     .vt-track {
       display: flex; gap: 24px; align-items: stretch;
       overflow-x: auto; scroll-snap-type: x mandatory;
-      scroll-padding-inline: max(24px, calc((100vw - 1160px) / 2 + 24px));
+      scroll-padding-inline: max(24px, calc((100% - 1160px) / 2 + 24px));
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      padding: 16px max(24px, calc((100vw - 1160px) / 2 + 24px)) 48px;
+      padding: 16px max(24px, calc((100% - 1160px) / 2 + 24px)) 48px;
     }
     .vt-track::-webkit-scrollbar { display: none; }
 
@@ -1803,10 +1803,9 @@
     }
 
     /* === CASE STUDIES === */
-    .cases { background: #f8f9ff; --cases-gutter: clamp(24px, calc((100vw - 1160px) / 2), 220px); }
+    .cases { background: #f8f9ff; --cases-gutter: clamp(24px, calc((100% - 1160px) / 2), 220px); }
     .cases-stage {
       position: relative;
-      width: 100vw; margin-left: calc(50% - 50vw);
       padding: 48px 0 52px;
     }
     .cases-stage__corner { display: none; }
