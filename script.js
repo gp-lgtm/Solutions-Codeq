@@ -85,10 +85,12 @@
     const loopB         = makeSprintLoop('sprintLoopB');
     const loopDiagnoza  = makeSprintLoop('sprintLoopDiagnoza');
     const loopQBR       = makeSprintLoop('sprintLoopQBR');
+    const loopsByStory  = { 'ss-1': loopDiagnoza, 'ss-2': loopB, 'ss-3': loopQBR };
 
     // Variant B — Tab-based storytelling
     const storyItems = document.querySelectorAll('.story-section');
     const storyNavItems = document.querySelectorAll('.story-nav__item[data-story]');
+    let howVisible = false;
 
     function activateStory(id) {
       storyItems.forEach(s => s.classList.remove('ss-active'));
@@ -97,12 +99,17 @@
       if (target) target.classList.add('ss-active');
       const nav = document.querySelector(`.story-nav__item[data-story="${id}"]`);
       if (nav) nav.classList.add('sn-active');
-      [loopB, loopDiagnoza, loopQBR].forEach(l => l.reset());
-      if (id === 'ss-1') requestAnimationFrame(() => loopDiagnoza.start());
-      if (id === 'ss-2') requestAnimationFrame(() => loopB.start());
-      if (id === 'ss-3') requestAnimationFrame(() => loopQBR.start());
+      Object.values(loopsByStory).forEach(l => l.reset());
+      if (howVisible && loopsByStory[id]) requestAnimationFrame(() => loopsByStory[id].start());
     }
-    requestAnimationFrame(() => loopDiagnoza.start());
+
+    // The loop only runs while "Jak to działa" is on screen (no timers ticking off-screen)
+    new IntersectionObserver(([entry]) => {
+      howVisible = entry.isIntersecting;
+      Object.values(loopsByStory).forEach(l => l.reset());
+      const active = document.querySelector('.story-section.ss-active');
+      if (howVisible && active && loopsByStory[active.id]) loopsByStory[active.id].start();
+    }).observe(document.getElementById('how'));
 
     storyNavItems.forEach(nav => {
       nav.addEventListener('click', () => activateStory(nav.dataset.story));

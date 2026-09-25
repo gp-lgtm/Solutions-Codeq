@@ -858,10 +858,12 @@
     .sprint-step__bar {
       position: absolute; bottom: 0; left: 0; height: 3px;
       background: linear-gradient(90deg, rgba(255,255,255,.5), #fff);
-      width: 0;
+      width: 100%;
+      /* grows via transform, not width, so the progress bar never triggers layout */
+      transform: scaleX(0); transform-origin: left;
     }
     .sprint-step.s-active .sprint-step__bar { animation: sprintBar 2.5s linear forwards; }
-    @keyframes sprintBar { to { width: 100%; } }
+    @keyframes sprintBar { to { transform: scaleX(1); } }
     .sprint-step__icon { font-size: 1.3rem; margin-bottom: 10px; display: block; }
     .sprint-step__role {
       font-size: 9px; font-weight: 700; text-transform: uppercase;
