@@ -388,9 +388,9 @@
     // ─────────────────────────────────────────────
     (function () {
       const PEOPLE = [
-        {name:'Grzegorz', img:'Codeq Design System/assets/Awatar_Strateg_1.jpg'},
-        {name:'Paweł',    img:'Codeq Design System/assets/Awatar_Strateg_2.jpg'},
-        {name:'Tadeusz',  img:'Codeq Design System/assets/Awatar_Strateg_3.jpg'},
+        {name:'Grzegorz', img:'Codeq Design System/assets/Awatar_Strateg_1.webp'},
+        {name:'Paweł',    img:'Codeq Design System/assets/Awatar_Strateg_2.webp'},
+        {name:'Tadeusz',  img:'Codeq Design System/assets/Awatar_Strateg_3.webp'},
       ];
       const avatar = document.getElementById('supportAvatar');
       const nameEl = document.getElementById('supportName');
