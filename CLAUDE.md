@@ -22,7 +22,9 @@ BEM-ish: `block-name`, `block-name__element`, `block-name--modifier` (np. `site-
 
 ## Sekcje index.html (kolejność w DOM)
 
-`#mainNav` → `#hero` → `#problem` → `#timeline` (obecnie `display:none`, nieaktywna) → `#how` (sprint loop: Diagnoza/B/QBR) → `#cases` → `#squad` → video testimonials + `#paths` (Victory Paths) → `#pricing` → `#faq` → `#finalCta`. Modale: `#contactOverlay`, `#diagnozaOverlay`, `#stickyBar`.
+`#mainNav` → `#hero` → `#problem` → `#how` (sprint loop: Diagnoza/B/QBR) → `#cases` → `#squad` → video testimonials + `#paths` (Victory Paths) → `#pricing` → `#faq` → `#finalCta`. Nakładki: `#contactOverlay`, `#roleSheetOverlay` (mobile), `#stickyBar`.
+
+Nieużywane warianty (sekcja `#timeline`, modal `#diagnozaOverlay`, konfigurator inline, team stack, phase tabs) usunięto 2026-09-25 — są w historii gita sprzed commita „usuń martwy kod”. Nowych wariantów nie chowaj przez `display:none`; trzymaj je na osobnych gałęziach.
 
 `script.js` odwołuje się do elementów DOM bez `DOMContentLoaded` — zakłada, że tag `<script>` stoi w markupie **po** elementach, których dotyczy. Nie przenoś referencji do skryptu bez sprawdzenia kolejności w DOM.
 
