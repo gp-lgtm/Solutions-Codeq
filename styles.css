@@ -297,8 +297,8 @@
       overflow-wrap: break-word;
       hyphens: none;
     }
-    .hero h1 .h1-regular { font-weight: 300; }
-    .hero h1 .h1-bold    { font-weight: 800; }
+    .hero h1 .h1-regular { font-weight: 400; }
+    .hero h1 .h1-bold    { font-weight: 700; }
 
     /* Inline role tooltips in lead */
     .lead-role {
@@ -656,7 +656,7 @@
     .section-header p { font-size: var(--fs-body); color: var(--blue-300); max-width: 600px; margin: 0 auto; }
 
     .problem .section-header .label { font-size: 11px; letter-spacing: 0.14em; color: var(--b600); font-weight: var(--fw-semibold); text-transform: uppercase; }
-    .problem .section-header h2 { letter-spacing: -0.03em; line-height: 1.05; color: #0a0f2e; font-weight: 800; font-size: clamp(32px, 4.5vw, 52px); }
+    .problem .section-header h2 { letter-spacing: -0.03em; line-height: 1.05; color: #0a0f2e; font-weight: 700; font-size: clamp(32px, 4.5vw, 52px); }
     .problem .section-header p { color: #64748b; font-size: 17px; letter-spacing: -0.01em; max-width: 520px; }
 
     /* === COMPARE BOXES === */
@@ -704,8 +704,8 @@
     .compare-after  .compare-label { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.2); }
 
     /* Headings */
-    .compare-before h3 { font-size: 32px; font-weight: 800; color: #0a0f2e; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
-    .compare-after  h3 { font-size: 32px; font-weight: 800; color: #fff;    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
+    .compare-before h3 { font-size: 32px; font-weight: 700; color: #0a0f2e; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
+    .compare-after  h3 { font-size: 32px; font-weight: 700; color: #fff;    letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 10px; }
 
     /* Subtitles */
     .compare-before > p { font-size: 14px; color: #94a3b8; line-height: 1.6; margin-bottom: 32px; }
@@ -723,7 +723,7 @@
     .compare-dot {
       width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 800; margin-top: 1px;
+      font-size: 11px; font-weight: 700; margin-top: 1px;
     }
     .compare-before .compare-dot { background: #fee2e2; color: #b91c1c; }
     .compare-after  .compare-dot { background: rgba(255,255,255,.18); color: #fff; }
@@ -811,7 +811,7 @@
     .squad-panel__icon { font-size: 3rem; line-height: 1; flex-shrink: 0; margin-top: 2px; }
     .squad-panel__head { flex: 1; }
     .squad-panel__role-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,.4); display: block; margin-bottom: 4px; }
-    .squad-panel__title { font-size: 24px; font-weight: 800; color: #fff; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 5px; }
+    .squad-panel__title { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 5px; }
 
     .squad-panel__desc { font-size: 15.5px; color: rgba(255,255,255,.82); line-height: 1.6; margin-bottom: 28px; }
 
@@ -918,7 +918,7 @@
       background-size: 180px 180px;
     }
     .approach-b .container { position: relative; z-index: 1; }
-    .approach-b .section-header h2 { color: #fff; letter-spacing: -0.025em; line-height: 1.1; font-weight: 800; }
+    .approach-b .section-header h2 { color: #fff; letter-spacing: -0.025em; line-height: 1.1; font-weight: 700; }
     .approach-b .section-header p { color: rgba(255,255,255,.65); font-size: 16px; }
     .approach-b .label { font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,.45); font-weight: var(--fw-semibold); }
     .story-layout { display: flex; flex-direction: column; gap: 40px; }
@@ -939,7 +939,7 @@
       opacity: 1; border-bottom-color: #fff;
     }
     .story-nav__num {
-      font-size: 12px; font-weight: 800; color: rgba(255,255,255,.35);
+      font-size: 12px; font-weight: 700; color: rgba(255,255,255,.35);
       line-height: 1; padding-top: 3px; flex-shrink: 0;
     }
     .story-nav__item.sn-active .story-nav__num { color: rgba(255,255,255,.6); }
@@ -971,7 +971,7 @@
       letter-spacing: 0.14em; color: rgba(255,255,255,.38); margin-bottom: 12px; display: block;
     }
     .story-section__intro h3 {
-      font-size: 20px; font-weight: 800; color: #fff;
+      font-size: 20px; font-weight: 700; color: #fff;
       letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 14px;
     }
     .story-section__intro p {
@@ -1334,7 +1334,7 @@
     }
     .contact-modal__left .label { color: rgba(255,255,255,.45); margin-bottom: 14px; }
     .contact-modal__left h3 {
-      font-size: clamp(22px, 2.2vw, 28px); font-weight: 800;
+      font-size: clamp(22px, 2.2vw, 28px); font-weight: 700;
       color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 32px;
     }
     .contact-objections { list-style: none; display: flex; flex-direction: column; gap: 20px; }
@@ -1363,7 +1363,7 @@
     }
     .contact-avatars img:first-child { margin-left: 0; }
     .contact-modal__right h3 {
-      font-size: 22px; font-weight: 800; color: #0a0f2e;
+      font-size: 22px; font-weight: 700; color: #0a0f2e;
       letter-spacing: -0.025em; margin-bottom: 6px;
     }
     .contact-modal__right > p { font-size: 14px; color: #64748b; margin-bottom: 28px; line-height: 1.6; }
@@ -1410,7 +1410,7 @@
     .contact-success.visible { display: flex; }
     .contact-form.hidden { display: none; }
     .contact-success__icon { font-size: 3rem; }
-    .contact-success h4 { font-size: 20px; font-weight: 800; color: #0a0f2e; }
+    .contact-success h4 { font-size: 20px; font-weight: 700; color: #0a0f2e; }
     .contact-success p { font-size: 14px; color: #64748b; line-height: 1.6; }
 
     @media (max-width: 700px) {

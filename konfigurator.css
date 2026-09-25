@@ -96,7 +96,7 @@
     .cfg-page-header .label { margin-bottom: 16px; display: block; }
     .cfg-page-header h1 {
       font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px);
-      font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
       color: #fff; margin-bottom: 18px;
     }
     .cfg-page-header p {
@@ -142,7 +142,7 @@
     .cfg-side-head { margin-bottom: 16px; }
     .cfg-side-head .label { display: block; margin-bottom: 10px; }
     .cfg-side-title {
-      font-family: var(--font-display); font-size: 19px; font-weight: 800;
+      font-family: var(--font-display); font-size: 19px; font-weight: 700;
       letter-spacing: -0.02em; line-height: 1.2; color: #fff;
     }
     .cfg-side-desc { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.55; margin-top: 10px; }
@@ -165,7 +165,7 @@
     .cfg-presets { margin-bottom: 34px; }
     .cfg-presets-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
     .cfg-presets-head h2 {
-      font-family: var(--font-display); font-size: 17px; font-weight: 800;
+      font-family: var(--font-display); font-size: 17px; font-weight: 700;
       letter-spacing: -0.02em; color: #fff;
     }
     .cfg-presets-head span { font-size: 13px; color: rgba(255,255,255,.4); }
@@ -188,7 +188,7 @@
     .preset-card:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
     .preset-card.is-active { background: rgba(37,72,250,.14); border-color: rgba(37,72,250,.5); }
     .preset-card__pkg {
-      align-self: flex-start; font-size: 9px; font-weight: 800; letter-spacing: .08em;
+      align-self: flex-start; font-size: 9px; font-weight: 700; letter-spacing: .08em;
       text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
       color: var(--accent); background: rgba(255,255,255,.06);
     }
@@ -204,10 +204,10 @@
       animation: chipSlide .25s var(--ease-out);
     }
     .cfg-goal-label {
-      font-size: 9.5px; font-weight: 800; letter-spacing: .12em;
+      font-size: 9.5px; font-weight: 700; letter-spacing: .12em;
       text-transform: uppercase; color: var(--b400);
     }
-    .cfg-goal-name { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .cfg-goal-name { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
     .cfg-goal-kpi { font-size: 11.5px; color: rgba(255,255,255,.55); line-height: 1.4; }
 
     /* === TASK CARDS === */
@@ -238,7 +238,7 @@
       justify-content: space-between; margin-bottom: 8px;
     }
     .size-badge {
-      font-size: 9.5px; font-weight: 800; padding: 2px 7px;
+      font-size: 9.5px; font-weight: 700; padding: 2px 7px;
       border-radius: 4px; letter-spacing: .07em; text-transform: uppercase; flex-shrink: 0;
     }
     .size-badge--S  { background: rgba(62,190,179,.18); color: var(--sz-s); }
@@ -300,7 +300,7 @@
       text-transform: uppercase; color: rgba(255,255,255,.3);
     }
     .cfg-cap-hours {
-      font-size: 20px; font-weight: 800; letter-spacing: -0.02em;
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
       color: #fff; font-variant-numeric: tabular-nums;
     }
     .cfg-cap-bar { height: 5px; background: rgba(255,255,255,.1); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
@@ -346,7 +346,7 @@
     }
     .task-chip__left { display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0; }
     .task-chip__size {
-      font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 3px;
+      font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px;
       flex-shrink: 0; letter-spacing: .06em; text-transform: uppercase;
     }
     .task-chip__name {
@@ -386,13 +386,13 @@
     .cfg-stepper__num {
       width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; font-family: var(--font-display);
+      font-size: 12px; font-weight: 700; font-family: var(--font-display);
       background: rgba(255,255,255,.08); color: rgba(255,255,255,.5); transition: all .2s;
     }
     .cfg-stepper__item.is-active .cfg-stepper__num { background: #2548FA; color: #fff; }
     .cfg-stepper__item.is-done .cfg-stepper__num { background: rgba(62,190,179,.2); color: #3EBEB3; }
     .cfg-stepper__txt { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
-    .cfg-stepper__klabel { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+    .cfg-stepper__klabel { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); }
     .cfg-stepper__title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,.85); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     @media (max-width: 860px) {
       .cfg-stepper { flex-direction: row; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
@@ -407,10 +407,10 @@
     .cfg-step { animation: stepIn .35s var(--ease-out); }
     @keyframes stepIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .cfg-step-intro { margin-bottom: 26px; max-width: 720px; }
-    .cfg-step-kicker { display: block; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--b400); margin-bottom: 9px; }
+    .cfg-step-kicker { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--b400); margin-bottom: 9px; }
     .cfg-step-intro h2 {
       font-family: var(--font-display); font-size: clamp(23px, 3.2vw, 31px);
-      font-weight: 800; letter-spacing: -0.02em; color: #fff; line-height: 1.15; margin-bottom: 12px;
+      font-weight: 700; letter-spacing: -0.02em; color: #fff; line-height: 1.15; margin-bottom: 12px;
     }
     .cfg-step-intro p { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.6; }
     .cfg-step-intro p strong { color: rgba(255,255,255,.8); font-weight: 600; }
@@ -439,7 +439,7 @@
       border-top: 1px solid rgba(255,255,255,.07);
     }
     .symptom-dx__role {
-      align-self: flex-start; font-size: 9.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      align-self: flex-start; font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
       color: rgba(255,255,255,.32); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
       padding: 3px 9px; border-radius: 5px; margin-bottom: 8px;
       transition: color .2s, background-color .2s, border-color .2s;
@@ -457,7 +457,7 @@
       background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 14px;
     }
     .cfg-backlog-stat__item { display: flex; flex-direction: column; gap: 2px; }
-    .cfg-backlog-stat__num { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; font-variant-numeric: tabular-nums; }
+    .cfg-backlog-stat__num { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #fff; font-variant-numeric: tabular-nums; }
     .cfg-backlog-stat__num.accent { color: var(--b400); }
     .cfg-backlog-stat__lbl { font-size: 11px; color: rgba(255,255,255,.4); }
     .cfg-backlog-stat__sep { width: 1px; align-self: stretch; background: rgba(255,255,255,.1); }
@@ -465,7 +465,7 @@
     .cfg-backlog-stat__msg strong { color: #fff; }
     .cfg-backlog-group { margin-bottom: 22px; }
     .cfg-backlog-group__head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 11px; }
-    .cfg-backlog-group__title { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .cfg-backlog-group__title { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
     .cfg-backlog-group__sub { font-size: 11.5px; color: rgba(255,255,255,.35); }
     .cfg-backlog-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
     @media (max-width: 760px) { .cfg-backlog-list { grid-template-columns: 1fr; } }
@@ -477,7 +477,7 @@
     .backlog-item__name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.88); }
     .backlog-item__desc { font-size: 11px; color: rgba(255,255,255,.36); margin-top: 2px; line-height: 1.4; }
     .backlog-item__star {
-      display: inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+      display: inline-block; font-size: 8.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
       color: #EF9645; background: rgba(239,150,69,.13); border: 1px solid rgba(239,150,69,.3);
       padding: 1px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle;
     }
@@ -491,9 +491,9 @@
     }
     .roadmap-sprint.is-first { background: rgba(37,72,250,.1); border-color: rgba(37,72,250,.35); }
     .roadmap-sprint__meta { display: flex; flex-direction: column; gap: 5px; }
-    .roadmap-sprint__badge { font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--b400); }
+    .roadmap-sprint__badge { font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--b400); }
     .roadmap-sprint.is-first .roadmap-sprint__badge { color: #fff; }
-    .roadmap-sprint__goal { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.25; }
+    .roadmap-sprint__goal { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.01em; line-height: 1.25; }
     .roadmap-sprint__cap { font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.4); font-variant-numeric: tabular-nums; }
     .roadmap-sprint__tasks { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
     .roadmap-chip {
@@ -582,7 +582,7 @@
     }
     .contact-modal__left .label { color: rgba(255,255,255,.45); margin-bottom: 14px; }
     .contact-modal__left h3 {
-      font-size: clamp(22px, 2.2vw, 28px); font-weight: 800;
+      font-size: clamp(22px, 2.2vw, 28px); font-weight: 700;
       color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 32px;
     }
     .contact-objections { list-style: none; display: flex; flex-direction: column; gap: 20px; }
@@ -609,7 +609,7 @@
     }
     .contact-avatars img:first-child { margin-left: 0; }
     .contact-modal__right h3 {
-      font-size: 22px; font-weight: 800; color: #0a0f2e;
+      font-size: 22px; font-weight: 700; color: #0a0f2e;
       letter-spacing: -0.025em; margin-bottom: 6px;
     }
     .contact-modal__right > p { font-size: 14px; color: #64748b; margin-bottom: 28px; line-height: 1.6; }
@@ -656,7 +656,7 @@
     .contact-success.visible { display: flex; }
     .contact-form.hidden { display: none; }
     .contact-success__icon { font-size: 3rem; }
-    .contact-success h4 { font-size: 20px; font-weight: 800; color: #0a0f2e; }
+    .contact-success h4 { font-size: 20px; font-weight: 700; color: #0a0f2e; }
     .contact-success p { font-size: 14px; color: #64748b; line-height: 1.6; }
 
     @media (max-width: 700px) {
