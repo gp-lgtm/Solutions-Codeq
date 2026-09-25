@@ -601,7 +601,9 @@
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
+        // href="#" (logo) has no target and falls through to the default jump to top
+        const id = a.getAttribute('href').slice(1);
+        const target = id && document.getElementById(id);
         if (target) {
           e.preventDefault();
           const top = target.getBoundingClientRect().top + window.scrollY - 80;
