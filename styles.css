@@ -31,7 +31,13 @@
     }
 
     /* === LAYOUT === */
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 var(--space-5); }
+    :root {
+      --container-max: 1160px;
+      /* Full-bleed rows (carousels) pad by this so their content lines up with .container content.
+         The 100% resolves against the element that uses it, not :root. */
+      --page-gutter: max(var(--space-5), calc((100% - var(--container-max)) / 2 + var(--space-5)));
+    }
+    .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-5); }
     section { padding: var(--space-9) 0; }
 
     /* === BUTTONS === */
@@ -980,13 +986,16 @@
 
     /* === 4b. VIDEO TESTIMONIALS === */
     .video-testimonials { background: #f8f9ff; }
+    .vt-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      margin-bottom: 28px;
+    }
     .vt-clutch-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--codeq-blue); color: #fff;
       padding: 9px 18px; border-radius: 999px;
       font-size: 14px; font-weight: var(--fw-medium);
       letter-spacing: -0.01em; text-decoration: none;
-      margin-bottom: 28px;
       transition: all var(--dur-base) var(--ease-out);
     }
     .vt-clutch-badge svg { display: block; }
@@ -1002,9 +1011,9 @@
     .vt-track {
       display: flex; gap: 24px; align-items: stretch;
       overflow-x: auto; scroll-snap-type: x mandatory;
-      scroll-padding-inline: max(24px, calc((100% - 1160px) / 2 + 24px));
+      scroll-padding-inline: var(--page-gutter);
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      padding: 16px max(24px, calc((100% - 1160px) / 2 + 24px)) 48px;
+      padding: 16px var(--page-gutter) 48px;
     }
     .vt-track::-webkit-scrollbar { display: none; }
 
@@ -1087,7 +1096,7 @@
     }
 
     /* === CASE STUDIES === */
-    .cases { background: #f8f9ff; --cases-gutter: clamp(24px, calc((100% - 1160px) / 2), 220px); }
+    .cases { background: #f8f9ff; }
     .cases-stage {
       position: relative;
       padding: 48px 0 52px;
@@ -1095,26 +1104,31 @@
     .cases-stage__corner { display: none; }
     .cases-stage__head {
       display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
-      padding: 0 var(--cases-gutter); margin-bottom: 10px;
+      padding: 0 var(--page-gutter); margin-bottom: 10px;
     }
     .cases-stage__head h2 { color: var(--ink-900); letter-spacing: var(--tracking-hero); }
-    .cases-nav { display: flex; gap: 10px; flex-shrink: 0; }
-    .cases-nav__btn {
+    /* === CAROUSEL NAV — shared prev/next arrows (cases, testimonials) ===
+       Markup: .carousel-nav[data-carousel="<track id>"] > .carousel-nav__btn[data-dir="-1|1"];
+       script.js wires every such nav, so a new carousel needs no extra JS or CSS. */
+    .carousel-nav { display: flex; gap: 10px; flex-shrink: 0; }
+    .carousel-nav__btn {
       width: 48px; height: 48px; border-radius: var(--radius-md);
       border: 1px solid var(--blue-200); background: var(--surface); color: var(--codeq-blue); cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+      transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out), opacity var(--dur-base) var(--ease-out);
     }
-    .cases-nav__btn svg { width: 20px; height: 20px; }
-    .cases-nav__btn:hover { background: var(--blue-150); border-color: var(--codeq-blue); }
-    .cases-nav__btn:active { transform: scale(.94); }
+    .carousel-nav__btn svg { width: 20px; height: 20px; }
+    .carousel-nav__btn:hover:not(:disabled) { background: var(--blue-150); border-color: var(--codeq-blue); }
+    .carousel-nav__btn:active:not(:disabled) { transform: scale(.94); }
+    .carousel-nav__btn:disabled { opacity: .4; cursor: default; }
+    @media (max-width: 860px) { .carousel-nav__btn { width: 42px; height: 42px; } }
 
     .cases-grid {
       display: flex; gap: 20px;
       overflow-x: auto; scroll-snap-type: x mandatory;
-      scroll-padding-inline: var(--cases-gutter);
+      scroll-padding-inline: var(--page-gutter);
       -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      padding: 4px var(--cases-gutter) 8px;
+      padding: 4px var(--page-gutter) 8px;
     }
     .cases-grid::-webkit-scrollbar { display: none; }
 
@@ -1148,7 +1162,7 @@
     .case-block p { font-size: 13.5px; line-height: 1.55; color: var(--ink-700); }
 
     .cases-cta {
-      padding: 0 var(--cases-gutter); margin-top: 18px; margin-bottom: 28px;
+      padding: 0 var(--page-gutter); margin-top: 18px; margin-bottom: 28px;
     }
     .cases-cta__lead {
       font-size: 16px; font-weight: 500; color: var(--ink-700); line-height: 1.6;
@@ -1165,13 +1179,13 @@
       .case-card { flex: 0 0 86%; grid-template-columns: 1fr; gap: 22px; padding: 28px 24px; }
       .case-card__divider { display: none; }
       .case-quote { font-size: 19px; }
-      .cases-nav__btn { width: 42px; height: 42px; }
     }
 
     /* === 8. PRICING === */
     .pricing { background: var(--brand-dark); padding: var(--space-9) 0; }
     .pricing .section-header { margin-bottom: var(--space-6); }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 1180px; margin: 0 auto; align-items: stretch; }
+    /* minmax(0, …): a long nowrap CTA must not widen its column past an equal share */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); max-width: 1180px; margin: 0 auto; align-items: stretch; }
 
     /* Pricing toggle */
     .pricing-toggle-wrap { display: flex; justify-content: center; margin-bottom: var(--space-8); }
@@ -1200,7 +1214,6 @@
       transition: all var(--dur-base) var(--ease-out); position: relative;
       display: flex; flex-direction: column;
     }
-    .price-card__cta { margin-top: auto; }
     .price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(49,90,251,.2); border-color: rgba(255,255,255,.2); }
     .price-card--featured { background: rgba(49,90,251,.12); border-color: var(--codeq-blue); border-width: 2px; box-shadow: 0 20px 60px rgba(49,90,251,.3); }
     .price-card__badge {
@@ -1226,13 +1239,12 @@
     .price-feature__title { display: block; color: #fff; font-weight: var(--fw-semibold); margin-bottom: 2px; }
     .price-card__amount--custom { font-size: 28px; line-height: 1.2; }
     .price-card__period--tight { margin-bottom: var(--space-2); }
-    .price-card__cta { width: 100%; justify-content: center; }
+    .price-card__cta { margin-top: auto; width: 100%; justify-content: center; white-space: normal; text-align: center; text-wrap: balance; }
 
     /* Enterprise card */
     .price-card--enterprise { background: rgba(255,255,255,.03); border-style: dashed; border-color: rgba(255,255,255,.18); }
 
-    @media (max-width: 1024px) { .pricing-grid { grid-template-columns: 1fr; max-width: 560px; } }
-    @media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .pricing-grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
 
     /* === 9. FAQ === */
     .faq { background: #fff; }
@@ -1466,7 +1478,7 @@
       line-height: 1.65;
     }
     .site-footer__inner {
-      max-width: 1160px; margin: 0 auto; padding: 56px 24px 44px;
+      max-width: var(--container-max); margin: 0 auto; padding: 56px 24px 44px;
       display: grid; grid-template-columns: 1fr auto;
       gap: 40px 80px; align-items: start;
     }
@@ -1491,7 +1503,7 @@
     }
     .site-footer__badge:hover { opacity: .85; }
     .site-footer__bottom {
-      max-width: 1160px; margin: 0 auto;
+      max-width: var(--container-max); margin: 0 auto;
       padding: 14px 24px 24px;
       border-top: 1px solid #E0E3E6;
       display: flex; align-items: center; justify-content: space-between; gap: 16px;

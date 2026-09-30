@@ -225,26 +225,34 @@
       if (e.target === this) closeRoleSheet();
     });
 
-    // Cases slider
-    (function () {
-      const grid = document.getElementById('casesGrid');
-      const prev = document.getElementById('casesPrev');
-      const next = document.getElementById('casesNext');
-      if (!grid || !prev || !next) return;
+    // Carousel arrows — one handler for every .carousel-nav[data-carousel="<track id>"]
+    document.querySelectorAll('.carousel-nav[data-carousel]').forEach(nav => {
+      const track = document.getElementById(nav.dataset.carousel);
+      if (!track) return;
+      const btns = nav.querySelectorAll('.carousel-nav__btn[data-dir]');
 
-      function cardWidth() {
-        const card = grid.querySelector('.case-card');
-        if (!card) return 320;
-        return card.offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+      // One step = one slide plus the gap after it
+      function step() {
+        const slide = track.firstElementChild;
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return slide ? slide.offsetWidth + gap : track.clientWidth;
       }
 
-      prev.addEventListener('click', () => {
-        grid.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
-      });
-      next.addEventListener('click', () => {
-        grid.scrollBy({ left: cardWidth(), behavior: 'smooth' });
-      });
-    })();
+      // Disable the arrow that has nowhere left to go
+      function update() {
+        const max = track.scrollWidth - track.clientWidth - 1;
+        btns.forEach(btn => {
+          btn.disabled = btn.dataset.dir < 0 ? track.scrollLeft <= 1 : track.scrollLeft >= max;
+        });
+      }
+
+      btns.forEach(btn => btn.addEventListener('click', () => {
+        track.scrollBy({ left: step() * Number(btn.dataset.dir), behavior: 'smooth' });
+      }));
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
 
     // Testimonials slider
     (function () {

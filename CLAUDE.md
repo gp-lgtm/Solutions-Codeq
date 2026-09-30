@@ -20,6 +20,10 @@ Wszystkie decyzje wizualne (kolory, typografia, spacing, komponenty) mają iść
 
 Wszystkie dymki na hover mają jednolite tło `var(--brand-dark)`, nigdy półprzezroczyste „szkło” (`rgba(255,255,255,.14)` + `backdrop-filter`) — przez szkło prześwitywały teksty i przyciski pod spodem. Wspólny wygląd (tło, ramka, zaokrąglenie, cień, `z-index`, stan ukrycia) siedzi w jednej regule `/* === TOOLTIP SURFACE === */` w `styles.css`. Nowy tooltip dopisuje się do jej listy selektorów i we własnej regule trzyma tylko położenie, rozmiar, padding i animację — nie kopiuj deklaracji tła/cienia.
 
+## Karuzele
+
+Strzałki prev/next to jeden komponent `.carousel-nav` (case studies, opinie). Markup: `<div class="carousel-nav" data-carousel="<id tracka>">` z przyciskami `.carousel-nav__btn[data-dir="-1"|"1"]` i ikonami `#ci-prev`/`#ci-next`. Jeden handler w `script.js` obsługuje wszystkie takie nawigacje (krok = szerokość slajdu + gap, wyłączanie strzałek na krańcach) — nowa karuzela nie potrzebuje własnego JS ani CSS strzałek.
+
 ## Konwencja nazw klas
 
 BEM-ish: `block-name`, `block-name__element`, `block-name--modifier` (np. `site-footer__bottom`, `btn--primary`, `label--white`). Trzymaj się tego wzorca dla nowych komponentów.
