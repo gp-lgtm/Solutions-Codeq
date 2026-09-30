@@ -260,28 +260,36 @@
     .hero__proof strong { font-weight: var(--fw-bold); color: #fff; }
     .hero__proof > span:not(.hero__proof__tip),
     .hero__proof > svg { position: relative; z-index: 2; }
-    .hero__proof__tip {
+    /* === TOOLTIP SURFACE — shared standard for every hover tooltip ===
+       Solid fill, never glass: a translucent background lets copy and buttons
+       underneath show through. New tooltips join this selector list and keep
+       only their own placement, size, padding and motion. */
+    .hero__proof__tip,
+    .cta-primary-tip,
+    .cta-preview,
+    .role-chip__tooltip {
       position: absolute;
+      background: var(--brand-dark);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 24px 48px rgba(0,0,0,.40);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 50;
+    }
+
+    .hero__proof__tip {
       top: calc(100% + 10px);
       left: 0;
       width: 252px;
-      background: rgba(255,255,255,.14);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 14px;
       padding: 16px 20px;
       font-size: 12.5px;
       font-weight: 500;
       color: rgba(255,255,255,.88);
       line-height: 1.5;
       letter-spacing: -0.01em;
-      pointer-events: none;
-      opacity: 0;
       transform: translateY(-4px);
       transition: opacity .2s ease, transform .2s ease;
-      z-index: 50;
-      box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 24px 48px rgba(0,0,0,.40);
       white-space: normal;
     }
     .hero__proof:hover .hero__proof__tip { opacity: 1; transform: translateY(0); }
@@ -385,22 +393,12 @@
       gap: 5px;
     }
     .cta-primary-tip {
-      position: absolute;
       bottom: calc(100% + 10px);
       left: 50%;
       transform: translateX(-50%) translateY(6px);
       width: 252px;
-      background: rgba(255,255,255,.14);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 14px;
       padding: 17px 24px 0;
-      pointer-events: none;
-      opacity: 0;
       transition: opacity .2s ease, transform .2s ease;
-      z-index: 50;
-      box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 24px 48px rgba(0,0,0,.40);
       text-align: left;
       overflow: hidden;
     }
@@ -434,23 +432,14 @@
 
     /* Secondary CTA hover preview */
     .cta-preview {
-      position: absolute;
       bottom: calc(100% + 10px);
       left: 50%;
       transform: translateX(-50%) translateY(6px);
       width: 252px;
-      background: rgba(255,255,255,.14);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 14px;
-      padding: 17px 24px 17px;
-      pointer-events: none;
-      opacity: 0;
+      padding: 17px 24px 0;
       transition: opacity .2s ease, transform .2s ease;
-      z-index: 50;
-      box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 24px 48px rgba(0,0,0,.40);
       text-align: left;
+      overflow: hidden;
     }
     .cta-wrap--secondary:hover .cta-preview { opacity: 1; transform: translateX(-50%) translateY(0); }
     .cta-preview__header {
@@ -510,22 +499,12 @@
     /* === TEAM STACK TOOLTIPS === */
 
     .role-chip__tooltip {
-      position: absolute;
       top: calc(100% + 8px);
       left: 0;
       transform: translateY(-6px);
       width: 248px;
-      background: rgba(255,255,255,.14);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 14px;
       padding: 17px 24px 0;
-      pointer-events: none;
-      opacity: 0;
       transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
-      z-index: 50;
-      box-shadow: 0 4px 16px rgba(0,0,0,.20), 0 24px 48px rgba(0,0,0,.40);
       text-align: left;
       overflow: hidden;
     }
@@ -774,7 +753,6 @@
     .squad .container { position: relative; z-index: 1; }
     .squad .section-header h2 { color: #fff; }
     .squad .section-header p { color: rgba(255,255,255,.6); }
-    .squad .label { color: rgba(255,255,255,.45); }
 
     .squad-selector {
       display: grid;
@@ -994,6 +972,10 @@
     @media (max-width: 768px) {
       .story-nav { overflow-x: auto; }
       .story-nav__item { flex: none; padding: 12px 20px 16px; }
+    }
+    /* Step copy runs 2–3 sentences — two ~150px columns turn it into a word-per-line strip */
+    @media (max-width: 560px) {
+      .story-section__body .sprint-loop { grid-template-columns: 1fr; grid-auto-rows: auto; }
     }
 
     /* === 4b. VIDEO TESTIMONIALS === */
@@ -1241,6 +1223,9 @@
     .price-card__features { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); }
     .price-feature { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 14px; color: var(--blue-300); line-height: 1.5; }
     .price-feature__check { color: rgba(255,255,255,.75); flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+    .price-feature__title { display: block; color: #fff; font-weight: var(--fw-semibold); margin-bottom: 2px; }
+    .price-card__amount--custom { font-size: 28px; line-height: 1.2; }
+    .price-card__period--tight { margin-bottom: var(--space-2); }
     .price-card__cta { width: 100%; justify-content: center; }
 
     /* Enterprise card */
@@ -1357,7 +1342,7 @@
       margin-top: 1px;
     }
     .contact-obj__text strong { display: block; font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .contact-obj__text span { font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.5; }
+    .contact-obj__text span { display: block; font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.5; }
 
     /* Right — white, form */
     .contact-modal__right {

@@ -16,6 +16,10 @@ Do 2026-09-11 CSS i JS obu stron były wklejone inline w `<style>`/`<script>` �
 
 Wszystkie decyzje wizualne (kolory, typografia, spacing, komponenty) mają iść przez `Codeq Design System/` — **przeczytaj `Codeq Design System/CLAUDE.md` przed zmianami stylistycznymi**. Skrót: tokeny CSS (`var(--codeq-blue)`, `var(--space-5)` itd.) z `colors_and_type.css`, nie twarde wartości. Primary color `#315AFB`. Font Poppins. Bez emoji w treści.
 
+## Tooltipy
+
+Wszystkie dymki na hover mają jednolite tło `var(--brand-dark)`, nigdy półprzezroczyste „szkło” (`rgba(255,255,255,.14)` + `backdrop-filter`) — przez szkło prześwitywały teksty i przyciski pod spodem. Wspólny wygląd (tło, ramka, zaokrąglenie, cień, `z-index`, stan ukrycia) siedzi w jednej regule `/* === TOOLTIP SURFACE === */` w `styles.css`. Nowy tooltip dopisuje się do jej listy selektorów i we własnej regule trzyma tylko położenie, rozmiar, padding i animację — nie kopiuj deklaracji tła/cienia.
+
 ## Konwencja nazw klas
 
 BEM-ish: `block-name`, `block-name__element`, `block-name--modifier` (np. `site-footer__bottom`, `btn--primary`, `label--white`). Trzymaj się tego wzorca dla nowych komponentów.
