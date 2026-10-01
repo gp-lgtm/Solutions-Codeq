@@ -699,17 +699,6 @@
     .compare-before .compare-dot { background: #fee2e2; color: #b91c1c; }
     .compare-after  .compare-dot { background: rgba(255,255,255,.18); color: #fff; }
 
-    /* Opens the contact popup (.js-contact) */
-    .compare-cta {
-      display: block; margin-top: 28px; width: 100%;
-      padding: 13px 20px; border: 0; border-radius: 6px;
-      background: #fff; color: var(--codeq-blue);
-      font-family: inherit; font-size: 13.5px; font-weight: 700; line-height: inherit;
-      text-align: center; letter-spacing: -0.01em; cursor: pointer;
-      transition: background .18s ease, transform .15s ease, box-shadow .18s ease;
-    }
-    .compare-cta:hover { background: #eef2ff; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,15,46,.22); }
-
     @media (max-width: 768px) {
       .compare-wrap { grid-template-columns: 1fr; gap: 16px; }
       .compare-before, .compare-after { padding: 36px 28px; }
@@ -856,7 +845,6 @@
     @media (max-width: 900px) {
       .sprint-loop { grid-template-columns: 1fr 1fr; }
     }
-
 
     /* === APPROACH VARIANT B — Scroll Storytelling === */
     .approach-b {
