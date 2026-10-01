@@ -42,6 +42,23 @@
       });
     })();
 
+    // Pricing feature tooltips — touch devices have no hover, so a tap on the name toggles the tip
+    (function () {
+      if (!window.matchMedia('(hover: none)').matches) return;
+      const features = document.querySelectorAll('.price-feature');
+      const closeAll = except => features.forEach(f => { if (f !== except) f.classList.remove('is-open'); });
+
+      features.forEach(f => {
+        f.querySelector('.price-feature__title').addEventListener('click', e => {
+          e.stopPropagation();
+          closeAll(f);
+          f.classList.toggle('is-open');
+        });
+      });
+      document.addEventListener('click', () => closeAll());
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+    })();
+
     function toggleFaq(questionEl) {
       const item = questionEl.closest('.faq-item');
       const answer = item.querySelector('.faq-answer');

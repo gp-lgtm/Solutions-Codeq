@@ -283,8 +283,8 @@
        only their own placement, size, padding and motion. */
     .hero__proof__tip,
     .cta-primary-tip,
-    .cta-preview,
-    .role-chip__tooltip {
+    .role-chip__tooltip,
+    .price-feature__tip {
       position: absolute;
       background: var(--brand-dark);
       border: 1px solid rgba(255,255,255,.2);
@@ -447,40 +447,6 @@
     .cta-primary-tip__footer::before { content: '✓'; flex-shrink: 0; color: #fff; font-weight: var(--fw-bold); }
     @media (hover: none) { .cta-primary-tip { display: none; } }
 
-    /* Secondary CTA hover preview */
-    .cta-preview {
-      bottom: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%) translateY(6px);
-      width: 252px;
-      padding: 17px 24px 0;
-      transition: opacity .2s ease, transform .2s ease;
-      text-align: left;
-      overflow: hidden;
-    }
-    .cta-wrap--secondary:hover .cta-preview { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .cta-preview__header {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
-    }
-    .cta-preview__icon { font-size: 1.1rem; flex-shrink: 0; display: flex; align-items: center; }
-    .cta-preview__title {
-      font-size: 13px; font-weight: var(--fw-semibold); color: #fff;
-      white-space: nowrap; letter-spacing: -0.025em;
-    }
-    .cta-preview__text {
-      font-size: 12.5px; color: rgba(255,255,255,.88); line-height: 1.5;
-      font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0; display: block;
-    }
-    .cta-preview__footer {
-      display: flex; align-items: flex-start; gap: 6px;
-      font-size: 12px; color: rgba(255,255,255,.92); font-weight: var(--fw-medium);
-      line-height: 1.5; letter-spacing: -0.01em;
-      border-top: 1px solid rgba(255,255,255,.1);
-      margin: 12px -24px 0; padding: 10px 24px 14px;
-      background: rgba(255,255,255,.06);
-    }
-    .cta-preview__footer::before { content: '✓'; flex-shrink: 0; color: #fff; font-weight: var(--fw-bold); }
-    @media (hover: none) { .cta-preview { display: none; } }
 
     /* box-shadow, not filter: drop-shadow — a filter over a playing iframe is re-rasterized every frame */
     .hero__visual {
@@ -733,6 +699,17 @@
     .compare-before .compare-dot { background: #fee2e2; color: #b91c1c; }
     .compare-after  .compare-dot { background: rgba(255,255,255,.18); color: #fff; }
 
+    /* Opens the contact popup (.js-contact) */
+    .compare-cta {
+      display: block; margin-top: 28px; width: 100%;
+      padding: 13px 20px; border: 0; border-radius: 6px;
+      background: #fff; color: var(--codeq-blue);
+      font-family: inherit; font-size: 13.5px; font-weight: 700; line-height: inherit;
+      text-align: center; letter-spacing: -0.01em; cursor: pointer;
+      transition: background .18s ease, transform .15s ease, box-shadow .18s ease;
+    }
+    .compare-cta:hover { background: #eef2ff; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,15,46,.22); }
+
     @media (max-width: 768px) {
       .compare-wrap { grid-template-columns: 1fr; gap: 16px; }
       .compare-before, .compare-after { padding: 36px 28px; }
@@ -880,17 +857,6 @@
       .sprint-loop { grid-template-columns: 1fr 1fr; }
     }
 
-    /* === COMPARE CTA === */
-
-    .compare-cta {
-      display: block; margin-top: 28px; width: 100%;
-      padding: 13px 20px; border-radius: 6px;
-      background: #fff; color: var(--codeq-blue);
-      font-size: 13.5px; font-weight: 700; text-align: center;
-      letter-spacing: -0.01em; text-decoration: none;
-      transition: background .18s ease, transform .15s ease, box-shadow .18s ease;
-    }
-    .compare-cta:hover { background: #eef2ff; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(10,15,46,.22); }
 
     /* === APPROACH VARIANT B — Scroll Storytelling === */
     .approach-b {
@@ -1245,9 +1211,37 @@
     .price-card__period { font-size: 14px; color: var(--blue-300); margin-bottom: var(--space-5); }
     .price-card__divider { height: 1px; background: rgba(255,255,255,.1); margin-bottom: var(--space-4); }
     .price-card__features { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); }
-    .price-feature { display: flex; align-items: flex-start; gap: var(--space-3); font-size: 14px; color: var(--blue-300); line-height: 1.5; }
+    .price-feature { position: relative; display: flex; align-items: flex-start; gap: var(--space-3); font-size: 14px; color: var(--blue-300); line-height: 1.5; }
     .price-feature__check { color: rgba(255,255,255,.75); flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
-    .price-feature__title { display: block; color: #fff; font-weight: var(--fw-semibold); margin-bottom: 2px; }
+    /* Feature name = tooltip trigger: hover (mouse), focus (keyboard), tap (touch, .is-open via script.js) */
+    .price-feature__title {
+      background: none; border: 0; padding: 0;
+      font: inherit; font-weight: var(--fw-semibold); line-height: inherit;
+      color: #fff; text-align: left; cursor: help;
+    }
+    /* (i) after the name; .price-feature__last holds it together with the last word so it never wraps alone */
+    .price-feature__last { white-space: nowrap; }
+    .price-feature__info {
+      display: inline-block; width: 15px; height: 15px; margin-left: 6px; vertical-align: -2px;
+      color: rgba(255,255,255,.45); transition: color var(--dur-fast);
+    }
+    .price-feature__title:focus-visible { outline: none; }
+    .price-feature__title:focus-visible .price-feature__info,
+    .price-feature.is-open .price-feature__info { color: #fff; }
+    .price-feature__tip {
+      bottom: calc(100% + 8px); left: 0; right: 0;
+      padding: 14px 18px;
+      font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,.88);
+      line-height: 1.5; letter-spacing: -0.01em;
+      transform: translateY(4px);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .price-feature__title:focus-visible + .price-feature__tip,
+    .price-feature.is-open .price-feature__tip { opacity: 1; transform: translateY(0); }
+    @media (hover: hover) {
+      .price-feature:hover .price-feature__info { color: #fff; }
+      .price-feature:hover .price-feature__tip { opacity: 1; transform: translateY(0); }
+    }
     .price-card__amount--custom { font-size: 28px; line-height: 1.2; }
     .price-card__period--tight { margin-bottom: var(--space-2); }
     .price-card__cta { margin-top: auto; width: 100%; justify-content: center; white-space: normal; text-align: center; text-wrap: balance; }
