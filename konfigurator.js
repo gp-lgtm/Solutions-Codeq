@@ -413,9 +413,9 @@
     // ─────────────────────────────────────────────
     (function () {
       const PEOPLE = [
-        {name:'Grzegorz', img:'Codeq Design System/assets/Awatar_Strateg_1.webp'},
-        {name:'Paweł',    img:'Codeq Design System/assets/Awatar_Strateg_2.webp'},
-        {name:'Tadeusz',  img:'Codeq Design System/assets/Awatar_Strateg_3.webp'},
+        {name:'Grzegorz', img:'design-system/assets/Awatar_Strateg_1.webp'},
+        {name:'Paweł',    img:'design-system/assets/Awatar_Strateg_2.webp'},
+        {name:'Tadeusz',  img:'design-system/assets/Awatar_Strateg_3.webp'},
       ];
       const avatar = document.getElementById('supportAvatar');
       const nameEl = document.getElementById('supportName');

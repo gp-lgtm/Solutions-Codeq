@@ -1,0 +1,11 @@
+# Cloudflare Pages response headers. HTML/CSS/JS keep the Pages default
+# (revalidate on every visit via ETag), so edits show up right after a deploy.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Images and video: files keep their names when replaced, so no "immutable" —
+# a week of cache, then a background revalidation.
+/design-system/assets/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400

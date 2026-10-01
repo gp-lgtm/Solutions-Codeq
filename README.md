@@ -13,7 +13,7 @@ konfigurator.html      # Podstrona "Sprint Box" (markup)
 konfigurator.css       # Style dla konfigurator.html
 konfigurator.js        # Logika/interakcje dla konfigurator.html
 
-Codeq Design System/   # Design system (tokeny, komponenty, brand) — patrz jego własny CLAUDE.md
+design-system/         # Design system (tokeny, komponenty, brand) — patrz jego własny CLAUDE.md
 ```
 
 Każda para plik.html/.css/.js jest samodzielna — nie ma wspólnego bundlera ani kroku budowania. Otwórz `.html` bezpośrednio w przeglądarce, żadne zależności nie są wymagane.
