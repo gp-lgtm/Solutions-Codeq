@@ -1420,7 +1420,16 @@
     .contact-success p { font-size: 14px; color: #64748b; line-height: 1.6; }
 
     @media (max-width: 700px) {
-      .contact-modal { grid-template-columns: 1fr; max-height: 95vh; }
+      /* Stacked columns grow to full content height, so the per-column scroll never kicks in —
+         the whole modal scrolls instead. dvh tracks the visible area under mobile browser bars. */
+      .contact-overlay { padding: 12px; }
+      .contact-modal {
+        grid-template-columns: 1fr;
+        max-height: calc(100vh - 24px); max-height: calc(100dvh - 24px);
+        overflow-y: auto; overscroll-behavior: contain;
+      }
+      .contact-modal__left,
+      .contact-modal__right { overflow: visible; }
       .contact-modal__left { padding: 32px 28px; }
       .contact-modal__right { padding: 32px 28px; }
     }
