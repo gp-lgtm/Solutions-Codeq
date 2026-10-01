@@ -373,13 +373,38 @@
       overlay.addEventListener('click', e => { if (e.target === overlay) closeContact(); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
 
-      form.addEventListener('submit', e => {
+      // Form submit → Web3Forms (fetch, no redirect) → success state
+      form.addEventListener('submit', async e => {
         e.preventDefault();
-        const email   = form.querySelector('[name="email"]').value;
-        const message = form.querySelector('[name="message"]').value;
-        window.location.href = `mailto:biuro@codeq.pl?subject=Zapytanie o Codeq Care&body=${encodeURIComponent(message)}%0A%0AEmail: ${encodeURIComponent(email)}`;
-        form.classList.add('hidden');
-        success.classList.add('visible');
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const btn   = form.querySelector('.btn--submit');
+        const error = form.querySelector('.contact-form__error');
+        const data  = Object.fromEntries(new FormData(form));
+        data.gdpr = 'Tak — zgoda na przetwarzanie danych udzielona w formularzu';
+
+        error.hidden = true;
+        btn.disabled = true;
+        btn.textContent = 'Wysyłanie…';
+        try {
+          const res  = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json();
+          if (!json.success) throw new Error(json.message);
+          form.reset();
+          form.classList.add('hidden');
+          success.classList.add('visible');
+        } catch (err) {
+          error.hidden = false;
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Wyślij';
+        }
       });
     })();
 

@@ -49,7 +49,7 @@
                 <span class="cfg-support-person__role">odpowie na Twoje pytania</span>
               </span>
             </div>
-            <button type="button" class="cfg-support-btn js-contact">
+            <button type="button" class="cfg-support-btn js-contact" aria-haspopup="dialog">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               Umów rozmowę
             </button>
@@ -95,7 +95,7 @@
         <button class="btn btn--ghost" id="cfgBack" type="button">← Wstecz</button>
         <span class="cfg-navbtns__hint" id="cfgHint"></span>
         <button class="btn btn--primary" id="cfgNext" type="button">Dalej →</button>
-        <a class="btn btn--primary btn--lg js-contact" id="cfgCtaFinal" href="mailto:biuro@codeq.pl" style="display:none">Umów rozmowę o roadmapie →</a>
+        <button type="button" class="btn btn--primary btn--lg js-contact" id="cfgCtaFinal" aria-haspopup="dialog" style="display:none">Umów rozmowę o roadmapie →</button>
       </div>
 
         </div><!-- /cfg-app__main -->
@@ -164,14 +164,20 @@
         <h3>Skontaktuj się z nami</h3>
         <p>Wypełnij formularz lub napisz na<br><a href="mailto:biuro@codeq.pl">biuro@codeq.pl</a></p>
 
-        <form class="contact-form" id="contactForm" novalidate>
-          <input type="email" name="email" placeholder="Twój email*" required>
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="e1a7ba7c-5434-43b1-8835-226bb7c062a5">
+          <input type="hidden" name="subject" value="Nowe zapytanie — Codeq Care (konfigurator)">
+          <input type="hidden" name="from_name" value="Codeq Care — konfigurator Sprint Box">
+          <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" name="name" placeholder="Imię*" autocomplete="given-name" required>
+          <input type="email" name="email" placeholder="Twój email*" autocomplete="email" required>
           <textarea name="message" placeholder="Zadaj nam pytanie lub opisz sytuację swojego sklepu*" required></textarea>
           <label class="contact-gdpr">
-            <input type="checkbox" required>
-            <span>Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="#" target="_blank">polityką prywatności</a>.</span>
+            <input type="checkbox" name="gdpr" required>
+            <span>Wyrażam zgodę na przetwarzanie moich danych osobowych przez Codeq&nbsp;sp.&nbsp;z&nbsp;o.o. w celu obsługi niniejszego zapytania, zgodnie z <a href="https://codeq.pl/polityka-prywatnosci/" target="_blank" rel="noopener">polityką prywatności</a>.</span>
           </label>
           <button type="submit" class="btn--submit">Wyślij</button>
+          <p class="contact-form__error" role="alert" hidden>Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na <a href="mailto:biuro@codeq.pl">biuro@codeq.pl</a>.</p>
         </form>
 
         <div class="contact-success" id="contactSuccess">

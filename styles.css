@@ -56,6 +56,16 @@
       transition: all var(--dur-base) var(--ease-out);
       white-space: nowrap;
       text-decoration: none;
+      line-height: inherit;
+    }
+    /* <button> that reads as an inline text link (in-copy triggers that open a dialog) */
+    .link-btn {
+      background: none; border: 0; padding: 0;
+      font: inherit; color: inherit;
+      /* A button is always inline-block, so it takes the full line height (an <a> only takes the glyph box).
+         1.4 keeps the surrounding line and the cases-cta underline where they were with the <a>. */
+      line-height: 1.4;
+      cursor: pointer;
     }
     .btn--primary {
       background: var(--codeq-blue);
@@ -179,6 +189,7 @@
       text-decoration: none;
       transition: border-color var(--dur-fast), color var(--dur-fast);
       white-space: nowrap;
+      line-height: inherit;
       position: relative;
       overflow: hidden;
     }
@@ -1279,8 +1290,8 @@
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
     .faq-answer__inner { padding: 0 28px 24px; font-size: 14px; color: var(--ink-700); line-height: var(--lh-body); }
     .faq__more { text-align: center; margin-top: var(--space-6); font-size: 15px; color: var(--ink-700); }
-    .faq__more a { color: var(--codeq-blue); font-weight: var(--fw-semibold); transition: color var(--dur-base); }
-    .faq__more a:hover { color: var(--codeq-blue-deep); }
+    .faq__more .link-btn { color: var(--codeq-blue); font-weight: var(--fw-semibold); transition: color var(--dur-base); }
+    .faq__more .link-btn:hover { color: var(--codeq-blue-deep); }
 
     /* === FINAL CTA === */
     .final-cta {
@@ -1325,12 +1336,13 @@
     .contact-modal__close {
       position: absolute; top: 16px; right: 16px; z-index: 10;
       width: 34px; height: 34px; border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1);
-      color: rgba(255,255,255,.7); font-size: 14px; cursor: pointer;
+      border: 1.5px solid var(--ink-border); background: var(--surface);
+      color: var(--ink-700); font-size: 14px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: all .15s ease;
     }
-    .contact-modal__close:hover { background: rgba(255,255,255,.2); color: #fff; }
+    /* Desktop: X sits over the white form column. Mobile (stacked): over the dark column — see media query. */
+    .contact-modal__close:hover { background: var(--surface-alt); border-color: var(--ink-700); color: var(--ink-900); }
 
     /* Left — dark, objections */
     .contact-modal__left {
@@ -1408,6 +1420,11 @@
       transition: background .18s ease, transform .15s ease;
     }
     .contact-form .btn--submit:hover { background: #1535e8; transform: translateY(-1px); }
+    .contact-form .btn--submit:disabled { opacity: .6; cursor: progress; transform: none; }
+    /* Web3Forms honeypot — bots tick it, people never see it */
+    .contact-form .contact-form__botcheck { display: none; }
+    .contact-form__error { font-size: 13px; color: var(--accent-red); line-height: 1.5; }
+    .contact-form__error a { color: inherit; font-weight: 600; }
 
     .contact-success {
       display: none; flex-direction: column; align-items: center;
@@ -1420,6 +1437,8 @@
     .contact-success p { font-size: 14px; color: #64748b; line-height: 1.6; }
 
     @media (max-width: 700px) {
+      .contact-modal__close { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.1); color: rgba(255,255,255,.7); }
+      .contact-modal__close:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.2); color: #fff; }
       /* Stacked columns grow to full content height, so the per-column scroll never kicks in —
          the whole modal scrolls instead. dvh tracks the visible area under mobile browser bars. */
       .contact-overlay { padding: 12px; }
