@@ -357,6 +357,7 @@
       function openContact(cta) {
         // Który przycisk otworzył formularz — trafia do maila jako pole „Przycisk”
         form.elements.Przycisk.value = cta.dataset.cta || cta.textContent.trim();
+        dataLayer.push({ event: 'contact_open', cta: form.elements.Przycisk.value });
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -398,6 +399,7 @@
           });
           const json = await res.json();
           if (!json.success) throw new Error(json.message);
+          dataLayer.push({ event: 'generate_lead', cta: data.Przycisk });
           form.reset();
           form.classList.add('hidden');
           success.classList.add('visible');

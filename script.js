@@ -143,6 +143,7 @@
       function openContact(cta) {
         // Który przycisk otworzył formularz — trafia do maila jako pole „Przycisk”
         form.elements.Przycisk.value = cta.dataset.cta || cta.textContent.trim();
+        dataLayer.push({ event: 'contact_open', cta: form.elements.Przycisk.value });
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -185,6 +186,7 @@
           });
           const json = await res.json();
           if (!json.success) throw new Error(json.message);
+          dataLayer.push({ event: 'generate_lead', cta: data.Przycisk });
           form.reset();
           form.classList.add('hidden');
           success.classList.add('visible');
@@ -297,14 +299,58 @@
     (function () {
       const track = document.getElementById('vtTrack');
       if (!track) return;
-      track.querySelectorAll('.vt-play').forEach(btn => {
+      const canHover = window.matchMedia('(hover: hover)').matches;
+      track.querySelectorAll('.vt-slide--video').forEach(card => {
+        const video = card.querySelector('video');
+        const btn   = card.querySelector('.vt-play');
+        if (!video || !btn) return;
+        const title = card.querySelector('.vt-video-author__name')?.textContent.trim() || 'wideo';
+        let previewTracked = false;
+
+        // Hover: wyciszony podgląd, przycisk play zostaje widoczny
+        if (canHover) {
+          let hovering = false;
+          card.addEventListener('mouseenter', () => {
+            if (card.classList.contains('is-playing')) return;
+            hovering = true;
+            video.muted = true;
+            video.play().then(() => {
+              if (hovering) card.classList.add('is-previewing');
+              if (!previewTracked) {
+                previewTracked = true;
+                dataLayer.push({ event: 'video_preview', video_title: title });
+              }
+            }).catch(() => {});
+          });
+          card.addEventListener('mouseleave', () => {
+            hovering = false;
+            if (card.classList.contains('is-playing')) return;
+            card.classList.remove('is-previewing');
+            video.pause();
+            video.currentTime = 0;
+          });
+        }
+
+        // Klik: film od początku z dźwiękiem i kontrolkami
         btn.addEventListener('click', () => {
-          const card = btn.closest('.vt-slide--video');
-          const video = card && card.querySelector('video');
-          if (!video) return;
+          card.classList.remove('is-previewing');
           card.classList.add('is-playing');
+          video.muted = false;
+          video.currentTime = 0;
           video.setAttribute('controls', '');
           video.play();
+          dataLayer.push({ event: 'video_start', video_title: title });
+        });
+
+        // Koniec filmu: powrót do stanu początkowego (okładka + przycisk play)
+        video.addEventListener('ended', () => {
+          if (card.classList.contains('is-playing')) {
+            dataLayer.push({ event: 'video_complete', video_title: title });
+          }
+          card.classList.remove('is-playing', 'is-previewing');
+          video.removeAttribute('controls');
+          video.muted = true;
+          video.currentTime = 0;
         });
       });
     })();

@@ -1022,7 +1022,8 @@
       object-fit: cover; display: block;
     }
     .vt-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 0; }
-    .vt-slide--video.is-playing .vt-cover { display: none; }
+    .vt-slide--video.is-playing .vt-cover,
+    .vt-slide--video.is-previewing .vt-cover { display: none; }
     .vt-grad {
       position: absolute; inset: 0; pointer-events: none;
       background: linear-gradient(to top, rgba(8,12,40,.92) 0%, rgba(8,12,40,.25) 45%, transparent 72%);
