@@ -613,8 +613,8 @@
     }
     .logo-item img {
       height: 42px; width: auto; display: block;
-      filter: grayscale(1);
-      opacity: .85;
+      filter: grayscale(1) brightness(.9);
+      opacity: 1;
       transition: opacity .2s ease, filter .2s ease;
     }
     .logo-item img:hover { filter: grayscale(0); opacity: 1; }
@@ -625,6 +625,8 @@
     .section-header .label { margin-bottom: var(--space-3); color: var(--blue-400); }
     .section-header h2 { margin-bottom: var(--space-4); color: #fff; }
     .section-header p { font-size: var(--fs-body); color: var(--blue-300); max-width: 600px; margin: 0 auto; }
+    /* Łamanie linii tylko na desktopie — na mobile tekst zawija się sam */
+    @media (max-width: 768px) { .br-desktop { display: none; } }
 
     .problem .section-header .label { font-size: 11px; letter-spacing: 0.14em; color: var(--b600); font-weight: var(--fw-semibold); text-transform: uppercase; }
     .problem .section-header h2 { letter-spacing: -0.03em; line-height: 1.05; color: #0a0f2e; font-weight: 700; font-size: clamp(32px, 4.5vw, 52px); }
@@ -1231,7 +1233,6 @@
       .price-feature:hover .price-feature__tip { opacity: 1; transform: translateY(0); }
     }
     .price-card__amount--custom { font-size: 28px; line-height: 1.2; }
-    .price-card__period--tight { margin-bottom: var(--space-2); }
     .price-card__cta { margin-top: auto; width: 100%; justify-content: center; white-space: normal; text-align: center; text-wrap: balance; }
 
     /* Enterprise card */

@@ -140,7 +140,9 @@
       const success  = document.getElementById('contactSuccess');
       if (!overlay) return;
 
-      function openContact() {
+      function openContact(cta) {
+        // Który przycisk otworzył formularz — trafia do maila jako pole „Przycisk”
+        form.elements.Przycisk.value = cta.dataset.cta || cta.textContent.trim();
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -153,7 +155,7 @@
 
       // Hook up all pilot/contact CTAs
       document.querySelectorAll('.js-contact').forEach(el => {
-        el.addEventListener('click', e => { e.preventDefault(); openContact(); });
+        el.addEventListener('click', e => { e.preventDefault(); openContact(el); });
       });
 
       closeBtn.addEventListener('click', closeContact);

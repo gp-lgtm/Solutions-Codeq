@@ -49,7 +49,7 @@
                 <span class="cfg-support-person__role">odpowie na Twoje pytania</span>
               </span>
             </div>
-            <button type="button" class="cfg-support-btn js-contact" aria-haspopup="dialog">
+            <button type="button" class="cfg-support-btn js-contact" data-cta="Konfigurator — Umów rozmowę" aria-haspopup="dialog">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               Umów rozmowę
             </button>
@@ -95,7 +95,7 @@
         <button class="btn btn--ghost" id="cfgBack" type="button">← Wstecz</button>
         <span class="cfg-navbtns__hint" id="cfgHint"></span>
         <button class="btn btn--primary" id="cfgNext" type="button">Dalej →</button>
-        <button type="button" class="btn btn--primary btn--lg js-contact" id="cfgCtaFinal" aria-haspopup="dialog" style="display:none">Umów rozmowę o roadmapie →</button>
+        <button type="button" class="btn btn--primary btn--lg js-contact" data-cta="Konfigurator — Umów rozmowę o roadmapie" id="cfgCtaFinal" aria-haspopup="dialog" style="display:none">Umów rozmowę o roadmapie →</button>
       </div>
 
         </div><!-- /cfg-app__main -->
@@ -168,6 +168,7 @@
           <input type="hidden" name="access_key" value="e1a7ba7c-5434-43b1-8835-226bb7c062a5">
           <input type="hidden" name="subject" value="Nowe zapytanie — Codeq Care (konfigurator)">
           <input type="hidden" name="from_name" value="Codeq Care — konfigurator Sprint Box">
+          <input type="hidden" name="Przycisk" value="">
           <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="text" name="name" placeholder="Imię*" autocomplete="given-name" required>
           <input type="email" name="email" placeholder="Twój email*" autocomplete="email" required>
