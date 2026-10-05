@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google Tag Manager — wspólny kontener landingów (bez strony głównej codeq.pl) -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <!-- Google Tag Manager — wspólny kontener landingów (bez strony głównej codeq.pl).
+       Lokalnie (plik z dysku, localhost) gtm.js się nie ładuje; dataLayer powstaje zawsze, bo script.js/konfigurator.js do niego pushują. -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];
+  if(location.protocol==='file:'||/^(localhost|127\.0\.0\.1)$/.test(location.hostname))return;
+  w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-W3W7H5CR');</script>
   <!-- End Google Tag Manager -->
   <title>Sprint Box — Codeq Care</title>
+  <link rel="icon" type="image/png" href="design-system/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="design-system/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="design-system/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="design-system/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="design-system/favicon/site.webmanifest" />
   <!-- Same URL as the @import in colors_and_type.css: fetched in parallel here, the @import then hits the cache -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

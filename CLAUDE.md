@@ -47,7 +47,7 @@ Kontekst oferty (pakiety, cennik, etapy) — patrz pamięć projektu "Codeq Care
 
 Hosting: Cloudflare Pages, podpięte do repo (push na `main` = produkcja, inne gałęzie = podglądy). Ustawienia projektu: build command `node build.mjs`, output directory `dist`.
 
-`build.mjs` kopiuje do `dist/` tylko to, co strona serwuje: wszystkie `*.html`/`*.css`/`*.js` z katalogu głównego, `_headers`, `design-system/colors_and_type.css` i `design-system/assets/`. Dokumentacja (`CLAUDE.md`, `README.md`, reszta design systemu) nie trafia do sieci. Nowa strona w katalogu głównym wchodzi automatycznie; plik spoza tych miejsc (np. nowy folder z zasobami) trzeba dopisać w `build.mjs`. Lokalny podgląd jak na Cloudflare: `node build.mjs && npx wrangler pages dev dist`.
+`build.mjs` kopiuje do `dist/` tylko to, co strona serwuje: wszystkie `*.html`/`*.css`/`*.js` z katalogu głównego, `_headers`, `design-system/colors_and_type.css`, `design-system/assets/` i `design-system/favicon/`. Dokumentacja (`CLAUDE.md`, `README.md`, reszta design systemu) nie trafia do sieci. Nowa strona w katalogu głównym wchodzi automatycznie; plik spoza tych miejsc (np. nowy folder z zasobami) trzeba dopisać w `build.mjs`. Lokalny podgląd jak na Cloudflare: `node build.mjs && npx wrangler pages dev dist`.
 
 `_headers`: zasoby z `assets/` mają cache na tydzień — przy podmianie obrazka/wideo na nową wersję zmieniaj nazwę pliku, inaczej część odwiedzających zobaczy starą wersję do 7 dni. HTML/CSS/JS są rewalidowane przy każdym wejściu.
 

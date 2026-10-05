@@ -14,10 +14,10 @@ mkdirSync(OUT);
 const rootFiles = readdirSync('.').filter(f => /\.(html|css|js)$/.test(f) || f === '_headers' || f === '_redirects');
 for (const f of rootFiles) cpSync(f, join(OUT, f));
 
-// The design-system parts the pages load: tokens + images/video.
-for (const p of [`${DS}/colors_and_type.css`, `${DS}/assets`]) {
+// The design-system parts the pages load: tokens + images/video + favicons.
+for (const p of [`${DS}/colors_and_type.css`, `${DS}/assets`, `${DS}/favicon`]) {
   if (!existsSync(p)) throw new Error(`Missing ${p}`);
   cpSync(p, join(OUT, p), { recursive: true });
 }
 
-console.log(`dist/ ready: ${rootFiles.join(', ')}, ${DS}/colors_and_type.css, ${DS}/assets/`);
+console.log(`dist/ ready: ${rootFiles.join(', ')}, ${DS}/colors_and_type.css, ${DS}/assets/, ${DS}/favicon/`);
