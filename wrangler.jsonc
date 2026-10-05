@@ -1,0 +1,7 @@
+// Cloudflare Workers (static assets). Workers Builds runs `node build.mjs`, then `npx wrangler deploy`.
+// Without this file wrangler deployed the whole repo root (.git/, CLAUDE.md…) instead of dist/.
+{
+  "name": "codeq-care",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist" }
+}

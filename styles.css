@@ -904,7 +904,7 @@
     }
     .story-nav__item.sn-active .story-nav__num { color: rgba(255,255,255,.6); }
     .story-nav__month { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,.4); display: block; margin-bottom: 3px; }
-    .story-nav__item h4 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+    .story-nav__item h3 { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: -0.01em; line-height: inherit; }
     .story-content { display: flex; flex-direction: column; }
     .story-section { display: none; }
     .story-section.ss-active {
@@ -1143,6 +1143,7 @@
     }
     .cases-cta__link:hover { border-bottom-color: var(--codeq-blue); }
     @media (max-width: 860px) {
+      .cases { padding: var(--space-6) 0; }
       .cases-stage { padding-top: 32px; padding-bottom: 36px; }
       .cases-stage__head h2 { font-size: 28px; }
       .case-card { flex: 0 0 86%; grid-template-columns: 1fr; gap: 22px; padding: 28px 24px; }
@@ -1537,4 +1538,13 @@
     @media (max-width: 640px) {
       .site-footer__inner { grid-template-columns: 1fr; }
       .site-footer__right { align-items: flex-start; }
+    }
+
+    /* === COOKIEYES ===
+       Banner is injected by GTM; CookieYes sets button colours inline, hence !important.
+       "Odrzuć" (banner + preference centre) styled like "Dostosuj": outline in the banner's #1863dc. */
+    .cky-btn.cky-btn-reject {
+      color: #1863dc !important;
+      background-color: transparent !important;
+      border-color: #1863dc !important;
     }

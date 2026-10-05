@@ -1,4 +1,4 @@
-# Cloudflare Pages response headers. HTML/CSS/JS keep the Pages default
+# Cloudflare (Workers static assets) response headers. HTML/CSS/JS keep the default
 # (revalidate on every visit via ETag), so edits show up right after a deploy.
 
 /*

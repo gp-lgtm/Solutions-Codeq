@@ -1,4 +1,4 @@
-// Builds dist/ for Cloudflare Pages: only what the site serves, none of the repo docs
+// Builds dist/ for Cloudflare (Workers static assets, see wrangler.jsonc): only what the site serves, none of the repo docs
 // (CLAUDE.md, README.md, design-system previews/ui kits). Run: node build.mjs
 import { cpSync, existsSync, readdirSync, rmSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';

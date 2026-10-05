@@ -8,7 +8,7 @@ Repo z dwiema samodzielnymi stronami statycznymi: główny landing page (`index.
 index.html + styles.css + script.js         # Landing page Codeq Care
 konfigurator.html + konfigurator.css + konfigurator.js   # Sprint Box
 design-system/                               # Tokeny, brand, komponenty — ma własny CLAUDE.md
-build.mjs + _headers                         # Deploy na Cloudflare Pages (patrz sekcja Deploy)
+build.mjs + _headers + wrangler.jsonc        # Deploy na Cloudflare Workers (patrz sekcja Deploy)
 ```
 
 Do 2026-09-11 CSS i JS obu stron były wklejone inline w `<style>`/`<script>` — rozbite na osobne pliki, żeby edycje jednej warstwy (np. tylko treści w HTML) nie wymagały czytania tysięcy linii CSS/JS przy okazji. Trzymaj ten podział: nowy CSS → do odpowiedniego `.css`, nowy JS → do odpowiedniego `.js`, HTML zostaje samym markupem.
@@ -45,10 +45,10 @@ Kontekst oferty (pakiety, cennik, etapy) — patrz pamięć projektu "Codeq Care
 
 ## Deploy
 
-Hosting: Cloudflare Pages, podpięte do repo (push na `main` = produkcja, inne gałęzie = podglądy). Ustawienia projektu: build command `node build.mjs`, output directory `dist`.
+Hosting: Cloudflare **Workers** ze statycznymi plikami (Workers Builds, nie Pages — Pages Functions/`functions/` tu nie działają), Worker `codeq-care`, domena `care.codeq.pl` (`www.` przekierowuje na wersję bez `www`). Push na `main` = produkcja. Ustawienia w panelu: build command `node build.mjs`, deploy command `npx wrangler deploy`, root `/`. Katalog do publikacji wskazuje `wrangler.jsonc` (`assets.directory: ./dist`) — bez tego pliku wrangler publikował cały katalog repo razem z `.git/` i `CLAUDE.md` (naprawione 2026-10-05).
 
-`build.mjs` kopiuje do `dist/` tylko to, co strona serwuje: wszystkie `*.html`/`*.css`/`*.js` z katalogu głównego, `_headers`, `design-system/colors_and_type.css`, `design-system/assets/` i `design-system/favicon/`. Dokumentacja (`CLAUDE.md`, `README.md`, reszta design systemu) nie trafia do sieci. Nowa strona w katalogu głównym wchodzi automatycznie; plik spoza tych miejsc (np. nowy folder z zasobami) trzeba dopisać w `build.mjs`. Lokalny podgląd jak na Cloudflare: `node build.mjs && npx wrangler pages dev dist`.
+`build.mjs` kopiuje do `dist/` tylko to, co strona serwuje: wszystkie `*.html`/`*.css`/`*.js` z katalogu głównego, `_headers`, `design-system/colors_and_type.css`, `design-system/assets/` i `design-system/favicon/`. Dokumentacja (`CLAUDE.md`, `README.md`, reszta design systemu) nie trafia do sieci. Nowa strona w katalogu głównym wchodzi automatycznie; plik spoza tych miejsc (np. nowy folder z zasobami) trzeba dopisać w `build.mjs`. Lokalny podgląd jak na Cloudflare: `node build.mjs && npx wrangler dev`; sprawdzenie, co pójdzie na produkcję: `npx wrangler deploy --dry-run`.
 
 `_headers`: zasoby z `assets/` mają cache na tydzień — przy podmianie obrazka/wideo na nową wersję zmieniaj nazwę pliku, inaczej część odwiedzających zobaczy starą wersję do 7 dni. HTML/CSS/JS są rewalidowane przy każdym wejściu.
 
-Docelowo pliki trafiają do programisty/CMS (Webflow lub inny) — traktuj `index.html`/`konfigurator.html` jako źródło do przepięcia, nie finalny hosting.
+Cloudflare to hosting docelowy i stały (od 2026-10-05 nie planujemy migracji do Webflow ani innego CMS) — można korzystać z funkcji Cloudflare (kod Workera, Turnstile itd.).

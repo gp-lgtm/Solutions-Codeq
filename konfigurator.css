@@ -704,3 +704,12 @@
       .cfg-page-header { padding: 108px 0 40px; }
       .cfg-tasks { grid-template-columns: 1fr; }
     }
+
+    /* === COOKIEYES ===
+       Banner is injected by GTM; CookieYes sets button colours inline, hence !important.
+       "Odrzuć" (banner + preference centre) styled like "Dostosuj": outline in the banner's #1863dc. */
+    .cky-btn.cky-btn-reject {
+      color: #1863dc !important;
+      background-color: transparent !important;
+      border-color: #1863dc !important;
+    }
