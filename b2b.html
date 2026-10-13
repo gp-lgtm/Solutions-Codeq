@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager — wspólny kontener landingów (bez strony głównej codeq.pl).
+       Lokalnie (plik z dysku, localhost) gtm.js się nie ładuje; dataLayer powstaje zawsze, bo script.js/konfigurator.js do niego pushują. -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];
+  if(location.protocol==='file:'||/^(localhost|127\.0\.0\.1)$/.test(location.hostname))return;
+  w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-54WBG3M8');</script>
+  <!-- End Google Tag Manager -->
+  <title>Codeq Care – Rozwój Strony Firmowej i Lead Generation w Abonamencie</title>
+  <meta name="description" content="Strateg, project manager, UX designer i developer w abonamencie: co miesiąc rozwijają stronę firmową i blog pod kątem lead generation. Bez rekrutacji i etatów. Od 3200 PLN/mies." />
+  <link rel="icon" type="image/png" href="design-system/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="design-system/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="design-system/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="design-system/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="design-system/favicon/site.webmanifest" />
+  <!-- Same URL as the @import in colors_and_type.css: fetched in parallel here, the @import then hits the cache -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Hero VideoAsk iframe: open the connection before the parser reaches it -->
+  <link rel="preconnect" href="https://www.videoask.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="design-system/colors_and_type.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54WBG3M8"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- ================================
+       NAVIGATION
+  ================================ -->
+  <nav class="nav" id="mainNav">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="nav__logo" href="#" aria-label="Codeq Care">
+          <svg width="122" height="41" viewBox="0 0 122 41" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:30px;width:auto;display:block"><g clip-path="url(#nv_clip)"><path d="M42.6948 18.45V34.0563C42.6259 34.0219 42.5227 33.9875 42.4194 33.9188C42.4194 33.9188 42.385 33.9188 42.3506 33.8844C42.2474 33.85 42.1097 33.7813 42.0065 33.7469C41.8688 33.7125 41.7655 33.6781 41.6279 33.6094C41.4902 33.575 41.387 33.5406 41.2493 33.5062C41.1116 33.4719 41.0084 33.4375 40.8707 33.4375H40.8363C40.7331 33.4375 40.6298 33.4031 40.4922 33.4031H40.4578C40.3545 33.4031 40.2168 33.3688 40.1136 33.3688H40.0792C39.9759 33.3688 39.8383 33.3688 39.7006 33.3688H34.5383V20.0312C34.5383 19.9281 34.5383 19.8594 34.5383 19.7906C34.5383 19.6187 34.5383 19.4469 34.5039 19.3094C34.5039 19.1375 34.4694 19 34.4694 18.8281C34.4694 18.6906 34.435 18.5531 34.435 18.45C34.435 18.3812 34.4006 18.3469 34.4006 18.2781C34.4006 18.2094 34.4006 18.175 34.3662 18.1406C34.3662 18.0719 34.3318 17.9688 34.3318 17.8656C34.2629 17.5563 34.1941 17.2813 34.1253 17.0063C34.0909 16.9031 34.0565 16.8 34.022 16.6969C34.022 16.6625 33.9876 16.6281 33.9876 16.5938C33.9532 16.525 33.9188 16.4219 33.8844 16.3531C33.8155 16.1812 33.7467 16.0094 33.6779 15.8375C33.6435 15.7344 33.5746 15.6312 33.5402 15.5281C33.4714 15.3906 33.4026 15.2531 33.3337 15.1156C33.2649 15.0125 33.2305 14.9094 33.1616 14.8406C33.0928 14.7375 33.024 14.6344 32.9552 14.5312C32.6454 14.0844 32.3013 13.6719 31.9227 13.2937C31.8539 13.225 31.7506 13.1219 31.6818 13.0531L31.5441 12.95C31.4065 12.8469 31.3032 12.7438 31.1655 12.6406C31.0623 12.5719 30.9591 12.5031 30.8902 12.4C30.8214 12.3313 30.7526 12.2969 30.6837 12.2625C30.5805 12.1937 30.4428 12.0906 30.3396 12.0219C30.2707 11.9875 30.2019 11.9188 30.1331 11.8844C29.7889 11.6438 29.4103 11.4375 29.0662 11.2656C28.9629 11.2312 28.8941 11.1625 28.7909 11.1281C28.5155 10.9906 28.2402 10.8531 27.9649 10.75C27.8616 10.7156 27.7928 10.6812 27.6896 10.6469C26.1753 10.0281 24.661 9.68437 23.3532 9.44375C23.2844 9.40937 23.1811 9.375 23.1123 9.375C23.0435 9.375 22.9402 9.34063 22.8714 9.34063C22.8026 9.34063 22.6993 9.30625 22.6305 9.30625C22.5616 9.30625 22.5272 9.27188 22.4584 9.27188C22.2175 9.2375 21.9766 9.20312 21.7701 9.20312C21.6324 9.20312 21.4948 9.16875 21.3915 9.16875C21.2539 9.16875 21.1506 9.13437 21.0474 9.13437C22.5272 8.4125 24.1448 8 25.8311 8H32.5078C35.0201 8.10313 37.2915 9.03125 39.0467 10.5438C39.15 10.6125 39.2188 10.7156 39.322 10.7844C41.4214 12.7094 42.6948 15.4594 42.6948 18.45Z" fill="white"/><path d="M32.9891 16.0779C33.058 16.1811 33.0924 16.3186 33.1268 16.4217C32.232 15.4936 30.993 14.9436 29.6164 14.9436H28.2742C27.0008 15.0123 25.8307 15.4936 24.9703 16.3186L24.9359 16.3529C23.9034 17.2467 23.2495 18.5529 23.2495 20.0311V28.9686C23.2495 30.3092 23.8346 31.5811 24.7638 32.4748C24.5229 32.4061 24.3164 32.3029 24.0755 32.1998C24.0067 32.1654 23.9034 32.1311 23.8346 32.0967C23.7658 32.0623 23.6625 32.0279 23.5937 31.9936C23.4904 31.9592 23.3872 31.8904 23.2495 31.8561C23.043 31.7529 22.8021 31.6498 22.5612 31.5123C22.4924 31.4779 22.4236 31.4436 22.3203 31.3748C22.2171 31.3061 22.1138 31.2373 21.9762 31.1686C21.8385 31.0998 21.7008 30.9967 21.5632 30.9279C21.4599 30.8592 21.3567 30.7904 21.2878 30.7561C21.219 30.7217 21.1502 30.6529 21.0814 30.6186C20.5651 30.2748 20.0833 29.8967 19.6015 29.4498C19.4982 29.3467 19.395 29.2779 19.2917 29.1748C19.1197 29.0029 18.982 28.8654 18.8099 28.6936C18.6378 28.5217 18.5002 28.3498 18.3281 28.1436C18.1904 27.9717 18.0528 27.7998 17.9151 27.6279C17.743 27.4217 17.6054 27.2154 17.4677 26.9748C17.4333 26.9061 17.3645 26.8373 17.3301 26.7686C17.0203 26.2529 16.745 25.7373 16.4697 25.1529C16.332 24.8779 16.2288 24.5686 16.1255 24.2592C16.0911 24.1561 16.0567 24.0529 16.0223 23.9498C15.9878 23.8467 15.9534 23.7436 15.919 23.6404C15.8846 23.5373 15.8502 23.4342 15.8158 23.3311C15.6781 22.9186 15.5749 22.4717 15.506 22.0248C15.4716 21.8873 15.4716 21.7498 15.4372 21.6123C15.4028 21.3717 15.3684 21.1311 15.334 20.8904C15.2995 20.6498 15.2651 20.3748 15.2651 20.1342C15.2651 19.9967 15.2307 19.8592 15.2307 19.7217C15.2307 19.5842 15.1963 19.4467 15.1963 19.3092C15.1963 19.2061 15.1963 19.1029 15.1963 18.9998C15.1963 18.8279 15.1963 18.6904 15.1963 18.5186V18.4842C15.2651 14.9436 17.0203 11.6779 19.9801 9.75293C20.0145 9.75293 20.0489 9.75293 20.0489 9.75293C20.1177 9.75293 20.2554 9.75293 20.3586 9.75293C20.393 9.75293 20.4275 9.75293 20.4963 9.75293C20.5651 9.75293 20.5995 9.75293 20.634 9.75293C20.7028 9.75293 20.7372 9.75293 20.806 9.75293C21.3223 9.7873 22.045 9.85605 22.8365 9.99355C22.9742 10.0623 23.0775 10.0623 23.1807 10.0623C23.284 10.0623 23.3872 10.0967 23.5249 10.1311C23.6625 10.1654 23.8002 10.1998 23.9378 10.1998C24.3852 10.3029 24.8327 10.4061 25.2801 10.5092C25.4521 10.5436 25.6242 10.6123 25.7963 10.6467C26.2437 10.7842 26.7255 10.9561 27.2073 11.1279C27.3106 11.1623 27.4138 11.1967 27.5171 11.2654C27.6203 11.2998 27.7236 11.3686 27.8268 11.4029C28.1365 11.5404 28.4807 11.7123 28.7904 11.8842C28.8937 11.9186 28.9969 11.9873 29.1002 12.0561C29.2034 12.1248 29.3067 12.1592 29.4099 12.2279C29.9262 12.5373 30.408 12.8811 30.8898 13.2936C30.9242 13.3279 30.9586 13.3623 31.0275 13.3967C31.0963 13.4654 31.1651 13.5342 31.2684 13.6029C31.4404 13.7748 31.6469 13.9811 31.819 14.1873C31.9911 14.3936 32.1632 14.5998 32.3352 14.8404C32.4041 14.9092 32.4385 14.9779 32.4729 15.0811C32.6106 15.2873 32.7482 15.4936 32.8515 15.7342C32.8859 15.8717 32.9547 15.9748 32.9891 16.0779Z" fill="white"/><path d="M48.0293 41H25.8656C20.1526 41 15.4033 36.3594 15.2656 30.6875V23.8125C15.3345 24.0188 15.4033 24.225 15.4721 24.3969C15.5065 24.5 15.5409 24.6031 15.5754 24.7062C15.7474 25.1187 15.8851 25.4969 16.0916 25.8406C16.1604 25.9781 16.2293 26.1156 16.2981 26.2531C16.3669 26.425 16.4702 26.5625 16.5734 26.7344C16.6422 26.8375 16.6767 26.9406 16.7455 27.0438C16.7799 27.1125 16.8143 27.1813 16.8832 27.25C16.952 27.3531 17.0208 27.4219 17.0552 27.525C17.2961 27.9031 17.5715 28.2469 17.8468 28.5563C17.9845 28.7281 18.1221 28.8656 18.2598 29.0031C18.5351 29.2781 18.776 29.5531 19.0513 29.7938C19.0858 29.8281 19.1202 29.8625 19.1546 29.8625C19.189 29.8969 19.2578 29.9656 19.3267 30C19.3611 30.0344 19.3611 30.0344 19.3955 30.0688C19.4299 30.1031 19.4299 30.1031 19.4643 30.1375C19.5332 30.2063 19.6364 30.275 19.7397 30.3438C19.9117 30.4813 20.0838 30.6188 20.2559 30.7563C20.3591 30.825 20.428 30.8938 20.5312 30.9625C20.9786 31.2719 21.426 31.5813 21.839 31.8219C21.9078 31.8563 22.0111 31.925 22.0799 31.9594C22.1832 32.0281 22.3208 32.0969 22.4241 32.1313C22.5617 32.2 22.665 32.2688 22.8026 32.3031C22.9059 32.3719 23.0435 32.4063 23.1812 32.475C23.25 32.5094 23.3189 32.5438 23.3877 32.5781C23.5254 32.6469 23.6286 32.6813 23.7319 32.75C23.8695 32.8188 24.0072 32.8531 24.1448 32.9219C24.2825 32.9906 24.4202 33.025 24.5578 33.0938C24.6611 33.1281 24.7987 33.1625 24.902 33.2313C24.9364 33.2313 24.9364 33.2313 24.9708 33.2313C25.1773 33.3 25.3494 33.3688 25.5559 33.4375C25.6247 33.4719 25.728 33.4719 25.7968 33.5063C26.1065 33.6094 26.3819 33.6781 26.6572 33.7469C26.8293 33.7813 27.0013 33.8156 27.1734 33.85C27.1734 33.85 27.1734 33.85 27.2078 33.85C27.5864 33.9531 27.965 34.0219 28.3435 34.0563C28.55 34.0563 29.4104 34.0563 33.9189 34.0563H39.8728C40.9741 34.0563 42.0409 34.3656 43.039 34.95C43.5896 35.2594 44.1059 35.6719 44.5877 36.0844C44.6221 36.1188 44.6565 36.1188 44.6565 36.1531C46.4117 37.9063 47.5819 40.1063 48.0293 41Z" fill="white"/><path d="M63.7229 28.1777L63.4476 27.9027C63.3788 27.834 63.2755 27.834 63.1723 27.9371C62.1742 28.7621 61.0729 29.3465 59.6275 29.3465C56.7021 29.3465 54.3963 26.9746 54.3963 24.0871C54.3963 21.1996 56.7021 18.7934 59.6275 18.7934C61.0041 18.7934 62.2086 19.309 63.1723 20.1684C63.2755 20.2715 63.3443 20.2715 63.4476 20.1684L63.7229 19.8934C63.7917 19.8246 63.7917 19.6871 63.6885 19.584C62.5872 18.5871 61.3138 18.0371 59.6275 18.0371C56.2891 18.0371 53.5703 20.7184 53.5703 24.0871C53.5703 27.4559 56.2891 30.1027 59.6275 30.1027C61.1073 30.1027 62.5872 29.5871 63.7229 28.4871C63.8262 28.3496 63.8262 28.2121 63.7229 28.1777Z" fill="white"/><path d="M73.428 18.0371C70.0897 18.0371 67.4053 20.7184 67.4053 24.0871C67.4053 27.4559 70.0897 30.1027 73.428 30.1027C76.8007 30.1027 79.4851 27.4559 79.4851 24.0871C79.4851 20.7184 76.8007 18.0371 73.428 18.0371ZM73.428 29.3121C70.5027 29.3121 68.128 26.9746 68.128 24.0527C68.128 21.1309 70.5027 18.759 73.428 18.759C76.3533 18.759 78.728 21.1309 78.728 24.0527C78.728 26.9746 76.3533 29.3121 73.428 29.3121Z" fill="white"/><path d="M87.7796 18.209H84.2348C84.1316 18.209 84.0283 18.3121 84.0283 18.4152V29.6902C84.0283 29.7934 84.1316 29.8965 84.2348 29.8965H87.7796C91.0147 29.8965 93.6647 27.284 93.6647 24.0184C93.6647 20.8215 91.0147 18.209 87.7796 18.209ZM87.642 29.1746H84.8199V18.8965H87.642C90.5673 18.8965 92.8387 21.1309 92.8387 24.0184C92.8387 26.9402 90.5673 29.1746 87.642 29.1746Z" fill="white"/><path d="M105.159 18.8965C105.262 18.8965 105.366 18.7934 105.366 18.6902V18.4152C105.366 18.3121 105.262 18.209 105.159 18.209H98.4482C98.3449 18.209 98.2417 18.3121 98.2417 18.4152V29.6902C98.2417 29.7934 98.3449 29.8965 98.4482 29.8965H105.159C105.262 29.8965 105.366 29.7934 105.366 29.6902V29.4152C105.366 29.3121 105.262 29.209 105.159 29.209H99.0333V24.259H104.333C104.436 24.259 104.54 24.1559 104.54 24.0527V23.7777C104.54 23.6746 104.436 23.5715 104.333 23.5715H99.0333V18.8965H105.159Z" fill="white"/><path d="M121.266 24.0529C121.266 20.7186 118.581 18.0029 115.209 18.0029C111.87 18.0029 109.186 20.6842 109.186 24.0529C109.186 27.4217 111.87 30.0686 115.209 30.0686C115.725 30.0686 116.276 29.9998 116.723 29.8967L118.582 32.9561C118.65 33.0936 118.754 33.1279 118.788 33.1279H119.339C119.476 33.1279 119.511 32.9561 119.442 32.8873L117.446 29.6561C119.717 28.7623 121.266 26.6311 121.266 24.0529ZM115.209 29.3123C112.283 29.3123 109.909 26.9748 109.909 24.0529C109.909 21.1311 112.283 18.7592 115.209 18.7592C118.134 18.7592 120.509 21.1311 120.509 24.0529C120.543 26.9748 118.169 29.3123 115.209 29.3123Z" fill="white"/></g><path d="M11.2106 0C10.3822 0 9.62277 0.262495 8.95336 0.780209C8.31158 1.27655 7.8843 1.90872 7.63274 2.36842C7.38119 1.90869 6.95391 1.27655 6.31213 0.780209C5.64271 0.262495 4.88326 0 4.05489 0C1.74325 0 0 1.8908 0 4.39819C0 7.10704 2.17483 8.96039 5.46722 11.7661C6.02632 12.2426 6.66005 12.7827 7.31873 13.3587C7.40555 13.4347 7.51706 13.4766 7.63274 13.4766C7.74843 13.4766 7.85994 13.4347 7.94676 13.3587C8.6055 12.7826 9.2392 12.2426 9.79862 11.7658C13.0907 8.96039 15.2655 7.10704 15.2655 4.39819C15.2655 1.8908 13.5222 0 11.2106 0Z" fill="white"/><defs><clipPath id="nv_clip"><rect width="106" height="33" fill="white" transform="translate(15.2656 8)"/></clipPath></defs></svg>
+        </a>
+        <div class="nav__links">
+          <a href="#problem">Problem</a>
+          <a href="#how">Jak to działa</a>
+          <a href="#squad">Zespół</a>
+          <a href="#pricing">Cennik</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="nav__cta">
+          <button type="button" class="btn--nav js-contact" data-cta="Menu — Napisz do nas" aria-haspopup="dialog">Napisz do nas</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+  <!-- ================================
+       1. HERO
+  ================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+
+          <a class="hero__proof" href="https://clutch.co/profile/codeq" target="_blank" rel="noopener noreferrer">
+            <span class="hero__proof__tip">Tu znajdziesz autoryzowane i rzetelne opinie naszych klientów na temat współpracy z Codeq. Weryfikowane przez platformę Clutch.</span>
+            <span>5.0 rating</span>
+            <svg width="61" height="17" viewBox="0 0 61 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Clutch" role="img">
+              <g clip-path="url(#clip0_clutch)">
+                <path d="M15.8794 0H18.6551V17H15.8794V0ZM28.3702 11.577C28.3702 14.1787 26.1379 14.3861 25.4738 14.3861C23.8146 14.3861 23.5127 12.8642 23.5127 11.9462V5.44H20.7369V11.9326C20.7369 13.5442 21.2532 14.8743 22.1581 15.761C22.9575 16.5451 24.1553 16.9735 25.4529 16.9735C26.3731 16.9735 27.6763 16.6926 28.3702 16.0718V17H31.146V5.44H28.3702V11.577ZM36.6975 1.36H33.9217V5.44H31.8399V8.16H33.9217V17H36.6975V8.16H38.7793V5.44H36.6975V1.36ZM47.5208 13.5436C46.9164 14.076 46.1184 14.3711 45.2426 14.3711C43.3121 14.3711 41.8944 12.9819 41.8944 11.0745C41.8944 9.16708 43.267 7.83632 45.2426 7.83632C46.1031 7.83632 46.9164 8.11716 47.5361 8.6496L47.9573 9.00456L49.8288 7.17128L49.3604 6.75716C48.2592 5.78272 46.797 5.236 45.2419 5.236C41.7722 5.236 39.2526 7.68944 39.2526 11.0602C39.2526 14.4167 41.8326 16.9578 45.2419 16.9578C46.8262 16.9578 48.3036 16.4111 49.391 15.421L49.8434 15.0069L47.9427 13.175L47.5208 13.5436ZM59.7362 6.44776C58.9367 5.6644 57.9999 5.236 56.7023 5.236C55.7821 5.236 54.7398 5.51684 54.0459 6.137V0H51.2701V17H54.0459V10.6318C54.0459 8.03012 55.932 7.8234 56.5961 7.8234C58.2553 7.8234 58.2095 9.34592 58.2095 10.2626V17H60.9852V10.2768C60.9852 8.66524 60.6418 7.33516 59.7362 6.44776Z" fill="white"/>
+                <path d="M45.1504 9.1377C45.6827 9.1377 46.1931 9.34489 46.5695 9.71369C46.9458 10.0825 47.1573 10.5827 47.1573 11.1043C47.1573 11.6258 46.9458 12.126 46.5695 12.4948C46.1931 12.8636 45.6827 13.0708 45.1504 13.0708C44.6182 13.0708 44.1077 12.8636 43.7314 12.4948C43.355 12.126 43.1436 11.6258 43.1436 11.1043C43.1436 10.5827 43.355 10.0825 43.7314 9.71369C44.1077 9.34489 44.6182 9.1377 45.1504 9.1377Z" fill="#FF3D2E"/>
+                <path d="M11.9932 12.7303C10.9377 13.7945 9.50402 14.3712 7.9954 14.3712C4.90322 14.3712 2.65487 11.9912 2.65487 8.72447C2.65487 5.44279 4.90322 3.06279 7.9954 3.06279C9.48944 3.06279 10.9072 3.63875 11.9786 4.68867L12.4005 5.10279L14.2561 3.28447L13.8488 2.87035C12.3103 1.31791 10.2285 0.476074 7.9954 0.476074C3.43971 0.476074 0.0151367 4.02363 0.0151367 8.73875C0.0151367 13.4396 3.45498 16.9729 7.9954 16.9729C10.2438 16.9729 12.3256 16.1161 13.864 14.5636L14.2714 14.1495L12.431 12.3019L11.9932 12.7303Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_clutch">
+                  <rect width="61" height="17" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+
+          <h1><span class="h1-regular">Stały rozwój<br class="br-desktop"> strony&nbsp;internetowej</span><br><span class="h1-bold">bez rekrutacji i&nbsp;etatów.</span></h1>
+
+          <p class="hero__lead">Zyskaj dedykowany zespół złożony ze <span class="lead-role" data-role="strateg" data-sheet-icon="🧠" data-sheet-label="Rola #1" data-sheet-title="Strateg" data-sheet-desc="Filtruje Twoje pomysły przez ROI. Chroni budżet przed nietrafionymi inwestycjami i wyznacza kierunek rozwoju serwisu." data-sheet-kpi="Co zyskujesz: mniej przepalonych złotówek, jasne priorytety na kwartał." tabindex="0">Stratega<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><span class="role-chip__tip-name">Strateg</span><span class="tip-avatars"><span class="tip-avatar"><img src="design-system/assets/Awatar_Strateg_1.webp" alt="" width="144" height="144"></span><span class="tip-avatar"><img src="design-system/assets/Awatar_Strateg_2.webp" alt="" width="144" height="144"></span><span class="tip-avatar"><img src="design-system/assets/Awatar_Strateg_3.webp" alt="" width="144" height="144"></span></span></span><span class="role-chip__tip-desc">Analizuje ROI Twoich pomysłów i chroni budżet. Wyznacza jasny kierunek wzrostu.</span><span class="role-chip__tip-kpi">Mniej przepalonych złotówek, jasne priorytety.</span></span></span>, <span class="lead-role" data-role="pm" data-sheet-icon="🗂️" data-sheet-label="Rola #2" data-sheet-title="Project Manager" data-sheet-desc="Tłumaczy biznes na kod i pilnuje terminów w Pudełkach. Masz porządek bez mikrozarządzania z Twojej strony." data-sheet-kpi="Co zyskujesz: dowożone sprinty, jeden punkt kontaktu, brak chaosu." tabindex="0">Project Managera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 12 2 2 4-4"/></svg></span><span class="role-chip__tip-name">Project Manager</span><span class="tip-avatars"><span class="tip-avatar"><img src="design-system/assets/Awatar_PM_1.webp" alt="" width="144" height="144"></span></span></span><span class="role-chip__tip-desc">Tłumaczy wymagania biznesowe na konkretne zadania. Dba o terminy i priorytety.</span><span class="role-chip__tip-kpi">Dowożone sprinty, jeden punkt kontaktu.</span></span></span>, <span class="lead-role" data-role="ux" data-sheet-icon="🎨" data-sheet-label="Rola #3" data-sheet-title="UX Designer" data-sheet-desc="Sprawdza użyteczność przed wdrożeniem. Skraca drogę od pierwszej wizyty do zapytania ofertowego." data-sheet-kpi="Co zyskujesz: serwis, który generuje zapytania, a nie tylko odsłony." tabindex="0">UX Designera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="role-chip__tip-name">UX Designer</span><span class="tip-avatars"><span class="tip-avatar"><img src="design-system/assets/Awatar_Design_1.webp" alt="" width="144" height="144"></span><span class="tip-avatar"><img src="design-system/assets/Awatar_Design_2.webp" alt="" width="144" height="144"></span><span class="tip-avatar"><img src="design-system/assets/Awatar_Design_3.webp" alt="" width="144" height="144"></span></span></span><span class="role-chip__tip-desc">Projektuje ścieżki, które prowadzą do kontaktu. Identyfikuje bariery przed wdrożeniem.</span><span class="role-chip__tip-kpi">Więcej zapytań ofertowych i leadów.</span></span></span> i <span class="lead-role" data-role="dev" data-sheet-icon="💻" data-sheet-label="Rola #4" data-sheet-title="Senior Developer" data-sheet-desc="Buduje szybki, bezpieczny serwis, który nie rozsypuje się przy aktualizacji CMS-a." data-sheet-kpi="Co zyskujesz: lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu." tabindex="0">Developera<span class="role-chip__tooltip"><span class="tip-header"><span class="role-chip__tip-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="role-chip__tip-name">Senior Developer</span><span class="tip-avatars"><span class="tip-avatar"><img src="design-system/assets/Awatar_Developer_1.webp" alt="" width="144" height="144"></span><span class="tip-avatar"><img src="design-system/assets/Awatar_Developer_2.webp" alt="" width="144" height="144"></span><span class="tip-avatar"><img src="design-system/assets/Awatar_Developer_3.webp" alt="" width="144" height="144"></span></span></span><span class="role-chip__tip-desc">Buduje szybki i stabilny serwis. Zero awarii przy aktualizacjach i skalowaniu.</span><span class="role-chip__tip-kpi">Lepszy PageSpeed, mniej awarii.</span></span></span>, który pracuje według 6-miesięcznego planu rozwoju i&nbsp;krok po kroku przeobraża serwis w&nbsp;skuteczne narzędzie pozyskiwania klientów. Od&nbsp;3&nbsp;200&nbsp;PLN&nbsp;miesięcznie.</p>
+
+          <div class="hero__ctas">
+            <div class="cta-wrap">
+              <div class="cta-primary-tip">
+                <div class="cta-primary-tip__header">
+                  <span class="cta-primary-tip__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+                  <span class="cta-primary-tip__title">Bez zobowiązań</span>
+                </div>
+                <span class="cta-primary-tip__text">Wypróbuj współpracy bez długoterminowych umów. Jeden miesiąc wystarczy, żeby zobaczyć efekty.</span>
+                <div class="cta-primary-tip__footer">Audyt serwisu + wdrożenie Quick Wins</div>
+              </div>
+              <button type="button" class="btn btn--white btn--lg js-contact" data-cta="Hero — Rozpocznij 30-dniowy pilotaż" aria-haspopup="dialog">Rozpocznij 30-dniowy pilotaż</button>
+              <span class="cta-price-note">od 3&nbsp;200&nbsp;PLN / mies.</span>
+            </div>
+          </div>
+
+          <div class="hero__social-proof">
+            <div class="social-avatars">
+              <div class="social-avatar"><img src="design-system/assets/awatar_mateusz_zalubski.webp" alt="" width="144" height="144"></div>
+              <div class="social-avatar"><img src="design-system/assets/Awatar_joanna_maras.webp" alt="" width="144" height="144"></div>
+              <div class="social-avatar"><img src="design-system/assets/Awatar_joanna_maras.webp" alt="" width="144" height="144"></div>
+              <div class="social-avatar"><img src="design-system/assets/Awatar_kamil_zajdel.webp" alt="" width="144" height="144"></div>
+              <div class="social-avatar"><img src="design-system/assets/awatar_kriss_kozak.webp" alt="" width="144" height="144"></div>
+              <div class="social-avatar"><img src="design-system/assets/Awatar_lukasz_marciniec.webp" alt="" width="144" height="144"></div>
+            </div>
+            <span class="hero__social-proof__text">Zaufało nam <strong>30+ firm</strong> z różnych branż</span>
+          </div>
+
+        </div>
+
+        <div class="hero__visual">
+          <iframe src="https://www.videoask.com/finazkhez" allow="camera *; microphone *; autoplay *; encrypted-media *; fullscreen *; display-capture *;" title="Codeq Care – wideo"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       1b. LOGO BAR
+  ================================ -->
+  <div class="logo-bar">
+    <div class="logo-bar__track">
+      <div class="logo-bar__inner">
+        <!-- Zestaw 1 (7 logo × 2 dla szerokości) -->
+        <span class="logo-item"><img src="design-system/assets/Logo_1.svg" alt="Klient 1" loading="lazy" width="136" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_2.svg" alt="Klient 2" loading="lazy" width="179" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_3.svg" alt="Klient 3" loading="lazy" width="202" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_4.svg" alt="Klient 4" loading="lazy" width="109" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_5.svg" alt="Klient 5" loading="lazy" width="159" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_6.svg" alt="Klient 6" loading="lazy" width="218" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_7.svg" alt="Klient 7" loading="lazy" width="200" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_1.svg" alt="" loading="lazy" width="136" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_2.svg" alt="" loading="lazy" width="179" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_3.svg" alt="" loading="lazy" width="202" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_4.svg" alt="" loading="lazy" width="109" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_5.svg" alt="" loading="lazy" width="159" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_6.svg" alt="" loading="lazy" width="218" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_7.svg" alt="" loading="lazy" width="200" height="60" decoding="async"></span>
+        <!-- Zestaw 2 (duplikat dla pętli) -->
+        <span class="logo-item"><img src="design-system/assets/Logo_1.svg" alt="" loading="lazy" width="136" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_2.svg" alt="" loading="lazy" width="179" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_3.svg" alt="" loading="lazy" width="202" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_4.svg" alt="" loading="lazy" width="109" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_5.svg" alt="" loading="lazy" width="159" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_6.svg" alt="" loading="lazy" width="218" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_7.svg" alt="" loading="lazy" width="200" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_1.svg" alt="" loading="lazy" width="136" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_2.svg" alt="" loading="lazy" width="179" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_3.svg" alt="" loading="lazy" width="202" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_4.svg" alt="" loading="lazy" width="109" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_5.svg" alt="" loading="lazy" width="159" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_6.svg" alt="" loading="lazy" width="218" height="60" decoding="async"></span>
+        <span class="logo-item"><img src="design-system/assets/Logo_7.svg" alt="" loading="lazy" width="200" height="60" decoding="async"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================
+       2. PROBLEM
+  ================================ -->
+  <section class="problem" id="problem">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Problem</p>
+        <h2>Doraźne poprawki nie budują<br class="br-desktop"/> stałego dopływu leadów.</h2>
+        <p>Pojedyncze zlecenia rozwiązują bieżące problemy. Stały zespół pozwala planować zmiany, zachować wiedzę i systematycznie rozwijać serwis w kierunku lead generation.</p>
+      </div>
+      <div class="compare-wrap" id="compareWrap">
+
+        <!-- After: Codeq Care (right, behind) -->
+        <div class="compare-after">
+          <span class="compare-label">✓ Codeq Care</span>
+          <h3>Stały zespół.<br/>Wspólny kierunek.</h3>
+          <p>Zespół zna serwis i cele firmy, pracuje według ustalonych priorytetów i odpowiada za ciągłość rozwoju.</p>
+          <div class="compare-list">
+            <div class="compare-item"><span class="compare-dot">✓</span>Stała miesięczna opłata i jasno ustalony zakres</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Strateg, Project Manager, UX Designer i Developer dostępni zależnie od potrzeb</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Wiedza o serwisie pozostaje w jednym zespole</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Roadmapa i regularna aktualizacja priorytetów</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Jeden punkt kontaktu i bieżąca koordynacja prac</div>
+            <div class="compare-item"><span class="compare-dot">✓</span>Regularne podsumowania wdrożeń i kolejnych kroków</div>
+          </div>
+        </div>
+
+        <!-- Before: Stary świat (left, clips over) -->
+        <div class="compare-before" id="compareBefore">
+          <span class="compare-label">✕ Tradycyjny model zleceń</span>
+          <h3>Osobne zadania.<br/>Osobne ustalenia.</h3>
+          <p>Każda zmiana jest planowana i wyceniana oddzielnie. Ten model sprawdza się przy pojedynczych realizacjach, ale utrudnia zachowanie ciągłości rozwoju.</p>
+          <div class="compare-list">
+            <div class="compare-item"><span class="compare-dot">✕</span>Osobna wycena i termin dla każdego zadania</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Specjaliści angażowani tylko do wybranych realizacji</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Wiedza rozproszona między wykonawcami</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Priorytety ograniczone do bieżącego zlecenia</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Więcej koordynacji po stronie klienta</div>
+            <div class="compare-item"><span class="compare-dot">✕</span>Odpowiedzialność kończy się wraz z realizacją zadania</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================
+       WARIANT B — SCROLL STORYTELLING
+  ================================ -->
+  <section class="approach-b" id="how">
+    <div class="container">
+      <div class="section-header">
+        <p class="label">Jak to działa</p>
+        <h2>Serwis rozwija się w stałym rytmie.<br/>Krok po kroku.</h2>
+        <p>Od diagnozy do wdrożeń. Jeden uporządkowany proces i sześć miesięcy konsekwentnego rozwoju.</p>
+      </div>
+      <div class="story-layout">
+        <div class="story-nav">
+          <div class="story-nav__item sn-active" data-story="ss-1">
+            <span class="story-nav__num">01</span>
+            <div><span class="story-nav__month">Miesiąc 1</span><h3>Pilotaż</h3></div>
+          </div>
+          <div class="story-nav__item" data-story="ss-2">
+            <span class="story-nav__num">02</span>
+            <div><span class="story-nav__month">Miesiące 2–5</span><h3>Ciągły rozwój</h3></div>
+          </div>
+          <div class="story-nav__item" data-story="ss-3">
+            <span class="story-nav__num">03</span>
+            <div><span class="story-nav__month">Miesiąc 6</span><h3>Rozwój i ewaluacja</h3></div>
+          </div>
+        </div>
+
+        <div class="story-content">
+          <div class="story-section ss-active" id="ss-1">
+            <div class="story-section__cols">
+              <div class="story-section__intro">
+                <span class="story-section__tag">Miesiąc 1 · Pilotaż</span>
+                <h3>Odkrywamy potencjał i wdrażamy pierwsze zmiany</h3>
+                <p>Pierwszy tydzień przeznaczamy na diagnozę i ustalenie priorytetów. Kolejne trzy tygodnie to projektowanie i wdrażanie najważniejszych usprawnień. Po miesiącu masz pierwsze zrealizowane zadania i plan dalszego rozwoju. To pilotaż bez zobowiązania do dłuższej współpracy.</p>
+              </div>
+              <div class="story-section__body">
+                <div class="sprint-loop" id="sprintLoopDiagnoza">
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🔍</span><span class="sprint-step__role">Tech + UX</span><h4>Audyt techniczny i UX</h4><p>Analizujemy wydajność, bezpieczeństwo, dług technologiczny oraz ścieżki prowadzące do kontaktu. Wskazujemy bariery, które ograniczają generowanie leadów lub dalszy rozwój serwisu.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🎯</span><span class="sprint-step__role">Strateg + PM</span><h4>Backlog zmian</h4><p>Łączymy cele biznesowe i cele lead generation z wnioskami z audytu. Wybieramy działania, które mają największy potencjał i powinny zostać zrealizowane w pierwszej kolejności.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🗺️</span><span class="sprint-step__role">Strateg + PM</span><h4>Roadmapa rozwoju</h4><p>Układamy zadania według ich wpływu, pilności i pracochłonności. Otrzymujesz konkretny plan dalszego rozwoju serwisu, niezależnie od decyzji o kontynuacji współpracy.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">⚡</span><span class="sprint-step__role">UX + Dev</span><h4>Pierwsze wdrożenia</h4><p>W pozostałych tygodniach miesiąca projektujemy i wdrażamy najważniejsze usprawnienia. Pilotaż kończysz z pierwszymi zrealizowanymi zadaniami, a nie tylko z listą rekomendacji.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-section" id="ss-2">
+            <div class="story-section__cols">
+              <div class="story-section__intro">
+                <span class="story-section__tag">Miesiące 2–5 · Ciągły rozwój</span>
+                <h3>Każdy miesiąc to kolejny krok naprzód</h3>
+                <p>Pracujemy w powtarzalnych, miesięcznych cyklach. Wybieramy priorytety z roadmapy, projektujemy rozwiązania, wdrażamy je i sprawdzamy rezultaty. Dzięki temu dokładnie wiesz, nad czym pracujemy, dlaczego robimy to teraz i jak kolejne zmiany przybliżają serwis do celów firmy.</p>
+              </div>
+              <div class="story-section__body">
+                <div class="sprint-loop" id="sprintLoopB">
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🎯</span><span class="sprint-step__role">PM</span><h4>Priorytety na miesiąc</h4><p>Wybieramy z backlogu zadania, które najlepiej odpowiadają aktualnym celom i potrzebom firmy. Uwzględniamy ich potencjalny wpływ, pracochłonność oraz zależności technologiczne.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">✏️</span><span class="sprint-step__role">UX Designer</span><h4>Projektowanie rozwiązań</h4><p>Zamieniamy wybrane zadania w konkretne widoki, ścieżki i funkcjonalności. Każde rozwiązanie jest dopracowane pod kątem użyteczności, spójności wizualnej i celu biznesowego.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🛠️</span><span class="sprint-step__role">Developer</span><h4>Wdrożenie i kontrola jakości</h4><p>Wprowadzamy zmiany, testujemy ich działanie i publikujemy je w serwisie. Dbamy o stabilność, wydajność oraz to, aby kolejne wdrożenia nie zwiększały długu technologicznego.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">📊</span><span class="sprint-step__role">Cały zespół</span><h4>Pomiar i kolejny krok</h4><p>Sprawdzamy rezultaty wdrożonych zmian, w tym liczbę i jakość pozyskanych leadów, aktualizujemy backlog i ustalamy priorytety na kolejny miesiąc. Każdy cykl wykorzystuje wiedzę zdobytą w poprzednim.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-section" id="ss-3">
+            <div class="story-section__cols">
+              <div class="story-section__intro">
+                <span class="story-section__tag">Miesiąc 6 · Rozwój i ewaluacja</span>
+                <h3>Wdrażamy dalej i wyznaczamy kolejny kierunek</h3>
+                <p>Szósty miesiąc przebiega w tym samym rytmie. Ustalamy priorytety, projektujemy rozwiązania i realizujemy kolejne wdrożenia. Równolegle podsumowujemy cały cykl współpracy, oceniamy zrealizowane działania i wyznaczamy kierunek rozwoju na kolejne miesiące.</p>
+              </div>
+              <div class="story-section__body">
+                <div class="sprint-loop" id="sprintLoopQBR">
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🎯</span><span class="sprint-step__role">PM</span><h4>Priorytety na miesiąc</h4><p>Wybieramy kolejne zadania z backlogu i planujemy ich realizację zgodnie z aktualnymi potrzebami firmy.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🛠️</span><span class="sprint-step__role">UX + Dev</span><h4>Projektowanie i wdrożenia</h4><p>Kontynuujemy pracę nad rozwiązaniami i publikujemy kolejne usprawnienia. Szósty miesiąc pozostaje pełnym miesiącem realizacji.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">📊</span><span class="sprint-step__role">Strateg + PM</span><h4>Ewaluacja cyklu</h4><p>Podsumowujemy wykonane zadania, najważniejsze zmiany i wnioski z sześciu miesięcy współpracy.</p></div>
+                  <div class="sprint-step"><div class="sprint-step__bar"></div><span class="sprint-step__icon">🗺️</span><span class="sprint-step__role">Strateg</span><h4>Plan kolejnego etapu</h4><p>Aktualizujemy backlog i roadmapę, wskazując priorytety oraz rekomendowany kierunek rozwoju na następny okres.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       7b. CASE STUDIES
+  ================================ -->
+  <section class="cases section" id="cases">
+      <div class="cases-stage">
+        <div class="cases-stage__corner" aria-hidden="true"></div>
+
+        <!-- icon sprite -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <symbol id="ci-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+          <symbol id="ci-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+          <symbol id="ci-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+          <symbol id="ci-results" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 16.5 8.5 11.5 1 19"/><polyline points="17 6 23 6 23 12"/></symbol>
+          <symbol id="ci-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></symbol>
+          <symbol id="ci-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></symbol>
+          <symbol id="ci-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
+        </svg>
+
+        <div class="cases-stage__head">
+          <h2>Firmy, które z nami rosną.</h2>
+          <div class="carousel-nav" data-carousel="casesGrid">
+            <button class="carousel-nav__btn" data-dir="-1" aria-controls="casesGrid" aria-label="Poprzedni"><svg><use href="#ci-prev"/></svg></button>
+            <button class="carousel-nav__btn" data-dir="1" aria-controls="casesGrid" aria-label="Następny"><svg><use href="#ci-next"/></svg></button>
+          </div>
+        </div>
+        <div class="cases-cta">
+          <p class="cases-cta__lead">Następna historia wzrostu może zacząć się od pilotażu. <button type="button" class="link-btn cases-cta__link js-contact" data-cta="Case studies — Zacznij Pilotaż" aria-haspopup="dialog">Zacznij Pilotaż →</button></p>
+        </div>
+
+        <div class="cases-grid" id="casesGrid">
+
+          <!-- Card 1: Performance + Core Web Vitals -->
+          <article class="case-card">
+            <div class="case-card__quote">
+              <span class="case-quote-mark">&ldquo;</span>
+              <p class="case-quote">Katalog produktów ładuje się kilka sekund na telefonie. <mark class="case-hl">Ruch z kampanii odpada</mark>, zanim ktoś wyśle zapytanie.</p>
+              <div class="case-attrib">
+                <div class="case-attrib__brand">Przemysł &amp; produkcja</div>
+                <div class="case-attrib__meta">Roczne obroty: 5–10 mln PLN<br/>Codeq Care Growth</div>
+              </div>
+            </div>
+            <div class="case-card__divider" aria-hidden="true"></div>
+            <div class="case-card__detail">
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-flag"/></svg>Wyzwanie</div>
+                <p>Ciężki serwis z katalogiem produktów: słabe Core Web Vitals, wysoki odsetek odrzuceń i utracone zapytania z kampanii.</p>
+              </div>
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
+                <p>Audyt wydajności + optymalizacja Core Web Vitals, obrazów, cache i hostingu.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: UX + ścieżki do kontaktu -->
+          <article class="case-card">
+            <div class="case-card__quote">
+              <span class="case-quote-mark">&ldquo;</span>
+              <p class="case-quote">Ruch rośnie, ale formularz milczy. <mark class="case-hl">Odwiedzający nie wiedzą, od czego zacząć</mark> i gdzie zapytać o ofertę.</p>
+              <div class="case-attrib">
+                <div class="case-attrib__brand">Usługi dla biznesu</div>
+                <div class="case-attrib__meta">Roczne obroty: 2–4 mln PLN<br/>Codeq Care Growth</div>
+              </div>
+            </div>
+            <div class="case-card__divider" aria-hidden="true"></div>
+            <div class="case-card__detail">
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-flag"/></svg>Wyzwanie</div>
+                <p>Rozbudowana oferta bez jasnej ścieżki: odwiedzający nie trafiają do formularza, a zapytania są przypadkowe.</p>
+              </div>
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
+                <p>Warsztaty Discovery, audyt UX + nowa architektura informacji i ścieżki prowadzące do kontaktu.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Utrzymanie + administracja CMS -->
+          <article class="case-card">
+            <div class="case-card__quote">
+              <span class="case-quote-mark">&ldquo;</span>
+              <p class="case-quote">Każda zmiana tekstu wymaga developera, a aktualizacja CMS-a to loteria. <mark class="case-hl">Marketing czeka tygodniami</mark> na proste poprawki.</p>
+              <div class="case-attrib">
+                <div class="case-attrib__brand">Doradztwo &amp; finanse</div>
+                <div class="case-attrib__meta">Roczne obroty: 1–2 mln PLN<br/>Codeq Care Flexi Stability</div>
+              </div>
+            </div>
+            <div class="case-card__divider" aria-hidden="true"></div>
+            <div class="case-card__detail">
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-flag"/></svg>Wyzwanie</div>
+                <p>Przestarzały CMS bez dokumentacji: kosztowne utrzymanie, ryzykowne aktualizacje i zależność od jednej osoby.</p>
+              </div>
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
+                <p>Audyt techniczny, spłata długu technicznego + panel, w którym marketing sam edytuje treści.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Redesign + nowe podstrony -->
+          <article class="case-card">
+            <div class="case-card__quote">
+              <span class="case-quote-mark">&ldquo;</span>
+              <p class="case-quote">Strona nie nadąża za firmą. Mamy nowe usługi i rynki, a <mark class="case-hl">każda nowa podstrona to osobny projekt</mark>.</p>
+              <div class="case-attrib">
+                <div class="case-attrib__brand">Logistyka &amp; transport</div>
+                <div class="case-attrib__meta">Roczne obroty: 8–10 mln PLN<br/>Codeq Care Growth</div>
+              </div>
+            </div>
+            <div class="case-card__divider" aria-hidden="true"></div>
+            <div class="case-card__detail">
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-flag"/></svg>Wyzwanie</div>
+                <p>Serwis sprzed lat nie odpowiada ofercie ani wizerunkowi spółki, a dodanie podstrony trwa tygodniami.</p>
+              </div>
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
+                <p>Redesign na bibliotece komponentów + szablony usług, branż i landing page’y.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Opieka nad blogiem -->
+          <article class="case-card">
+            <div class="case-card__quote">
+              <span class="case-quote-mark">&ldquo;</span>
+              <p class="case-quote">Blog przyprowadza nam najwięcej klientów, ale <mark class="case-hl">nikt nie panuje nad jego stroną techniczną</mark>.</p>
+              <div class="case-attrib">
+                <div class="case-attrib__brand">Portal ekspercki B2B</div>
+                <div class="case-attrib__meta">Roczne obroty: 500 tys.–1 mln PLN<br/>Codeq Care Stability</div>
+              </div>
+            </div>
+            <div class="case-card__divider" aria-hidden="true"></div>
+            <div class="case-card__detail">
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-flag"/></svg>Wyzwanie</div>
+                <p>Duży blog z problemami indeksacji, zduplikowanymi treściami, wolnymi wpisami i chaotycznym linkowaniem wewnętrznym.</p>
+              </div>
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
+                <p>Stała opieka nad blogiem: SEO techniczne, porządek w kategoriach i tagach, szablony wpisów + monitoring.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: GEO + SEO techniczne -->
+          <article class="case-card">
+            <div class="case-card__quote">
+              <span class="case-quote-mark">&ldquo;</span>
+              <p class="case-quote">Klienci pytają ChatGPT o dostawców, a <mark class="case-hl">nas w tych odpowiedziach nie ma</mark>. W Google też tracimy pozycje.</p>
+              <div class="case-attrib">
+                <div class="case-attrib__brand">Technologie &amp; SaaS</div>
+                <div class="case-attrib__meta">Roczne obroty: 3–5 mln PLN<br/>Codeq Care Growth</div>
+              </div>
+            </div>
+            <div class="case-card__divider" aria-hidden="true"></div>
+            <div class="case-card__detail">
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-flag"/></svg>Wyzwanie</div>
+                <p>Brak widoczności w odpowiedziach AI i spadki w Google przez błędy techniczne, słabą strukturę treści i brak danych strukturalnych.</p>
+              </div>
+              <div class="case-block">
+                <div class="case-block__head"><svg><use href="#ci-check"/></svg>Rozwiązanie</div>
+                <p>Audyt SEO technicznego + GEO: dane strukturalne, struktura treści pod AI Overviews i asystentów AI.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+  </section>
+
+  <!-- ================================
+       4. THE SQUAD
+  ================================ -->
+  <section class="squad" id="squad">
+    <div class="container">
+      <div class="section-header">
+        <h2>Strategia, projekt i wdrożenia<br/>w rękach jednego zespołu.</h2>
+        <p>Kompetencje czterech specjalistów warte ponad 40 000 zł/mc, za ułamek tej ceny. Bez rekrutacji i etatów.</p>
+      </div>
+
+      <div class="squad-selector">
+
+        <!-- Left nav -->
+        <nav class="squad-nav">
+          <div class="squad-nav__item sq-active" data-squad="sq-1">
+            <span class="squad-nav__icon">🧠</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 01</span>
+              <span class="squad-nav__name">Strateg</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Strateg_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Strateg_2.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Strateg_3.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+          </div>
+          <div class="squad-nav__item" data-squad="sq-2">
+            <span class="squad-nav__icon">🗂️</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 02</span>
+              <span class="squad-nav__name">Project Manager</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_PM_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av">P</div>
+              </div>
+            </div>
+          </div>
+          <div class="squad-nav__item" data-squad="sq-3">
+            <span class="squad-nav__icon">🎨</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 03</span>
+              <span class="squad-nav__name">UX Designer</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Design_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Design_2.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Design_3.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+          </div>
+          <div class="squad-nav__item" data-squad="sq-4">
+            <span class="squad-nav__icon">💻</span>
+            <div class="squad-nav__meta">
+              <span class="squad-nav__num">Rola 04</span>
+              <span class="squad-nav__name">Developer</span>
+              <div class="squad-nav__avs">
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Developer_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Developer_2.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+                <div class="squad-nav__av"><img src="design-system/assets/Awatar_Developer_3.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Right panels -->
+        <div class="squad-panels">
+
+          <div class="squad-panel sq-active" id="sq-1">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">🧠</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 01 · Strategia</span>
+                <p class="squad-panel__title">Strateg</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Na początku współpracy wyznacza strategiczne kierunki rozwoju, przekładając cele biznesowe, dane i potrzeby klientów na konkretny plan działania. Pozostaje w projekcie na każdym etapie i pilnuje, by bieżące decyzje służyły długofalowym celom, a każda inwestycja miała uzasadnienie w liczbach. Na koniec 6-miesięcznego cyklu podsumowuje efekty i rekomenduje kolejny kierunek rozwoju. Dzięki temu zespół nie realizuje przypadkowej listy zadań, za to każda inicjatywa ma jasno określone „po co”.</p>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Strateg_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Grzegorz</span><span class="squad-person__sub">Strateg digital</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Strateg_2.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Paweł</span><span class="squad-person__sub">Strateg digital</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Strateg_3.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Tadeusz</span><span class="squad-person__sub">Strateg digital</span></div></div>
+            </div>
+          </div>
+
+          <div class="squad-panel" id="sq-2">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">🗂️</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 02 · Koordynacja</span>
+                <p class="squad-panel__title">Project Manager</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Przekłada strategię na konkretny plan działania: ustala priorytety, planuje zadania i określa terminy. Koordynuje pracę specjalistów, pilnuje wdrożeń i usuwa przeszkody, aby kolejne etapy sprawnie przechodziły od pomysłu do realizacji. Jest głównym punktem kontaktu między klientem a zespołem, dba o jasną komunikację, bieżące ustalenia i widoczność postępów. Krótko mówiąc: sprawia, że rzeczy się dzieją.</p>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_PM_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Weronika</span><span class="squad-person__sub">Project Manager</span></div></div>
+            </div>
+          </div>
+
+          <div class="squad-panel" id="sq-3">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">🎨</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 03 · Konwersja</span>
+                <p class="squad-panel__title">UX Designer</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Przekłada zadania wynikające ze strategii na konkretne rozwiązania, nadając im formę, strukturę i logikę działania. Projektuje widoki, ścieżki i interakcje tak, aby były intuicyjne dla użytkowników i prowadziły do kontaktu z firmą. Dba o spójność wizualną całego serwisu oraz o to, by każdy nowy element pasował do istniejącego doświadczenia. Dzięki temu zespół deweloperski dostaje przemyślany projekt, a nie tylko ogólny pomysł.</p>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Design_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Agnieszka</span><span class="squad-person__sub">UX/UI Designer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Design_2.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Karol</span><span class="squad-person__sub">UX/UI Designer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Design_3.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Miłosz</span><span class="squad-person__sub">UX/UI Designer</span></div></div>
+            </div>
+          </div>
+
+          <div class="squad-panel" id="sq-4">
+            <div class="squad-panel__top">
+              <span class="squad-panel__icon">💻</span>
+              <div class="squad-panel__head">
+                <span class="squad-panel__role-num">Rola 04 · Egzekucja</span>
+                <p class="squad-panel__title">Developer</p>
+              </div>
+            </div>
+            <p class="squad-panel__desc">Przekłada wizję UX Designera na sprawnie działające rozwiązania, dbając o jakość, wydajność i stabilność wdrożenia. Dobiera technologię odpowiednią do środowiska, od sprawdzonych systemów CMS, takich jak WordPress, po rozwiązania tworzone na miarę. Pilnuje, aby kolejne zmiany nie zwiększały długu technologicznego i nie utrudniały dalszego rozwoju. Dzięki temu serwis pozostaje szybki, bezpieczny i gotowy na następne etapy rozwoju.</p>
+            <div class="squad-panel__people">
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Developer_1.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Kamil</span><span class="squad-person__sub">Developer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Developer_2.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Tomek</span><span class="squad-person__sub">Developer</span></div></div>
+              <div class="squad-person"><div class="squad-person__av"><img src="design-system/assets/Awatar_Developer_3.webp" alt="" width="144" height="144" loading="lazy" decoding="async"></div><div class="squad-person__info"><span class="squad-person__name">Rafał</span><span class="squad-person__sub">Developer</span></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       4b. VIDEO TESTIMONIALS
+  ================================ -->
+  <section class="video-testimonials section">
+    <div class="container vt-head">
+      <a class="vt-clutch-badge" href="https://clutch.co/profile/codeq" target="_blank" rel="noopener noreferrer">
+        <span>5.0 rating</span>
+        <svg width="61" height="17" viewBox="0 0 61 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Clutch" role="img">
+          <g clip-path="url(#clip0_clutch_vt)">
+            <path d="M15.8794 0H18.6551V17H15.8794V0ZM28.3702 11.577C28.3702 14.1787 26.1379 14.3861 25.4738 14.3861C23.8146 14.3861 23.5127 12.8642 23.5127 11.9462V5.44H20.7369V11.9326C20.7369 13.5442 21.2532 14.8743 22.1581 15.761C22.9575 16.5451 24.1553 16.9735 25.4529 16.9735C26.3731 16.9735 27.6763 16.6926 28.3702 16.0718V17H31.146V5.44H28.3702V11.577ZM36.6975 1.36H33.9217V5.44H31.8399V8.16H33.9217V17H36.6975V8.16H38.7793V5.44H36.6975V1.36ZM47.5208 13.5436C46.9164 14.076 46.1184 14.3711 45.2426 14.3711C43.3121 14.3711 41.8944 12.9819 41.8944 11.0745C41.8944 9.16708 43.267 7.83632 45.2426 7.83632C46.1031 7.83632 46.9164 8.11716 47.5361 8.6496L47.9573 9.00456L49.8288 7.17128L49.3604 6.75716C48.2592 5.78272 46.797 5.236 45.2419 5.236C41.7722 5.236 39.2526 7.68944 39.2526 11.0602C39.2526 14.4167 41.8326 16.9578 45.2419 16.9578C46.8262 16.9578 48.3036 16.4111 49.391 15.421L49.8434 15.0069L47.9427 13.175L47.5208 13.5436ZM59.7362 6.44776C58.9367 5.6644 57.9999 5.236 56.7023 5.236C55.7821 5.236 54.7398 5.51684 54.0459 6.137V0H51.2701V17H54.0459V10.6318C54.0459 8.03012 55.932 7.8234 56.5961 7.8234C58.2553 7.8234 58.2095 9.34592 58.2095 10.2626V17H60.9852V10.2768C60.9852 8.66524 60.6418 7.33516 59.7362 6.44776Z" fill="white"/>
+            <path d="M45.1504 9.1377C45.6827 9.1377 46.1931 9.34489 46.5695 9.71369C46.9458 10.0825 47.1573 10.5827 47.1573 11.1043C47.1573 11.6258 46.9458 12.126 46.5695 12.4948C46.1931 12.8636 45.6827 13.0708 45.1504 13.0708C44.6182 13.0708 44.1077 12.8636 43.7314 12.4948C43.355 12.126 43.1436 11.6258 43.1436 11.1043C43.1436 10.5827 43.355 10.0825 43.7314 9.71369C44.1077 9.34489 44.6182 9.1377 45.1504 9.1377Z" fill="#FF3D2E"/>
+            <path d="M11.9932 12.7303C10.9377 13.7945 9.50402 14.3712 7.9954 14.3712C4.90322 14.3712 2.65487 11.9912 2.65487 8.72447C2.65487 5.44279 4.90322 3.06279 7.9954 3.06279C9.48944 3.06279 10.9072 3.63875 11.9786 4.68867L12.4005 5.10279L14.2561 3.28447L13.8488 2.87035C12.3103 1.31791 10.2285 0.476074 7.9954 0.476074C3.43971 0.476074 0.0151367 4.02363 0.0151367 8.73875C0.0151367 13.4396 3.45498 16.9729 7.9954 16.9729C10.2438 16.9729 12.3256 16.1161 13.864 14.5636L14.2714 14.1495L12.431 12.3019L11.9932 12.7303Z" fill="white"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_clutch_vt">
+              <rect width="61" height="17" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+      <div class="carousel-nav" data-carousel="vtTrack">
+        <button class="carousel-nav__btn" data-dir="-1" aria-controls="vtTrack" aria-label="Poprzednia opinia"><svg><use href="#ci-prev"/></svg></button>
+        <button class="carousel-nav__btn" data-dir="1" aria-controls="vtTrack" aria-label="Następna opinia"><svg><use href="#ci-next"/></svg></button>
+      </div>
+    </div>
+      <div class="vt-slider">
+        <div class="vt-track" id="vtTrack">
+
+          <!-- 1: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_daniel_bala.webp" alt="Daniel Bała" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Daniel Bała</div>
+                <div class="vt-author__role">Founder Personal Aus Polen</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Polecam Codeq za jakość i transparentność. Projekt został zrealizowany zgodnie z KPI i budżetem."</p>
+            <p class="vt-text">Zależało nam na tym, aby strona nie tylko dobrze wyglądała, ale przede wszystkim budowała zaufanie wśród niemieckich pracodawców, którzy mają bardzo wysokie wymagania co do profesjonalizmu i transparentności. Zespół Codeq od razu zrozumiał specyfikę naszego biznesu i wyzwania, z jakimi mierzymy się na rynku niemieckim.</p>
+          </article>
+
+          <!-- 2: wideo -->
+          <article class="vt-slide vt-slide--video">
+            <video playsinline preload="metadata">
+              <source src="design-system/assets/dr_nerwica.webm" type="video/webm">
+              <source src="design-system/assets/dr_nerwica.mp4" type="video/mp4">
+            </video>
+            <!-- Okładka: podmień src na własny plik. Znika po kliknięciu Play. -->
+            <img class="vt-cover" src="design-system/assets/Dr_nerwica_cover.webp" alt="" onerror="this.remove()" width="800" height="1093" loading="lazy" decoding="async">
+            <div class="vt-grad"></div>
+            <span class="vt-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>Wideo</span>
+            <button class="vt-play" aria-label="Odtwórz wideo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="vt-video-author">
+              <div class="vt-video-author__name">Marcin Matych</div>
+              <div class="vt-video-author__role">CEO Dr Nerwica</div>
+            </div>
+          </article>
+
+          <!-- 3: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_michal_kuzniar.webp" alt="Michał Kuźniar" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Michał Kuźniar</div>
+                <div class="vt-author__role">Owner Pulsetto Polska</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Współpraca z Codeq to czysta przyjemność. Dostaliśmy skalowalny sklep Shopify i wsparcie po wdrożeniu. Polecam."</p>
+            <p class="vt-text">Zespół przeprowadził dla nas proces Discovery, zadbał o ścieżkę zakupową pod kątem UX i opiekuje się naszym e-commerce na Shopify. Doceniamy również eksperckie podejście do platformy oraz stałe wsparcie.</p>
+          </article>
+
+          <!-- 4: wideo -->
+          <article class="vt-slide vt-slide--video">
+            <video playsinline preload="metadata">
+              <source src="design-system/assets/supersonic.webm" type="video/webm">
+              <source src="design-system/assets/supersonic.mp4" type="video/mp4">
+            </video>
+            <img class="vt-cover" src="design-system/assets/Kriss_cover.webp" alt="" onerror="this.remove()" width="800" height="1093" loading="lazy" decoding="async">
+            <div class="vt-grad"></div>
+            <span class="vt-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>Wideo</span>
+            <button class="vt-play" aria-label="Odtwórz wideo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="vt-video-author">
+              <div class="vt-video-author__name">Chris Kozak</div>
+              <div class="vt-video-author__role">CEO SUPERSONIC Food</div>
+            </div>
+          </article>
+
+          <!-- 5: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_marcin_stypula.webp" alt="Marcin Stypuła" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Marcin Stypuła</div>
+                <div class="vt-author__role">CEO @ Semcore</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Doceniamy za determinację w osiąganiu zakładanych celów."</p>
+            <p class="vt-text">Współpracujemy Codeq zgodnie z podejściem Continuous Improvement. Umiejętność zwinnego zarządzania projektami, połączona z twardymi kompetencjami w postaci web developmentu oraz UX/UI czynią naszą współpracę efektywną, a zarazem transparentną.</p>
+          </article>
+
+          <!-- 6: wideo -->
+          <article class="vt-slide vt-slide--video">
+            <video playsinline preload="metadata">
+              <source src="design-system/assets/enterploy.webm" type="video/webm">
+            </video>
+            <img class="vt-cover" src="design-system/assets/krzysiek-enterploy.webp" alt="" onerror="this.remove()" width="758" height="827" loading="lazy" decoding="async">
+            <div class="vt-grad"></div>
+            <span class="vt-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>Wideo</span>
+            <button class="vt-play" aria-label="Odtwórz wideo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div class="vt-video-author">
+              <div class="vt-video-author__name">Krzysztof Szymko</div>
+              <div class="vt-video-author__role">Owner Enterploy</div>
+            </div>
+          </article>
+
+          <!-- 7: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_janusz_kaminski.webp" alt="Janusz Kamiński" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Janusz Kamiński</div>
+                <div class="vt-author__role">Marketing Manager BISAR</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Partnerska relacja, wyjątkowe zaangażowanie i zrozumienie potrzeb klienta to cechy, które w mojej ocenie definiują firmę Codeq."</p>
+            <p class="vt-text">Współpraca z Codeq przy kompleksowym redesignie naszej strony internetowej była doskonałą decyzją biznesową. Szukaliśmy partnera, który nie tylko 'przepisze' naszą stronę na nowo, ale wniesie realną wartość merytoryczną i technologiczną – i dokładnie to otrzymaliśmy.</p>
+          </article>
+
+          <!-- 8: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_lukasz_kluj.webp" alt="Łukasz Kluj" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Łukasz Kluj</div>
+                <div class="vt-author__role">Head of Marketing CERI</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"To co wyróżnia firmę Codeq to wsłuchiwanie w potrzeby klienta."</p>
+            <p class="vt-text">Projekt obejmował stworzenie nowej strony internetowej dla naszej firmy. Nasze prośby i komentarze były zawsze cierpliwie wysłuchane i wzięte pod uwagę. W wielu sytuacjach Codeq był w stanie zaproponować, w którym kierunku podążyć, a czego unikać. Zdecydowanie polecam współpracę z firmą Codeq.</p>
+          </article>
+
+          <!-- 9: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_kamil_zajdel.webp" alt="Kamil Zajdel" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Kamil Zajdel</div>
+                <div class="vt-author__role">Specjalista ds. ecommerce @ Astor</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Codeq skutecznie opracował nowe narzędzia, które pozwoliły lepiej dotrzeć do klientów i zgromadzić więcej opinii."</p>
+            <p class="vt-text">Wykazali się głębokim zrozumieniem celów klienta i konsekwentnie dążyli do ich realizacji. Dodatkowo wyróżniali się doskonałą komunikacją, szybko odpowiadając na pytania oraz wykazując kreatywność i sprawność w rozwiązywaniu problemów.</p>
+          </article>
+
+          <!-- 10: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_joanna_maras.webp" alt="Joanna Maras" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Joanna Maras</div>
+                <div class="vt-author__role">Kierownik ds komunikacji i marki @ Pelion S.A.</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Polecam współpracę z Codeq każdemu, kto szuka rzetelnego i kreatywnego partnera w dziedzinie optymalizacji serwisów internetowych."</p>
+            <p class="vt-text">Od samego początku komunikacja przebiegała sprawnie i bezproblemowo, co pozwoliło nam na wyrażenie własnych wizji i oczekiwań, a budowa serwisu rekrutacyjnego przebiegała bez zakłóceń.</p>
+          </article>
+
+          <!-- 11: tekst -->
+          <article class="vt-slide vt-slide--text">
+            <div class="vt-author">
+              <img class="vt-avatar" src="design-system/assets/Awatar_lukasz_marciniec.webp" alt="Łukasz Marciniec" width="144" height="144" loading="lazy" decoding="async">
+              <div class="vt-author__info">
+                <div class="vt-author__name">Łukasz Marciniec</div>
+                <div class="vt-author__role">CEO @ Harmonia Nieruchomości</div>
+              </div>
+              <span class="vt-quote">&rdquo;</span>
+            </div>
+            <p class="vt-headline">"Zaprojektowanie nowego brandu naszej firmy i strony internetowej to prawdziwy kamień milowy w naszym biznesie."</p>
+            <p class="vt-text">Już kilka tygodni po premierze serwisu i podjęciu działań marketingowych zainteresowanie firmą zaczęło rosnąć.</p>
+          </article>
+
+        </div>
+      </div>
+  </section>
+
+  <!-- ================================
+       5. SPRINT SIMULATOR
+  ================================ -->
+  <div id="paths"></div>
+
+  <!-- CONFIGURATOR MODAL -->
+
+  <!-- ================================
+       8. PRICING
+  ================================ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Cennik</h2>
+        <p>Flat Fee — jedna faktura, pełny zespół, jasne zasady.</p>
+      </div>
+
+      <div class="pricing-toggle-wrap">
+        <div class="pricing-toggle">
+          <button class="pricing-toggle__btn active" data-mode="annual">
+            <div>
+              Umowa 6 mcy
+              <span class="pricing-toggle__sub">Niższa cena</span>
+            </div>
+            <span class="pricing-toggle__save">−15%</span>
+          </button>
+          <button class="pricing-toggle__btn" data-mode="flexi">
+            <div>
+              Flexi
+              <span class="pricing-toggle__sub">1 mies. wypowiedzenie</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Stability -->
+        <div class="price-card">
+          <p class="price-card__name">Pakiet Stability</p>
+          <h3>Stabilność i optymalizacja</h3>
+          <div class="price-card__price">
+            <span class="price-card__amount" data-annual="3 200" data-flexi="3 680">3 200</span>
+            <span class="price-card__currency">PLN</span>
+          </div>
+          <p class="price-card__period">Dla firm, których serwis potrzebuje stałej opieki pełnego zespołu, ale koncentrują się przede wszystkim na stabilności technicznej, optymalizacjach i bieżących usprawnieniach, a nie dużych pracach rozwojowych.</p>
+          <div class="price-card__divider"></div>
+          <div class="price-card__features">
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-1">Pełny zespół <span class="price-feature__last">specjalistów<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-1">Project Manager, Senior Developer, UX Designer i Strateg dostępni zależnie od potrzeb serwisu.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-2">Technologia pod stałą <span class="price-feature__last">opieką<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-2">Senior Developer odpowiada za utrzymanie, aktualizacje, bezpieczeństwo, wydajność i kondycję techniczną serwisu.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-3">Regularne <span class="price-feature__last">usprawnienia<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-3">Realizujemy poprawki i mniejsze optymalizacje, które usprawniają działanie serwisu bez angażowania się w duże projekty rozwojowe.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-4">UX wspierający <span class="price-feature__last">utrzymanie<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-4">Usuwamy problemy z użytecznością, dopracowujemy istniejące widoki i dbamy o spójność wprowadzanych zmian.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-5">Priorytetowa obsługa <span class="price-feature__last">problemów<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-5">Reagujemy na awarie i błędy wpływające na działanie serwisu lub formularzy kontaktowych.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-6">Planowanie i miesięczne <span class="price-feature__last">podsumowanie<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-6">Ustalamy priorytety, koordynujemy prace i jasno raportujemy, co zostało zrealizowane oraz co rekomendujemy dalej.</span></div>
+          </div>
+          <button type="button" class="btn btn--outline-blue btn--lg price-card__cta js-contact" data-cta="Cennik: Stabilność i optymalizacja — Zadbaj o stabilność serwisu" aria-haspopup="dialog">Zadbaj o stabilność serwisu →</button>
+        </div>
+
+        <!-- Growth -->
+        <div class="price-card price-card--featured">
+          <span class="price-card__badge">Dla firm gotowych na wzrost</span>
+          <p class="price-card__name">Pakiet Growth</p>
+          <h3>Rozwój i lead generation</h3>
+          <div class="price-card__price">
+            <span class="price-card__amount" data-annual="6 400" data-flexi="7 360">6 400</span>
+            <span class="price-card__currency">PLN</span>
+          </div>
+          <p class="price-card__period">Dla firm, które chcą systematycznie rozwijać serwis, generować więcej wartościowych leadów oraz wdrażać nowe funkcjonalności.</p>
+          <div class="price-card__divider"></div>
+          <div class="price-card__features">
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-7">Wszystko, czego potrzebuje stabilny <span class="price-feature__last">serwis<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-7">Utrzymanie techniczne, bezpieczeństwo, monitoring i bieżące usprawnienia pozostają częścią współpracy.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-8">Pełny zespół z większą przestrzenią na <span class="price-feature__last">rozwój<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-8">Strateg, Project Manager, UX Designer i Senior Developer pracują nad wspólnymi celami oraz kolejnymi etapami rozwoju serwisu.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-9">Strategiczny kierunek <span class="price-feature__last">działań<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-9">Łączymy cele biznesowe, dane i wiedzę o klientach, aby wybierać inicjatywy z największym potencjałem.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-10">UX i optymalizacja <span class="price-feature__last">konwersji<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-10">Projektujemy ścieżki, widoki i usprawnienia, które ułatwiają kontakt oraz wspierają pozyskiwanie leadów.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-11">Nowe funkcjonalności i <span class="price-feature__last">automatyzacje<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-11">Rozwijamy serwis o rozwiązania dopasowane do jego potrzeb, od nowych funkcji po integracje z CRM i automatyzację procesów.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-12">Regularne wdrożenia i <span class="price-feature__last">ewaluacja<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-12">Pracujemy w miesięcznych cyklach, mierzymy rezultaty i aktualizujemy priorytety. Po sześciu miesiącach podsumowujemy cały etap i wyznaczamy kolejny kierunek.</span></div>
+          </div>
+          <button type="button" class="btn btn--primary btn--lg price-card__cta js-contact" data-cta="Cennik: Rozwój i lead generation — Rozwijaj i buduj serwis" aria-haspopup="dialog">Rozwijaj i buduj serwis →</button>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="price-card price-card--enterprise">
+          <p class="price-card__name">Pakiet Enterprise</p>
+          <h3>Transformacja i rozwój</h3>
+          <div class="price-card__price">
+            <span class="price-card__amount price-card__amount--custom">Indywidualna wycena</span>
+          </div>
+          <p class="price-card__period">Dla firm, które mają ambitne cele rozwojowe, ale ich obecna technologia, architektura lub procesy ograniczają dalszy wzrost. Najpierw budujemy stabilny fundament, a następnie przechodzimy do regularnego rozwoju.</p>
+          <div class="price-card__divider"></div>
+          <div class="price-card__features">
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-13">Diagnoza i plan <span class="price-feature__last">transformacji<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-13">Oceniamy obecną technologię, UX, integracje i procesy. Określamy, co należy poprawić, przebudować lub zmigrować.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-14">Projekt przygotowujący serwis do <span class="price-feature__last">wzrostu<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-14">Modernizujemy istniejące rozwiązanie albo tworzymy zoptymalizowaną wersję serwisu, która będzie gotowa na dalszy rozwój.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-15">Architektura, integracje i <span class="price-feature__last">automatyzacje<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-15">Projektujemy rozwiązania dopasowane do skali działalności, systemów wykorzystywanych w firmie i planów na kolejne lata.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-16">Dedykowany zespół i <span class="price-feature__last">roadmapa<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-16">Dobieramy skład zespołu, zakres prac i sposób realizacji do złożoności projektu oraz priorytetów biznesowych.</span></div>
+            <div class="price-feature"><span class="price-feature__check">✓</span><button type="button" class="price-feature__title" aria-describedby="pf-17">Płynne przejście do <span class="price-feature__last">Growth<svg class="price-feature__info" aria-hidden="true"><use href="#ci-info"/></svg></span></button><span class="price-feature__tip" role="tooltip" id="pf-17">Po zbudowaniu stabilnego zaplecza przechodzimy do regularnych cykli rozwoju, optymalizacji i nowych wdrożeń.</span></div>
+          </div>
+          <button type="button" class="btn btn--outline-blue btn--lg price-card__cta js-contact" data-cta="Cennik: Transformacja i rozwój — Zaplanujmy transformację serwisu" aria-haspopup="dialog">Zaplanujmy transformację serwisu →</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================
+       9. FAQ
+  ================================ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Masz pytania?<br/>Mamy odpowiedzi.</h2>
+        <p>Najczęstsze wątpliwości przed startem współpracy.</p>
+      </div>
+
+      <div class="faq__grid">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy mogę zmienić pakiet po rozpoczęciu współpracy?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Tak. Potrzeby firmy mogą zmieniać się w czasie, dlatego przed rozpoczęciem kolejnego miesiąca możemy wspólnie dopasować pakiet i zakres prac. Jeśli serwis potrzebuje większej przestrzeni na nowe funkcjonalności i pozyskiwanie leadów, możesz przejść ze Stability na Growth. Gdy priorytetem ponownie stanie się utrzymanie i mniejsze usprawnienia, możemy odpowiednio ograniczyć zakres współpracy. Szczegółowe zasady zmiany pakietu zależą od wybranego modelu umowy.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy niewykorzystany czas zespołu przechodzi na kolejny miesiąc?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Nie. Pakiety nie są bankiem godzin. Co miesiąc rezerwujemy dla Ciebie określoną dostępność zespołu i planujemy zakres prac odpowiadający aktualnym priorytetom. Rozliczamy się za realizację uzgodnionych celów, a nie za liczbę wykorzystanych godzin. Dzięki temu skupiamy się na wartości dostarczanych zmian, a nie na „wyrabianiu czasu”.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy mogę zmienić zadania w trakcie miesiąca?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Tak, szczególnie gdy pojawi się awaria, pilna potrzeba biznesowa lub nowa informacja wpływająca na priorytety. Project Manager oceni wpływ zmiany na zaplanowane prace i zaproponuje najlepsze rozwiązanie. Mniejsze zadanie możemy zamienić na inne o podobnej pracochłonności. Większe zmiany zakresu planujemy zwykle na kolejny cykl, aby nie przerywać rozpoczętej pracy i nie generować niepotrzebnych kosztów.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Jak wygląda rozpoczęcie współpracy?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Zaczynamy od miesięcznego pilotażu, bez konieczności podpisywania umowy na sześć miesięcy. W pierwszym tygodniu analizujemy technologię, UX, dane i cele biznesowe firmy. Tworzymy backlog, ustalamy priorytety i przygotowujemy roadmapę. Przez kolejne trzy tygodnie projektujemy i wdrażamy najważniejsze usprawnienia. Po miesiącu masz pierwsze zrealizowane zadania, plan dalszego rozwoju i możesz zdecydować, czy kontynuujemy współpracę.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Który pakiet będzie odpowiedni dla mojej firmy?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Stability sprawdzi się, gdy najważniejsze są utrzymanie techniczne, bezpieczeństwo i bieżące usprawnienia. Growth jest przeznaczony dla firm, które chcą regularnie rozwijać funkcjonalności, UX i pozyskiwanie leadów. Enterprise wybieramy wtedy, gdy przed rozpoczęciem ciągłego rozwoju potrzebna jest większa modernizacja, migracja lub przebudowa technologiczna. Ostateczny wariant rekomendujemy po poznaniu serwisu i celów biznesowych.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy muszę od razu podpisać umowę na sześć miesięcy?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Nie. Pierwszy miesiąc jest pilotażem bez zobowiązania do dłuższej współpracy. Po jego zakończeniu możesz wybrać sześciomiesięczną umowę z niższą ceną albo elastyczny model współpracy z miesięcznym okresem wypowiedzenia.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Jak wybieracie zadania do realizacji?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Priorytety ustalamy na podstawie celów biznesowych, danych, potrzeb klientów, stanu technologii oraz potencjalnego wpływu poszczególnych zmian. Bierzemy też pod uwagę pracochłonność i zależności między zadaniami. Dzięki temu nie realizujemy przypadkowej listy pomysłów, tylko działania najlepiej odpowiadające aktualnej sytuacji firmy.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Czy gwarantujecie wzrost liczby leadów?
+            <span class="faq-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer__inner">
+              Nie obiecujemy konkretnej liczby leadów, ponieważ wpływają na nią także oferta, długość procesu decyzyjnego klientów, ruch oraz działania marketingowe i handlowe. Odpowiadamy za jakość rekomendacji, projektów i wdrożeń. Mierzymy rezultaty zmian, wyciągamy wnioski i na ich podstawie aktualizujemy kolejne priorytety.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="faq__more">Masz dodatkowe pytania? <button type="button" class="link-btn js-contact" data-cta="FAQ — Odezwij się do nas" aria-haspopup="dialog">Odezwij się do nas →</button></p>
+    </div>
+  </section>
+
+  <!-- ================================
+       FINAL CTA
+  ================================ -->
+  <section class="final-cta" id="finalCta">
+    <div class="container">
+      <div class="final-cta__inner">
+        <a class="hero__proof" href="https://clutch.co/profile/codeq" target="_blank" rel="noopener noreferrer">
+          <span class="hero__proof__tip">Tu znajdziesz autoryzowane i rzetelne opinie naszych klientów na temat współpracy z Codeq. Weryfikowane przez platformę Clutch.</span>
+          <span>5.0 rating</span>
+          <svg width="61" height="17" viewBox="0 0 61 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Clutch" role="img">
+            <g clip-path="url(#clip0_clutch_cta)">
+              <path d="M15.8794 0H18.6551V17H15.8794V0ZM28.3702 11.577C28.3702 14.1787 26.1379 14.3861 25.4738 14.3861C23.8146 14.3861 23.5127 12.8642 23.5127 11.9462V5.44H20.7369V11.9326C20.7369 13.5442 21.2532 14.8743 22.1581 15.761C22.9575 16.5451 24.1553 16.9735 25.4529 16.9735C26.3731 16.9735 27.6763 16.6926 28.3702 16.0718V17H31.146V5.44H28.3702V11.577ZM36.6975 1.36H33.9217V5.44H31.8399V8.16H33.9217V17H36.6975V8.16H38.7793V5.44H36.6975V1.36ZM47.5208 13.5436C46.9164 14.076 46.1184 14.3711 45.2426 14.3711C43.3121 14.3711 41.8944 12.9819 41.8944 11.0745C41.8944 9.16708 43.267 7.83632 45.2426 7.83632C46.1031 7.83632 46.9164 8.11716 47.5361 8.6496L47.9573 9.00456L49.8288 7.17128L49.3604 6.75716C48.2592 5.78272 46.797 5.236 45.2419 5.236C41.7722 5.236 39.2526 7.68944 39.2526 11.0602C39.2526 14.4167 41.8326 16.9578 45.2419 16.9578C46.8262 16.9578 48.3036 16.4111 49.391 15.421L49.8434 15.0069L47.9427 13.175L47.5208 13.5436ZM59.7362 6.44776C58.9367 5.6644 57.9999 5.236 56.7023 5.236C55.7821 5.236 54.7398 5.51684 54.0459 6.137V0H51.2701V17H54.0459V10.6318C54.0459 8.03012 55.932 7.8234 56.5961 7.8234C58.2553 7.8234 58.2095 9.34592 58.2095 10.2626V17H60.9852V10.2768C60.9852 8.66524 60.6418 7.33516 59.7362 6.44776Z" fill="white"/>
+              <path d="M45.1504 9.1377C45.6827 9.1377 46.1931 9.34489 46.5695 9.71369C46.9458 10.0825 47.1573 10.5827 47.1573 11.1043C47.1573 11.6258 46.9458 12.126 46.5695 12.4948C46.1931 12.8636 45.6827 13.0708 45.1504 13.0708C44.6182 13.0708 44.1077 12.8636 43.7314 12.4948C43.355 12.126 43.1436 11.6258 43.1436 11.1043C43.1436 10.5827 43.355 10.0825 43.7314 9.71369C44.1077 9.34489 44.6182 9.1377 45.1504 9.1377Z" fill="#FF3D2E"/>
+              <path d="M11.9932 12.7303C10.9377 13.7945 9.50402 14.3712 7.9954 14.3712C4.90322 14.3712 2.65487 11.9912 2.65487 8.72447C2.65487 5.44279 4.90322 3.06279 7.9954 3.06279C9.48944 3.06279 10.9072 3.63875 11.9786 4.68867L12.4005 5.10279L14.2561 3.28447L13.8488 2.87035C12.3103 1.31791 10.2285 0.476074 7.9954 0.476074C3.43971 0.476074 0.0151367 4.02363 0.0151367 8.73875C0.0151367 13.4396 3.45498 16.9729 7.9954 16.9729C10.2438 16.9729 12.3256 16.1161 13.864 14.5636L14.2714 14.1495L12.431 12.3019L11.9932 12.7303Z" fill="white"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_clutch_cta">
+                <rect width="61" height="17" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+        </a>
+        <h2>Systematyczny rozwój.<br/>Więcej wartościowych leadów.</h2>
+        <p>Dołącz do grona firm, których serwisy rosną w trybie ciągłym — z pełnym zespołem ekspertów w abonamencie.</p>
+        <div class="final-cta__btns">
+          <button type="button" class="btn btn--white btn--lg js-contact" data-cta="Sekcja końcowa — Zacznij Pilotaż" aria-haspopup="dialog">Zacznij Pilotaż →</button>
+          <a href="#pricing" class="btn btn--outline-white btn--lg">Zobacz pakiety</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+
+  <!-- ================================
+       STICKY BAR
+  ================================ -->
+  <div class="sticky-bar" id="stickyBar">
+    <p class="sticky-bar__text">
+      <span class="sticky-bar__pulse" aria-hidden="true"></span>
+      <span><strong>Systematyczny rozwój, więcej wartościowych leadów.</strong> <span class="sticky-bar__sub">Pierwszy miesiąc bez umowy na 6 miesięcy.</span></span>
+    </p>
+    <button type="button" class="btn btn--white btn--lg sticky-bar__cta js-contact" data-cta="Przyklejony pasek na dole ekranu — Zacznij Pilotaż" aria-haspopup="dialog">Zacznij Pilotaż <span class="btn-arrow">→</span></button>
+  </div>
+
+  <!-- ROLE BOTTOM SHEET (mobile) -->
+  <div class="role-sheet-overlay" id="roleSheetOverlay" role="dialog" aria-modal="true">
+    <div class="role-sheet">
+      <div class="role-sheet__handle-wrap">
+        <div class="role-sheet__handle"></div>
+      </div>
+      <span class="role-sheet__icon">🧠</span>
+      <span class="role-sheet__role-label">Rola #1</span>
+      <span class="role-sheet__title">Strateg</span>
+      <span class="role-sheet__desc">...</span>
+      <span class="role-sheet__kpi">...</span>
+    </div>
+  </div>
+
+  <!-- CONTACT MODAL -->
+  <div class="contact-overlay" id="contactOverlay" aria-hidden="true">
+    <div class="contact-modal" role="dialog" aria-modal="true">
+      <button class="contact-modal__close" id="contactClose" aria-label="Zamknij">✕</button>
+
+      <!-- Left: objection busters -->
+      <div class="contact-modal__left">
+        <span class="label">Zacznij Pilotaż</span>
+        <h3>Bez zobowiązań.<br/>Bez ryzyka.</h3>
+        <ul class="contact-objections">
+          <li>
+            <span class="contact-obj__icon">🛡️</span>
+            <div class="contact-obj__text">
+              <strong>Miesięczny pilotaż na start</strong>
+              <span>Dostajesz gotową Roadmapę na kolejne 6 miesięcy i dopiero wtedy decydujesz, czy wchodzimy w stałą współpracę.</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-obj__icon">🔒</span>
+            <div class="contact-obj__text">
+              <strong>Flat Fee, zero niespodzianek</strong>
+              <span>Płacisz stałą kwotę miesięcznie, niezależnie od przepracowanych godzin. Żadnych dopłat za nadgodziny.</span>
+            </div>
+          </li>
+          <li>
+            <span class="contact-obj__icon">👥</span>
+            <div class="contact-obj__text">
+              <strong>Stały zespół przez cały czas</strong>
+              <span>Ten sam Developer, PM i projektant UX/UI od pierwszego dnia, więc nie tłumaczysz kontekstu od nowa co miesiąc.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact-modal__right">
+        <div class="contact-avatars">
+          <img src="design-system/assets/Awatar_Strateg_1.webp" alt="Strateg" width="144" height="144" loading="lazy" decoding="async">
+          <img src="design-system/assets/Awatar_Strateg_2.webp" alt="Strateg" width="144" height="144" loading="lazy" decoding="async">
+          <img src="design-system/assets/Awatar_Strateg_3.webp" alt="Strateg" width="144" height="144" loading="lazy" decoding="async">
+        </div>
+        <h3>Skontaktuj się z nami</h3>
+        <p>Wypełnij formularz lub napisz na<br><a href="mailto:biuro@codeq.pl">biuro@codeq.pl</a></p>
+
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="e1a7ba7c-5434-43b1-8835-226bb7c062a5">
+          <input type="hidden" name="subject" value="Nowe zapytanie — Codeq Care (landing)">
+          <input type="hidden" name="from_name" value="Codeq Care — landing">
+          <input type="hidden" name="Przycisk" value="">
+          <input type="checkbox" name="botcheck" class="contact-form__botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" name="name" placeholder="Imię*" autocomplete="given-name" required>
+          <input type="email" name="email" placeholder="Twój email*" autocomplete="email" required>
+          <textarea name="message" placeholder="Zadaj nam pytanie lub opisz serwis i cele firmy*" required></textarea>
+          <label class="contact-gdpr">
+            <input type="checkbox" name="gdpr" required>
+            <span>Wyrażam zgodę na przetwarzanie moich danych osobowych przez Codeq&nbsp;sp.&nbsp;z&nbsp;o.o. w celu obsługi niniejszego zapytania, zgodnie z <a href="https://codeq.pl/polityka-prywatnosci/" target="_blank" rel="noopener">polityką prywatności</a>.</span>
+          </label>
+          <button type="submit" class="btn--submit">Wyślij</button>
+          <p class="contact-form__error" role="alert" hidden>Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz na <a href="mailto:biuro@codeq.pl">biuro@codeq.pl</a>.</p>
+        </form>
+
+        <div class="contact-success" id="contactSuccess">
+          <span class="contact-success__icon">✅</span>
+          <h4>Gotowe! Odezwiemy się wkrótce.</h4>
+          <p>Zazwyczaj odpowiadamy w ciągu 24h roboczych.<br>Sprawdź również folder spam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================
+       JAVASCRIPT
+  ================================ -->
+  <script src="script.js"></script>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <!-- Lewa: logo + dane firmy -->
+      <div>
+        <span class="site-footer__company-name">Codeq Sp. z o.o.</span>
+        <div class="site-footer__address">
+          <p>Ul. Mostowa 2 / 80-778 Gdańsk</p>
+          <p>NIP: 957-114-03-31 / KRS: 0000946446</p>
+        </div>
+        <div class="site-footer__contact">
+          <p><a href="mailto:biuro@codeq.pl">biuro@codeq.pl</a></p>
+          <p>
+            <a href="tel:+48509785922">+48 509-785-922</a>
+            &nbsp;/&nbsp;
+            <a href="tel:+48571940175">+48 571-940-175</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Prawa: certyfikat Clutch -->
+      <div class="site-footer__right">
+        <a href="https://clutch.co/profile/codeq" target="_blank" rel="noopener" aria-label="Codeq na Clutch">
+          <img src="design-system/assets/Clutch_certyfikat.png"
+            alt="Top Developers Poland — Clutch 2020"
+            class="site-footer__badge" width="200" height="216" loading="lazy" decoding="async">
+        </a>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>&copy; 2025 Codeq Sp. z o.o. Wszelkie prawa zastrzeżone.</span>
+      <div class="site-footer__bottom-right">
+        <a class="site-footer__privacy" href="https://codeq.pl/polityka-prywatnosci/" target="_blank" rel="noopener">Polityka prywatności</a>
+        <a class="site-footer__clutch-link" href="https://clutch.co/profile/codeq" target="_blank" rel="noopener" aria-label="Profil na Clutch">
+          <svg width="52" height="14" viewBox="0 0 61 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M15.8794 0H18.6551V17H15.8794V0ZM28.3702 11.577C28.3702 14.1787 26.1379 14.3861 25.4738 14.3861C23.8146 14.3861 23.5127 12.8642 23.5127 11.9462V5.44H20.7369V11.9326C20.7369 13.5442 21.2532 14.8743 22.1581 15.761C22.9575 16.5451 24.1553 16.9735 25.4529 16.9735C26.3731 16.9735 27.6763 16.6926 28.3702 16.0718V17H31.146V5.44H28.3702V11.577ZM36.6975 1.36H33.9217V5.44H31.8399V8.16H33.9217V17H36.6975V8.16H38.7793V5.44H36.6975V1.36ZM47.5208 13.5436C46.9164 14.076 46.1184 14.3711 45.2426 14.3711C43.3121 14.3711 41.8944 12.9819 41.8944 11.0745C41.8944 9.16708 43.267 7.83632 45.2426 7.83632C46.1031 7.83632 46.9164 8.11716 47.5361 8.6496L47.9573 9.00456L49.8288 7.17128L49.3604 6.75716C48.2592 5.78272 46.797 5.236 45.2419 5.236C41.7722 5.236 39.2526 7.68944 39.2526 11.0602C39.2526 14.4167 41.8326 16.9578 45.2419 16.9578C46.8262 16.9578 48.3036 16.4111 49.391 15.421L49.8434 15.0069L47.9427 13.175L47.5208 13.5436ZM59.7362 6.44776C58.9367 5.6644 57.9999 5.236 56.7023 5.236C55.7821 5.236 54.7398 5.51684 54.0459 6.137V0H51.2701V17H54.0459V10.6318C54.0459 8.03012 55.932 7.8234 56.5961 7.8234C58.2553 7.8234 58.2095 9.34592 58.2095 10.2626V17H60.9852V10.2768C60.9852 8.66524 60.6418 7.33516 59.7362 6.44776Z" fill="currentColor"/>
+            <path d="M45.1504 9.1377C45.6827 9.1377 46.1931 9.34489 46.5695 9.71369C46.9458 10.0825 47.1573 10.5827 47.1573 11.1043C47.1573 11.6258 46.9458 12.126 46.5695 12.4948C46.1931 12.8636 45.6827 13.0708 45.1504 13.0708C44.6182 13.0708 44.1077 12.8636 43.7314 12.4948C43.355 12.126 43.1436 11.6258 43.1436 11.1043C43.1436 10.5827 43.355 10.0825 43.7314 9.71369C44.1077 9.34489 44.6182 9.1377 45.1504 9.1377Z" fill="#FF3D2E"/>
+            <path d="M11.9932 12.7303C10.9377 13.7945 9.50402 14.3712 7.9954 14.3712C4.90322 14.3712 2.65487 11.9912 2.65487 8.72447C2.65487 5.44279 4.90322 3.06279 7.9954 3.06279C9.48944 3.06279 10.9072 3.63875 11.9786 4.68867L12.4005 5.10279L14.2561 3.28447L13.8488 2.87035C12.3103 1.31791 10.2285 0.476074 7.9954 0.476074C3.43971 0.476074 0.0151367 4.02363 0.0151367 8.73875C0.0151367 13.4396 3.45498 16.9729 7.9954 16.9729C10.2438 16.9729 12.3256 16.1161 13.864 14.5636L14.2714 14.1495L12.431 12.3019L11.9932 12.7303Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
