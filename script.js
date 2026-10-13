@@ -212,39 +212,16 @@
       });
     });
 
-    // Role chips — bottom sheet on touch devices
-    const roleChipData = {
-      strateg: {
-        icon: '🧠', role: 'Rola #1', title: 'Strateg',
-        desc: 'Filtruje Twoje pomysły przez ROI. Chroni budżet przed nietrafionymi inwestycjami i wyznacza kierunek rozwoju sklepu.',
-        kpi: 'Co zyskujesz: mniej przepalonych złotówek, jasne priorytety na kwartał.'
-      },
-      pm: {
-        icon: '🗂️', role: 'Rola #2', title: 'Project Manager',
-        desc: 'Tłumaczy biznes na kod i pilnuje terminów w Pudełkach. Masz porządek bez mikrozarządzania z Twojej strony.',
-        kpi: 'Co zyskujesz: dowożone sprinty, jeden punkt kontaktu, brak chaosu.'
-      },
-      ux: {
-        icon: '🎨', role: 'Rola #3', title: 'UX Designer',
-        desc: 'Sprawdza użyteczność przed wdrożeniem. Zmniejsza porzucenia koszyka i zwiększa konwersję.',
-        kpi: 'Co zyskujesz: kod, który realnie sprzedaje.'
-      },
-      dev: {
-        icon: '💻', role: 'Rola #4', title: 'Senior Developer',
-        desc: 'Buduje szybki, stabilny sklep, który nie rozsypuje się przy aktualizacji wtyczki.',
-        kpi: 'Co zyskujesz: lepszy PageSpeed, mniej awarii, bezpieczny wzrost ruchu.'
-      }
-    };
-
-    function openRoleSheet(roleKey) {
-      const data = roleChipData[roleKey];
-      if (!data) return;
+    // Role chips — bottom sheet on touch devices. Sheet copy lives in the chip's
+    // data-sheet-* attributes in HTML, so each page variant keeps its own texts.
+    function openRoleSheet(chip) {
+      const data = chip.dataset;
       const overlay = document.getElementById('roleSheetOverlay');
-      overlay.querySelector('.role-sheet__icon').textContent = data.icon;
-      overlay.querySelector('.role-sheet__role-label').textContent = data.role;
-      overlay.querySelector('.role-sheet__title').textContent = data.title;
-      overlay.querySelector('.role-sheet__desc').textContent = data.desc;
-      overlay.querySelector('.role-sheet__kpi').textContent = data.kpi;
+      overlay.querySelector('.role-sheet__icon').textContent = data.sheetIcon;
+      overlay.querySelector('.role-sheet__role-label').textContent = data.sheetLabel;
+      overlay.querySelector('.role-sheet__title').textContent = data.sheetTitle;
+      overlay.querySelector('.role-sheet__desc').textContent = data.sheetDesc;
+      overlay.querySelector('.role-sheet__kpi').textContent = data.sheetKpi;
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -254,10 +231,10 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.lead-role[data-role]').forEach(chip => {
+    document.querySelectorAll('.lead-role[data-sheet-title]').forEach(chip => {
       chip.addEventListener('click', () => {
         if (window.matchMedia('(hover: none)').matches) {
-          openRoleSheet(chip.dataset.role);
+          openRoleSheet(chip);
         }
       });
     });
